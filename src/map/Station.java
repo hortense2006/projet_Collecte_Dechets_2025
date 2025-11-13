@@ -5,7 +5,7 @@ import java.util.List;
 // Classe de fond pour tout les lieux du plan
 // tel que le dépot, les points de collecte et les intersections
 
-public abstract class Station {
+public class Station {
 
     private String nom;
     private ArrayList<Arc> arcsSortants;
