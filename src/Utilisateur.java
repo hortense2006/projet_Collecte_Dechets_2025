@@ -15,6 +15,7 @@ public class Utilisateur
         this.typeUser = typeUser;
         this.id = id;
         this.mdp = mdp;
+        this.estConnecte = false;
     }
 
     // GETTER n°1
@@ -24,22 +25,52 @@ public class Utilisateur
     }
 
     // GETTER n°2
-    public void getmdp(String mdp   )
+    public void getmdp(String mdp)
     {
         this.mdp = mdp;
     }
 
+    // SETTER n°1
+
+    public void setEstConnecte(boolean estConnecte)
+    {
+        this.estConnecte = estConnecte;
+    }
     // METHODE n°1 : Login
-    public boolean login(String id, String mdp)
+    public void login(String id, String mdp)
     {
         System.out.println("Etes vous une particulier ou une commune ?");
-        String user = sc.nextLine();
-        switch(user)
+        this.typeUser = sc.nextLine();
+        switch(typeUser)
         {
-            case "particulier":{}
-            case "commune":{}
+            case "particulier":
+            {
+            }
+            case "commune":
+            {
+                System.out.println("Saisissez le nom de la commune :");
+                String idPropose = sc.nextLine();
+                if(idPropose.equals(id))
+                {
+                    System.out.println("Saisissez le mot de passe de la commune:");
+                    String mdpPropose = sc.nextLine();
+                    if(mdpPropose.equals(mdp))
+                    {
+                        setEstConnecte(true); // La commune est connectée
+                    }
+                    else
+                    {
+                        throw new ExceptionPersonnalisable("Le mot de passe est invalide");
+                    }
+                }
+                else
+                {
+                    throw new ExceptionPersonnalisable("Le nom de la commune est invalide");
+                }
+                break;
+            }
         }
-        return false;}
+    }
     // METHODE n°2 : Logout
     public void logout(){};
     // METHODE n°3 : Déclarer un dépôt
@@ -48,5 +79,4 @@ public class Utilisateur
     public void faireDemandeCollecte(){}
     // METHODE n°5 : Consulter le planning de collecte
     public void consulterPlanning(Commune commune){}
-
 }
