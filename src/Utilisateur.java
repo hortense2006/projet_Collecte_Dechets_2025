@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Utilisateur
 {
     // ATTRIBUTS
@@ -5,6 +7,7 @@ public class Utilisateur
     private String id;
     private String mdp;
     private boolean estConnecte;
+    Scanner sc = new Scanner(System.in);
 
     // CONSTRUCTEUR
     public Utilisateur(String typeUser, String id, String mdp)
@@ -27,7 +30,16 @@ public class Utilisateur
     }
 
     // METHODE n°1 : Login
-    public boolean login(String id, String mdp){return false;}
+    public boolean login(String id, String mdp)
+    {
+        System.out.println("Etes vous une particulier ou une commune ?");
+        String user = sc.nextLine();
+        switch(user)
+        {
+            case "particulier":{}
+            case "commune":{}
+        }
+        return false;}
     // METHODE n°2 : Logout
     public void logout(){};
     // METHODE n°3 : Déclarer un dépôt
