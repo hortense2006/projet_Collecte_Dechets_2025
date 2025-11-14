@@ -46,11 +46,6 @@ public class Commune implements Utilisateur
     }
 
     @Override
-    public boolean lireInfos(String info) {
-        return false;
-    }
-
-    @Override
     public void faireDemandeCollecte(String typeUser) {
 
     }

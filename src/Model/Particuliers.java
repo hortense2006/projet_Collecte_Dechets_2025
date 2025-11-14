@@ -8,7 +8,7 @@ public class Particuliers implements Utilisateur
 {
     // ATTRIBUTS
     private String typeUser; // "collectivité", "entreprise", "particulier"
-    public String nomFichier;
+    public String nomFichier = "Base_De_Donnees_Particuliers.txt";
     private boolean estConnecte;
     private Map<String, Profil> compte;
 
@@ -90,7 +90,7 @@ public class Particuliers implements Utilisateur
         String nom = sc.nextLine();
         System.out.println("Saisissez votre numero d'habitation:");
         int numero = sc.nextInt();
-        System.out.println("Saisissez votre numero de rue:");
+        System.out.println("Saisissez le nom de votre rue:");
         String rue = sc.nextLine();
         String id = UUID.randomUUID().toString(); // Chaque id est différent
         System.out.println("Voici votre identifiant:" + id);
