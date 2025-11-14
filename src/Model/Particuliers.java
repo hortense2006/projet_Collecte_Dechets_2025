@@ -8,8 +8,6 @@ public class Particuliers implements Utilisateur
 {
     // ATTRIBUTS
     private String typeUser; // "collectivité", "entreprise", "particulier"
-    private String id;
-    private String mdp;
     public String nomFichier;
     private boolean estConnecte;
     private Map<String, Profil> compte;
@@ -46,7 +44,7 @@ public class Particuliers implements Utilisateur
             }
             case "non":
             { // Se créer un compte (écriture d'un fichier)
-                signup();
+                register();
                 break;
             }
             default:{throw new ExceptionPersonnalisable("Choix invalide.");}
@@ -82,7 +80,7 @@ public class Particuliers implements Utilisateur
     }
 
     // METHODE n°2 : INSCRIPTION
-    public void signup()
+    public void register()
     {
         try{}
         catch(ExceptionPersonnalisable e){}
@@ -95,7 +93,7 @@ public class Particuliers implements Utilisateur
         System.out.println("Saisissez votre numero de rue:");
         String rue = sc.nextLine();
         String id = UUID.randomUUID().toString(); // Chaque id est différent
-        System.out.println("Voici votre identifiant:" + this.id);
+        System.out.println("Voici votre identifiant:" + id);
         System.out.println("Saisissez un mot de passe:");
         String mdp = sc.nextLine();
         // On crée un profil
