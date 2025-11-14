@@ -16,7 +16,6 @@ public class Particuliers
     {
         this.typeUser = typeUser;
         this.estConnecte = false;
-        this.compte = new HashMap<>();
     }
 
 

@@ -1,3 +1,4 @@
+import Model.Fichiers;
 import Model.Particuliers;
 import map.Plan;
 import java.io.*;
@@ -17,7 +18,7 @@ public class Main
 
         // IMPORT DES CLASSES
         Scanner sc = new Scanner(System.in);
-        Utilisateur user;
+        Fichiers f = new Fichiers(NOM_FICHIER);
         Plan plan = new Plan();
         Particuliers p = new Particuliers();
 
@@ -29,13 +30,13 @@ public class Main
             if (is == null)
             {
                 System.out.println("Échec de la lecture ClassLoader. Tentative de lecture de fichier simple...");
-                //p.chargerInfos(NOM_FICHIER);
+                f.chargerInfos();
             }
             else
             {
                 try (BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8)))
                 {
-                    //p.chargerReseauDepuisBuffer();
+                    f.chargerReseauDepuisBuffer();
                 }
             }
 
@@ -68,7 +69,6 @@ public class Main
                 }
                 case "particulier":
                 {
-                    user = new Particuliers();
                     System.out.println("Que souhaitez-vous faire :");
                     System.out.println("1. Connexion");
                     System.out.println("2. Demande de collecte");

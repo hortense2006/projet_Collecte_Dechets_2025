@@ -6,8 +6,6 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.UUID;
 
-import static Model.Fichiers.nomFichier;
-
 public class ParticulierView
 {
     // ATTRIBUTS
@@ -89,6 +87,6 @@ public class ParticulierView
         Profil p = new Profil(prenom,nom,numero,rue,id,mdp);
         compte.put(id,p); // On l'ajoutes à la HashMap compte
         // On enregistre les infos dans le fichier texte
-        sauvegarderProfil(nomFichier,p);
+        //sauvegarderProfil(nomFichier,p);
     }
 }

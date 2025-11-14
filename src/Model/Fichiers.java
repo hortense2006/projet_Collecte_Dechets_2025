@@ -1,16 +1,23 @@
 package Model;
 import Exceptions.ExceptionPersonnalisable;
 import java.io.*;
-import java.util.Map;
+import java.util.HashMap;
 
 public class Fichiers
 {
     // ATTRIBUTS
-    public static final String nomFichier = "Base_De_Donnees_Particuliers.txt";
-    public Map<String, Profil> compte;
+    public HashMap<String, Profil> compte;
+    public String nomFichier;
+
+    // CONSTRUCTEUR
+    public Fichiers(String nomFichier)
+    {
+        this.compte = new HashMap<>();
+        this.nomFichier = nomFichier;
+    }
 
     // METHODE n°1 : Remplissage de la HashMap compte pour la première fois
-    public void chargerInfos(String nomFichier)
+    public void chargerInfos()
     {
         try (BufferedReader br = new BufferedReader(new FileReader(nomFichier)))
         {
@@ -90,5 +97,4 @@ public class Fichiers
             System.out.println("Erreur d'écriture dans le fichier : " + e.getMessage());
         }
     }
-
 }
