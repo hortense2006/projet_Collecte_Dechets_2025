@@ -1,7 +1,9 @@
 import java.util.Scanner;
 
-public class Commune
+public class Commune implements Utilisateur
 {
+    String id;
+    String mdp;
     Scanner sc = new Scanner(System.in);
     private boolean estConnecte;
 
@@ -10,8 +12,8 @@ public class Commune
         this.estConnecte = estConnecte;
     }
 
-
-    public void loginCommune(String id,String mdp)
+    @Override
+    public void login()
     {
         System.out.println("Saisissez le nom de la commune :");
         String idPropose = sc.nextLine();
@@ -32,6 +34,26 @@ public class Commune
         {
             throw new ExceptionPersonnalisable("Le nom de la commune est invalide");
         }
+    }
+
+    @Override
+    public void chargerInfos() {
+
+    }
+
+    @Override
+    public boolean lireInfos(String info) {
+        return false;
+    }
+
+    @Override
+    public void faireDemandeCollecte(String typeUser) {
+
+    }
+
+    @Override
+    public void consulterPlanningRamassage(String commune) {
+
     }
 
     private void setEstConnecte(boolean estConnecte)
