@@ -1,5 +1,5 @@
 import Exceptions.ExceptionPersonnalisable;
-
+import java.io.*;
 import java.util.*;
 
 public class Particuliers implements Utilisateur
@@ -8,10 +8,9 @@ public class Particuliers implements Utilisateur
     private String typeUser; // "collectivité", "entreprise", "particulier"
     private String id;
     private String mdp;
+    public String nomFichier;
     private boolean estConnecte;
-    private Map<String,String> personne;
-    private Map<Integer,String> adresse;
-    private Map<String,String> compte;
+    private Map<String,Profil> compte;
 
     Scanner sc = new Scanner(System.in);
 
@@ -20,32 +19,13 @@ public class Particuliers implements Utilisateur
     {
         this.typeUser = typeUser;
         this.estConnecte = false;
-        this.personne = new HashMap<>();
-        this.adresse = new HashMap<>();
         this.compte = new HashMap<>();
-    }
-
-    // GETTER n°1
-    public void getid(String id)
-    {
-        this.id = id;
-    }
-    // GETTER n°2
-    public void getmdp(String mdp)
-    {
-        this.mdp = mdp;
     }
     // SETTER n°1
     public boolean setEstConnecte(boolean estConnecte)
     {
         this.estConnecte = estConnecte;
         return estConnecte;
-    }
-    // SETTER n°2
-    public String setmdp(String mdp)
-    {
-        this.mdp = mdp;
-        return mdp;
     }
 
     // METHODE n°1 : Login de l'utilisateur
@@ -75,12 +55,12 @@ public class Particuliers implements Utilisateur
     public void signin()
     {
         System.out.println("Saisissez votre identifiant:");
-        getid(sc.nextLine()); // On récupère l'identifiant saisi
-        if(lireInfos(this.id)) // Lecture du fichier : l'identifiant existes
+        String idPropose = sc.nextLine(); // On récupère l'identifiant saisi
+        if(compte.containsKey(idPropose)) // Lecture du fichier : l'identifiant existes
         {
             System.out.println("Saisissez votre mot de passe:");
-            getmdp(sc.nextLine()); // On récupère le mdp saisi
-            if(existenceMdp(this.id,this.mdp))// On vérifie son existence
+            String mdpPropose = sc.nextLine(); // On récupère le mdp saisi
+            if(existenceMdp(idPropose,mdpPropose))// On vérifie son existence
             {
                 setEstConnecte(true);
             }
@@ -104,25 +84,41 @@ public class Particuliers implements Utilisateur
         String prenom = sc.nextLine();
         System.out.println("Saisissez votre nom de famille:");
         String nom = sc.nextLine();
-        personne.put(prenom,nom); // On remplit la Hashmap
         System.out.println("Saisissez votre numero d'habitation:");
         int numero = sc.nextInt();
         System.out.println("Saisissez votre numero de rue:");
         String rue = sc.nextLine();
-        adresse.put(numero,rue); // On remplit la Hashmap
-        this.id = UUID.randomUUID().toString(); // Chaque id est différent
+        String id = UUID.randomUUID().toString(); // Chaque id est différent
         System.out.println("Voici votre identifiant:" + this.id);
         System.out.println("Saisissez un mot de passe:");
-        setmdp(sc.nextLine());
-        compte.put(this.id,this.mdp);
+        String mdp = sc.nextLine();
+        // On crée un profil
+        Profil p = new Profil(prenom,nom,numero,rue,id,mdp);
+        compte.put(id,p);
         // On enregistre les infos dans le fichier texte
-        chargerInfos();
+        chargerInfos(nomFichier);
     }
     // METHODE n°3
     @Override
-    public void chargerInfos()
+    public void chargerInfos(String nomFichier)
     {
         // On enregistre les Hashmap personne, adresse et compte dans le fichier texte
+        try (BufferedReader br = new BufferedReader(new FileReader(nomFichier)))
+        {
+            String ligne;
+            while ((ligne = br.readLine()) != null)
+            {
+                String[] parties = ligne.split(";"); //sépare chaque ligne en 4 morceaux
+                String prenom = parties[0].trim();
+                String nom = parties[1].trim();
+                String nomArrivee = parties[2].trim();
+            }
+        }
+        catch (IOException e)
+        {
+            throw new ExceptionPersonnalisable("Erreur de lecture du fichier");
+        }
+        System.out.println("Réseau chargé avec succès depuis " + nomFichier +" stations uniques trouvées.");
     }
     // METHODE n°4
     @Override
