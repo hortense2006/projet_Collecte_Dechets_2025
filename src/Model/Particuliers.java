@@ -51,7 +51,7 @@ public class Particuliers implements Utilisateur
         }
     }
 
-    // METHODE n°1 : CONNEXION
+    // METHODE n°2 : CONNEXION
     public void signin()
     {
         System.out.println("Saisissez votre identifiant:");
@@ -79,7 +79,7 @@ public class Particuliers implements Utilisateur
         }
     }
 
-    // METHODE n°2 : INSCRIPTION
+    // METHODE n°3 : INSCRIPTION
     public void register()
     {
         try{}
@@ -103,7 +103,7 @@ public class Particuliers implements Utilisateur
         // On enregistre les infos dans le fichier texte
         sauvegarderProfil(nomFichier,p);
     }
-    // METHODE n°3 : Remplissage de la HashMap compte pour la première fois
+    // METHODE n°4 : Remplissage de la HashMap compte pour la première fois
     @Override
     public void chargerInfos(String nomFichier)
     {
@@ -132,7 +132,7 @@ public class Particuliers implements Utilisateur
         System.out.println("Profils chargés avec succès depuis " + nomFichier);
     }
 
-    // METHODE n°3 : lecture après une première ouverture
+    // METHODE n°5 : lecture après une première ouverture
     public void chargerReseauDepuisBuffer()
     {
         try (BufferedReader br = new BufferedReader(new FileReader(nomFichier)))
@@ -166,6 +166,7 @@ public class Particuliers implements Utilisateur
         System.out.println("Profils chargés avec succès depuis " + nomFichier);
     }
 
+    // METHODE n°6 : Sauvegarde dans le fichier texte
     public void sauvegarderProfil(String nomFichier, Profil p)
     {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(nomFichier, true)))
@@ -185,12 +186,12 @@ public class Particuliers implements Utilisateur
         }
     }
 
-    // METHODE n°4 : Demander une collecte d'encombrants
+    // METHODE n°7 : Demander une collecte d'encombrants
     @Override
     public void faireDemandeCollecte(String typeUser) {
 
     }
-    // METHODE n°5 : Consulter le planning de collecte (ramassage devant les maisons
+    // METHODE n°8 : Consulter le planning de collecte (ramassage devant les maisons)
     @Override
     public void consulterPlanningRamassage(String commune) {
 
