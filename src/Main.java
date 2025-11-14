@@ -35,7 +35,7 @@ public class Main
                 {
                     case 1:
                     {
-                        user.login("particulier");
+                        user.login();
                         break;
                     }
                     case 2:
