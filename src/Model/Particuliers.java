@@ -3,7 +3,7 @@ package Model;
 import Exceptions.ExceptionPersonnalisable;
 import java.io.*;
 import java.util.*;
-
+// Cette classe s'occupe uniquement des tâches propre à un particulier.
 public class Particuliers
 {
     // ATTRIBUTS

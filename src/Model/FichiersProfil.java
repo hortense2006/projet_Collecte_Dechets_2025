@@ -2,15 +2,15 @@ package Model;
 import Exceptions.ExceptionPersonnalisable;
 import java.io.*;
 import java.util.HashMap;
-
-public class Fichiers
+// Cette classe s'occupe de la logique des fichiers pour les particuliers.
+public class FichiersProfil
 {
     // ATTRIBUTS
     private HashMap<String, Profil> compte;
     public String nomFichier;
 
     // CONSTRUCTEUR
-    public Fichiers(String nomFichier)
+    public FichiersProfil(String nomFichier)
     {
         this.compte = new HashMap<>();
         this.nomFichier = nomFichier;
@@ -45,7 +45,7 @@ public class Fichiers
     }
 
     // METHODE n°2 : lecture après une première ouverture
-    public void chargerReseauDepuisBuffer()
+    public void chargerInfosDepuisBuffer()
     {
         try (BufferedReader br = new BufferedReader(new FileReader(nomFichier)))
         {

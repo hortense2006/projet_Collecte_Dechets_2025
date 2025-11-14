@@ -1,5 +1,6 @@
-import Model.Fichiers;
+import Model.FichiersProfil;
 import Model.Particuliers;
+import View.ParticulierView;
 import map.Plan;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -18,7 +19,8 @@ public class Main
 
         // IMPORT DES CLASSES
         Scanner sc = new Scanner(System.in);
-        Fichiers f = new Fichiers(NOM_FICHIER);
+        FichiersProfil f = new FichiersProfil(NOM_FICHIER);
+        ParticulierView v = new ParticulierView();
         Plan plan = new Plan();
         Particuliers p = new Particuliers();
 
@@ -36,7 +38,7 @@ public class Main
             {
                 try (BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8)))
                 {
-                    f.chargerReseauDepuisBuffer();
+                    f.chargerInfosDepuisBuffer();
                 }
             }
 
@@ -79,17 +81,17 @@ public class Main
                     {
                         case 1:
                         {
-                            //user.login();
+                            v.login();
                             break;
                         }
                         case 2:
                         {
-                            //user.faireDemandeCollecte("particulier");
+                            p.faireDemandeCollecte("particulier");
                             break;
                         }
                         case 3:
                         {
-                            //user.consulterPlanningRamassage("ranville");
+                            p.consulterPlanningRamassage("ranville");
                             break;
                         }
                         case 4: //Sortie

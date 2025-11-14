@@ -4,7 +4,7 @@ import Exceptions.ExceptionPersonnalisable;
 
 import java.util.Scanner;
 
-public class Commune implements Utilisateur
+public class Commune
 {
     String id;
     String mdp;
@@ -16,7 +16,6 @@ public class Commune implements Utilisateur
         this.estConnecte = estConnecte;
     }
 
-    @Override
     public void login()
     {
         System.out.println("Saisissez le nom de la commune :");
@@ -40,17 +39,17 @@ public class Commune implements Utilisateur
         }
     }
 
-    @Override
+
     public void chargerInfos(String nomFichier) {
 
     }
 
-    @Override
+
     public void faireDemandeCollecte(String typeUser) {
 
     }
 
-    @Override
+
     public void consulterPlanningRamassage(String commune) {
 
     }

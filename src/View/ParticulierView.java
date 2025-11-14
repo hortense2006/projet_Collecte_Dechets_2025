@@ -1,12 +1,10 @@
 package View;
-
 import Exceptions.ExceptionPersonnalisable;
 import Model.Profil;
-
 import java.util.Map;
 import java.util.Scanner;
 import java.util.UUID;
-
+// Cette classe s'occuppe uniquement de l'affichage
 public class ParticulierView
 {
     // ATTRIBUTS
