@@ -118,12 +118,15 @@ public class Particuliers implements Utilisateur
     }
     // METHODE n°3
     @Override
-    public void chargerInfos() {
-
+    public void chargerInfos()
+    {
+        // On enregistre les Hashmap personne, adresse et compte dans le fichier texte
     }
     // METHODE n°4
     @Override
-    public boolean lireInfos(String info) {
+    public boolean lireInfos(String info)
+    {
+        // On lit le fichier texte
         return false;
     }
     // METHODE n°5 : Demander une collecte d'encombrants
