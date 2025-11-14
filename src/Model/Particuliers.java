@@ -84,6 +84,8 @@ public class Particuliers implements Utilisateur
     // METHODE n°2 : INSCRIPTION
     public void signup()
     {
+        try{}
+        catch(ExceptionPersonnalisable e){}
         System.out.println("Saisissez votre prenom");
         String prenom = sc.nextLine();
         System.out.println("Saisissez votre nom de famille:");
@@ -98,11 +100,11 @@ public class Particuliers implements Utilisateur
         String mdp = sc.nextLine();
         // On crée un profil
         Profil p = new Profil(prenom,nom,numero,rue,id,mdp);
-        compte.put(id,p);
+        compte.put(id,p); // On l'ajoutes à la HashMap compte
         // On enregistre les infos dans le fichier texte
         chargerInfos(nomFichier);
     }
-    // METHODE n°3 : Remplissage de la HashMap compte
+    // METHODE n°3 : Remplissage de la HashMap compte pour la première fois
     @Override
     public void chargerInfos(String nomFichier)
     {
@@ -111,18 +113,32 @@ public class Particuliers implements Utilisateur
             String ligne;
             while ((ligne = br.readLine()) != null)
             {
-                String[] parties = ligne.split(";"); //sépare chaque ligne en 4 morceaux
-                String prenom = parties[0].trim();
-                String nom = parties[1].trim();
-                String nomArrivee = parties[2].trim();
+                String[] parts = ligne.split(";");
+
+                if (parts.length != 6)
+                {
+                    System.out.println("Ligne ignorée : format invalide");
+                    continue;
+                }
+                String prenom = parts[0].trim();
+                String nom = parts[1].trim();
+                int numero = Integer.parseInt(parts[2].trim());
+                String rue = parts[3].trim();
+                String id = parts[4].trim();
+                String mdp = parts[5].trim();
+
+                Profil p = new Profil(prenom, nom, numero, rue, id, mdp);
+                compte.put(id, p); // id comme clé, Profil comme valeur
             }
         }
         catch (IOException e)
         {
             throw new ExceptionPersonnalisable("Erreur de lecture du fichier");
         }
-        System.out.println("Réseau chargé avec succès depuis " + nomFichier +" stations uniques trouvées.");
+
+        System.out.println("Profils chargés avec succès depuis " + nomFichier);
     }
+
     // METHODE n°4 : Demander une collecte d'encombrants
     @Override
     public void faireDemandeCollecte(String typeUser) {
