@@ -66,6 +66,7 @@ public class Main
                     System.out.println("1. Consulter le plan de Ranville.");
                     System.out.println("2. Mettre à jour les informations de la commune");
                     System.out.println("3. Quitter"); //créer la case associée
+                    break;
                 }
                 case "particulier":
                 {
@@ -95,11 +96,12 @@ public class Main
                         }
                         case 4: //Sortie
                         {
-                            exit = true;
-                            System.exit(0);// Sortir du programme
+                            exit = true; // Sortir du programme
+                            System.exit(0);
                             break;
                         }
                     }
+                    break;
                 }
             }
         }
