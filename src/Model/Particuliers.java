@@ -138,10 +138,12 @@ public class Particuliers implements Utilisateur
         try (BufferedReader br = new BufferedReader(new FileReader(nomFichier)))
         {
             String ligne;
-            while ((ligne = br.readLine()) != null) {
+            while ((ligne = br.readLine()) != null)
+            {
                 String[] parts = ligne.split(";");
 
-                if (parts.length != 6) {
+                if (parts.length != 6)
+                {
                     System.out.println("Ligne ignorée : format invalide");
                     continue;
                 }
@@ -155,7 +157,9 @@ public class Particuliers implements Utilisateur
                 Profil p = new Profil(prenom, nom, numero, rue, id, mdp);
                 compte.put(id, p); // id comme clé, Profil comme valeur
             }
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
             throw new ExceptionPersonnalisable("Erreur de lecture du fichier");
         }
 

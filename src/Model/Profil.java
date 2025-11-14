@@ -27,12 +27,4 @@ public class Profil
     public String getRue() { return rue; }
     public String getId() { return id; }
     public String getMdp() { return mdp; }
-
-    // -------- SETTERS --------
-    public void setPrenom(String prenom) { this.prenom = prenom; }
-    public void setNom(String nom) { this.nom = nom; }
-    public void setNumero(int numero) { this.numero = numero; }
-    public void setRue(String rue) { this.rue = rue; }
-    public void setId(String id) { this.id = id; }
-    public void setMdp(String mdp) { this.mdp = mdp; }
 }
