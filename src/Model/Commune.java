@@ -1,4 +1,7 @@
+package Model;
+
 import Exceptions.ExceptionPersonnalisable;
+
 import java.util.Scanner;
 
 public class Commune implements Utilisateur
@@ -38,13 +41,8 @@ public class Commune implements Utilisateur
     }
 
     @Override
-    public void chargerInfos() {
+    public void chargerInfos(String nomFichier) {
 
-    }
-
-    @Override
-    public boolean lireInfos(String info) {
-        return false;
     }
 
     @Override

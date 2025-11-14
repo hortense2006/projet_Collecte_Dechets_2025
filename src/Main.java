@@ -1,7 +1,5 @@
 import Exceptions.ExceptionPersonnalisable;
-import map.Plan;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
@@ -10,7 +8,7 @@ public class Main {
 
         // ATTRIBUTS
         String typeUser;
-        int choixUser;
+        int choix;
         Scanner sc = new Scanner(System.in);
         Utilisateur user;
         Plan plan = new Plan();
