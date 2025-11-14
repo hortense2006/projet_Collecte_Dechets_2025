@@ -149,6 +149,4 @@ public class Particuliers implements Utilisateur
     public void consulterPlanningRamassage(String commune) {
 
     }
-    // METHODE n°6
-    public boolean existenceMdp(String id,String mdp){return false;}
 }
