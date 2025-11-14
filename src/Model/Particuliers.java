@@ -90,6 +90,7 @@ public class Particuliers implements Utilisateur
         String nom = sc.nextLine();
         System.out.println("Saisissez votre numero d'habitation:");
         int numero = sc.nextInt();
+        sc.nextLine(); // Vide le buffer
         System.out.println("Saisissez le nom de votre rue:");
         String rue = sc.nextLine();
         String id = UUID.randomUUID().toString(); // Chaque id est différent
@@ -100,7 +101,7 @@ public class Particuliers implements Utilisateur
         Profil p = new Profil(prenom,nom,numero,rue,id,mdp);
         compte.put(id,p); // On l'ajoutes à la HashMap compte
         // On enregistre les infos dans le fichier texte
-        chargerInfos(nomFichier);
+        sauvegarderProfil(nomFichier,p);
     }
     // METHODE n°3 : Remplissage de la HashMap compte pour la première fois
     @Override
@@ -112,12 +113,6 @@ public class Particuliers implements Utilisateur
             while ((ligne = br.readLine()) != null)
             {
                 String[] parts = ligne.split(";");
-
-                if (parts.length != 6)
-                {
-                    System.out.println("Ligne ignorée : format invalide");
-                    continue;
-                }
                 String prenom = parts[0].trim();
                 String nom = parts[1].trim();
                 int numero = Integer.parseInt(parts[2].trim());
@@ -135,6 +130,55 @@ public class Particuliers implements Utilisateur
         }
 
         System.out.println("Profils chargés avec succès depuis " + nomFichier);
+    }
+
+    // METHODE n°3 : lecture après une première ouverture
+    public void chargerReseauDepuisBuffer()
+    {
+        try (BufferedReader br = new BufferedReader(new FileReader(nomFichier)))
+        {
+            String ligne;
+            while ((ligne = br.readLine()) != null) {
+                String[] parts = ligne.split(";");
+
+                if (parts.length != 6) {
+                    System.out.println("Ligne ignorée : format invalide");
+                    continue;
+                }
+                String prenom = parts[0].trim();
+                String nom = parts[1].trim();
+                int numero = Integer.parseInt(parts[2].trim());
+                String rue = parts[3].trim();
+                String id = parts[4].trim();
+                String mdp = parts[5].trim();
+
+                Profil p = new Profil(prenom, nom, numero, rue, id, mdp);
+                compte.put(id, p); // id comme clé, Profil comme valeur
+            }
+        } catch (IOException e) {
+            throw new ExceptionPersonnalisable("Erreur de lecture du fichier");
+        }
+
+        System.out.println("Profils chargés avec succès depuis " + nomFichier);
+    }
+
+    public void sauvegarderProfil(String nomFichier, Profil p)
+    {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(nomFichier, true)))
+        {
+            String ligne = p.getPrenom() + ";" +
+                    p.getNom() + ";" +
+                    p.getNumero() + ";" +
+                    p.getRue() + ";" +
+                    p.getId() + ";" +
+                    p.getMdp();
+            bw.write(ligne);
+            bw.newLine();
+        }
+        catch (IOException e)
+        {
+            System.out.println("Erreur d'écriture dans le fichier : " + e.getMessage());
+        }
     }
 
     // METHODE n°4 : Demander une collecte d'encombrants
