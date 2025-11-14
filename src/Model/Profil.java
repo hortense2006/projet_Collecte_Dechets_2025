@@ -8,6 +8,7 @@ public class Profil
     private String rue;
     private String id;
     private String mdp;
+    private boolean estConnecte;
 
     // CONSTRUCTEUR
     public Profil(String prenom, String nom, int numero, String rue, String id, String mdp)
@@ -27,4 +28,11 @@ public class Profil
     public String getRue() { return rue; }
     public String getId() { return id; }
     public String getMdp() { return mdp; }
+
+    // SETTER n°1
+    public boolean setEstConnecte(boolean estConnecte)
+    {
+        this.estConnecte = estConnecte;
+        return estConnecte;
+    }
 }

@@ -21,7 +21,7 @@ public class Main
         Scanner sc = new Scanner(System.in);
         Utilisateur user;
         Plan plan = new Plan();
-        Particuliers p = new Particuliers(typeUser);
+        Particuliers p = new Particuliers();
 
         try
         {
@@ -70,7 +70,7 @@ public class Main
                 }
                 case "particulier":
                 {
-                    user = new Particuliers(typeUser);
+                    user = new Particuliers();
                     System.out.println("Que souhaitez-vous faire :");
                     System.out.println("1. Connexion");
                     System.out.println("2. Demande de collecte");

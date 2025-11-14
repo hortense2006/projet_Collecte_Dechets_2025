@@ -8,14 +8,14 @@ public class Particuliers implements Utilisateur
 {
     // ATTRIBUTS
     private String typeUser; // "collectivité", "entreprise", "particulier"
-    public String nomFichier = "Base_De_Donnees_Particuliers.txt";
+    public static final String nomFichier = "Base_De_Donnees_Particuliers.txt";
     private boolean estConnecte;
     private Map<String, Profil> compte;
 
     Scanner sc = new Scanner(System.in);
 
     // CONSTRUCTEUR
-    public Particuliers(String typeUser)
+    public Particuliers()
     {
         this.typeUser = typeUser;
         this.estConnecte = false;
@@ -188,7 +188,9 @@ public class Particuliers implements Utilisateur
 
     // METHODE n°7 : Demander une collecte d'encombrants
     @Override
-    public void faireDemandeCollecte(String typeUser) {
+    public void faireDemandeCollecte(String typeUser)
+    {
+        System.out.println("Voulez-vous demander une collecte d'encombrants");
 
     }
     // METHODE n°8 : Consulter le planning de collecte (ramassage devant les maisons)
