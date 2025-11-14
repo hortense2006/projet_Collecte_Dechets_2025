@@ -14,6 +14,11 @@ public class Plan {
         this.stations = new HashMap<>();
     }
 
+    public Map<String, Station> getStations() {
+        return stations;
+    }
+
+    //Permet de déterminer l'orientation du graphe
     public enum modeOrientation {
         HO1_NON_ORIENTE, // rue à double sens
         HO2_ORIENTE, // rue à sens unique
@@ -31,7 +36,7 @@ public class Plan {
         return null;
     }
 
-    // Menu quipermet de choisir quel type de plan on veut utiliser et afficher le dit plan associé
+    // Permet de lire un plan et de la charger dans les elements necessaires
     public void chargerPlan(String nomFichier, modeOrientation mode) throws IOException {
         // variable necessaire au chargement et à la création du graphe
         this.stations.clear();
@@ -128,6 +133,7 @@ public class Plan {
         }
     }
 
+    //Menu qui permet de choisir le type de fichier qu'on veut et l'affiche
     public void choixFichier() {
         String nomFichier = "";
         int choixPlan;

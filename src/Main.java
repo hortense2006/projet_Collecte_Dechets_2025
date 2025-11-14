@@ -1,4 +1,7 @@
 import Exceptions.ExceptionPersonnalisable;
+import Model.Particuliers;
+import Model.Utilisateur;
+import map.Plan;
 
 import java.util.Scanner;
 
@@ -40,8 +43,8 @@ public class Main {
                     System.out.println("2. Demande de collecte");
                     System.out.println("3. Consulter le planning de ramassage");
                     System.out.println("4. Quitter");
-                    choixUser = sc.nextInt();
-                    switch (choixUser)
+                    choix = sc.nextInt();
+                    switch (choix)
                     {
                         case 1:
                         {
