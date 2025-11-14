@@ -6,7 +6,7 @@ import java.util.HashMap;
 public class Fichiers
 {
     // ATTRIBUTS
-    public HashMap<String, Profil> compte;
+    private HashMap<String, Profil> compte;
     public String nomFichier;
 
     // CONSTRUCTEUR
@@ -79,7 +79,7 @@ public class Fichiers
     }
 
     // METHODE n°3 : Sauvegarde dans le fichier texte
-    public void sauvegarderProfil(String nomFichier, Profil p)
+    public void sauvegarderProfil(Profil p)
     {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(nomFichier, true)))
         {
