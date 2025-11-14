@@ -1,3 +1,41 @@
+import java.util.Scanner;
+
 public class Commune
 {
+    Scanner sc = new Scanner(System.in);
+    private boolean estConnecte;
+
+    public Commune(boolean estConnecte)
+    {
+        this.estConnecte = estConnecte;
+    }
+
+
+    public void loginCommune(String id,String mdp)
+    {
+        System.out.println("Saisissez le nom de la commune :");
+        String idPropose = sc.nextLine();
+        if(idPropose.equals(id))
+        {
+            System.out.println("Saisissez le mot de passe de la commune:");
+            String mdpPropose = sc.nextLine();
+            if(mdpPropose.equals(mdp))
+            {
+                setEstConnecte(true); // La commune est connectée
+            }
+            else
+            {
+                throw new ExceptionPersonnalisable("Le mot de passe est invalide");
+            }
+        }
+        else
+        {
+            throw new ExceptionPersonnalisable("Le nom de la commune est invalide");
+        }
+    }
+
+    private void setEstConnecte(boolean estConnecte)
+    {
+        this.estConnecte = estConnecte;
+    }
 }
