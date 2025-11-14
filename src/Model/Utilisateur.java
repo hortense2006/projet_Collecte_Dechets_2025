@@ -1,4 +1,4 @@
-import java.io.IOException;
+package Model;
 
 public interface Utilisateur
 {

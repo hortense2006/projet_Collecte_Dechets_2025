@@ -1,6 +1,7 @@
+package Model;
+
 import Exceptions.ExceptionPersonnalisable;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Commune implements Utilisateur

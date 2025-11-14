@@ -1,4 +1,6 @@
 import Exceptions.ExceptionPersonnalisable;
+import Model.Particuliers;
+import Model.Utilisateur;
 
 import java.util.Scanner;
 

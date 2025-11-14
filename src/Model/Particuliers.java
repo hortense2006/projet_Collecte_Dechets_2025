@@ -1,3 +1,5 @@
+package Model;
+
 import Exceptions.ExceptionPersonnalisable;
 import java.io.*;
 import java.util.*;
@@ -10,7 +12,7 @@ public class Particuliers implements Utilisateur
     private String mdp;
     public String nomFichier;
     private boolean estConnecte;
-    private Map<String,Profil> compte;
+    private Map<String, Profil> compte;
 
     Scanner sc = new Scanner(System.in);
 
