@@ -60,11 +60,13 @@ public class Particuliers implements Utilisateur
         String idPropose = sc.nextLine(); // On récupère l'identifiant saisi
         if(compte.containsKey(idPropose)) // Lecture du fichier : l'identifiant existes
         {
+            Profil p = compte.get(idPropose);
             System.out.println("Saisissez votre mot de passe:");
             String mdpPropose = sc.nextLine(); // On récupère le mdp saisi
-            if(existenceMdp(idPropose,mdpPropose))// On vérifie son existence
+            if(p.getMdp().equals(mdpPropose))// On vérifie si c'est le bon mot de passe
             {
                 setEstConnecte(true);
+                System.out.println("Connexion réussie !");
             }
             else
             {
@@ -100,11 +102,10 @@ public class Particuliers implements Utilisateur
         // On enregistre les infos dans le fichier texte
         chargerInfos(nomFichier);
     }
-    // METHODE n°3
+    // METHODE n°3 : Remplissage de la HashMap compte
     @Override
     public void chargerInfos(String nomFichier)
     {
-        // On enregistre les Hashmap personne, adresse et compte dans le fichier texte
         try (BufferedReader br = new BufferedReader(new FileReader(nomFichier)))
         {
             String ligne;
@@ -122,23 +123,16 @@ public class Particuliers implements Utilisateur
         }
         System.out.println("Réseau chargé avec succès depuis " + nomFichier +" stations uniques trouvées.");
     }
-    // METHODE n°4
-    @Override
-    public boolean lireInfos(String info)
-    {
-        // On lit le fichier texte
-        return false;
-    }
-    // METHODE n°5 : Demander une collecte d'encombrants
+    // METHODE n°4 : Demander une collecte d'encombrants
     @Override
     public void faireDemandeCollecte(String typeUser) {
 
     }
-    // METHODE n°6 : Consulter le planning de collecte (ramassage devant les maisons
+    // METHODE n°5 : Consulter le planning de collecte (ramassage devant les maisons
     @Override
     public void consulterPlanningRamassage(String commune) {
 
     }
-    // METHODE n°7
+    // METHODE n°6
     public boolean existenceMdp(String id,String mdp){return false;}
 }
