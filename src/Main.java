@@ -2,24 +2,56 @@ import Exceptions.ExceptionPersonnalisable;
 import Model.Particuliers;
 import Model.Utilisateur;
 import map.Plan;
-
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-public class Main {
-
-    public static void main(String[] args) {
+public class Main
+{
+    public static void main(String[] args)
+    {
 
         // ATTRIBUTS
-        String typeUser;
+        String typeUser = "";
         int choix;
+        boolean exit = false;
+        final String NOM_FICHIER = "Base_De_Donnees_Particuliers.txt";
+
+        // IMPORT DES CLASSES
         Scanner sc = new Scanner(System.in);
         Utilisateur user;
         Plan plan = new Plan();
-        boolean exit = false;
+        Particuliers p = new Particuliers(typeUser);
 
-        while (!exit) { //permet de faire tourner l'application sans fin tant que exitApp n'a pas été choisi
+        try
+        {
+            //lecture du fichier
+            System.out.println("Tentative de chargement du réseau en tant que ressource: " + NOM_FICHIER);
+            InputStream is = Main.class.getClassLoader().getResourceAsStream(NOM_FICHIER);
+            if (is == null)
+            {
+                System.out.println("Échec de la lecture ClassLoader. Tentative de lecture de fichier simple...");
+                p.chargerInfos(NOM_FICHIER);
+            }
+            else
+            {
+                try (BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8)))
+                {
+                    p.chargerReseauDepuisBuffer();
+                }
+            }
 
-            plan.choixFichier(); //permet de choisir le fichier qu'on utilise et affiche le plan de la ville associer
+        }
+        catch (IOException e)
+        {
+            System.err.println("ERREUR Impossible de lire le fichier du réseau (" + NOM_FICHIER + ").");
+            System.err.println("Détail de l'erreur: " + e.getMessage());
+            return;
+        }
+        while (!exit)
+        { //permet de faire tourner l'application sans fin tant que exitApp n'a pas été choisi
+
+            plan.choixFichier(); //permet de choisir le fichier qu'on utilise et affiche le plan de la ville associé
 
             System.out.println("Choisissez votre profil : " +
                     "\n - commune" +
@@ -33,7 +65,7 @@ public class Main {
                     System.out.println("Que souhaitez-vous faire :");
                     System.out.println("1. Consulter le plan de Ranville.");
                     System.out.println("2. Mettre à jour les informations de la commune");
-                    System.out.println("3. Quitter"); //créer la case associer
+                    System.out.println("3. Quitter"); //créer la case associée
                 }
                 case "particulier":
                 {
@@ -61,15 +93,15 @@ public class Main {
                             user.consulterPlanningRamassage("ranville");
                             break;
                         }
-                        case 4: //rejout de la case de sortie
+                        case 4: //Sortie
+                        {
                             exit = true;
                             System.exit(0);// Sortir du programme
                             break;
+                        }
                         default: {throw new ExceptionPersonnalisable("Wrong choice");}
                     }
-
-                } case "entreprise":{} //je ne pense pas qu'une case entreprise soit necessaire c'est uniquement la commune et un utilisateur qui gére le passage et trajet du camion
-
+                }
                 default:{throw new ExceptionPersonnalisable("Wrong choice");}
             }
 
