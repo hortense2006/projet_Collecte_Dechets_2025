@@ -6,16 +6,18 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.UUID;
 
-public class ParticulierView implements Utilisateur
+import static Model.Fichiers.nomFichier;
+
+public class ParticulierView
 {
     // ATTRIBUTS
-    private Map<String, Profil> compte;
+    public Map<String, Profil> compte;
 
     // APPEL DE CLASSES
     Scanner sc = new Scanner(System.in);
 
     // METHODE n°1 : Login de l'utilisateur
-    @Override
+
     public void login()
     {
         String choix;

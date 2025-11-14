@@ -1,6 +1,4 @@
-import Exceptions.ExceptionPersonnalisable;
 import Model.Particuliers;
-import Model.Utilisateur;
 import map.Plan;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -31,13 +29,13 @@ public class Main
             if (is == null)
             {
                 System.out.println("Échec de la lecture ClassLoader. Tentative de lecture de fichier simple...");
-                p.chargerInfos(NOM_FICHIER);
+                //p.chargerInfos(NOM_FICHIER);
             }
             else
             {
                 try (BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8)))
                 {
-                    p.chargerReseauDepuisBuffer();
+                    //p.chargerReseauDepuisBuffer();
                 }
             }
 
@@ -81,17 +79,17 @@ public class Main
                     {
                         case 1:
                         {
-                            user.login();
+                            //user.login();
                             break;
                         }
                         case 2:
                         {
-                            user.faireDemandeCollecte("particulier");
+                            //user.faireDemandeCollecte("particulier");
                             break;
                         }
                         case 3:
                         {
-                            user.consulterPlanningRamassage("ranville");
+                            //user.consulterPlanningRamassage("ranville");
                             break;
                         }
                         case 4: //Sortie
