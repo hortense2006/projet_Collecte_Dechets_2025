@@ -1,15 +1,13 @@
 package View;
 import Exceptions.ExceptionPersonnalisable;
-import Model.FichiersProfil;
-import Model.Profil;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.UUID;
+import Model.*;
+import java.util.*;
+
 // Cette classe s'occuppe uniquement de l'affichage : actuellement pas de logique MVC => à refaire
 public class ParticulierView
 {
     // ATTRIBUTS
-    public Map<String, Profil> compte;
+    public HashMap<String, Profil> compte;
     private String nomFichier;
 
     // APPEL DE CLASSES
@@ -17,7 +15,6 @@ public class ParticulierView
     FichiersProfil f = new FichiersProfil(nomFichier);
 
     // METHODE n°1 : Login de l'utilisateur
-
     public void login()
     {
         String choix;
@@ -39,6 +36,41 @@ public class ParticulierView
         }
     }
 
+    // METHODE n°2 : AFFICHER SIGNIN
+    public void afficherSignin()
+    {
+        System.out.println("Saisissez votre identifiant:");
+        String idPropose = sc.nextLine(); // On récupère l'identifiant saisi
+        if(!verifierId(idPropose))
+        {
+            System.out.println("Cet identifiant n'existes pas.");
+        }
+        System.out.println("Saisissez votre mot de passe:");
+        String mdpPropose = sc.nextLine(); // On récupère le mdp saisi
+        if(!verifierId(mdpPropose))
+        {
+            System.out.println("Ce mot de passe est invalide.");
+        }
+        System.out.println("Connexion réussie !");
+    }
+
+    public boolean verifierId(String info)
+    {
+        String idPropose = "";
+        String mdpPropose = "";
+        Profil p = null;
+        if (info.equals(idPropose))
+            if (compte.containsKey(info)) // Lecture du fichier : l'identifiant existes
+            {
+                p = compte.get(idPropose);
+                return true;
+            }
+        if (p.getMdp().equals(mdpPropose)) {
+            p.setEstConnecte(true);
+            return true;
+        }
+        return false;
+    }
     // METHODE n°2 : CONNEXION
     public void signin()
     {
