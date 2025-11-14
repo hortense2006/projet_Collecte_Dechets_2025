@@ -1,3 +1,5 @@
+import Exceptions.ExceptionPersonnalisable;
+
 import java.util.*;
 
 public class Particuliers implements Utilisateur

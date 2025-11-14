@@ -1,3 +1,4 @@
+import Exceptions.ExceptionPersonnalisable;
 import java.util.Scanner;
 
 public class Commune implements Utilisateur
