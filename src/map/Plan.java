@@ -7,21 +7,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Plan {
-
+public class Plan
+{
+    // ATTRIBUTS
     private Map<String, Station> stations; //plan de la ville
-
+    // CONSTRUCTEUR
     public Plan() { //constructeurs
         this.stations = new HashMap<>();
     }
 
-    public enum ModeOrientation {
+    public enum ModeOrientation
+    {
         HO1_NON_ORIENTE, // rue à double sens
         HO2_ORIENTE, // rue à sens unique
         HO3_MIXTE // rue mixte (double sens et sens unique)
     }
 
-    private Station CreerStation (String nom) {
+    // METHODE n°1
+    private Station CreerStation (String nom)
+    {
         if (nom.equals("D")) {
             return new Depot(nom);
         }
@@ -34,9 +38,9 @@ public class Plan {
         return null;
     }
 
-
-    public void chargerReseau(String nomFichier, ModeOrientation mode) throws IOException {
-
+    // METHODE n°2
+    public void chargerReseau(String nomFichier, ModeOrientation mode) throws IOException
+    {
         // variable necessaire au chargement et à la création du graphe
         this.stations.clear();
         int nbArcsAjoutes = 0;
@@ -116,6 +120,7 @@ public class Plan {
         System.out.println("Mode de chargement : " + typeGraphe);
     }
 
+    // METHODE n°3
     public void afficherReseau() { //affiche le plan de la ville chargée
         System.out.println("Affichage du plan de la ville");
         for (Station station : stations.values()) {

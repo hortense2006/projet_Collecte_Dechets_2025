@@ -1,6 +1,7 @@
 package map;
 
-public class Depot extends Station{
+public class Depot extends Station
+{
 
     public Depot (String nom){
         super(nom);
