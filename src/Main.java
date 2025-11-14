@@ -54,9 +54,9 @@ public class Main
             plan.choixFichier(); //permet de choisir le fichier qu'on utilise et affiche le plan de la ville associé
 
             System.out.println("Choisissez votre profil : " +
-                    "\n - commune" +
-                    "\n - particulier" +
-                    "\n - entreprise");
+                    "\n commune" +
+                    "\n particulier" +
+                    "\n entreprise");
             typeUser = sc.nextLine();
             switch (typeUser)
             {
