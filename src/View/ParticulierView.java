@@ -1,6 +1,7 @@
-package Model;
+package View;
 
 import Exceptions.ExceptionPersonnalisable;
+import Model.Profil;
 
 import java.util.Map;
 import java.util.Scanner;
