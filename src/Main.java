@@ -99,12 +99,9 @@ public class Main
                             System.exit(0);// Sortir du programme
                             break;
                         }
-                        default: {throw new ExceptionPersonnalisable("Wrong choice");}
                     }
                 }
-                default:{throw new ExceptionPersonnalisable("Wrong choice");}
             }
-
         }
     }
 }
