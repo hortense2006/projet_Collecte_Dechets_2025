@@ -5,7 +5,7 @@ import Model.Profil;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.UUID;
-// Cette classe s'occuppe uniquement de l'affichage
+// Cette classe s'occuppe uniquement de l'affichage : actuellement pas de logique MVC => à refaire
 public class ParticulierView
 {
     // ATTRIBUTS

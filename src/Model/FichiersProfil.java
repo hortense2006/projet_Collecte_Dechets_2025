@@ -94,7 +94,7 @@ public class FichiersProfil
         }
         catch (IOException e)
         {
-            System.out.println("Erreur d'écriture dans le fichier : " + e.getMessage());
+            throw new ExceptionPersonnalisable("Erreur d'écriture dans le fichier : " + e.getMessage());
         }
     }
 }
