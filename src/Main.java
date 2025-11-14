@@ -16,61 +16,9 @@ public class Main {
         Plan plan = new Plan();
         boolean exit = false;
 
-        String nomFichier = "";
-        String choixPlan;
+        while (!exit) { //permet de faire tourner l'application sans fin tant que exitApp n'a pas été choisi
 
-        while (exit != true) {
-
-            System.out.println ("Sur quel type de plan voulez vous vous baser : " +
-                    "\n - HO1 : à bouble sens" +
-                    "\n - HO2 : à sens unique" +
-                    "\n - HO3 : réaliste");
-            choixPlan = sc.nextLine();
-
-            switch (choixPlan) {
-                case "HO1":
-                    nomFichier = "C:\\Users\\valsa\\IdeaProjects\\Théorie des graphes\\projet_Collecte_Dechets_2025\\src\\Ranville_HO1.txt";
-                    try {
-                        plan.chargerPlan(nomFichier, Plan.modeOrientation.HO1_NON_ORIENTE);
-                        System.out.println("Plan de la ville : ");
-                        plan.afficherReseau();
-                        System.out.println("\n");
-                    }
-                    catch (IOException e) {
-                        System.err.println("ERREUR : Impossible de lire le fichier du réseau.");
-                        System.err.println("Détail de l'erreur: " + e.getMessage());
-                        return;
-                    }
-                    break;
-                case "HO2":
-                    nomFichier = "C:\\Users\\valsa\\IdeaProjects\\Théorie des graphes\\projet_Collecte_Dechets_2025\\src\\Ranville_HO2.txt";
-                    try {
-                        plan.chargerPlan(nomFichier, Plan.modeOrientation.HO2_ORIENTE);
-                        System.out.println("Plan de la ville : ");
-                        plan.afficherReseau();
-                        System.out.println("\n");
-                    }
-                    catch (IOException e) {
-                        System.err.println("ERREUR : Impossible de lire le fichier du réseau.");
-                        System.err.println("Détail de l'erreur: " + e.getMessage());
-                        return;
-                    }
-                    break;
-                case "HO3":
-                    nomFichier = "C:\\Users\\valsa\\IdeaProjects\\Théorie des graphes\\projet_Collecte_Dechets_2025\\src\\Ranville_HO3.txt";
-                    try {
-                        plan.chargerPlan(nomFichier, Plan.modeOrientation.HO3_MIXTE);
-                        System.out.println("Plan de la ville : ");
-                        plan.afficherReseau();
-                        System.out.println("\n");
-                    }
-                    catch (IOException e) {
-                        System.err.println("ERREUR : Impossible de lire le fichier du réseau.");
-                        System.err.println("Détail de l'erreur: " + e.getMessage());
-                        return;
-                    }
-                    break;
-            }
+            plan.choixFichier(); //permet de choisir le fichier qu'on utilise et affiche le plan de la ville associer
 
             System.out.println("Choisissez votre profil : " +
                     "\n - commune" +
@@ -84,6 +32,7 @@ public class Main {
                     System.out.println("Que souhaitez-vous faire :");
                     System.out.println("1. Consulter le plan de Ranville.");
                     System.out.println("2. Mettre à jour les informations de la commune");
+                    System.out.println("3. Quitter"); //créer la case associer
                 }
                 case "particulier":
                 {
@@ -111,7 +60,7 @@ public class Main {
                             user.consulterPlanningRamassage("ranville");
                             break;
                         }
-                        case 4:
+                        case 4: //rejout de la case de sortie
                             exit = true;
                             System.exit(0);// Sortir du programme
                             break;
@@ -122,6 +71,7 @@ public class Main {
 
                 default:{throw new ExceptionPersonnalisable("Wrong choice");}
             }
+
         }
     }
 }
