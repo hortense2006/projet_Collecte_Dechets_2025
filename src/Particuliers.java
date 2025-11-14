@@ -1,8 +1,4 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.UUID;
-
+import java.util.*;
 
 public class Particuliers implements Utilisateur
 {
@@ -69,6 +65,7 @@ public class Particuliers implements Utilisateur
                 signup();
                 break;
             }
+            default:{throw new ExceptionPersonnalisable("Choix invalide.");}
         }
     }
 
@@ -120,10 +117,12 @@ public class Particuliers implements Utilisateur
         chargerInfos();
     }
     // METHODE n°3
+    @Override
     public void chargerInfos() {
 
     }
     // METHODE n°4
+    @Override
     public boolean lireInfos(String info) {
         return false;
     }
