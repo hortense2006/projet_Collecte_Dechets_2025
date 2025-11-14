@@ -1,5 +1,6 @@
 package View;
 import Exceptions.ExceptionPersonnalisable;
+import Model.FichiersProfil;
 import Model.Profil;
 import java.util.Map;
 import java.util.Scanner;
@@ -9,9 +10,11 @@ public class ParticulierView
 {
     // ATTRIBUTS
     public Map<String, Profil> compte;
+    private String nomFichier;
 
     // APPEL DE CLASSES
     Scanner sc = new Scanner(System.in);
+    FichiersProfil f = new FichiersProfil(nomFichier);
 
     // METHODE n°1 : Login de l'utilisateur
 
@@ -86,6 +89,6 @@ public class ParticulierView
         Profil p = new Profil(prenom,nom,numero,rue,id,mdp);
         compte.put(id,p); // On l'ajoutes à la HashMap compte
         // On enregistre les infos dans le fichier texte
-        //sauvegarderProfil(nomFichier,p);
+        f.sauvegarderProfil(p);
     }
 }
