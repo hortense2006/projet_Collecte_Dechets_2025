@@ -6,11 +6,15 @@ import java.util.Scanner;
 
 public class Commune
 {
+    // ATTRIBUTS
     String id;
     String mdp;
-    Scanner sc = new Scanner(System.in);
     private boolean estConnecte;
 
+    // APPEL DE CLASSES
+    Scanner sc = new Scanner(System.in);
+
+    // CONSTRUCTEUR
     public Commune(boolean estConnecte)
     {
         this.estConnecte = estConnecte;

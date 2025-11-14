@@ -1,3 +1,5 @@
+package Controller;
+
 import Model.FichiersProfil;
 import Model.Particuliers;
 import View.ParticulierView;
