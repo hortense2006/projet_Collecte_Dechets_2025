@@ -21,10 +21,7 @@ public class Particuliers
     // METHODE n°1 : Demander une collecte d'encombrants
 
     public void faireDemandeCollecte(String typeUser)
-    {
-        System.out.println("Voulez-vous demander une collecte d'encombrants");
-
-    }
+    {}
     // METHODE n°2 : Consulter le planning de collecte (ramassage devant les maisons)
 
     public void consulterPlanningRamassage(String commune) {
