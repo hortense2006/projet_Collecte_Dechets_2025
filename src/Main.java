@@ -1,5 +1,3 @@
-package Controller;
-
 import Model.FichiersProfil;
 import Model.ParticulierModel;
 import Controller.ParticulierController;

@@ -14,6 +14,7 @@ public class ParticulierModel
 
     // APPEL DE CLASSES
     FichiersProfil f = new FichiersProfil(nomFichier );
+    ParticulierView view =  new ParticulierView();
 
     // CONSTRUCTEUR
     public ParticulierModel()
@@ -38,20 +39,23 @@ public class ParticulierModel
         String id = UUID.randomUUID().toString(); // Chaque id est différent
         return id;
     }
-    /*public Profil inscrire(ParticulierView.ProfilInput input)
+    public Profil inscrire(view.ProfilInput input)
     {
+        view.afficherRegister();
         Profil p = new Profil(
-                input.p.getPrenom(),
-                input.getNom(),
-                input.getNumero(),
-                input.getRue(),
+                input.prenom(),
+                input.nom(),
+                input.numero(),
+                input.rue(),
                 genererId(),
-                input.getMdp()
+                input.mdp()
         );
 
         f.sauvegarderProfil(p);
-        compte.put(input.getId(), p);
+        compte.put(id, p);
+
         return p;
-    }*/
+    }
+
 
 }
