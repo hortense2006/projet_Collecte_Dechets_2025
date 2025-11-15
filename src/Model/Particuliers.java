@@ -45,13 +45,31 @@ public class Particuliers
                 input.getNom(),
                 input.getNumero(),
                 input.getRue(),
-                input.getId(),
+                genererId(),
                 input.getMdp()
         );
 
         f.sauvegarderProfil(p);
         compte.put(input.getId(), p);
         return p;
+    }
+
+    public boolean verifierInfos(String info)
+    {
+        String idPropose = "";
+        String mdpPropose = "";
+        Profil p = null;
+        if (info.equals(idPropose))
+            if (compte.containsKey(info)) // Lecture du fichier : l'identifiant existes
+            {
+                p = compte.get(idPropose);
+                return true;
+            }
+        if (p.getMdp().equals(mdpPropose)) {
+            p.setEstConnecte(true);
+            return true;
+        }
+        return false;
     }
 
 }

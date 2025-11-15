@@ -14,6 +14,10 @@ public class ParticulierView
     Scanner sc = new Scanner(System.in);
     FichiersProfil f = new FichiersProfil(nomFichier);
     Particuliers p = new Particuliers();
+    Profil profil = new Profil();
+
+    public record ProfilInput(String prenom, String nom, int numero, String rue, String mdp) {}
+
 
     // METHODE n°1 : Login de l'utilisateur
     public void login()
@@ -25,12 +29,12 @@ public class ParticulierView
         {
             case "oui":
             { // Connexion (lecture du fichier texte)
-                signin();
+                afficherSignin();
                 break;
             }
             case "non":
             { // Se créer un compte (écriture d'un fichier)
-                Profil profil = afficherRegister(); // Rentrer les informations
+                afficherRegister(); // Rentrer les informations
                 p.inscrire(profil);// Enregistrer le nouveau compte
                 break;
             }
@@ -38,71 +42,20 @@ public class ParticulierView
         }
     }
 
-    // METHODE n°2 : AFFICHER SIGNIN
+    // METHODE n°2 : AFFICHAGE CONNEXION
     public void afficherSignin()
     {
         System.out.println("Saisissez votre identifiant:");
         String idPropose = sc.nextLine(); // On récupère l'identifiant saisi
-        if(!verifierId(idPropose))
-        {
-            System.out.println("Cet identifiant n'existes pas.");
-        }
+        p.verifierInfos(idPropose); // On verifie l'identifiant
         System.out.println("Saisissez votre mot de passe:");
         String mdpPropose = sc.nextLine(); // On récupère le mdp saisi
-        if(!verifierId(mdpPropose))
-        {
-            System.out.println("Ce mot de passe est invalide.");
-        }
+        p.verifierInfos(mdpPropose);
         System.out.println("Connexion réussie !");
     }
 
-    public boolean verifierId(String info)
-    {
-        String idPropose = "";
-        String mdpPropose = "";
-        Profil p = null;
-        if (info.equals(idPropose))
-            if (compte.containsKey(info)) // Lecture du fichier : l'identifiant existes
-            {
-                p = compte.get(idPropose);
-                return true;
-            }
-        if (p.getMdp().equals(mdpPropose)) {
-            p.setEstConnecte(true);
-            return true;
-        }
-        return false;
-    }
-    // METHODE n°2 : CONNEXION
-    public void signin()
-    {
-        System.out.println("Saisissez votre identifiant:");
-        String idPropose = sc.nextLine(); // On récupère l'identifiant saisi
-        if(compte.containsKey(idPropose)) // Lecture du fichier : l'identifiant existes
-        {
-            Profil p = compte.get(idPropose);
-            System.out.println("Saisissez votre mot de passe:");
-            String mdpPropose = sc.nextLine(); // On récupère le mdp saisi
-            if(p.getMdp().equals(mdpPropose))// On vérifie si c'est le bon mot de passe
-            {
-                p.setEstConnecte(true);
-                System.out.println("Connexion réussie !");
-            }
-            else
-            {
-                System.out.println("Ce mot de passe est invalide.");
-                signin();
-            }
-        }
-        else
-        {
-            System.out.println("Cet identifiant n'existes pas.");
-            signin();
-        }
-    }
-
-    // METHODE n°3 : INSCRIPTION
-    public Profil afficherRegister()
+    // METHODE n°3 : AFFICHAGE INSCRIPTION
+    public ProfilInput afficherRegister()
     {
         System.out.println("Saisissez votre prenom");
         String prenom = sc.nextLine();
@@ -113,12 +66,17 @@ public class ParticulierView
         sc.nextLine(); // Vide le buffer
         System.out.println("Saisissez le nom de votre rue:");
         String rue = sc.nextLine();
-        String id = p.genererId();
-        System.out.println("Voici votre identifiant:" + id);
         System.out.println("Saisissez un mot de passe:");
         String mdp = sc.nextLine();
-        // On crée un profil
-        Profil p = new Profil(prenom,nom,numero,rue,id,mdp);
-        return p;
+        return new ProfilInput(prenom,nom,numero,rue,mdp); // On retourne les informations du profil.
+    }
+    // METHODE n°4 : AFFICHER LE PROFIL
+    public void afficherInfos()
+    {
+        System.out.println("Prenom :" + profil.getPrenom());
+        System.out.println("Nom :" + profil.getNom());
+        System.out.println("Numero :" + profil.getNumero());
+        System.out.println("Rue :" + profil.getRue());
+        System.out.println("Mot de passe :"+ profil.getMdp());
     }
 }
