@@ -1,10 +1,8 @@
 package Model;
 
-import Exceptions.ExceptionPersonnalisable;
-import java.io.*;
 import java.util.*;
 // Cette classe s'occupe uniquement des tâches propre à un particulier.
-public class Particuliers
+public class ParticulierModel
 {
     // ATTRIBUTS
     private String typeUser; // "collectivité", "entreprise", "particulier"
@@ -16,7 +14,7 @@ public class Particuliers
     FichiersProfil f = new FichiersProfil(nomFichier );
 
     // CONSTRUCTEUR
-    public Particuliers()
+    public ParticulierModel()
     {
         this.typeUser = typeUser;
         this.estConnecte = false;

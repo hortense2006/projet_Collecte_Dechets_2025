@@ -12,7 +12,7 @@ public class ParticulierView
 
     // APPEL DE CLASSES
     Scanner sc = new Scanner(System.in);
-    Particuliers p = new Particuliers();
+    ParticulierModel p = new ParticulierModel();
     Profil profil = new Profil();
 
     public record ProfilInput(String prenom, String nom, int numero, String rue, String mdp) {}
