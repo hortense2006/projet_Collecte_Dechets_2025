@@ -95,17 +95,17 @@ public class ParticulierController
         // METHODE n°5 : DEMANDER COLLECTE D'ENCOMBRANTS
     public void DemandeCollecte()
     {
-        String choix = view.affichageDemandeCollecte();
+        String choix = view.affichageDemandeCollecte(); // On demande le type d'encombrants
         switch(choix.trim().toLowerCase())
         {
             case "Meubles":
             {
-                int quantite = view.affichageQuantiteEncombrants();
+                int quantite = view.affichageQuantiteEncombrants(); // On demande la quantité
                 break;
             }
             case "Electromenager":
             {
-                int quantite = view.affichageQuantiteEncombrants();
+                int quantite = view.affichageQuantiteEncombrants();// On demande la quantité
                 break;
             }
         }

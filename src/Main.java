@@ -82,12 +82,12 @@ public class Main
                     {
                         case 1:
                         {
-                            c.login();
+                            c.login();// Connexion/Inscription
                             break;
                         }
                         case 2:
                         {
-                            model.faireDemandeCollecte("particulier");
+                            c.DemandeCollecte(); // Demander une collecte d'encombrants
                             break;
                         }
                         case 3:
