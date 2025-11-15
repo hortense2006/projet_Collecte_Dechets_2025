@@ -13,6 +13,7 @@ public class ParticulierView
     // APPEL DE CLASSES
     Scanner sc = new Scanner(System.in);
     FichiersProfil f = new FichiersProfil(nomFichier);
+    Particuliers p = new Particuliers();
 
     // METHODE n°1 : Login de l'utilisateur
     public void login()
@@ -29,7 +30,8 @@ public class ParticulierView
             }
             case "non":
             { // Se créer un compte (écriture d'un fichier)
-                register();
+                Profil profil = afficherRegister(); // Rentrer les informations
+                p.inscrire(profil);// Enregistrer le nouveau compte
                 break;
             }
             default:{throw new ExceptionPersonnalisable("Choix invalide.");}
@@ -100,10 +102,8 @@ public class ParticulierView
     }
 
     // METHODE n°3 : INSCRIPTION
-    public void register()
+    public Profil afficherRegister()
     {
-        try{}
-        catch(ExceptionPersonnalisable e){}
         System.out.println("Saisissez votre prenom");
         String prenom = sc.nextLine();
         System.out.println("Saisissez votre nom de famille:");
@@ -113,14 +113,12 @@ public class ParticulierView
         sc.nextLine(); // Vide le buffer
         System.out.println("Saisissez le nom de votre rue:");
         String rue = sc.nextLine();
-        String id = UUID.randomUUID().toString(); // Chaque id est différent
+        String id = p.genererId();
         System.out.println("Voici votre identifiant:" + id);
         System.out.println("Saisissez un mot de passe:");
         String mdp = sc.nextLine();
         // On crée un profil
         Profil p = new Profil(prenom,nom,numero,rue,id,mdp);
-        compte.put(id,p); // On l'ajoutes à la HashMap compte
-        // On enregistre les infos dans le fichier texte
-        f.sauvegarderProfil(p);
+        return p;
     }
 }

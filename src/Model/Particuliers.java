@@ -10,6 +10,10 @@ public class Particuliers
     private String typeUser; // "collectivité", "entreprise", "particulier"
     private boolean estConnecte;
     private Map<String, Profil> compte;
+    String nomFichier;
+
+    // APPEL DE CLASSES
+    FichiersProfil f = new FichiersProfil(nomFichier );
 
     // CONSTRUCTEUR
     public Particuliers()
@@ -27,4 +31,27 @@ public class Particuliers
     public void consulterPlanningRamassage(String commune) {
 
     }
+
+    // METHODE n°3 : Générer aléatoirement un identifiant
+    public String genererId()
+    {
+        String id = UUID.randomUUID().toString(); // Chaque id est différent
+        return id;
+    }
+    public Profil inscrire(Profil input)
+    {
+        Profil p = new Profil(
+                input.getPrenom(),
+                input.getNom(),
+                input.getNumero(),
+                input.getRue(),
+                input.getId(),
+                input.getMdp()
+        );
+
+        f.sauvegarderProfil(p);
+        compte.put(input.getId(), p);
+        return p;
+    }
+
 }
