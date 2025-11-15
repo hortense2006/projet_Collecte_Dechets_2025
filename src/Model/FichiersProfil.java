@@ -32,7 +32,7 @@ public class FichiersProfil
                 String id = parts[4].trim();
                 String mdp = parts[5].trim();
 
-                Profil p = new Profil();
+                Profil p = new Profil(prenom,nom,numero,rue,id,mdp);
                 compte.put(id, p); // id comme clé, Profil comme valeur
             }
         }
@@ -66,7 +66,7 @@ public class FichiersProfil
                 String id = parts[4].trim();
                 String mdp = parts[5].trim();
 
-                Profil p = new Profil();
+                Profil p = new Profil(prenom,nom,numero,rue,id,mdp);
                 compte.put(id, p); // id comme clé, Profil comme valeur
             }
         }
