@@ -6,14 +6,12 @@ import View.ParticulierView;
 // Cette classe s'occupe de la coordination
 public class ParticulierController
 {
+    // ATTRIBUTS
     private final ParticulierModel model;
     private final ParticulierView view;
-    // ATTRIBUTS
     public HashMap<String, Profil> compte;
     String idPropose;
     String mdpPropose;
-
-    // APPEL DE CLASSES
     Profil p;
 
     // CONSTRUCTEUR
@@ -50,6 +48,7 @@ public class ParticulierController
             return false;
         }
     }
+
     // METHODE n°3 : CONNEXION (METHODE LOGIQUE)
     public void signin()
     {
@@ -65,6 +64,7 @@ public class ParticulierController
         }
     }
 
+    // METHODE n°4 : SE CONNECTER
     public void login()
     {
         String choix = view.ActionLogin();

@@ -24,12 +24,12 @@ public class ParticulierView
         return sc.nextLine();
     }
 
-
     // METHODE n°2 : Afficher une message
     public void afficherMessage(String message)
     {
         System.out.println(message);
     }
+
     // METHODE n°3 : DEMANDER IDENTIFIANT
     public String afficherId()
     {
@@ -45,6 +45,7 @@ public class ParticulierView
         String mdpPropose = sc.nextLine(); // On récupère le mdp saisi
         return mdpPropose;
     }
+
     // METHODE n°5 : AFFICHAGE INSCRIPTION
     public ProfilInput afficherRegister()
     {
