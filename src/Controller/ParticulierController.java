@@ -1,4 +1,5 @@
 package Controller;
+import Model.DemandeCollecte;
 import Model.ParticulierModel;
 import Model.Profil;
 import java.util.HashMap;
@@ -96,6 +97,7 @@ public class ParticulierController
     public void DemandeCollecte()
     {
         String choix = view.affichageDemandeCollecte(); // On demande le type d'encombrants
+        model.faireDemandeCollecte(new DemandeCollecte());
         switch(choix.trim().toLowerCase())
         {
             case "Meubles":
