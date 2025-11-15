@@ -7,8 +7,6 @@ import java.util.*;
 public class ParticulierModel
 {
     // ATTRIBUTS
-    private String typeUser; // "collectivité", "entreprise", "particulier"
-    private boolean estConnecte;
     private Map<String, Profil> compte;
     String nomFichier;
     private final FichiersProfil f;
@@ -45,6 +43,8 @@ public class ParticulierModel
         String id = UUID.randomUUID().toString(); // Chaque id est différent
         return id;
     }
+
+    // METHODE n°4: Remplir le fichier texte
     public Profil inscrire(ParticulierView.ProfilInput input)
     {
         String id = genererId();
