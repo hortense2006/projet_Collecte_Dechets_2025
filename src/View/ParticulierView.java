@@ -76,4 +76,6 @@ public class ParticulierView
         String typeEncombrants = sc.nextLine();
         System.out.println("Choisissez une date de collecte :");
     }
+    // METHODE n°7 : afficher les infos du particulier
+    public void afficherInfos(){}
 }

@@ -61,6 +61,7 @@ public class ParticulierController
         if(checkMdp(mdpPropose))
         {
             view.afficherMessage("Mdp valide");
+            view.afficherInfos();
         }
     }
 
