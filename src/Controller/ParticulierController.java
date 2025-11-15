@@ -26,7 +26,7 @@ public class ParticulierController
     {
         if(model.getCompte().containsKey(idPropose))
         {
-            p = compte.get(idPropose);
+            p = model.getCompte().get(idPropose);
             return true;
         }
         else
