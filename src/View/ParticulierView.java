@@ -12,15 +12,14 @@ public class ParticulierView
 
     // APPEL DE CLASSES
     Scanner sc = new Scanner(System.in);
-    FichiersProfil f = new FichiersProfil(nomFichier);
     Particuliers p = new Particuliers();
     Profil profil = new Profil();
 
     public record ProfilInput(String prenom, String nom, int numero, String rue, String mdp) {}
 
 
-    // METHODE n°1 : Login de l'utilisateur
-    public void login()
+    // METHODE n°1 : AFFICHAGE DU LOGIN DE L'UTILISATEUR
+    public void afficherLogin()
     {
         String choix;
         System.out.println("Etes-vous déjà inscrit ?");
@@ -28,14 +27,13 @@ public class ParticulierView
         switch(choix)
         {
             case "oui":
-            { // Connexion (lecture du fichier texte)
+            { // Connexion
                 afficherSignin();
                 break;
             }
             case "non":
-            { // Se créer un compte (écriture d'un fichier)
-                afficherRegister(); // Rentrer les informations
-                p.inscrire(profil);// Enregistrer le nouveau compte
+            { // Inscription
+                afficherRegister();
                 break;
             }
             default:{throw new ExceptionPersonnalisable("Choix invalide.");}

@@ -38,7 +38,7 @@ public class Particuliers
         String id = UUID.randomUUID().toString(); // Chaque id est différent
         return id;
     }
-    public Profil inscrire(Profil input)
+    /*public Profil inscrire(Profil input)
     {
         Profil p = new Profil(
                 input.getPrenom(),
@@ -52,7 +52,7 @@ public class Particuliers
         f.sauvegarderProfil(p);
         compte.put(input.getId(), p);
         return p;
-    }
+    }*/
 
     public boolean verifierInfos(String info)
     {

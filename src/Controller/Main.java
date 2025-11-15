@@ -83,7 +83,7 @@ public class Main
                     {
                         case 1:
                         {
-                            v.login();
+                            v.afficherLogin();
                             break;
                         }
                         case 2:
