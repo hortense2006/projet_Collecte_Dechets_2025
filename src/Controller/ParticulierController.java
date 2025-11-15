@@ -2,7 +2,7 @@ package Controller;
 import Model.Profil;
 import java.util.HashMap;
 import View.ParticulierView;
-
+// Cette classe s'occupe de la coordination
 public class ParticulierController
 {
     // ATTRIBUTS

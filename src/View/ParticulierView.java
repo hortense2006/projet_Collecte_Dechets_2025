@@ -4,7 +4,7 @@ import Exceptions.ExceptionPersonnalisable;
 import Model.*;
 import java.util.*;
 
-// Cette classe s'occuppe uniquement de l'affichage : actuellement pas de logique MVC => à refaire
+// Cette classe s'occuppe uniquement de l'affichage
 public class ParticulierView
 {
     // APPEL DE CLASSES
