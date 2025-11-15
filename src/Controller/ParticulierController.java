@@ -1,26 +1,32 @@
 package Controller;
+import Model.ParticulierModel;
 import Model.Profil;
 import java.util.HashMap;
 import View.ParticulierView;
 // Cette classe s'occupe de la coordination
 public class ParticulierController
 {
+    private final ParticulierModel model;
+    private final ParticulierView view;
     // ATTRIBUTS
     public HashMap<String, Profil> compte;
     String idPropose;
     String mdpPropose;
 
     // APPEL DE CLASSES
-    ParticulierView view = new ParticulierView();
     Profil p;
 
     // CONSTRUCTEUR
-    public ParticulierController() {}
+    public ParticulierController(ParticulierModel model, ParticulierView view)
+    {
+        this.model = model;
+        this.view = view;
+    }
 
     // METHODE n°1 : Vérifier l'identifiant
     public boolean checkId(String idPropose)
     {
-        if(compte.containsKey(idPropose))
+        if(model.getCompte().containsKey(idPropose))
         {
             p = compte.get(idPropose);
             return true;
@@ -50,12 +56,12 @@ public class ParticulierController
         idPropose = view.afficherId();
         if(checkId(idPropose))
         {
-            view.toString("Id valide");
+            view.afficherMessage("id valide");
         }
         mdpPropose = view.afficherMdp();
         if(checkMdp(mdpPropose))
         {
-            view.toString("Mdp valide");
+            view.afficherMessage("Mdp valide");
         }
     }
 }

@@ -10,7 +10,6 @@ public class ParticulierView
 {
     // APPEL DE CLASSES
     Scanner sc = new Scanner(System.in);
-    ParticulierController c = new ParticulierController();
 
     // DT0 (Data Transfer Object)
     public record ProfilInput(String prenom, String nom, int numero, String rue, String mdp) {}

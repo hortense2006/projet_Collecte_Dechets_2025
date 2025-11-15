@@ -11,17 +11,23 @@ public class ParticulierModel
     private boolean estConnecte;
     private Map<String, Profil> compte;
     String nomFichier;
-
-    // APPEL DE CLASSES
-    FichiersProfil f = new FichiersProfil(nomFichier );
-    ParticulierView view =  new ParticulierView();
+    private final FichiersProfil f;
 
     // CONSTRUCTEUR
-    public ParticulierModel()
+    public ParticulierModel(String nomFichier)
     {
-        this.typeUser = typeUser;
-        this.estConnecte = false;
+        this.nomFichier = nomFichier;
+        this.f = new FichiersProfil(nomFichier);
+        this.compte = new HashMap<>();
+        f.chargerInfos(); // charge les profils existants
     }
+
+    // GETTER n°1
+    public Map<String, Profil> getCompte()
+    {
+        return compte;
+    }
+
 
     // METHODE n°1 : Demander une collecte d'encombrants
 
@@ -39,15 +45,16 @@ public class ParticulierModel
         String id = UUID.randomUUID().toString(); // Chaque id est différent
         return id;
     }
-    public Profil inscrire(view.ProfilInput input)
+    public Profil inscrire(ParticulierView.ProfilInput input)
     {
-        view.afficherRegister();
+        String id = genererId();
+
         Profil p = new Profil(
                 input.prenom(),
                 input.nom(),
                 input.numero(),
                 input.rue(),
-                genererId(),
+                id,
                 input.mdp()
         );
 
@@ -56,6 +63,4 @@ public class ParticulierModel
 
         return p;
     }
-
-
 }

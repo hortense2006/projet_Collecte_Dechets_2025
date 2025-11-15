@@ -23,9 +23,8 @@ public class Main
         FichiersProfil f = new FichiersProfil(NOM_FICHIER);
         ParticulierView v = new ParticulierView();
         Plan plan = new Plan();
-        ParticulierController c = new ParticulierController();
-        ParticulierModel p = new ParticulierModel();
-
+        ParticulierModel model = new ParticulierModel(NOM_FICHIER);
+        ParticulierController c = new ParticulierController(model,v);
         try
         {
             //lecture du fichier
@@ -88,12 +87,12 @@ public class Main
                         }
                         case 2:
                         {
-                            p.faireDemandeCollecte("particulier");
+                            model.faireDemandeCollecte("particulier");
                             break;
                         }
                         case 3:
                         {
-                            p.consulterPlanningRamassage("ranville");
+                            model.consulterPlanningRamassage("ranville");
                             break;
                         }
                         case 4: //Sortie
