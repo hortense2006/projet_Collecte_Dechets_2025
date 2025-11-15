@@ -69,10 +69,10 @@ public class ParticulierView
         System.out.println("Saisissez votre adresse/zone geographique :");
         String zone =  sc.nextLine();
         System.out.println("Quel type d'encombrants voulez-vous déclarer ?");
-        System.out.println("Meubles" +
-                "Electromenager" +
-                "Gravats"+
-                "Dechets verts");
+        System.out.println("\nMeubles" +
+                           "\nElectromenager" +
+                           "\nGravats"+
+                           "\nDechets verts");
         String typeEncombrants = sc.nextLine();
         System.out.println("Choisissez une date de collecte :");
     }
