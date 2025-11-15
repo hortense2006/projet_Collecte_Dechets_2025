@@ -65,18 +65,18 @@ public class Main
                 case "commune":
                 {
                     System.out.println("Que souhaitez-vous faire :");
-                    System.out.println("1. Consulter le plan de Ranville.");
-                    System.out.println("2. Mettre à jour les informations de la commune");
-                    System.out.println("3. Quitter"); //créer la case associée
+                    System.out.println("\n1. Consulter le plan de Ranville."+
+                                       "\n2. Mettre à jour les informations de la commune"+
+                                       "\n3. Quitter"); //créer la case associée
                     break;
                 }
                 case "particulier":
                 {
                     System.out.println("Que souhaitez-vous faire :");
-                    System.out.println("1. Connexion");
-                    System.out.println("2. Demande de collecte");
-                    System.out.println("3. Consulter le planning de ramassage");
-                    System.out.println("4. Quitter");
+                    System.out.println("\n1. Connexion"+
+                                       "\n2. Demande de collecte"+
+                                       "\n3. Consulter le planning de ramassage"+
+                                       "\n4. Quitter");
                     choix = sc.nextInt();
                     switch (choix)
                     {
