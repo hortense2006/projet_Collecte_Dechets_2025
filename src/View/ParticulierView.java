@@ -62,4 +62,18 @@ public class ParticulierView
         String mdp = sc.nextLine();
         return new ProfilInput(prenom,nom,numero,rue,mdp); // On retourne les informations du profil.
     }
+
+    // METHODE n°6 : AFFICHAGE DEMANDE COLLECTE
+    public void affichageDemandeCollecte()
+    {
+        System.out.println("Saisissez votre adresse/zone geographique :");
+        String zone =  sc.nextLine();
+        System.out.println("Quel type d'encombrants voulez-vous déclarer ?");
+        System.out.println("Meubles" +
+                "Electromenager" +
+                "Gravats"+
+                "Dechets verts");
+        String typeEncombrants = sc.nextLine();
+        System.out.println("Choisissez une date de collecte :");
+    }
 }
