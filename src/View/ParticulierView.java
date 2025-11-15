@@ -18,26 +18,12 @@ public class ParticulierView
     public ParticulierView(){}
 
     // METHODE n°1 : AFFICHAGE DU LOGIN DE L'UTILISATEUR
-    public void afficherLogin()
+    public String ActionLogin()
     {
-        String choix;
         System.out.println("Etes-vous déjà inscrit ? (oui/non)");
-        choix = sc.nextLine();
-        switch(choix)
-        {
-            case "oui":
-            { // Connexion
-                c.signin();
-                break;
-            }
-            case "non":
-            { // Inscription
-                afficherRegister();
-                break;
-            }
-            default:{throw new ExceptionPersonnalisable("Choix invalide.");}
-        }
+        return sc.nextLine();
     }
+
 
     // METHODE n°2 : Afficher une message
     public void afficherMessage(String message)

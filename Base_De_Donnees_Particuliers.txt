@@ -1,3 +1,4 @@
 Hortense;Galtier;190;Rue de la Convention;188dcef5-8727-49c3-a77a-bd14eb48c4af;seccotin
 Hortense;Galtier;20;rue de la Convention;0909aa72-14a4-4ede-be9f-d6c2a614bb29;Seccotin
 Serge;KSHYVNYAK;32;rue de l'Eglise;13f026c1-13e5-4d47-8d7e-a07467c3ffc3;tech
+Florence;Callais;50;Allee De La Calmande;38e20a9b-b3c4-4ad6-9f52-08a11cf7d322;Calmande70

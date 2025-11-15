@@ -64,4 +64,26 @@ public class ParticulierController
             view.afficherMessage("Mdp valide");
         }
     }
+
+    public void login()
+    {
+        String choix = view.ActionLogin();
+
+        switch(choix)
+        {
+            case "oui":
+                signin();
+                break;
+
+            case "non":
+                ParticulierView.ProfilInput input = view.afficherRegister();
+                model.inscrire(input);
+                view.afficherMessage("Inscription réussie !");
+                break;
+
+            default:
+                view.afficherMessage("Choix invalide.");
+        }
+    }
+
 }
