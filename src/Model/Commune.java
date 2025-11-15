@@ -42,21 +42,12 @@ public class Commune
             throw new ExceptionPersonnalisable("Le nom de la commune est invalide");
         }
     }
+    ajouterCamion()
+    ajouterUtilisateur()
+    ajouterPointCollecte()
+    getGraphe()
+    getPointsCollecte()
 
-
-    public void chargerInfos(String nomFichier) {
-
-    }
-
-
-    public void faireDemandeCollecte(String typeUser) {
-
-    }
-
-
-    public void consulterPlanningRamassage(String commune) {
-
-    }
 
     private void setEstConnecte(boolean estConnecte)
     {
