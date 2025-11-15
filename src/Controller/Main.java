@@ -1,7 +1,8 @@
 package Controller;
 
 import Model.FichiersProfil;
-import Model.Particuliers;
+import Model.ParticulierModel;
+import Controller.ParticulierController;
 import View.ParticulierView;
 import map.Plan;
 import java.io.*;
@@ -24,7 +25,8 @@ public class Main
         FichiersProfil f = new FichiersProfil(NOM_FICHIER);
         ParticulierView v = new ParticulierView();
         Plan plan = new Plan();
-        Particuliers p = new Particuliers();
+        ParticulierController c = new ParticulierController();
+        ParticulierModel p = new ParticulierModel();
 
         try
         {

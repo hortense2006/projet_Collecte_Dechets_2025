@@ -11,7 +11,7 @@ public class Profil
     private boolean estConnecte;
 
     // CONSTRUCTEUR
-    public Profil(String prenom, String nom, int numero, String rue, String mdp)
+    public Profil()
     {
         this.prenom = prenom;
         this.nom = nom;

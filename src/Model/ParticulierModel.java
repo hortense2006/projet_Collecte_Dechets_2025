@@ -1,5 +1,7 @@
 package Model;
 
+import View.ParticulierView;
+
 import java.util.*;
 // Cette classe s'occupe uniquement des tâches propre à un particulier.
 public class ParticulierModel
@@ -36,10 +38,10 @@ public class ParticulierModel
         String id = UUID.randomUUID().toString(); // Chaque id est différent
         return id;
     }
-    /*public Profil inscrire(Profil input)
+    /*public Profil inscrire(ParticulierView.ProfilInput input)
     {
         Profil p = new Profil(
-                input.getPrenom(),
+                input.p.getPrenom(),
                 input.getNom(),
                 input.getNumero(),
                 input.getRue(),
@@ -51,23 +53,5 @@ public class ParticulierModel
         compte.put(input.getId(), p);
         return p;
     }*/
-
-    public boolean verifierInfos(String info)
-    {
-        String idPropose = "";
-        String mdpPropose = "";
-        Profil p = null;
-        if (info.equals(idPropose))
-            if (compte.containsKey(info)) // Lecture du fichier : l'identifiant existes
-            {
-                p = compte.get(idPropose);
-                return true;
-            }
-        if (p.getMdp().equals(mdpPropose)) {
-            p.setEstConnecte(true);
-            return true;
-        }
-        return false;
-    }
 
 }
