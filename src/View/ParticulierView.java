@@ -5,6 +5,7 @@ import Model.*;
 import java.util.*;
 
 // Cette classe s'occuppe uniquement de l'affichage
+ /* CLASSE TERMINEE !! */
 public class ParticulierView
 {
     // APPEL DE CLASSES
@@ -40,7 +41,7 @@ public class ParticulierView
     }
 
     // METHODE n°2 : Afficher une message
-    public void toString(String message)
+    public void afficherMessage(String message)
     {
         System.out.println(message);
     }
