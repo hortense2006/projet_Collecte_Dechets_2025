@@ -11,9 +11,6 @@ public class ParticulierView
     // APPEL DE CLASSES
     Scanner sc = new Scanner(System.in);
 
-    // DT0 (Data Transfer Object)
-    public record ProfilInput(String prenom, String nom, int numero, String rue, String mdp) {}
-
     // CONSTRUCTEUR
     public ParticulierView(){}
 
@@ -64,18 +61,22 @@ public class ParticulierView
     }
 
     // METHODE n°6 : AFFICHAGE DEMANDE COLLECTE
-    public void affichageDemandeCollecte()
+    public String affichageDemandeCollecte()
     {
-        System.out.println("Saisissez votre adresse/zone geographique :");
-        String zone =  sc.nextLine();
         System.out.println("Quel type d'encombrants voulez-vous déclarer ?");
         System.out.println("\nMeubles" +
-                           "\nElectromenager" +
-                           "\nGravats"+
-                           "\nDechets verts");
+                           "\nElectromenager");
         String typeEncombrants = sc.nextLine();
-        System.out.println("Choisissez une date de collecte :");
+        return typeEncombrants;
     }
-    // METHODE n°7 : afficher les infos du particulier
+    // METHODE n°7 : QUELLE QUANTITE D'ENCOMBRANTS
+    public int affichageQuantiteEncombrants()
+    {
+        System.out.println("Saisissez votre quantite :");
+        int quantite = sc.nextInt();
+        sc.nextLine();
+        return quantite;
+    }
+    // METHODE n°8 : afficher les infos du particulier
     public void afficherInfos(){}
 }

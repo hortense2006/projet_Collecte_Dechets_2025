@@ -45,7 +45,7 @@ public class ParticulierModel
     }
 
     // METHODE n°4: Remplir le fichier texte
-    public Profil inscrire(ParticulierView.ProfilInput input)
+    public Profil inscrire(ProfilInput input)
     {
         String id = genererId();
 

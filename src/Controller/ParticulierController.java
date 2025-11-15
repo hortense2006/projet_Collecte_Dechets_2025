@@ -2,6 +2,8 @@ package Controller;
 import Model.ParticulierModel;
 import Model.Profil;
 import java.util.HashMap;
+
+import Model.ProfilInput;
 import View.ParticulierView;
 // Cette classe s'occupe de la coordination
 public class ParticulierController
@@ -70,20 +72,42 @@ public class ParticulierController
     {
         String choix = view.ActionLogin();
 
-        switch(choix)
+        switch(choix.trim().toLowerCase())
         {
             case "oui":
+            {
                 signin();
                 break;
-
+            }
             case "non":
-                ParticulierView.ProfilInput input = view.afficherRegister();
+            {
+                ProfilInput input = view.afficherRegister();
                 model.inscrire(input);
                 view.afficherMessage("Inscription réussie !");
                 break;
-
+            }
             default:
+            {
                 view.afficherMessage("Choix invalide.");
+            }
+        }
+    }
+        // METHODE n°5 : DEMANDER COLLECTE D'ENCOMBRANTS
+    public void DemandeCollecte()
+    {
+        String choix = view.affichageDemandeCollecte();
+        switch(choix.trim().toLowerCase())
+        {
+            case "Meubles":
+            {
+                int quantite = view.affichageQuantiteEncombrants();
+                break;
+            }
+            case "Electromenager":
+            {
+                int quantite = view.affichageQuantiteEncombrants();
+                break;
+            }
         }
     }
 
