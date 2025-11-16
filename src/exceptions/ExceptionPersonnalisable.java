@@ -1,4 +1,4 @@
-package Exceptions;
+package exceptions;
 
 public class ExceptionPersonnalisable extends RuntimeException {
     public ExceptionPersonnalisable(String message) {

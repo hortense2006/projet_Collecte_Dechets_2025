@@ -1,11 +1,11 @@
-package Controller;
-import Model.DemandeCollecte;
-import Model.ParticulierModel;
-import Model.Profil;
+package controller;
+import model.DemandeCollecte;
+import model.ParticulierModel;
+import model.Profil;
 import java.util.HashMap;
 
-import Model.ProfilInput;
-import View.ParticulierView;
+import model.ProfilInput;
+import view.ParticulierView;
 // Cette classe s'occupe de la coordination
 public class ParticulierController
 {

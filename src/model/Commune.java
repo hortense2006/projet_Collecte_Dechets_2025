@@ -1,6 +1,6 @@
-package Model;
+package model;
 
-import Exceptions.ExceptionPersonnalisable;
+import exceptions.ExceptionPersonnalisable;
 
 import java.util.Scanner;
 

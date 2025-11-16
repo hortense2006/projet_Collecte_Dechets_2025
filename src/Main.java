@@ -1,30 +1,37 @@
-import Model.FichiersProfil;
-import Model.ParticulierModel;
-import Controller.ParticulierController;
-import View.ParticulierView;
-import map.Plan;
+import model.FichiersProfil;
+import model.ParticulierModel;
+import controller.ParticulierController;
+import view.ParticulierView;
+import model.map.Plan;
+import controller.PlanController;
+import view.PlanView;
+
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-public class Main
-{
-    public static void main(String[] args)
-    {
+public class Main {
+    public static void main(String[] args) {
 
         // ATTRIBUTS
         String typeUser = "";
         int choix;
-        boolean exit = false;
+        boolean exitAll = false;
+        boolean exitParticulier = false;
         final String NOM_FICHIER = "Base_De_Donnees_Particuliers.txt";
 
-        // IMPORT DES CLASSES
+        // IMPORT DES CLASSES :
+        // pour les particulier
         Scanner sc = new Scanner(System.in);
         FichiersProfil f = new FichiersProfil(NOM_FICHIER);
-        ParticulierView v = new ParticulierView();
+        ParticulierView ParticulierV = new ParticulierView();
+        ParticulierModel ParticulierM = new ParticulierModel(NOM_FICHIER);
+        ParticulierController ParticulierC = new ParticulierController(ParticulierM,ParticulierV);
+
+        //pour le plan
         Plan plan = new Plan();
-        ParticulierModel model = new ParticulierModel(NOM_FICHIER);
-        ParticulierController c = new ParticulierController(model,v);
+        PlanView planV = new PlanView();
+        PlanController planC = new PlanController(plan,planV);
         try
         {
             //lecture du fichier
@@ -50,16 +57,16 @@ public class Main
             System.err.println("Détail de l'erreur: " + e.getMessage());
             return;
         }
-        while (!exit)
-        { //permet de faire tourner l'application sans fin tant que exitApp n'a pas été choisi
+        planC.choixFichier(); //permet de choisir le fichier qu'on utilise et affiche le plan de la ville associé
 
-            plan.choixFichier(); //permet de choisir le fichier qu'on utilise et affiche le plan de la ville associé
+        while (!exitAll) { //permet de faire tourner l'application sans fin tant que exitAll n'a pas été choisi
 
             System.out.println("Choisissez votre profil : " +
                     "\n commune" +
                     "\n particulier" +
-                    "\n entreprise");
+                    "\n quitter");
             typeUser = sc.nextLine();
+
             switch (typeUser)
             {
                 case "commune":
@@ -67,43 +74,48 @@ public class Main
                     System.out.println("Que souhaitez-vous faire :");
                     System.out.println("\n1. Consulter le plan de Ranville."+
                                        "\n2. Mettre à jour les informations de la commune"+
-                                       "\n3. Quitter"); //créer la case associée
+                                       "\n3. Changer de type d'utilisateur"); //créer la case associée
                     break;
                 }
-                case "particulier":
-                {
-                    System.out.println("Que souhaitez-vous faire :");
-                    System.out.println("\n1. Connexion"+
-                                       "\n2. Demande de collecte"+
-                                       "\n3. Consulter le planning de ramassage"+
-                                       "\n4. Quitter");
-                    choix = sc.nextInt();
-                    switch (choix)
-                    {
-                        case 1:
+                case "particulier": {
+                    exitParticulier = false;
+                    while (!exitParticulier){ //permet de faire tourner l'application utilisateur tant qu'on a pas demandé de changer de type d'utilisateur
+                        System.out.println("Que souhaitez-vous faire :");
+                        System.out.println("\n1. Connexion"+
+                                "\n2. Demande de collecte"+
+                                "\n3. Consulter le planning de ramassage"+
+                                "\n4. Changer de type d'utilisateur");
+                        choix = sc.nextInt();
+                        switch (choix)
                         {
-                            c.login();// Connexion/Inscription
-                            break;
+                            case 1:
+                            {
+                                ParticulierC.login();// Connexion/Inscription
+                                break;
+                            }
+                            case 2:
+                            {
+                                ParticulierC.DemandeCollecte(); // Demander une collecte d'encombrants
+                                break;
+                            }
+                            case 3:
+                            {
+                                ParticulierM.consulterPlanningRamassage("ranville");
+                                break;
+                            }
+                            case 4: //Sortie
+                            {
+                                exitParticulier = true; // Sortir du programme
+                                System.out.println("\n Changement d'utilisateur");
+                                sc.nextLine();
+                                break;
+                            }
                         }
-                        case 2:
-                        {
-                            c.DemandeCollecte(); // Demander une collecte d'encombrants
-                            break;
-                        }
-                        case 3:
-                        {
-                            model.consulterPlanningRamassage("ranville");
-                            break;
-                        }
-                        case 4: //Sortie
-                        {
-                            exit = true; // Sortir du programme
-                            System.exit(0);
-                            break;
-                        }
-                    }
+                    }break;
+                } case "quitter":
+                    exitAll = true;
+                    System.out.println("\n Au revoir. ");
                     break;
-                }
             }
         }
     }

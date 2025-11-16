@@ -1,6 +1,4 @@
-package Model;
-
-import View.ParticulierView;
+package model;
 
 import java.util.*;
 // Cette classe s'occupe uniquement des tâches propre à un particulier.

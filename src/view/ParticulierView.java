@@ -1,7 +1,5 @@
-package View;
-import Controller.ParticulierController;
-import Exceptions.ExceptionPersonnalisable;
-import Model.*;
+package view;
+import model.*;
 import java.util.*;
 
 // Cette classe s'occuppe uniquement de l'affichage

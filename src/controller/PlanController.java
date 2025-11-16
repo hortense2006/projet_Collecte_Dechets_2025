@@ -1,0 +1,81 @@
+package controller;
+
+import model.map.Plan;
+import view.PlanView;
+
+import java.io.IOException;
+import java.util.Scanner;
+
+public class PlanController {
+    private Plan plan;
+    private PlanView planView;
+
+    public PlanController(Plan plan, PlanView planView) {
+        this.plan = plan;
+        this.planView = planView;
+    }
+
+    //Menu qui permet de choisir le type de fichier qu'on veut et l'affiche
+    public void choixFichier() {
+        String nomFichier = "";
+        int choixPlan;
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("\n" +//permet le choix du type de plan que nous utiliserons
+                "Sur quel type de plan voulez vous vous baser : " +
+                "\n" +
+                "\n - 1 : à bouble sens" +
+                "\n - 2 : à sens unique" +
+                "\n - 3 : réaliste");
+        choixPlan = sc.nextInt();
+
+        switch (choixPlan) { //applique le type de plan que nous utilisons
+            case 1:
+                nomFichier = "C:\\Users\\valsa\\IdeaProjects\\Théorie des graphes\\projet_Collecte_Dechets_2025\\src\\Ranville_HO1.txt";
+                //c'est un absolute path tu peux le changer pour qu'il fonctionne sur ton PC si tu veux
+                // suffit de clic droit sur le fichier HO, et faire get absolute path et encore get absolut path et coller
+                //merci de n'utiliser aucune autre forme que tu absolute path
+
+                try {
+                    plan.chargerPlan(nomFichier, Plan.modeOrientation.HO1_NON_ORIENTE);
+                    System.out.println("Plan de la ville : ");
+                    planView.afficherReseau(plan);
+                    System.out.println("\n");
+                    sc.nextLine();
+                } catch (IOException e) { //lance l'erreur necessaire
+                    System.err.println("ERREUR : Impossible de lire le fichier du réseau.");
+                    System.err.println("Détail de l'erreur: " + e.getMessage());
+                    return;
+                }
+                break;
+            case 2:
+                nomFichier = "C:\\Users\\valsa\\IdeaProjects\\Théorie des graphes\\projet_Collecte_Dechets_2025\\src\\Ranville_HO2.txt";
+                try {
+                    plan.chargerPlan(nomFichier, Plan.modeOrientation.HO2_ORIENTE);
+                    System.out.println("Plan de la ville : ");
+                    planView.afficherReseau(plan);
+                    System.out.println("\n");
+                    sc.nextLine();
+                } catch (IOException e) {
+                    System.err.println("ERREUR : Impossible de lire le fichier du réseau.");
+                    System.err.println("Détail de l'erreur: " + e.getMessage());
+                    return;
+                }
+                break;
+            case 3:
+                nomFichier = "C:\\Users\\valsa\\IdeaProjects\\Théorie des graphes\\projet_Collecte_Dechets_2025\\src\\Ranville_HO3.txt";
+                try {
+                    plan.chargerPlan(nomFichier, Plan.modeOrientation.HO3_MIXTE);
+                    System.out.println("Plan de la ville : ");
+                    planView.afficherReseau(plan);
+                    System.out.println("\n");
+                    sc.nextLine();
+                } catch (IOException e) {
+                    System.err.println("ERREUR : Impossible de lire le fichier du réseau.");
+                    System.err.println("Détail de l'erreur: " + e.getMessage());
+                    return;
+                }
+                break;
+        }
+    }
+}
