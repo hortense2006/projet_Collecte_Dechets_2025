@@ -37,8 +37,8 @@ public class PlanController {
                     planView.afficherMessagePlan("\n");
                     sc.nextLine();
                 } catch (IOException e) { //lance l'erreur necessaire
-                    planView.afficherErreur("ERREUR : Impossible de lire le fichier du réseau.");
-                    planView.afficherErreur("Détail de l'erreur: " + e.getMessage());
+                    planView.afficherErreurPlan("ERREUR : Impossible de lire le fichier du réseau.");
+                    planView.afficherErreurPlan("Détail de l'erreur: " + e.getMessage());
                     return;
                 }
                 break;
@@ -51,8 +51,8 @@ public class PlanController {
                     planView.afficherMessagePlan("\n");
                     sc.nextLine();
                 } catch (IOException e) {
-                    planView.afficherErreur("ERREUR : Impossible de lire le fichier du réseau.");
-                    planView.afficherErreur("Détail de l'erreur: " + e.getMessage());
+                    planView.afficherErreurPlan("ERREUR : Impossible de lire le fichier du réseau.");
+                    planView.afficherErreurPlan("Détail de l'erreur: " + e.getMessage());
                     return;
                 }
                 break;
@@ -65,8 +65,8 @@ public class PlanController {
                     planView.afficherMessagePlan("\n");
                     sc.nextLine();
                 } catch (IOException e) {
-                    planView.afficherErreur("ERREUR : Impossible de lire le fichier du réseau.");
-                    planView.afficherErreur("Détail de l'erreur: " + e.getMessage());
+                    planView.afficherErreurPlan("ERREUR : Impossible de lire le fichier du réseau.");
+                    planView.afficherErreurPlan("Détail de l'erreur: " + e.getMessage());
                     return;
                 }
                 break;

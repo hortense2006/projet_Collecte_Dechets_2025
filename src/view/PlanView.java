@@ -55,7 +55,7 @@ public class PlanView {
         System.out.println(message);
     }
 
-    public void afficherErreur (String message) {
+    public void afficherErreurPlan (String message) {
         System.err.println(message);
     }
 
