@@ -1,11 +1,12 @@
 package controller;
-import model.DemandeCollecte;
-import model.ParticulierModel;
-import model.Profil;
+import model.*;
+import model.DemandeCollecte.*;
 import java.util.HashMap;
-
 import model.ProfilInput;
 import view.ParticulierView;
+
+import static model.DemandeCollecte.TypeEncombrant.*;
+
 // Cette classe s'occupe de la coordination
 public class ParticulierController
 {
@@ -96,21 +97,34 @@ public class ParticulierController
         // METHODE n°5 : DEMANDER COLLECTE D'ENCOMBRANTS
     public void DemandeCollecte()
     {
-        String choix = view.affichageDemandeCollecte(); // On demande le type d'encombrants
-        model.faireDemandeCollecte(new DemandeCollecte());
-        switch(choix.trim().toLowerCase())
+        TypeEncombrant choix = view.affichageDemandeCollecte(); // On demande le type d'encombrants
+        switch (choix)
         {
-            case "Meubles":
+            case MEUBLE:
             {
-                int quantite = view.affichageQuantiteEncombrants(); // On demande la quantité
-                break;
+                view.affichageQuantiteEncombrants(MEUBLE);
             }
-            case "Electromenager":
+            case ELECTROMENAGER:
             {
-                int quantite = view.affichageQuantiteEncombrants();// On demande la quantité
-                break;
+                view.affichageQuantiteEncombrants(ELECTROMENAGER);
+            }
+            case BOIS:
+            {
+                view.affichageQuantiteEncombrants(BOIS);
+            }
+            case CANAPE:
+            {
+                view.affichageQuantiteEncombrants(CANAPE);
+            }
+            case AUTRE:
+            {
+                view.affichageQuantiteEncombrants(AUTRE);
+            }
+            default:
+            {
+                view.afficherMessage("Choix invalide, valeur par défaut : Autre");
+                view.affichageQuantiteEncombrants(AUTRE);
             }
         }
     }
-
 }

@@ -19,7 +19,7 @@ public class DemandeCollecte
     }
     public enum TypeEncombrant
     {
-        MEUBLE, ELECTROMENAGER, BOIS, CANAPE, AUTRE
+        MEUBLE, ELECTROMENAGER,BOIS,CANAPE, AUTRE
     }
 
 }

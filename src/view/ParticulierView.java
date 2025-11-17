@@ -1,8 +1,9 @@
 package view;
 import model.*;
+import model.DemandeCollecte.*;
 import java.util.*;
 
-// Cette classe s'occuppe uniquement de l'affichage de tout ce qui se rapporte au particulier
+// Cette classe s'occupe uniquement de l'affichage de tout ce qui se rapporte au particulier
 public class ParticulierView
 {
     // APPEL DE CLASSES
@@ -58,16 +59,18 @@ public class ParticulierView
     }
 
     // METHODE n°6 : AFFICHAGE DEMANDE COLLECTE
-    public String affichageDemandeCollecte()
+    public TypeEncombrant affichageDemandeCollecte()
     {
-        System.out.println("Quel type d'encombrants voulez-vous déclarer ?");
+        System.out.println("Quel type d'encombrant voulez-vous déclarer ?");
         System.out.println("\nMeubles" +
-                           "\nElectromenager");
-        String typeEncombrants = sc.nextLine();
-        return typeEncombrants;
+                           "\nElectroménager"+
+                           "\nAutre");
+
+        TypeEncombrant choix = TypeEncombrant.valueOf(sc.nextLine());
+        return choix;
     }
     // METHODE n°7 : QUELLE QUANTITE D'ENCOMBRANTS
-    public int affichageQuantiteEncombrants()
+    public int affichageQuantiteEncombrants(TypeEncombrant encombrant)
     {
         System.out.println("Saisissez votre quantite :");
         int quantite = sc.nextInt();

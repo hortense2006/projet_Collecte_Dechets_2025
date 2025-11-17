@@ -5,21 +5,21 @@ import java.util.*;
 public class ParticulierModel
 {
     // ATTRIBUTS
-    private Map<String, model.Profil> compte;
+    private Map<String, Profil> compte;
     String nomFichier;
-    private final model.FichiersProfil f;
+    private final FichiersProfil f;
 
     // CONSTRUCTEUR
     public ParticulierModel(String nomFichier)
     {
         this.nomFichier = nomFichier;
-        this.f = new model.FichiersProfil(nomFichier);
+        this.f = new FichiersProfil(nomFichier);
         this.compte = new HashMap<>();
         f.chargerInfos(); // charge les profils existants
     }
 
     // GETTER n°1
-    public Map<String, model.Profil> getCompte() {return compte;}
+    public Map<String, Profil> getCompte() {return compte;}
 
 
     // METHODE n°1 : Demander une collecte d'encombrants
