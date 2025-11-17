@@ -2,8 +2,7 @@ package view;
 import model.*;
 import java.util.*;
 
-// Cette classe s'occuppe uniquement de l'affichage
- /* CLASSE TERMINEE !! */
+// Cette classe s'occuppe uniquement de l'affichage de tout ce qui se rapporte au particulier
 public class ParticulierView
 {
     // APPEL DE CLASSES
