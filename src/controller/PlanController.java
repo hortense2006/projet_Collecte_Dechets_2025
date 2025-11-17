@@ -16,7 +16,8 @@ public class PlanController {
     }
 
     //Menu qui permet de choisir le type de fichier qu'on veut et l'affiche
-    public void choixFichier() {
+    public void choixFichier()
+    {
         String nomFichier = "";
         int choix;
         Scanner sc = new Scanner(System.in);

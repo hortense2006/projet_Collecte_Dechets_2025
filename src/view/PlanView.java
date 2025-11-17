@@ -43,7 +43,7 @@ public class PlanView {
         System.out.println("\n" +//permet le choix du type de plan que nous utiliserons
                 "Sur quel type de plan voulez vous vous baser : " +
                 "\n" +
-                "\n - 1 : à bouble sens" +
+                "\n - 1 : à double sens" +
                 "\n - 2 : à sens unique" +
                 "\n - 3 : réaliste");
         choix = sc.nextInt();
