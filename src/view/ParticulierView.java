@@ -72,7 +72,8 @@ public class ParticulierView
         return choix;
     }
     // METHODE n°7 : QUELLE QUANTITE D'ENCOMBRANTS
-    public int affichageQuantiteEncombrants(TypeEncombrant encombrant) {
+    public int affichageQuantiteEncombrants(TypeEncombrant encombrant)
+    {
         System.out.println("Combien d'objets voulez-vous déclarer ?");
         int quantite = sc.nextInt();
 
