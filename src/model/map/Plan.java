@@ -5,10 +5,12 @@ import java.io.IOException;
 import java.util.*;
 
 import exceptions.ExceptionPersonnalisable;
+import view.PlanView;
 
 public class Plan {
 
     private Map<String, Station> stations; //plan de la ville
+    public PlanView planView = new PlanView();
 
     public Plan() { //constructeur
         this.stations = new HashMap<>();
@@ -38,14 +40,15 @@ public class Plan {
 
     // Permet de lire un plan et de la charger dans les elements necessaires
     public void chargerPlan(String nomFichier, modeOrientation mode) throws IOException {
+
         // variable necessaire au chargement et à la création du graphe
         this.stations.clear();
         int nbArcsAjoutes = 0;
         String typeGraphe = "";
 
-
         try (BufferedReader br = new BufferedReader(new FileReader(nomFichier))) {
             String ligne;
+
             while ((ligne = br.readLine()) != null) {
                 if (ligne.trim().isEmpty() || ligne.trim().startsWith("#")) {
                     continue;
@@ -64,7 +67,7 @@ public class Plan {
                     try {
                         distance = Double.parseDouble(parties[2].trim());//récupère la distance de la rue
                     } catch (ExceptionPersonnalisable e) {
-                        System.err.println("Ligne ignorée (distance invalide) : " + ligne); //lance une exception si elle n'est pas valide
+                        planView.afficherErreurPlan("Ligne ignorée (distance invalide) : " + ligne); //lance une exception si elle n'est pas valide
                         continue;
                     }
                 } else if (parties.length == 4) { // pour HO3
@@ -76,17 +79,17 @@ public class Plan {
                     } else if (sens.equals("-")) {
                         estSensUnique = false;
                     } else {
-                        System.err.println("Symbole de direction inconnu : " + ligne);
+                        planView.afficherErreurPlan("Symbole de direction inconnu : " + ligne);
                         continue;
                     }
                     try {
                         distance = Double.parseDouble(parties[3].trim());
                     } catch (ExceptionPersonnalisable e) {
-                        System.err.println("Ligne ignorée (distance invalide) : " + ligne); //lance une exception si elle n'est pas valide
+                        planView.afficherErreurPlan("Ligne ignorée (distance invalide) : " + ligne); //lance une exception si elle n'est pas valide
                         continue;
                     }
                 } else {
-                    System.err.println("Ligne ignorée (erreur de format) : " + ligne);
+                    planView.afficherErreurPlan("Ligne ignorée (erreur de format) : " + ligne);
                     continue;
                 }
 
@@ -115,7 +118,6 @@ public class Plan {
                 }
             }
         }
-        System.out.println("Réseau chargé avec succès ");
-        System.out.println("Mode de chargement : " + typeGraphe);
+        planView.afficherMessagePlan("Le plan a été chargé avec succés. L'orientation est : " + typeGraphe);
     }
 }
