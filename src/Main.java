@@ -1,5 +1,6 @@
 import model.*;
 import controller.*;
+import model.map.*;
 import view.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -18,7 +19,7 @@ public class Main
         final String NOM_FICHIER_USERS = "Base_De_Donnees_Particuliers.txt";
 
         // IMPORT DES CLASSES :
-        // pour les particulier
+        // pour les particuliers
         Scanner sc = new Scanner(System.in);
         FichiersProfil f = new FichiersProfil(NOM_FICHIER_USERS);
         ParticulierView pv = new ParticulierView();
@@ -56,14 +57,13 @@ public class Main
         }
         planC.choixFichier(); //permet de choisir le fichier qu'on utilise et affiche le plan de la ville associé
 
-        while (!exitAll) { //permet de faire tourner l'application sans fin tant que exitAll n'a pas été choisi
-
+        while (!exitAll)  //permet de faire tourner l'application sans fin tant que exitAll n'a pas été choisi
+        {
             System.out.println("Choisissez votre profil : " +
                     "\n commune" +
                     "\n particulier" +
                     "\n quitter");
             typeUser = sc.nextLine();
-
             switch (typeUser)
             {
                 case "commune":
@@ -74,9 +74,11 @@ public class Main
                                        "\n3. Changer de type d'utilisateur"); //créer la case associée
                     break;
                 }
-                case "particulier": {
+                case "particulier":
+                {
                     exitParticulier = false;
-                    while (!exitParticulier){ //permet de faire tourner l'application utilisateur tant qu'on a pas demandé de changer de type d'utilisateur
+                    while (!exitParticulier)
+                    { //permet de faire tourner l'application utilisateur tant qu'on a pas demandé de changer de type d'utilisateur
                         System.out.println("Que souhaitez-vous faire :");
                         System.out.println("\n1. Connexion"+
                                 "\n2. Demande de collecte"+
@@ -108,11 +110,15 @@ public class Main
                                 break;
                             }
                         }
-                    }break;
-                } case "quitter":
+                    }
+                    break;
+                }
+                case "quitter":
+                {
                     exitAll = true;
                     System.out.println("\n Au revoir. ");
                     break;
+                }
             }
         }
     }
