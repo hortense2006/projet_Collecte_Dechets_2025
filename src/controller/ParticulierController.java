@@ -1,6 +1,8 @@
 package controller;
 import model.*;
 import model.DemandeCollecte.*;
+
+import java.time.LocalDate;
 import java.util.HashMap;
 import model.ProfilInput;
 import model.Profil;
@@ -99,6 +101,8 @@ public class ParticulierController
     public void DemandeCollecte()
     {
         int quantite = 0;
+        LocalDate dateDemande = LocalDate.now();
+
         TypeEncombrant choix = view.affichageDemandeCollecte(); // On demande le type d'encombrants
         switch (choix)
         {
