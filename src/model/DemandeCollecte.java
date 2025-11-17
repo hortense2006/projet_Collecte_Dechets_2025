@@ -5,16 +5,21 @@ public class DemandeCollecte
 {
     // ATTRIBUTS
     private String idUtilisateur;
-    private String typeEncombrant;
+    private TypeEncombrant typeEncombrant;
     private int quantite;
     private LocalDate dateDemande;
 
     // CONSTRUCTEUR
-    public DemandeCollecte()
+    public DemandeCollecte(String idUtilisateur,TypeEncombrant typeEncombrant,int quantite,LocalDate dateDemande)
     {
-        idUtilisateur = idUtilisateur;
-        typeEncombrant = typeEncombrant;
-        quantite = quantite;
-        dateDemande = dateDemande;
+        this.idUtilisateur = idUtilisateur;
+        this.typeEncombrant = typeEncombrant;
+        this.quantite = quantite;
+        this.dateDemande = dateDemande;
     }
+    public enum TypeEncombrant
+    {
+        MEUBLE, ELECTROMENAGER, BOIS, CANAPE, AUTRE
+    }
+
 }

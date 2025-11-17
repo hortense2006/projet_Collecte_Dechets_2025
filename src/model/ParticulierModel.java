@@ -19,10 +19,7 @@ public class ParticulierModel
     }
 
     // GETTER n°1
-    public Map<String, model.Profil> getCompte()
-    {
-        return compte;
-    }
+    public Map<String, model.Profil> getCompte() {return compte;}
 
 
     // METHODE n°1 : Demander une collecte d'encombrants
