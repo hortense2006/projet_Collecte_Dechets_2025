@@ -1,6 +1,6 @@
 package model;
-
 import java.util.*;
+
 // Cette classe s'occupe uniquement des tâches propre à un particulier.
 public class ParticulierModel
 {
@@ -39,17 +39,10 @@ public class ParticulierModel
 
     }
 
-    // METHODE n°3 : Générer aléatoirement un identifiant
-    public String genererId()
-    {
-        String id = UUID.randomUUID().toString(); // Chaque id est différent
-        return id;
-    }
-
-    // METHODE n°4: Remplir le fichier texte
+    // METHODE n°3: Remplir le fichier texte
     public model.Profil inscrire(model.ProfilInput input)
     {
-        String id = genererId();
+        String id = UUID.randomUUID().toString(); // Chaque id est différent
 
         model.Profil p = new model.Profil(
                 input.prenom(),
