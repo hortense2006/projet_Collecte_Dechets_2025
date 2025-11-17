@@ -1,4 +1,5 @@
 package model;
+import java.time.LocalDate;
 import java.util.*;
 
 // Cette classe s'occupe uniquement des tâches propre à un particulier.
@@ -8,6 +9,7 @@ public class ParticulierModel
     private Map<String, Profil> compte;
     String nomFichier;
     private final FichiersProfil f;
+    private List<DemandeCollecte> demande;
 
     // CONSTRUCTEUR
     public ParticulierModel(String nomFichier)
@@ -15,6 +17,7 @@ public class ParticulierModel
         this.nomFichier = nomFichier;
         this.f = new FichiersProfil(nomFichier);
         this.compte = new HashMap<>();
+        this.demande = new ArrayList<>();
         f.chargerInfos(); // charge les profils existants
     }
 
@@ -24,10 +27,12 @@ public class ParticulierModel
 
     // METHODE n°1 : Demander une collecte d'encombrants
 
-    public void faireDemandeCollecte(int quantite)
+    public void faireDemandeCollecte(String idUtilisateur, DemandeCollecte.TypeEncombrant typeEncombrant, int quantite, LocalDate dateDemande)
     {
-        // ATTRIBUTS
         // On remplit une nouvelle demande, et on l'ajoutes à une liste de demandes
+        DemandeCollecte nouvelleDemande = new DemandeCollecte(idUtilisateur, typeEncombrant, quantite, dateDemande);
+        demande.add(nouvelleDemande);
+
     }
     // METHODE n°2 : Consulter le planning de collecte (ramassage devant les maisons)
 

@@ -3,6 +3,7 @@ import model.*;
 import model.DemandeCollecte.*;
 import java.util.HashMap;
 import model.ProfilInput;
+import model.Profil;
 import view.ParticulierView;
 
 import static model.DemandeCollecte.TypeEncombrant.*;
@@ -104,33 +105,33 @@ public class ParticulierController
             case MEUBLE:
             {
                 quantite = view.affichageQuantiteEncombrants(MEUBLE);
-                model.faireDemandeCollecte(quantite);
+                model.faireDemandeCollecte(p.getId(),MEUBLE,quantite,dateDemande);
             }
             case ELECTROMENAGER:
             {
                 quantite = view.affichageQuantiteEncombrants(ELECTROMENAGER);
-                model.faireDemandeCollecte(quantite);
+                model.faireDemandeCollecte(p.getId(),ELECTROMENAGER,quantite,dateDemande);
             }
             case BOIS:
             {
                 quantite = view.affichageQuantiteEncombrants(BOIS);
-                model.faireDemandeCollecte(quantite);
+                model.faireDemandeCollecte(p.getId(),BOIS,quantite,dateDemande);
             }
             case CANAPE:
             {
                 quantite = view.affichageQuantiteEncombrants(CANAPE);
-                model.faireDemandeCollecte(quantite);
+                model.faireDemandeCollecte(p.getId(),CANAPE,quantite,dateDemande);
             }
             case AUTRE:
             {
                 quantite = view.affichageQuantiteEncombrants(AUTRE);
-                model.faireDemandeCollecte(quantite);
+                model.faireDemandeCollecte(p.getId(),AUTRE,quantite,dateDemande);
             }
             default:
             {
                 view.afficherMessage("Choix invalide, valeur par défaut : Autre");
                 quantite = view.affichageQuantiteEncombrants(AUTRE);
-                model.faireDemandeCollecte(quantite);
+                model.faireDemandeCollecte(p.getId(),AUTRE,quantite,dateDemande);
             }
         }
     }
