@@ -41,7 +41,7 @@ public class ParticulierModel
     }
 
     // METHODE n°3: Remplir le fichier texte
-    public model.Profil inscrire(model.ProfilInput input)
+    public model.Profil inscrire(ProfilInput input)
     {
         String id = UUID.randomUUID().toString(); // Chaque id est différent
 

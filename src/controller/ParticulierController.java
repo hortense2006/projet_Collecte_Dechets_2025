@@ -109,33 +109,39 @@ public class ParticulierController
             case MEUBLE:
             {
                 quantite = view.affichageQuantiteEncombrants(MEUBLE);
-                model.faireDemandeCollecte(p.getId(),MEUBLE,quantite,dateDemande);
+                model.faireDemandeCollecte(idPropose,MEUBLE,quantite,dateDemande);
+                break;
             }
             case ELECTROMENAGER:
             {
                 quantite = view.affichageQuantiteEncombrants(ELECTROMENAGER);
                 model.faireDemandeCollecte(p.getId(),ELECTROMENAGER,quantite,dateDemande);
+                break;
             }
             case BOIS:
             {
                 quantite = view.affichageQuantiteEncombrants(BOIS);
                 model.faireDemandeCollecte(p.getId(),BOIS,quantite,dateDemande);
+                break;
             }
             case CANAPE:
             {
                 quantite = view.affichageQuantiteEncombrants(CANAPE);
                 model.faireDemandeCollecte(p.getId(),CANAPE,quantite,dateDemande);
+                break;
             }
             case AUTRE:
             {
                 quantite = view.affichageQuantiteEncombrants(AUTRE);
                 model.faireDemandeCollecte(p.getId(),AUTRE,quantite,dateDemande);
+                break;
             }
             default:
             {
                 view.afficherMessage("Choix invalide, valeur par défaut : Autre");
                 quantite = view.affichageQuantiteEncombrants(AUTRE);
                 model.faireDemandeCollecte(p.getId(),AUTRE,quantite,dateDemande);
+                break;
             }
         }
     }

@@ -5,3 +5,5 @@ Florence;Callais;50;Allee De La Calmande;38e20a9b-b3c4-4ad6-9f52-08a11cf7d322;Ca
 Olivier;Galtier;19;Route D'Aillan;f999080f-339e-4a25-b0d8-6664bc3baa92;Aillant12
 Sauvaire;Valentine;33;rue des glaises;c9b94373-eff1-481c-9457-dafc1d387e4e;mmm
 Olivier;Galtier;190;Rue De La Convention;62582a7b-6312-4178-98d4-e1cdc45c2609;Convention12
+Olivier;Galtier;50;Allee De La Calmande;2b41eadd-147d-4056-bbac-59dc7888f6f0;Calmande20
+Marie-Ange;Guillou;12;Route De Millau;2e72efa3-f554-4c1a-acff-90d8bf2e3c9f;Millau70
