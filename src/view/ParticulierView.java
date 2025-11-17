@@ -3,6 +3,8 @@ import model.*;
 import model.DemandeCollecte.*;
 import java.util.*;
 
+import static model.DemandeCollecte.TypeEncombrant.*;
+
 // Cette classe s'occupe uniquement de l'affichage de tout ce qui se rapporte au particulier
 public class ParticulierView
 {
@@ -70,11 +72,62 @@ public class ParticulierView
         return choix;
     }
     // METHODE n°7 : QUELLE QUANTITE D'ENCOMBRANTS
-    public int affichageQuantiteEncombrants(TypeEncombrant encombrant)
-    {
-        System.out.println("Saisissez votre quantite :");
+    public int affichageQuantiteEncombrants(TypeEncombrant encombrant) {
+        System.out.println("Combien d'objets voulez-vous déclarer ?");
         int quantite = sc.nextInt();
-        sc.nextLine();
+
+        switch (encombrant)
+        {
+            case MEUBLE:
+            {
+                if (quantite > 3)
+                {
+                    System.out.println("Vous ne pouvez déclarer que 3 meubles maximum.");
+                    return -1;
+                }
+                break;
+            }
+
+            case ELECTROMENAGER:
+            {
+                if (quantite > 2)
+                {
+                    System.out.println("Vous ne pouvez déclarer que 2 appareils maximum.");
+                    return -1;
+                }
+                break;
+            }
+
+            case CANAPE:
+            {
+                if (quantite > 1)
+                {
+                    System.out.println("Un seul canapé est autorisé.");
+                    return -1;
+                }
+                break;
+            }
+
+            case BOIS:
+            {
+                if (quantite > 20)
+                {
+                    System.out.println("Maximum 20 pièces de bois.");
+                    return -1;
+                }
+                break;
+            }
+
+            case AUTRE:
+            {
+                if (quantite > 5)
+                {
+                    System.out.println("Maximum 5 objets pour la catégorie 'Autre'.");
+                    return -1;
+                }
+                break;
+            }
+        }
         return quantite;
     }
     // METHODE n°8 : afficher les infos du particulier
