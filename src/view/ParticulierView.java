@@ -64,11 +64,11 @@ public class ParticulierView
     public TypeEncombrant affichageDemandeCollecte()
     {
         System.out.println("Quel type d'encombrant voulez-vous déclarer ?");
-        System.out.println("\nMeubles" +
-                           "\nElectroménager"+
-                           "\nAutre");
-
-        TypeEncombrant choix = TypeEncombrant.valueOf(sc.nextLine());
+        System.out.println("\n1. Meubles" +
+                           "\n2. Electroménager"+
+                           "\n3. Autre");
+        String saisie = sc.nextLine();
+        TypeEncombrant choix = TypeEncombrant.fromString(saisie);
         return choix;
     }
     // METHODE n°7 : QUELLE QUANTITE D'ENCOMBRANTS
