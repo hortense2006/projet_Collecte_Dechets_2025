@@ -97,33 +97,40 @@ public class ParticulierController
         // METHODE n°5 : DEMANDER COLLECTE D'ENCOMBRANTS
     public void DemandeCollecte()
     {
+        int quantite = 0;
         TypeEncombrant choix = view.affichageDemandeCollecte(); // On demande le type d'encombrants
         switch (choix)
         {
             case MEUBLE:
             {
-                view.affichageQuantiteEncombrants(MEUBLE);
+                quantite = view.affichageQuantiteEncombrants(MEUBLE);
+                model.faireDemandeCollecte(quantite);
             }
             case ELECTROMENAGER:
             {
-                view.affichageQuantiteEncombrants(ELECTROMENAGER);
+                quantite = view.affichageQuantiteEncombrants(ELECTROMENAGER);
+                model.faireDemandeCollecte(quantite);
             }
             case BOIS:
             {
-                view.affichageQuantiteEncombrants(BOIS);
+                quantite = view.affichageQuantiteEncombrants(BOIS);
+                model.faireDemandeCollecte(quantite);
             }
             case CANAPE:
             {
-                view.affichageQuantiteEncombrants(CANAPE);
+                quantite = view.affichageQuantiteEncombrants(CANAPE);
+                model.faireDemandeCollecte(quantite);
             }
             case AUTRE:
             {
-                view.affichageQuantiteEncombrants(AUTRE);
+                quantite = view.affichageQuantiteEncombrants(AUTRE);
+                model.faireDemandeCollecte(quantite);
             }
             default:
             {
                 view.afficherMessage("Choix invalide, valeur par défaut : Autre");
-                view.affichageQuantiteEncombrants(AUTRE);
+                quantite = view.affichageQuantiteEncombrants(AUTRE);
+                model.faireDemandeCollecte(quantite);
             }
         }
     }

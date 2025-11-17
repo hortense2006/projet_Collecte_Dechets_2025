@@ -24,11 +24,10 @@ public class ParticulierModel
 
     // METHODE n°1 : Demander une collecte d'encombrants
 
-    public void faireDemandeCollecte(model.DemandeCollecte demande)
+    public void faireDemandeCollecte(int quantite)
     {
         // ATTRIBUTS
-        List<model.DemandeCollecte> demandeEncombrants = new ArrayList<>();
-        demandeEncombrants.add(demande);
+        // On remplit une nouvelle demande, et on l'ajoutes à une liste de demandes
     }
     // METHODE n°2 : Consulter le planning de collecte (ramassage devant les maisons)
 
