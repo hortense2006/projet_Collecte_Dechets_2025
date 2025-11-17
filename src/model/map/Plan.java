@@ -115,7 +115,5 @@ public class Plan {
                 }
             }
         }
-        System.out.println("Réseau chargé avec succès ");
-        System.out.println("Mode de chargement : " + typeGraphe);
     }
 }
