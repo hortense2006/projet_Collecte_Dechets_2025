@@ -16,7 +16,8 @@ public class PlanController {
     }
 
     //Menu qui permet de choisir le type de fichier qu'on veut et l'affiche
-    public void choixFichier() {
+    public void choixFichier()
+    {
         String nomFichier = "";
         int choixPlan;
         Scanner sc = new Scanner(System.in);
@@ -29,8 +30,9 @@ public class PlanController {
                 "\n - 3 : réaliste");
         choixPlan = sc.nextInt();
 
-        switch (choixPlan) { //applique le type de plan que nous utilisons
-            case 1:
+        switch (choixPlan)
+        { //applique le type de plan que nous utilisons
+            case 1: {
                 nomFichier = "C:\\Users\\valsa\\IdeaProjects\\Théorie des graphes\\projet_Collecte_Dechets_2025\\src\\Ranville_HO1.txt";
                 //c'est un absolute path tu peux le changer pour qu'il fonctionne sur ton PC si tu veux
                 // suffit de clic droit sur le fichier HO, et faire get absolute path et encore get absolut path et coller
@@ -48,7 +50,8 @@ public class PlanController {
                     return;
                 }
                 break;
-            case 2:
+            }
+            case 2: {
                 nomFichier = "C:\\Users\\valsa\\IdeaProjects\\Théorie des graphes\\projet_Collecte_Dechets_2025\\src\\Ranville_HO2.txt";
                 try {
                     plan.chargerPlan(nomFichier, Plan.modeOrientation.HO2_ORIENTE);
@@ -62,7 +65,8 @@ public class PlanController {
                     return;
                 }
                 break;
-            case 3:
+            }
+            case 3: {
                 nomFichier = "C:\\Users\\valsa\\IdeaProjects\\Théorie des graphes\\projet_Collecte_Dechets_2025\\src\\Ranville_HO3.txt";
                 try {
                     plan.chargerPlan(nomFichier, Plan.modeOrientation.HO3_MIXTE);
@@ -76,6 +80,7 @@ public class PlanController {
                     return;
                 }
                 break;
+            }
         }
     }
 }

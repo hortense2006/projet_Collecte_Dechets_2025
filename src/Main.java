@@ -1,32 +1,29 @@
-import model.FichiersProfil;
-import model.ParticulierModel;
-import controller.ParticulierController;
-import view.ParticulierView;
-import model.map.Plan;
-import controller.PlanController;
-import view.PlanView;
-
+import model.*;
+import controller.*;
+import view.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-public class Main {
-    public static void main(String[] args) {
+public class Main
+{
+    public static void main(String[] args)
+    {
 
         // ATTRIBUTS
         String typeUser = "";
         int choix;
         boolean exitAll = false;
         boolean exitParticulier = false;
-        final String NOM_FICHIER = "Base_De_Donnees_Particuliers.txt";
+        final String NOM_FICHIER_USERS = "Base_De_Donnees_Particuliers.txt";
 
         // IMPORT DES CLASSES :
         // pour les particulier
         Scanner sc = new Scanner(System.in);
-        FichiersProfil f = new FichiersProfil(NOM_FICHIER);
-        ParticulierView ParticulierV = new ParticulierView();
-        ParticulierModel ParticulierM = new ParticulierModel(NOM_FICHIER);
-        ParticulierController ParticulierC = new ParticulierController(ParticulierM,ParticulierV);
+        FichiersProfil f = new FichiersProfil(NOM_FICHIER_USERS);
+        ParticulierView pv = new ParticulierView();
+        ParticulierModel pm = new ParticulierModel(NOM_FICHIER_USERS);
+        ParticulierController pc = new ParticulierController(pm,pv);
 
         //pour le plan
         Plan plan = new Plan();
@@ -35,8 +32,8 @@ public class Main {
         try
         {
             //lecture du fichier
-            System.out.println("Tentative de chargement du réseau en tant que ressource: " + NOM_FICHIER);
-            InputStream is = Main.class.getClassLoader().getResourceAsStream(NOM_FICHIER);
+            System.out.println("Tentative de chargement du réseau en tant que ressource: " + NOM_FICHIER_USERS);
+            InputStream is = Main.class.getClassLoader().getResourceAsStream(NOM_FICHIER_USERS);
             if (is == null)
             {
                 System.out.println("Échec de la lecture ClassLoader. Tentative de lecture de fichier simple...");
@@ -53,7 +50,7 @@ public class Main {
         }
         catch (IOException e)
         {
-            System.err.println("ERREUR Impossible de lire le fichier du réseau (" + NOM_FICHIER + ").");
+            System.err.println("ERREUR Impossible de lire le fichier du réseau (" + NOM_FICHIER_USERS + ").");
             System.err.println("Détail de l'erreur: " + e.getMessage());
             return;
         }
@@ -90,17 +87,17 @@ public class Main {
                         {
                             case 1:
                             {
-                                ParticulierC.login();// Connexion/Inscription
+                                pc.login();// Connexion/Inscription
                                 break;
                             }
                             case 2:
                             {
-                                ParticulierC.DemandeCollecte(); // Demander une collecte d'encombrants
+                                pc.DemandeCollecte(); // Demander une collecte d'encombrants
                                 break;
                             }
                             case 3:
                             {
-                                ParticulierM.consulterPlanningRamassage("ranville");
+                                pm.consulterPlanningRamassage("ranville");
                                 break;
                             }
                             case 4: //Sortie
