@@ -30,6 +30,8 @@ public class ParticulierModel
 
     public void faireDemandeCollecte(String idUtilisateur, DemandeCollecte.TypeEncombrant typeEncombrant, int quantite, LocalDate dateDemande)
     {
+        System.out.println("idUtilisateur = " + idUtilisateur);
+        System.out.println("Demande = " + demande);
         // On remplit une nouvelle demande, et on l'ajoutes à une liste de demandes
         DemandeCollecte nouvelleDemande = new DemandeCollecte(idUtilisateur, typeEncombrant, quantite, dateDemande);
         demande.add(nouvelleDemande);

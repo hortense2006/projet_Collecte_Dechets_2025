@@ -17,6 +17,11 @@ public class ParticulierController
     private final ParticulierModel model;
     private final ParticulierView view;
     public HashMap<String, Profil> compte;
+    String prenom;
+    String nom;
+    int numero;
+    String rue;
+
     String idPropose;
     String mdpPropose;
     Profil p;
@@ -26,6 +31,7 @@ public class ParticulierController
     {
         this.model = model;
         this.view = view;
+        this.p = new Profil(prenom,nom,numero,rue,idPropose,mdpPropose);
     }
 
     // METHODE n°1 : Vérifier l'identifiant
@@ -133,7 +139,6 @@ public class ParticulierController
             case AUTRE:
             {
                 quantite = view.affichageQuantiteEncombrants(AUTRE);
-                System.out.println("idPropose = " + idPropose);
                 model.faireDemandeCollecte(p.getId(),AUTRE,quantite,dateDemande);
                 break;
             }
