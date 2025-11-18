@@ -156,5 +156,6 @@ public class ParticulierController
                 break;
             }
         }
+        // On sort du switch pour exécuter la demande : deux cas possibles : exécution immédiate ou au bout de 5 requêtes
     }
 }
