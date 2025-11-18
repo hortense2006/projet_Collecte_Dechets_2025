@@ -133,4 +133,5 @@ public class ParticulierView
     }
     // METHODE n°8 : afficher les infos du particulier
     public void afficherInfos(){}
+    // METHODE n°9: Afficher la demande de l'utilisateur
 }
