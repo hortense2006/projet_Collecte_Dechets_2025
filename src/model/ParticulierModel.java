@@ -33,6 +33,11 @@ public class ParticulierModel
         // On remplit une nouvelle demande, et on l'ajoutes à une liste de demandes
         DemandeCollecte nouvelleDemande = new DemandeCollecte(idUtilisateur, typeEncombrant, quantite, dateDemande);
         demande.add(nouvelleDemande);
+    }
+
+    //METHODE n°2 : Retirer une demande après exécution
+    public void retirerDemande()
+    {
         DemandeCollecte prochaineDemande = demande.poll(); // retire en FIFO
     }
     // METHODE n°2 : Consulter le planning de collecte (ramassage devant les maisons)
