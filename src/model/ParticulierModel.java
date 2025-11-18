@@ -41,13 +41,16 @@ public class ParticulierModel
     {
         DemandeCollecte prochaineDemande = demande.poll(); // retire en FIFO
     }
-    // METHODE n°3 : Consulter le planning de collecte (ramassage devant les maisons)
+    // METHODE n°3 : Exécuter la demande
+    public void executerDemande(){}
+
+    // METHODE n°4 : Consulter le planning de collecte (ramassage devant les maisons)
 
     public void consulterPlanningRamassage(String commune) {
 
     }
 
-    // METHODE n°3: Remplir le fichier texte
+    // METHODE n°5: Remplir le fichier texte
     public model.Profil inscrire(ProfilInput input)
     {
         String id = UUID.randomUUID().toString(); // Chaque id est différent

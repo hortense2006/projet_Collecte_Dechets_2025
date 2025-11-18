@@ -157,5 +157,7 @@ public class ParticulierController
             }
         }
         // On sort du switch pour exécuter la demande : deux cas possibles : exécution immédiate ou au bout de 5 requêtes
+        model.executerDemande();
+        model.retirerDemande(); // Une fois la demande exécutée, on retire la demande de la file.
     }
 }
