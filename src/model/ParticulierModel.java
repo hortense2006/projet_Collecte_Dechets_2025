@@ -9,7 +9,8 @@ public class ParticulierModel
     private Map<String, Profil> compte;
     String nomFichier;
     private final FichiersProfil f;
-    private List<DemandeCollecte> demande;
+    private Queue<DemandeCollecte> demande;
+
 
     // CONSTRUCTEUR
     public ParticulierModel(String nomFichier)
@@ -17,7 +18,7 @@ public class ParticulierModel
         this.nomFichier = nomFichier;
         this.f = new FichiersProfil(nomFichier);
         this.compte = new HashMap<>();
-        this.demande = new ArrayList<>();
+        this.demande = new LinkedList<>();
         f.chargerInfos(); // charge les profils existants
     }
 
@@ -32,7 +33,7 @@ public class ParticulierModel
         // On remplit une nouvelle demande, et on l'ajoutes à une liste de demandes
         DemandeCollecte nouvelleDemande = new DemandeCollecte(idUtilisateur, typeEncombrant, quantite, dateDemande);
         demande.add(nouvelleDemande);
-
+        DemandeCollecte prochaineDemande = demande.poll(); // retire en FIFO
     }
     // METHODE n°2 : Consulter le planning de collecte (ramassage devant les maisons)
 

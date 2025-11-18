@@ -133,6 +133,7 @@ public class ParticulierController
             case AUTRE:
             {
                 quantite = view.affichageQuantiteEncombrants(AUTRE);
+                System.out.println("idPropose = " + idPropose);
                 model.faireDemandeCollecte(p.getId(),AUTRE,quantite,dateDemande);
                 break;
             }

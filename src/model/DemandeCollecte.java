@@ -17,7 +17,6 @@ public class DemandeCollecte
         this.quantite = quantite;
         this.dateDemande = dateDemande;
     }
-
     public enum TypeEncombrant
     {
         MEUBLE, ELECTROMENAGER,BOIS,CANAPE, AUTRE;
