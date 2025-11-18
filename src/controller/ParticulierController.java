@@ -17,11 +17,7 @@ public class ParticulierController
     private Profil utilisateurActuel;
     private final ParticulierModel model;
     private final ParticulierView view;
-    public HashMap<String, Profil> compte;
-    String prenom;
-    String nom;
-    int numero;
-    String rue;
+    private DemandeCollecte demande;
 
     String idPropose;
     String mdpPropose;
@@ -120,31 +116,36 @@ public class ParticulierController
             case MEUBLE:
             {
                 quantite = view.affichageQuantiteEncombrants(MEUBLE);
-                model.faireDemandeCollecte(utilisateurActuel.getId(),MEUBLE,quantite,dateDemande);
+                demande = model.faireDemandeCollecte(utilisateurActuel.getId(),MEUBLE,quantite,dateDemande);
+                view.afficherDemande(demande); // On affiche la demande pour vérification.
                 break;
             }
             case ELECTROMENAGER:
             {
                 quantite = view.affichageQuantiteEncombrants(ELECTROMENAGER);
-                model.faireDemandeCollecte(utilisateurActuel.getId(),ELECTROMENAGER,quantite,dateDemande);
+                demande = model.faireDemandeCollecte(utilisateurActuel.getId(),ELECTROMENAGER,quantite,dateDemande);
+                view.afficherDemande(demande); // On affiche la demande pour vérification.
                 break;
             }
             case BOIS:
             {
                 quantite = view.affichageQuantiteEncombrants(BOIS);
-                model.faireDemandeCollecte(utilisateurActuel.getId(),BOIS,quantite,dateDemande);
+                demande = model.faireDemandeCollecte(utilisateurActuel.getId(),BOIS,quantite,dateDemande);
+                view.afficherDemande(demande); // On affiche la demande pour vérification.
                 break;
             }
             case CANAPE:
             {
                 quantite = view.affichageQuantiteEncombrants(CANAPE);
-                model.faireDemandeCollecte(utilisateurActuel.getId(),CANAPE,quantite,dateDemande);
+                demande = model.faireDemandeCollecte(utilisateurActuel.getId(),CANAPE,quantite,dateDemande);
+                view.afficherDemande(demande); // On affiche la demande pour vérification.
                 break;
             }
             case AUTRE:
             {
                 quantite = view.affichageQuantiteEncombrants(AUTRE);
-                model.faireDemandeCollecte(utilisateurActuel.getId(),AUTRE,quantite,dateDemande);
+                demande = model.faireDemandeCollecte(utilisateurActuel.getId(),AUTRE,quantite,dateDemande);
+                view.afficherDemande(demande); // On affiche la demande pour vérification.
                 break;
             }
             default:

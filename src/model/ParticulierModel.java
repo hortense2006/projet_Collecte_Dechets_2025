@@ -28,11 +28,12 @@ public class ParticulierModel
 
     // METHODE n°1 : Demander une collecte d'encombrants
 
-    public void faireDemandeCollecte(String idUtilisateur, DemandeCollecte.TypeEncombrant typeEncombrant, int quantite, LocalDate dateDemande)
+    public DemandeCollecte faireDemandeCollecte(String idUtilisateur, DemandeCollecte.TypeEncombrant typeEncombrant, int quantite, LocalDate dateDemande)
     {
         // On remplit une nouvelle demande, et on l'ajoutes à une liste de demandes
         DemandeCollecte nouvelleDemande = new DemandeCollecte(idUtilisateur, typeEncombrant, quantite, dateDemande);
         demande.add(nouvelleDemande);
+        return nouvelleDemande;
     }
 
     //METHODE n°2 : Retirer une demande après exécution
