@@ -14,6 +14,7 @@ import static model.DemandeCollecte.TypeEncombrant.*;
 public class ParticulierController
 {
     // ATTRIBUTS
+    private Profil utilisateurActuel;
     private final ParticulierModel model;
     private final ParticulierView view;
     public HashMap<String, Profil> compte;
@@ -24,14 +25,13 @@ public class ParticulierController
 
     String idPropose;
     String mdpPropose;
-    Profil p;
 
     // CONSTRUCTEUR
     public ParticulierController(ParticulierModel model, ParticulierView view)
     {
         this.model = model;
         this.view = view;
-        this.p = new Profil(prenom,nom,numero,rue,idPropose,mdpPropose);
+        this.utilisateurActuel = null;
     }
 
     // METHODE n°1 : Vérifier l'identifiant
@@ -39,21 +39,26 @@ public class ParticulierController
     {
         if(model.getCompte().containsKey(idPropose))
         {
-            p = model.getCompte().get(idPropose);
-            return true;
+            Profil p = model.getCompte().get(idPropose);
+            if (p != null)
+            {
+                this.utilisateurActuel = p;
+                return true;
+            }
         }
         else
         {
             return false;
         }
+        return false;
     }
 
     // METHODE n°2 : Vérifier le mot de passe
     public boolean checkMdp(String mdpPropose)
     {
-        if(p.getMdp().equals(mdpPropose))
+        if(utilisateurActuel.getMdp().equals(mdpPropose))
         {
-            p.setEstConnecte(true);
+            utilisateurActuel.setEstConnecte(true);
             return true;
         }
         else
@@ -93,7 +98,7 @@ public class ParticulierController
             case "non":
             {
                 ProfilInput input = view.afficherRegister();
-                model.inscrire(input);
+                this.utilisateurActuel = model.inscrire(input);
                 view.afficherMessage("Inscription réussie !");
                 break;
             }
@@ -115,38 +120,38 @@ public class ParticulierController
             case MEUBLE:
             {
                 quantite = view.affichageQuantiteEncombrants(MEUBLE);
-                model.faireDemandeCollecte(idPropose,MEUBLE,quantite,dateDemande);
+                model.faireDemandeCollecte(utilisateurActuel.getId(),MEUBLE,quantite,dateDemande);
                 break;
             }
             case ELECTROMENAGER:
             {
                 quantite = view.affichageQuantiteEncombrants(ELECTROMENAGER);
-                model.faireDemandeCollecte(p.getId(),ELECTROMENAGER,quantite,dateDemande);
+                model.faireDemandeCollecte(utilisateurActuel.getId(),ELECTROMENAGER,quantite,dateDemande);
                 break;
             }
             case BOIS:
             {
                 quantite = view.affichageQuantiteEncombrants(BOIS);
-                model.faireDemandeCollecte(p.getId(),BOIS,quantite,dateDemande);
+                model.faireDemandeCollecte(utilisateurActuel.getId(),BOIS,quantite,dateDemande);
                 break;
             }
             case CANAPE:
             {
                 quantite = view.affichageQuantiteEncombrants(CANAPE);
-                model.faireDemandeCollecte(p.getId(),CANAPE,quantite,dateDemande);
+                model.faireDemandeCollecte(utilisateurActuel.getId(),CANAPE,quantite,dateDemande);
                 break;
             }
             case AUTRE:
             {
                 quantite = view.affichageQuantiteEncombrants(AUTRE);
-                model.faireDemandeCollecte(p.getId(),AUTRE,quantite,dateDemande);
+                model.faireDemandeCollecte(utilisateurActuel.getId(),AUTRE,quantite,dateDemande);
                 break;
             }
             default:
             {
                 view.afficherMessage("Choix invalide, valeur par défaut : Autre");
                 quantite = view.affichageQuantiteEncombrants(AUTRE);
-                model.faireDemandeCollecte(p.getId(),AUTRE,quantite,dateDemande);
+                model.faireDemandeCollecte(utilisateurActuel.getId(),AUTRE,quantite,dateDemande);
                 break;
             }
         }

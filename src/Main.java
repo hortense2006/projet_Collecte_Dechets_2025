@@ -77,7 +77,7 @@ public class Main
                 case "particulier":
                 {
                     exitParticulier = false;
-                    //pc.login();// Connexion/Inscription
+                    pc.login();// Connexion/Inscription
                     while (!exitParticulier)
                     { //permet de faire tourner l'application utilisateur tant qu'on a pas demandé de changer de type d'utilisateur
                         System.out.println("Que souhaitez-vous faire :");

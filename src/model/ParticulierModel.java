@@ -42,7 +42,7 @@ public class ParticulierModel
     {
         DemandeCollecte prochaineDemande = demande.poll(); // retire en FIFO
     }
-    // METHODE n°2 : Consulter le planning de collecte (ramassage devant les maisons)
+    // METHODE n°3 : Consulter le planning de collecte (ramassage devant les maisons)
 
     public void consulterPlanningRamassage(String commune) {
 
