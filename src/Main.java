@@ -60,17 +60,18 @@ public class Main
         while (!exitAll)  //permet de faire tourner l'application sans fin tant que exitAll n'a pas été choisi
         {
             System.out.println("Choisissez votre profil : " +
-                    "\n commune" +
+                    "\n collectivite" +
                     "\n particulier" +
+                    "\n entreprise" +
                     "\n quitter");
             typeUser = sc.nextLine();
             switch (typeUser)
             {
-                case "commune":
+                case "collectivite":
                 {
                     System.out.println("Que souhaitez-vous faire :");
                     System.out.println("\n1. Consulter le plan de Ranville."+
-                                       "\n2. Mettre à jour les informations de la commune"+
+                                       "\n2. Mettre à jour les informations de la commune (travaux/horaires)"+
                                        "\n3. Changer de type d'utilisateur"); //créer la case associée
                     break;
                 }
@@ -108,6 +109,7 @@ public class Main
                     }
                     break;
                 }
+                case "entreprise":{}
                 case "quitter":
                 {
                     exitAll = true;

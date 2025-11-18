@@ -1,6 +1,7 @@
 package model.map;
 
-public class Arc {
+public class Arc
+{
 
     private final String idLigne;
     private final Station depart;
