@@ -134,5 +134,13 @@ public class ParticulierView
     // METHODE n°8 : afficher les infos du particulier
     public void afficherInfos(){}
     // METHODE n°9: Afficher la demande de l'utilisateur
-    public void afficherDemande(DemandeCollecte demande){}
+    public void afficherDemande(DemandeCollecte demande)
+    {
+        System.out.println("Type d'encombrants :");
+        System.out.println(demande.getTypeEncombrant());
+        System.out.println("Quantite :");
+        System.out.println(demande.getQuantite());
+        System.out.println("Date de demande :");
+        System.out.println(demande.getDateDemande());
+    }
 }

@@ -17,6 +17,7 @@ public class DemandeCollecte
         this.quantite = quantite;
         this.dateDemande = dateDemande;
     }
+    // ENUM
     public enum TypeEncombrant
     {
         MEUBLE, ELECTROMENAGER,BOIS,CANAPE, AUTRE;
@@ -38,5 +39,10 @@ public class DemandeCollecte
             }
         }
     }
+    // GETTER
 
+    public TypeEncombrant getTypeEncombrant() {return typeEncombrant;}
+
+    public int getQuantite() {return quantite;}
+    public LocalDate getDateDemande() {return dateDemande;}
 }
