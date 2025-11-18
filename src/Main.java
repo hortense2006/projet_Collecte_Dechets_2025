@@ -77,32 +77,27 @@ public class Main
                 case "particulier":
                 {
                     exitParticulier = false;
+                    pc.login();// Connexion/Inscription
                     while (!exitParticulier)
                     { //permet de faire tourner l'application utilisateur tant qu'on a pas demandé de changer de type d'utilisateur
                         System.out.println("Que souhaitez-vous faire :");
-                        System.out.println("\n1. Connexion"+
-                                "\n2. Demande de collecte"+
-                                "\n3. Consulter le planning de ramassage"+
-                                "\n4. Changer de type d'utilisateur");
+                        System.out.println("\n1. Demande de collecte"+
+                                "\n2. Consulter le planning de ramassage"+
+                                "\n3. Changer de type d'utilisateur");
                         choix = sc.nextInt();
                         switch (choix)
                         {
                             case 1:
                             {
-                                pc.login();// Connexion/Inscription
+                                pc.DemandeCollecte(); // Demander une collecte d'encombrants
                                 break;
                             }
                             case 2:
                             {
-                                pc.DemandeCollecte(); // Demander une collecte d'encombrants
-                                break;
-                            }
-                            case 3:
-                            {
                                 pm.consulterPlanningRamassage("ranville");
                                 break;
                             }
-                            case 4: //Sortie
+                            case 3: //Sortie
                             {
                                 exitParticulier = true; // Sortir du programme
                                 System.out.println("\n Changement d'utilisateur");
