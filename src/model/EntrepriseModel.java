@@ -5,7 +5,6 @@ import model.map.Arc;
 import model.map.Itineraire;
 import model.map.Plan;
 import model.map.Station;
-
 import java.util.*;
 
 public class EntrepriseModel
