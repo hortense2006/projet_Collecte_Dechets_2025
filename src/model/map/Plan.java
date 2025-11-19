@@ -19,10 +19,7 @@ public class Plan {
     public Map<String, Station> getStations() {
         return stations;
     }
-
-    // GETTER n°1
-    public Station getStation(String nomStation)
-    {
+    public Station getStation(String nomStation) {
         return stations.get(nomStation);
     }
     //Permet de déterminer l'orientation du graphe
