@@ -5,10 +5,7 @@ import model.map.Arc;
 import model.map.Plan;
 import model.map.Station;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
 
 public class EntrepriseModel
 {
@@ -70,5 +67,23 @@ public class EntrepriseModel
             throw new ExceptionPersonnalisable("Départ et Arrivée identiques.");
         }
         return arrivee;
+    }
+
+    // METHODE n°3 : reconstitution du trajet parcouru
+    private Itineraire reconstituerChemin(Station depart, Station arrivee, Station stationArriveeTrouvee, Map<Station, Arc> predecesseurs)
+    { //méthode qui servira à l'affichage d'un chemin
+        if (stationArriveeTrouvee == null)
+        {
+            return new Itineraire(depart, arrivee, Collections.emptyList());
+        }
+        LinkedList<Arc> cheminInverse = new LinkedList<>(); //retrace le chemin à l'envers
+        Station courant = arrivee;
+        while (predecesseurs.get(courant) != null)
+        { //si on a une information avant
+            Arc arcEntrant = predecesseurs.get(courant);
+            cheminInverse.addFirst(arcEntrant);
+            courant = arcEntrant.getDepart();
+        }
+        return new Itineraire(depart, arrivee, new ArrayList<>(cheminInverse)); //retourne pour l'affichage
     }
 }
