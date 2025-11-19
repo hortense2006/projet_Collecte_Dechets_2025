@@ -17,6 +17,14 @@ public class DemandeCollecte
         this.quantite = quantite;
         this.dateDemande = dateDemande;
     }
+
+    public enum TypeDechet {
+        VERRE,              // Bouteilles, bocaux... (Vert)
+        RECYCLABLE,         // Emballages, cartons, plastiques (Jaune)
+        ORDURES_MENAGERES,  // Déchets classiques non recyclables (Gris/Noir)
+        ENCOMBRANT          // Objets volumineux sur demande (Canapé, frigo...)
+    }
+
     // GETTER n°1
     public TypeEncombrant getTypeEncombrant() {return typeEncombrant;}
     // GETTER n°2
