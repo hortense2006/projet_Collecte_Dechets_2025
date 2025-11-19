@@ -6,7 +6,6 @@ import model.map.Itineraire;
 import model.map.Plan;
 import model.map.Station;
 import model.particulier.DemandeCollecte;
-import model.particulier.Profil;
 
 import java.util.*;
 
@@ -14,7 +13,7 @@ public class EntrepriseModel
 {
     // ATTRIBUTS
     private Plan p;
-    private Profil profil;
+
     // CONSTRUCTEUR
     public EntrepriseModel(Plan p)
     {
@@ -94,7 +93,7 @@ public class EntrepriseModel
     public Itineraire executerDemande(DemandeCollecte demande)
     {
         // 1. Récupérer la maison du particulier (rue)
-        Station maison = p.getStationP(profil.getRue(),profil.getNumero());
+        Station maison = p.getStationP(demande.getRue(), demande.getNumero()));
         // Récupérer le numéro de la maison (distance par rapport au début de la rue)
 
         // 2. Récupérer la station du dépôt (point de départ du camion)

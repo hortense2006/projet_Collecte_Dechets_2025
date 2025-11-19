@@ -8,7 +8,9 @@ public class DemandeCollecte
     private TypeEncombrant typeEncombrant;
     private int quantite;
     private LocalDate dateDemande;
-    //private String
+    private String rue;
+    private double numero;
+
 
     // CONSTRUCTEUR
     public DemandeCollecte(String idUtilisateur,TypeEncombrant typeEncombrant,int quantite,LocalDate dateDemande)
@@ -24,4 +26,8 @@ public class DemandeCollecte
     public int getQuantite() {return quantite;}
     // GETTER n°3
     public LocalDate getDateDemande() {return dateDemande;}
+    // GETTER n°4
+    public String getRue() {return rue;}
+    // GETTER n°5
+    public double getNumero() {return numero;}
 }
