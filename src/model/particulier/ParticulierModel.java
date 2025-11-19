@@ -1,4 +1,5 @@
-package model;
+package model.particulier;
+
 import java.time.LocalDate;
 import java.util.*;
 
@@ -43,11 +44,11 @@ public class ParticulierModel
     }
 
     // METHODE n°5: Remplir le fichier texte
-    public model.Profil inscrire(ProfilInput input)
+    public Profil inscrire(ProfilInput input)
     {
         String id = UUID.randomUUID().toString(); // Chaque id est différent
 
-        model.Profil p = new model.Profil(
+        Profil p = new Profil(
                 input.prenom(),
                 input.nom(),
                 input.numero(),

@@ -1,5 +1,6 @@
-package model;
+package model.particulier;
 import exceptions.ExceptionPersonnalisable;
+
 import java.io.*;
 import java.util.HashMap;
 // Cette classe s'occupe de la logique des fichiers pour les particuliers.

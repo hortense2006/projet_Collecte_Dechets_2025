@@ -1,13 +1,11 @@
 package model;
 import exceptions.ExceptionPersonnalisable;
 import model.map.*;
-import java.util.LinkedList;
-import java.util.Scanner;
+import model.particulier.DemandeCollecte;
 
 public class Commune
 {
     // ATTRIBUTS
-    private final PointCollecte pc;
     String id;
     String mdp;
     private boolean estConnecte;

@@ -1,4 +1,4 @@
-package model;
+package model.particulier;
 import java.time.LocalDate;
 
 public class DemandeCollecte

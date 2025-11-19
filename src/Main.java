@@ -1,6 +1,8 @@
 import model.*;
 import controller.*;
 import model.map.*;
+import model.particulier.FichiersProfil;
+import model.particulier.ParticulierModel;
 import view.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;

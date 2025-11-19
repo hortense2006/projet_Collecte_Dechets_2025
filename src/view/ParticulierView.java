@@ -1,9 +1,9 @@
 package view;
-import model.*;
-import model.DemandeCollecte.*;
-import java.util.*;
+import model.particulier.DemandeCollecte;
+import model.particulier.DemandeCollecte.*;
+import model.particulier.ProfilInput;
 
-import static model.DemandeCollecte.TypeEncombrant.*;
+import java.util.*;
 
 // Cette classe s'occupe uniquement de l'affichage de tout ce qui se rapporte au particulier
 public class ParticulierView
