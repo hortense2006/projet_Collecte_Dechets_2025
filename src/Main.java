@@ -19,12 +19,15 @@ public class Main
         final String NOM_FICHIER_USERS = "Base_De_Donnees_Particuliers.txt";
 
         // IMPORT DES CLASSES :
+
+        // Pour la commune
+        Commune commune = new Commune();
         // pour les particuliers
         Scanner sc = new Scanner(System.in);
         FichiersProfil f = new FichiersProfil(NOM_FICHIER_USERS);
         ParticulierView pv = new ParticulierView();
         ParticulierModel pm = new ParticulierModel(NOM_FICHIER_USERS);
-        ParticulierController pc = new ParticulierController(pm,pv);
+        ParticulierController pc = new ParticulierController(pm,pv,commune);
 
         //pour le plan
         Plan plan = new Plan();

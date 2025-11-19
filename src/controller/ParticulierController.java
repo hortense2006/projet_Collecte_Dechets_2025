@@ -7,7 +7,7 @@ import java.util.HashMap;
 import model.ProfilInput;
 import model.Profil;
 import view.ParticulierView;
-
+import model.Commune;
 import static model.DemandeCollecte.TypeEncombrant.*;
 
 // Cette classe s'occupe de la coordination
@@ -17,16 +17,18 @@ public class ParticulierController
     private Profil utilisateurActuel;
     private final ParticulierModel model;
     private final ParticulierView view;
+    private final Commune commune;
     private DemandeCollecte demande;
 
     String idPropose;
     String mdpPropose;
 
     // CONSTRUCTEUR
-    public ParticulierController(ParticulierModel model, ParticulierView view)
+    public ParticulierController(ParticulierModel model, ParticulierView view, Commune commune)
     {
         this.model = model;
         this.view = view;
+        this.commune = commune;
         this.utilisateurActuel = null;
     }
 
@@ -157,7 +159,7 @@ public class ParticulierController
             }
         }
         // On sort du switch pour exécuter la demande : deux cas possibles : exécution immédiate ou au bout de 5 requêtes
-        model.executerDemande();
+        commune.executerDemande();
         model.retirerDemande(); // Une fois la demande exécutée, on retire la demande de la file.
     }
 }
