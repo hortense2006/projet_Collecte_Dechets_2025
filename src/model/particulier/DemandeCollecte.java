@@ -8,6 +8,7 @@ public class DemandeCollecte
     private TypeEncombrant typeEncombrant;
     private int quantite;
     private LocalDate dateDemande;
+    //private String
 
     // CONSTRUCTEUR
     public DemandeCollecte(String idUtilisateur,TypeEncombrant typeEncombrant,int quantite,LocalDate dateDemande)

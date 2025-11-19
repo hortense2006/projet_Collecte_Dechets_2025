@@ -5,16 +5,21 @@ import model.map.Arc;
 import model.map.Itineraire;
 import model.map.Plan;
 import model.map.Station;
+import model.particulier.DemandeCollecte;
+import model.particulier.Profil;
+
 import java.util.*;
 
 public class EntrepriseModel
 {
     // ATTRIBUTS
     private Plan p;
+    private Profil profil;
     // CONSTRUCTEUR
-    public EntrepriseModel(Plan p)
+    public EntrepriseModel(Plan p,Profil profil)
     {
         this.p = p;
+        this.profil = profil;
     }
 
     // METHODE n°1 : Calcul du plus court chemin  ( méthode bsf)
@@ -84,5 +89,22 @@ public class EntrepriseModel
             courant = arcEntrant.getDepart();
         }
         return new Itineraire(depart, arrivee, new ArrayList<>(cheminInverse)); //retourne pour l'affichage
+    }
+    //METHODE n°4 : Exécuter la demande
+    // Deux cas possibles : exécution immédiate ou au bout de 5 requêtes
+    public Itineraire executerDemande(DemandeCollecte demande)
+    {
+        // 1. Récupérer la maison du particulier (rue)
+        Station maison = p.getStationP(profil.getRue(),profil.getNumero());
+        // Récupérer le numéro de la maison (distance par rapport au début de la rue)
+
+        // 2. Récupérer la station du dépôt (point de départ du camion)
+        Station depot = p.getStation("D"); // Ou autre point central
+
+        // 3. Calcul du plus court chemin
+        Itineraire itineraire = bfsPlusCourtChemin(depot.getNom(), maison.getNom());
+
+        // 4. Retourner l'itinéraire
+        return itineraire;
     }
 }

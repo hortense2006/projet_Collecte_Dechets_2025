@@ -22,6 +22,12 @@ public class Plan {
     public Station getStation(String nomStation) {
         return stations.get(nomStation);
     }
+    public Station getStationP(String rue, double numero)
+    {
+        String cle = rue + "-" + numero;   // clé composite
+        return stations.get(cle);
+    }
+
     //Permet de déterminer l'orientation du graphe
     public enum modeOrientation {
         HO1_NON_ORIENTE, // rue à double sens
