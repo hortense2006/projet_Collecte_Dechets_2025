@@ -17,8 +17,7 @@ public class EntrepriseModel
         this.p = p;
     }
 
-    //METHODE n°1 : Calcul d plus court chemin
-    // METHODE n°4 : Calcul du plus court chemin  ( méthode bsf)
+    // METHODE n°1 : Calcul du plus court chemin  ( méthode bsf)
     public Itineraire bfsPlusCourtChemin (String nomDepart, String nomArrivee) throws ExceptionPersonnalisable
     {
         Station depart = verifierStations(nomDepart, nomArrivee); // verifie qu'il n'y a pas d'exception
