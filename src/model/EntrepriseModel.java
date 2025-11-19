@@ -13,11 +13,15 @@ public class EntrepriseModel
 {
     // ATTRIBUTS
     private Plan p;
+    private Station courant;              // où se trouve le camion
+    private List<Station> stationsAVisiter;    // demandes restantes
 
     // CONSTRUCTEUR
     public EntrepriseModel(Plan p)
     {
         this.p = p;
+        this.courant = p.getStation("D"); // dépôt
+        this.stationsAVisiter = new ArrayList<>();
     }
 
     // METHODE n°1 : Calcul du plus court chemin  ( méthode bsf)
@@ -104,4 +108,57 @@ public class EntrepriseModel
         // Retourner l'itinéraire
         return itineraire;
     }
+
+    // METHODE n°5 :  Méthode dijkstra
+    public Map<Station, Integer> dijkstra(Station depart)
+    {
+        Map<Station, Integer> dist = new HashMap<>();
+        Map<Station, Arc> pred = new HashMap<>();
+        PriorityQueue<Station> file = new PriorityQueue<>(Comparator.comparingInt(dist::get));
+
+        // Initialisation
+        for (Station s : p.getStations().values()) {
+            dist.put(s, Integer.MAX_VALUE);
+        }
+        dist.put(depart, 0);
+        file.add(depart);
+
+        while (!file.isEmpty()) {
+            Station courant = file.poll();
+
+            for (Arc arc : courant.getArcsSortants()) {
+                Station voisin = arc.getArrivee();
+                int newDist = dist.get(courant) + arc.getPoids(); // distance ou 1 si non pondéré
+
+                if (newDist < dist.get(voisin)) {
+                    dist.put(voisin, newDist);
+                    pred.put(voisin, arc);
+
+                    file.remove(voisin);
+                    file.add(voisin);
+                }
+            }
+        }
+
+        return dist; // et pred si tu veux reconstruire les chemins
+    }
+    // METHODE n°6 : Maison la plus proche
+    public Station stationLaPlusProche()
+    {
+        Map<Station, Integer> dist = dijkstra(courant);
+
+        Station meilleur = null;
+        int min = Integer.MAX_VALUE;
+
+        for (Station s : stationsAVisiter) {
+            if (dist.get(s) < min) {
+                min = dist.get(s);
+                meilleur = s;
+            }
+        }
+
+        return meilleur;
+    }
+
+
 }
