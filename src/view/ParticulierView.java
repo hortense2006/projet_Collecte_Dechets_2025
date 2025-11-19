@@ -3,7 +3,7 @@ import model.map.Arc;
 import model.map.Plan;
 import model.map.Station;
 import model.particulier.DemandeCollecte;
-import model.particulier.DemandeCollecte.*;
+import model.particulier.TypeEncombrant;
 import model.particulier.ProfilInput;
 
 import java.util.*;

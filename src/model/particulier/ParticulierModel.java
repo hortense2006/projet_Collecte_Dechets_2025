@@ -1,5 +1,4 @@
 package model.particulier;
-
 import java.time.LocalDate;
 import java.util.*;
 
@@ -29,7 +28,7 @@ public class ParticulierModel
 
     // METHODE n°1 : Demander une collecte d'encombrants
 
-    public DemandeCollecte faireDemandeCollecte(String idUtilisateur, DemandeCollecte.TypeEncombrant typeEncombrant, int quantite, LocalDate dateDemande)
+    public DemandeCollecte faireDemandeCollecte(String idUtilisateur, TypeEncombrant typeEncombrant, int quantite, LocalDate dateDemande)
     {
         // On remplit une nouvelle demande, et on l'ajoutes à une liste de demandes
         DemandeCollecte nouvelleDemande = new DemandeCollecte(idUtilisateur, typeEncombrant, quantite, dateDemande);
