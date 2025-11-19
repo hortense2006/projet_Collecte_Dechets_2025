@@ -143,7 +143,7 @@ public class EntrepriseModel
         return dist; // et pred si tu veux reconstruire les chemins
     }
     // METHODE n°6 : Maison la plus proche
-    public Station stationLaPlusProche()
+    public String stationLaPlusProche()
     {
         Map<Station, Integer> dist = dijkstra(courant);
 
