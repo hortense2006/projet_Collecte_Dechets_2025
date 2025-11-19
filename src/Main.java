@@ -3,6 +3,7 @@ import controller.*;
 import model.map.*;
 import model.particulier.FichiersProfil;
 import model.particulier.ParticulierModel;
+import model.particulier.Profil;
 import view.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -21,20 +22,19 @@ public class Main
         final String NOM_FICHIER_USERS = "Base_De_Donnees_Particuliers.txt";
 
         // IMPORT DES CLASSES :
-
+        //pour le plan
+        Plan plan = new Plan();
+        PlanView planV = new PlanView();
+        PlanController planC = new PlanController(plan,planV);
         // Pour la commune
-        Commune commune = new Commune();
+        EntrepriseModel em = new EntrepriseModel(plan);
         // pour les particuliers
         Scanner sc = new Scanner(System.in);
         FichiersProfil f = new FichiersProfil(NOM_FICHIER_USERS);
         ParticulierView pv = new ParticulierView();
         ParticulierModel pm = new ParticulierModel(NOM_FICHIER_USERS);
-        ParticulierController pc = new ParticulierController(pm,pv,commune);
+        ParticulierController pc = new ParticulierController(pm,pv,em);
 
-        //pour le plan
-        Plan plan = new Plan();
-        PlanView planV = new PlanView();
-        PlanController planC = new PlanController(plan,planV);
         try
         {
             //lecture du fichier

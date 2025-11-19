@@ -16,10 +16,9 @@ public class EntrepriseModel
     private Plan p;
     private Profil profil;
     // CONSTRUCTEUR
-    public EntrepriseModel(Plan p,Profil profil)
+    public EntrepriseModel(Plan p)
     {
         this.p = p;
-        this.profil = profil;
     }
 
     // METHODE n°1 : Calcul du plus court chemin  ( méthode bsf)

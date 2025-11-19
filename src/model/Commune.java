@@ -26,19 +26,7 @@ public class Commune
     {
         //DemandeCollecte prochaineDemande = demande.poll(); // retire en FIFO
     }
-    //METHODE n°2 : Exécuter la demande
-    // Deux cas possibles : exécution immédiate ou au bout de 5 requêtes
-    public Station executerDemande(DemandeCollecte demande)
-    {
-        Station maison = null;
-        //La demande est reçue en paramètre
-        //Analyse de la demande
-        // Méthode Welsh-Powell
-        repartirZonesCommune();
-        return maison;
-    }
-
-    // Méthode n°3 : Diviser la commune en plusieurs zones. Méthode Welsh-Powell
+    // Méthode n°2 : Diviser la commune en plusieurs zones. Méthode Welsh-Powell
     public int repartirZonesCommune()
     {
         ;
