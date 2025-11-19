@@ -1,6 +1,6 @@
 package view;
 import model.particulier.DemandeCollecte;
-import model.particulier.DemandeCollecte.*;
+import model.particulier.TypeEncombrant;
 import model.particulier.ProfilInput;
 
 import java.util.*;
