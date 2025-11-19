@@ -90,19 +90,18 @@ public class EntrepriseModel
     }
     //METHODE n°4 : Exécuter la demande
     // Deux cas possibles : exécution immédiate ou au bout de 5 requêtes
-    public Itineraire executerDemande(DemandeCollecte demande)
+    public Itineraire executerDemande(DemandeCollecte demande,String Nomarrivee)
     {
-        // 1. Récupérer la maison du particulier (rue)
-        Station maison = p.getStationP(demande.getRue(), demande.getNumero());
-        // Récupérer le numéro de la maison (distance par rapport au début de la rue)
+        // Récupérer la maison du particulier (rue)
+        Station depart = p.getStationP(demande.getRue(), demande.getNumero());
 
-        // 2. Récupérer la station du dépôt (point de départ du camion)
-        Station depot = p.getStation("D"); // Ou autre point central
+        // Récupérer la station d'arrivée
+        Station arrivee = p.getStation(Nomarrivee); // Station d'arrivée
 
-        // 3. Calcul du plus court chemin
-        Itineraire itineraire = bfsPlusCourtChemin(depot.getNom(), maison.getNom());
+        // Calcul du plus court chemin
+        Itineraire itineraire = bfsPlusCourtChemin(depart.getNom(), arrivee.getNom());
 
-        // 4. Retourner l'itinéraire
+        // Retourner l'itinéraire
         return itineraire;
     }
 }
