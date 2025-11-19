@@ -26,7 +26,7 @@ public class PlanController {
 
         switch (choix) { //applique le type de plan que nous utilisons
             case 1:
-                nomFichier = "C:\\Users\\valsa\\IdeaProjects\\Théorie des graphes\\projet_Collecte_Dechets_2025\\src\\Ranville_HO1.txt";
+                nomFichier = "..\\src\\Ranville_HO1.txt";
                 //c'est un absolute path tu peux le changer pour qu'il fonctionne sur ton PC si tu veux
                 // suffit de clic droit sur le fichier HO, et faire get absolute path et encore get absolut path et coller
                 //merci de n'utiliser aucune autre forme que tu absolute path
