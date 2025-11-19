@@ -1,18 +1,27 @@
 package model;
 
 import exceptions.ExceptionPersonnalisable;
+import model.map.Plan;
 import model.map.Station;
 
 public class EntrepriseModel
 {
-    //METHODE n°3 : Calcul d plus court chemin
+    // ATTRIBUTS
+    private Plan p;
+    // CONSTRUCTEUR
+    public EntrepriseModel(Plan p)
+    {
+        this.p = p;
+    }
+
+    //METHODE n°1 : Calcul d plus court chemin
     public void bsfPlusCourtChemin(){}
 
-    // METHODE n°4 : Vérification des stations
+    // METHODE n°2 : Vérification des stations
     public Station verifierStations(String nomDepart, String nomArrivee) throws ExceptionPersonnalisable
     {
-        Station depart = pc.getStation(nomDepart);
-        Station arrivee = pc.getStation(nomArrivee);
+        Station depart = p.getStation(nomDepart);
+        Station arrivee = p.getStation(nomArrivee);
         if (depart == null)
         {
             throw new ExceptionPersonnalisable("Station de départ inconnue: " + nomDepart);

@@ -20,6 +20,11 @@ public class Plan {
         return stations;
     }
 
+    // GETTER n°1
+    public Station getStation(String nomStation)
+    {
+        return stations.get(nomStation);
+    }
     //Permet de déterminer l'orientation du graphe
     public enum modeOrientation {
         HO1_NON_ORIENTE, // rue à double sens
