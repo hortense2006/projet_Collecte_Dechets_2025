@@ -33,11 +33,11 @@ public class Commune
         //La demande est reçue en paramètre
         //Analyse de la demande
         // Méthode Welsh-Powell
-        repartirCargaison();
+        repartirZonesCommune();
     }
 
-    // Méthode n°3 : Répartir la cargaison
-    public int repartirCargaison()
+    // Méthode n°3 : Diviser la commune en plusieurs zones.
+    public int repartirZonesCommune()
     {
         ;
         List<Produit> couleur;
