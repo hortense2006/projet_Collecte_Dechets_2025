@@ -19,7 +19,6 @@ public class ParticulierController
     private final ParticulierView view;
     private final Commune commune;
     private DemandeCollecte demande;
-
     String idPropose;
     String mdpPropose;
 
@@ -154,14 +153,14 @@ public class ParticulierController
             {
                 view.afficherMessage("Choix invalide, valeur par défaut : Autre");
                 quantite = view.affichageQuantiteEncombrants(AUTRE);
-                model.faireDemandeCollecte(utilisateurActuel.getId(),AUTRE,quantite,dateDemande);
+                demande = model.faireDemandeCollecte(utilisateurActuel.getId(),AUTRE,quantite,dateDemande);
                 break;
             }
         }
         // On sort du switch pour exécuter la demande :
         // deux cas possibles : exécution immédiate ou au bout de 5 requêtes
-        commune.executerDemande(); // L'execution et l'enlèvement de la demande sont fait par la commune
+        commune.executerDemande(demande); // L'execution et l'enlèvement de la demande sont fait par la commune
         // Celle-ci sert d'intermédiaire entre le particulier & l'entreprise
-        commune.retirerDemande(); // Une fois la demande exécutée, on retire la demande de la file.
+        commune.retirerDemande(demande); // Une fois la demande exécutée, on retire la demande de la file.
     }
 }
