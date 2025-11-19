@@ -128,4 +128,6 @@ public class Plan {
         }
         planView.afficherMessagePlan("Le plan a été chargé avec succés. L'orientation est : " + typeGraphe);
     }
+
+
 }
