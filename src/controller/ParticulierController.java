@@ -158,8 +158,10 @@ public class ParticulierController
                 break;
             }
         }
-        // On sort du switch pour exécuter la demande : deux cas possibles : exécution immédiate ou au bout de 5 requêtes
-        commune.executerDemande();
-        model.retirerDemande(); // Une fois la demande exécutée, on retire la demande de la file.
+        // On sort du switch pour exécuter la demande :
+        // deux cas possibles : exécution immédiate ou au bout de 5 requêtes
+        commune.executerDemande(); // L'execution et l'enlèvement de la demande sont fait par la commune
+        // Celle-ci sert d'intermédiaire entre le particulier & l'entreprise
+        commune.retirerDemande(); // Une fois la demande exécutée, on retire la demande de la file.
     }
 }

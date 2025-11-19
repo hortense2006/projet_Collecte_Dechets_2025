@@ -36,12 +36,6 @@ public class ParticulierModel
         return nouvelleDemande;
     }
 
-    //METHODE n°2 : Retirer une demande après exécution
-    public void retirerDemande()
-    {
-        DemandeCollecte prochaineDemande = demande.poll(); // retire en FIFO
-    }
-
     // METHODE n°4 : Consulter le planning de collecte (ramassage devant les maisons)
 
     public void consulterPlanningRamassage(String commune) {
