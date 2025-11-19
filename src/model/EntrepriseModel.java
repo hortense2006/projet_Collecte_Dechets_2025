@@ -93,7 +93,7 @@ public class EntrepriseModel
     public Itineraire executerDemande(DemandeCollecte demande)
     {
         // 1. Récupérer la maison du particulier (rue)
-        Station maison = p.getStationP(demande.getRue(), demande.getNumero()));
+        Station maison = p.getStationP(demande.getRue(), demande.getNumero());
         // Récupérer le numéro de la maison (distance par rapport au début de la rue)
 
         // 2. Récupérer la station du dépôt (point de départ du camion)
