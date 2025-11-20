@@ -26,7 +26,7 @@ public class Commune
         //DemandeCollecte prochaineDemande = demande.poll(); // retire en FIFO
     }
     // Méthode n°2 : Diviser la commune en plusieurs zones. Méthode Welsh-Powell
-    public int repartirZonesCommune()
+    /*public int repartirZonesCommune()
     {
         ;
         List<Produit> couleur;
@@ -46,5 +46,5 @@ public class Commune
             }
         }
         return nbzones;
-    }
+    }*/
 }

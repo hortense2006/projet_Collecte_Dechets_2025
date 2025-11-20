@@ -112,52 +112,7 @@ public class EntrepriseModel
     // Méthode Dijkstra qui renvoie directement la station demandée la plus proche
     public String dijkstra(Station depart)
     {
-        Map<Station, Integer> dist = new HashMap<>();
-        Map<Station, Arc> pred = new HashMap<>();
-
-        // Initialisation
-        for (Station s : p.getStations().values())
-        {
-            dist.put(s, Integer.MAX_VALUE);
-        }
-        dist.put(depart, 0);
-
-        // File de priorité (correcte pour Dijkstra)
-        PriorityQueue<Station> pq = new PriorityQueue<>(Comparator.comparingInt(dist::get));
-        pq.add(depart);
-
-        while (!pq.isEmpty())
-        {
-            Station courant = pq.poll();
-
-            for (Arc arc : courant.getArcsSortants())
-            {
-                Station voisin = arc.getArrivee();
-                int newDist = dist.get(courant) + arc.getPoids();
-
-                if (newDist < dist.get(voisin))
-                {
-                    dist.put(voisin, newDist);
-                    pred.put(voisin, arc);
-                    pq.remove(voisin);
-                    pq.add(voisin);
-                }
-            }
-        }
-
-        // Recherche de la station la plus proche
-        Station meilleur = null;
-        int min = Integer.MAX_VALUE;
-
-        for (Station s : stationsAVisiter) {
-            if (dist.get(s) < min) {
-                min = dist.get(s);
-                meilleur = s;
-            }
-        }
-
-        // On renvoie le nom de la station
-        return meilleur != null ? meilleur.getNom() : null;
+        return null;
     }
 
 
