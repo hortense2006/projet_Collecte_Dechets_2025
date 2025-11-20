@@ -1,14 +1,8 @@
 package controller;
 import model.EntrepriseModel;
-import model.particulier.DemandeCollecte;
-import model.particulier.TypeEncombrant;
+import model.particulier.*;
 import java.time.LocalDate;
-import model.particulier.ProfilInput;
-import model.particulier.Profil;
-import model.particulier.ParticulierModel;
 import view.ParticulierView;
-import model.Commune;
-
 import static model.particulier.TypeEncombrant.*;
 
 // Cette classe s'occupe de la coordination
