@@ -13,7 +13,7 @@ public class EntrepriseModel
 {
     // ATTRIBUTS
     private Plan p;
-    private Station courant;              // où se trouve le camion
+    private Station courant;  // où se trouve le camion
     private ParticulierModel pm;    // demandes restantes
 
     // CONSTRUCTEUR

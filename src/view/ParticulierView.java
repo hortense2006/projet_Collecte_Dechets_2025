@@ -12,6 +12,7 @@ public class ParticulierView
 {
     // APPEL DE CLASSES
     Scanner sc = new Scanner(System.in);
+    Plan plan;
 
     // CONSTRUCTEUR
     public ParticulierView(){}
@@ -57,7 +58,7 @@ public class ParticulierView
         sc.nextLine(); // Vide le buffer
         System.out.println("Saisissez le nom de votre rue:");
         String Nomrue = sc.nextLine();
-        Arc rue = plan.getRueParNom(Nomrue);
+        Arc rue = plan.getArcParNom(Nomrue);
         System.out.println("Saisissez un mot de passe:");
         String mdp = sc.nextLine();
         return new ProfilInput(prenom,nom,numero,rue,mdp); // On retourne les informations du profil.

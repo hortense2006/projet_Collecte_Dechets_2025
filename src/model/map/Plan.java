@@ -34,7 +34,7 @@ public class Plan {
         return arcs;
     }
 
-    // Exemple : récupérer un Arc à partir du nom de rue
+    // Récupérer un Arc à partir du nom de rue
     public Arc getArcParNom(String nomRue) {
         return arcs.get(nomRue); // renvoie null si le nom n'existe pas
     }
