@@ -9,7 +9,7 @@ import java.util.HashMap;
 // Cette classe s'occupe de la logique des fichiers pour les particuliers.
 // ATTENTION : On enregistre le numéro de la maison (distance entre la maison & le bout de la rue)
 // dans la variable double numero.
-// Le nom de la rue est enregistré
+// Le nom de la rue est enregistré comme "Route de la Mouline" par exemple, mais ce nom est associé à un arc.
 public class FichiersProfil
 {
     // ATTRIBUTS
