@@ -1,12 +1,7 @@
 package model;
-
 import exceptions.ExceptionPersonnalisable;
-import model.map.Arc;
-import model.map.Itineraire;
-import model.map.Plan;
-import model.map.Station;
-import model.particulier.DemandeCollecte;
-import model.particulier.ParticulierModel;
+import model.map.*;
+import model.particulier.*;
 import java.util.*;
 
 public class EntrepriseModel
@@ -114,7 +109,51 @@ public class EntrepriseModel
     {
         return null;
     }
+    public Map<Station, Double> dijkstraStations(Station depart)
+    {
+        Map<Station, Double> dist = new HashMap<>();
+        PriorityQueue<Station> pq = new PriorityQueue<>(Comparator.comparingDouble(dist::get));
 
+        // Initialisation
+        for (Station s : p.getStations().values()) {
+            dist.put(s, Double.MAX_VALUE);
+        }
+        dist.put(depart, 0.0);
+        pq.add(depart);
 
+        while (!pq.isEmpty())
+        {
+            Station courant = pq.poll();
 
+            for (Arc arc : courant.getArcsSortants())
+            {
+                Station voisin = arc.getArrivee();
+                double newDist = dist.get(courant) + arc.getDistance();
+
+                if (newDist < dist.get(voisin))
+                {
+                    dist.put(voisin, newDist);
+                    pq.remove(voisin);
+                    pq.add(voisin);
+                }
+            }
+        }
+
+        return dist;
+    }
+    public double distanceVersProfil(Map<Station, Double> dist, Profil profil)
+    {
+        Arc rue = profil.getRue();
+        double pos = profil.getPosition();
+
+        // Distances jusqu’aux extrémités de l’arc
+        double distDebut = dist.get(rue.getDepart());
+        double distFin   = dist.get(rue.getArrivee());
+
+        // Distance interne dans la rue
+        double viaDebut = distDebut + pos;
+        double viaFin   = distFin + (rue.getDistance() - pos);
+
+        return Math.min(viaDebut, viaFin);
+    }
 }
