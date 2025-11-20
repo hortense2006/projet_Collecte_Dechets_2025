@@ -2,7 +2,6 @@ package model;
 import exceptions.ExceptionPersonnalisable;
 import model.map.*;
 import model.particulier.DemandeCollecte;
-
 import java.io.IOException;
 import java.util.List;
 

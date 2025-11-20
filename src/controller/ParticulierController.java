@@ -110,7 +110,7 @@ public class ParticulierController
     public void DemandeCollecte()
     {
         int quantite = 0;
-        LocalDate dateDemande = LocalDate.now();
+        LocalDate dateDemande = LocalDate.now(); // Date de la demande
 
         TypeEncombrant choix = view.affichageDemandeCollecte(); // On demande le type d'encombrants
         switch (choix)
