@@ -5,7 +5,6 @@ import model.map.Station;
 import model.particulier.DemandeCollecte;
 import model.particulier.TypeEncombrant;
 import model.particulier.ProfilInput;
-
 import java.util.*;
 
 // Cette classe s'occupe uniquement de l'affichage de tout ce qui se rapporte au particulier
@@ -57,7 +56,8 @@ public class ParticulierView
         int numero = sc.nextInt();
         sc.nextLine(); // Vide le buffer
         System.out.println("Saisissez le nom de votre rue:");
-        String rue = sc.nextLine();
+        String Nomrue = sc.nextLine();
+        Arc rue = plan.getRueParNom(Nomrue);
         System.out.println("Saisissez un mot de passe:");
         String mdp = sc.nextLine();
         return new ProfilInput(prenom,nom,numero,rue,mdp); // On retourne les informations du profil.

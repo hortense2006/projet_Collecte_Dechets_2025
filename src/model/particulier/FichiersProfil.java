@@ -1,6 +1,8 @@
 package model.particulier;
 import exceptions.ExceptionPersonnalisable;
 import model.map.Arc;
+import model.map.Plan;
+
 import java.io.*;
 import java.util.HashMap;
 
@@ -11,12 +13,14 @@ public class FichiersProfil
     // ATTRIBUTS
     private HashMap<String, Profil> compte;
     public String nomFichier;
+    private Plan plan;
 
     // CONSTRUCTEUR
-    public FichiersProfil(String nomFichier)
+    public FichiersProfil(String nomFichier, Plan plan)
     {
         this.compte = new HashMap<>();
         this.nomFichier = nomFichier;
+        this.plan = plan;
     }
 
     // METHODE n°1 : Remplissage de la HashMap compte pour la première fois
@@ -91,7 +95,7 @@ public class FichiersProfil
             String ligne = p.getPrenom() + ";" +
                     p.getNom() + ";" +
                     p.getNumero() + ";" +
-                    p.getRue() + ";" +
+                    p.getRue().getIdLigne() + ";" +
                     p.getId() + ";" +
                     p.getMdp();
             bw.write(ligne);

@@ -16,12 +16,14 @@ public class DemandeCollecte
 
 
     // CONSTRUCTEUR
-    public DemandeCollecte(String idUtilisateur,TypeEncombrant typeEncombrant,int quantite,LocalDate dateDemande)
+    public DemandeCollecte(String idUtilisateur,TypeEncombrant typeEncombrant,int quantite,LocalDate dateDemande,Arc rue,double numero)
     {
         this.idUtilisateur = idUtilisateur;
         this.typeEncombrant = typeEncombrant;
         this.quantite = quantite;
         this.dateDemande = dateDemande;
+        this.rue = rue;
+        this.numero = numero;
     }
     // GETTER n°1
     public TypeEncombrant getTypeEncombrant() {return typeEncombrant;}
