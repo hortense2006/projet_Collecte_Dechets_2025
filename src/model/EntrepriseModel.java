@@ -109,54 +109,54 @@ public class EntrepriseModel
     }
 
     // METHODE n°5 :  Méthode dijkstra
-    public Map<Station, Integer> dijkstra(Station depart)
+    // Méthode Dijkstra qui renvoie directement la station demandée la plus proche
+    public String dijkstra(Station depart)
     {
         Map<Station, Integer> dist = new HashMap<>();
         Map<Station, Arc> pred = new HashMap<>();
 
         // Initialisation
-        for (Station s : p.getStations().values()) {
+        for (Station s : p.getStations().values())
+        {
             dist.put(s, Integer.MAX_VALUE);
         }
         dist.put(depart, 0);
-        pm.getDemande().add(depart);
 
-        while (!pm.getDemande().isEmpty()) {
-            Station courant = pm.getDemande().poll();
+        // File de priorité (correcte pour Dijkstra)
+        PriorityQueue<Station> pq = new PriorityQueue<>(Comparator.comparingInt(dist::get));
+        pq.add(depart);
+
+        while (!pq.isEmpty()) {
+            Station courant = pq.poll();
 
             for (Arc arc : courant.getArcsSortants()) {
                 Station voisin = arc.getArrivee();
-                int newDist = dist.get(courant) + arc.getPoids(); // distance ou 1 si non pondéré
+                int newDist = dist.get(courant) + arc.getPoids();
 
                 if (newDist < dist.get(voisin)) {
                     dist.put(voisin, newDist);
                     pred.put(voisin, arc);
-
-                    pm.getDemande().remove(voisin);
-                    pm.getDemande().add(voisin);
+                    pq.remove(voisin);
+                    pq.add(voisin);
                 }
             }
         }
 
-        return dist; // et pred si tu veux reconstruire les chemins
-    }
-    // METHODE n°6 : Maison la plus proche
-    public String stationLaPlusProche()
-    {
-        Map<Station, Integer> dist = dijkstra(courant);
-
+        // Recherche de la station la plus proche dans TA LISTE DE DEMANDES
         Station meilleur = null;
         int min = Integer.MAX_VALUE;
 
-        for (Station s : pm.getDemande()) {
+        for (Station s : stationsAVisiter) {
             if (dist.get(s) < min) {
                 min = dist.get(s);
                 meilleur = s;
             }
         }
 
-        return meilleur;
+        // On renvoie le nom de la station
+        return meilleur != null ? meilleur.getNom() : null;
     }
+
 
 
 }
