@@ -6,7 +6,7 @@ import model.map.Itineraire;
 import model.map.Plan;
 import model.map.Station;
 import model.particulier.DemandeCollecte;
-
+import model.particulier.ParticulierModel;
 import java.util.*;
 
 public class EntrepriseModel
@@ -14,14 +14,13 @@ public class EntrepriseModel
     // ATTRIBUTS
     private Plan p;
     private Station courant;              // où se trouve le camion
-    private List<Station> stationsAVisiter;    // demandes restantes
+    private ParticulierModel pm;    // demandes restantes
 
     // CONSTRUCTEUR
     public EntrepriseModel(Plan p)
     {
         this.p = p;
         this.courant = p.getStation("D"); // dépôt
-        this.stationsAVisiter = new ArrayList<>();
     }
 
     // METHODE n°1 : Calcul du plus court chemin  ( méthode bsf)
@@ -114,17 +113,16 @@ public class EntrepriseModel
     {
         Map<Station, Integer> dist = new HashMap<>();
         Map<Station, Arc> pred = new HashMap<>();
-        PriorityQueue<Station> file = new PriorityQueue<>(Comparator.comparingInt(dist::get));
 
         // Initialisation
         for (Station s : p.getStations().values()) {
             dist.put(s, Integer.MAX_VALUE);
         }
         dist.put(depart, 0);
-        file.add(depart);
+        pm.getDemande().add(depart);
 
-        while (!file.isEmpty()) {
-            Station courant = file.poll();
+        while (!pm.getDemande().isEmpty()) {
+            Station courant = pm.getDemande().poll();
 
             for (Arc arc : courant.getArcsSortants()) {
                 Station voisin = arc.getArrivee();
@@ -134,8 +132,8 @@ public class EntrepriseModel
                     dist.put(voisin, newDist);
                     pred.put(voisin, arc);
 
-                    file.remove(voisin);
-                    file.add(voisin);
+                    pm.getDemande().remove(voisin);
+                    pm.getDemande().add(voisin);
                 }
             }
         }
@@ -150,7 +148,7 @@ public class EntrepriseModel
         Station meilleur = null;
         int min = Integer.MAX_VALUE;
 
-        for (Station s : stationsAVisiter) {
+        for (Station s : pm.getDemande()) {
             if (dist.get(s) < min) {
                 min = dist.get(s);
                 meilleur = s;

@@ -24,6 +24,8 @@ public class ParticulierModel
 
     // GETTER n°1
     public Map<String, Profil> getCompte() {return compte;}
+    // GETTER n°2
+    public Queue<DemandeCollecte> getDemande() {return demande;}
 
 
     // METHODE n°1 : Demander une collecte d'encombrants
