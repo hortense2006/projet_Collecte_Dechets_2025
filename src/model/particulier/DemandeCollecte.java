@@ -1,6 +1,7 @@
 package model.particulier;
 import java.time.LocalDate;
 
+/* CLASSE TERMINEE*/
 public class DemandeCollecte
 {
     // ATTRIBUTS

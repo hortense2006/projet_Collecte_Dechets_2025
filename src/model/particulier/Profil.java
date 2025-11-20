@@ -1,5 +1,6 @@
 package model.particulier;
 
+/* CLASSE TERMINEE */
 public class Profil
 {
     private String prenom;
