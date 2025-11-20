@@ -40,9 +40,7 @@ public class ParticulierModel
 
     // METHODE n°4 : Consulter le planning de collecte (ramassage devant les maisons)
 
-    public void consulterPlanningRamassage(String commune) {
-
-    }
+    public void consulterPlanningRamassage(String commune) {}
 
     // METHODE n°5: Remplir le fichier texte
     public Profil inscrire(ProfilInput input)
