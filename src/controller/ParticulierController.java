@@ -1,4 +1,5 @@
 package controller;
+import model.Commune;
 import model.EntrepriseModel;
 import model.particulier.*;
 import java.time.LocalDate;
@@ -14,6 +15,7 @@ public class ParticulierController
     private final ParticulierView view;
     private final EntrepriseModel em;
     private DemandeCollecte demande;
+    Commune commune;
     String idPropose;
     String mdpPropose;
 
@@ -156,6 +158,6 @@ public class ParticulierController
         // deux cas possibles : exécution immédiate ou au bout de 5 requêtes
         em.executerDemande(demande,em.dijkstra()); // L'execution et l'enlèvement de la demande sont fait par la commune
         // Celle-ci sert d'intermédiaire entre le particulier & l'entreprise
-        //commune.retirerDemande(demande); // Une fois la demande exécutée, on retire la demande de la file.
+        commune.retirerDemande(demande); // Une fois la demande exécutée, on retire la demande de la file.
     }
 }
