@@ -1,5 +1,7 @@
 package model.particulier;
 import exceptions.ExceptionPersonnalisable;
+import model.map.Arc;
+
 import java.io.*;
 import java.util.HashMap;
 
@@ -30,7 +32,8 @@ public class FichiersProfil
                 String prenom = parts[0].trim();
                 String nom = parts[1].trim();
                 int numero = Integer.parseInt(parts[2].trim());
-                String rue = parts[3].trim();
+                String nomRue = parts[3].trim();
+                Arc rue = plan.getArcs().get(nomRue); // conversion du texte → Arc
                 String id = parts[4].trim();
                 String mdp = parts[5].trim();
 
@@ -64,7 +67,8 @@ public class FichiersProfil
                 String prenom = parts[0].trim();
                 String nom = parts[1].trim();
                 int numero = Integer.parseInt(parts[2].trim());
-                String rue = parts[3].trim();
+                String nomRue = parts[3].trim();
+                Arc rue = plan.getArcs().get(nomRue); // conversion du texte → Arc
                 String id = parts[4].trim();
                 String mdp = parts[5].trim();
 

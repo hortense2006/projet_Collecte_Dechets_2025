@@ -126,14 +126,17 @@ public class EntrepriseModel
         PriorityQueue<Station> pq = new PriorityQueue<>(Comparator.comparingInt(dist::get));
         pq.add(depart);
 
-        while (!pq.isEmpty()) {
+        while (!pq.isEmpty())
+        {
             Station courant = pq.poll();
 
-            for (Arc arc : courant.getArcsSortants()) {
+            for (Arc arc : courant.getArcsSortants())
+            {
                 Station voisin = arc.getArrivee();
                 int newDist = dist.get(courant) + arc.getPoids();
 
-                if (newDist < dist.get(voisin)) {
+                if (newDist < dist.get(voisin))
+                {
                     dist.put(voisin, newDist);
                     pred.put(voisin, arc);
                     pq.remove(voisin);
@@ -142,7 +145,7 @@ public class EntrepriseModel
             }
         }
 
-        // Recherche de la station la plus proche dans TA LISTE DE DEMANDES
+        // Recherche de la station la plus proche
         Station meilleur = null;
         int min = Integer.MAX_VALUE;
 

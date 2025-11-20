@@ -1,18 +1,20 @@
 package model.particulier;
 
+import model.map.Arc;
+
 /* CLASSE TERMINEE */
 public class Profil
 {
     private String prenom;
     private String nom;
     private double numero;
-    private String rue;
+    private Arc rue;
     private String id;
     private String mdp;
     private boolean estConnecte;
 
     // CONSTRUCTEUR
-    public Profil(String prenom, String nom, double numero, String rue, String id, String mdp)
+    public Profil(String prenom, String nom, double numero, Arc rue, String id, String mdp)
     {
         this.prenom = prenom;
         this.nom = nom;
@@ -26,7 +28,7 @@ public class Profil
     public String getPrenom() { return prenom; }
     public String getNom() { return nom; }
     public double getNumero() { return numero; }
-    public String getRue() { return rue; }
+    public Arc getRue() { return rue; }
     public String getId() { return id; }
     public String getMdp() { return mdp; }
     public boolean getEstConnecte() { return estConnecte; }
