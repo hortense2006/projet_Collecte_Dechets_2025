@@ -2,12 +2,14 @@ package model.particulier;
 import exceptions.ExceptionPersonnalisable;
 import model.map.Arc;
 import model.map.Plan;
-
 import java.io.*;
 import java.util.HashMap;
 
 /* CLASSE TERMINEE*/
 // Cette classe s'occupe de la logique des fichiers pour les particuliers.
+// ATTENTION : On enregistre le numéro de la maison (distance entre la maison & le bout de la rue)
+// dans la variable double numero.
+// Le nom de la rue est enregistré
 public class FichiersProfil
 {
     // ATTRIBUTS
@@ -72,6 +74,8 @@ public class FichiersProfil
                 int numero = Integer.parseInt(parts[2].trim());
                 String nomRue = parts[3].trim();
                 Arc rue = plan.getArcs().get(nomRue); // conversion du texte → Arc
+                // La méthode getArcs associe le nom entré par l'utilisateur
+                // (ex: Route de la Mouline) à un arc (par exemple R4)
                 String id = parts[4].trim();
                 String mdp = parts[5].trim();
 
