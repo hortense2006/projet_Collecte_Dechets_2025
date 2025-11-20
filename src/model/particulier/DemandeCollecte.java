@@ -1,4 +1,6 @@
 package model.particulier;
+import model.map.Arc;
+
 import java.time.LocalDate;
 
 /* CLASSE TERMINEE*/
@@ -9,7 +11,7 @@ public class DemandeCollecte
     private TypeEncombrant typeEncombrant;
     private int quantite;
     private LocalDate dateDemande;
-    private String rue;
+    private Arc rue;
     private double numero;
 
 
@@ -28,7 +30,7 @@ public class DemandeCollecte
     // GETTER n°3
     public LocalDate getDateDemande() {return dateDemande;}
     // GETTER n°4
-    public String getRue() {return rue;}
+    public Arc getRue() {return rue;}
     // GETTER n°5
     public double getNumero() {return numero;}
 }

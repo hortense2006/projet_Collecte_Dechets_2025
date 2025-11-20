@@ -7,7 +7,7 @@ public class Profil
 {
     private String prenom;
     private String nom;
-    private double numero;
+    private double numero; // Notation américaine : correspond à la distance entre la maison et le bout de la rue
     private Arc rue;
     private String id;
     private String mdp;

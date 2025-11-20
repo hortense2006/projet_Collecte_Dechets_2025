@@ -1,7 +1,6 @@
 package model.particulier;
 import exceptions.ExceptionPersonnalisable;
 import model.map.Arc;
-
 import java.io.*;
 import java.util.HashMap;
 
@@ -31,7 +30,7 @@ public class FichiersProfil
                 String[] parts = ligne.split(";");
                 String prenom = parts[0].trim();
                 String nom = parts[1].trim();
-                int numero = Integer.parseInt(parts[2].trim());
+                double numero = Integer.parseInt(parts[2].trim());
                 String nomRue = parts[3].trim();
                 Arc rue = plan.getArcs().get(nomRue); // conversion du texte → Arc
                 String id = parts[4].trim();
