@@ -76,6 +76,7 @@ public class FichiersProfil
                 Arc rue = plan.getArcs().get(nomRue); // conversion du texte → Arc
                 // La méthode getArcs associe le nom entré par l'utilisateur
                 // (ex: Route de la Mouline) à un arc (par exemple R4)
+                // Dans le fichier texte, on aura enregistré Route de la Mouline.
                 String id = parts[4].trim();
                 String mdp = parts[5].trim();
 
