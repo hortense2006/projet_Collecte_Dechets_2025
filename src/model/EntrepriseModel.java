@@ -9,7 +9,8 @@ public class EntrepriseModel
     // ATTRIBUTS
     private Plan p;
     private Station courant;  // où se trouve le camion
-    private ParticulierModel pm;    // demandes restantes
+    private ParticulierModel pm;// demandes restantes
+    private List<DemandeCollecte> demande;
 
     // CONSTRUCTEUR
     public EntrepriseModel(Plan p)
@@ -106,85 +107,63 @@ public class EntrepriseModel
 
     // METHODE n°5 :  Méthode dijkstra
     // Méthode Dijkstra qui renvoie directement la station demandée la plus proche
-    /*public String dijkstra(Station depart, List<DemandeCollecte> demandes)
+    public String dijkstra(Station depart)
     {
-        // 1. Calculer les distances depuis la station de départ
-        Map<Station, Double> dist = dijkstraStations(depart);
+        // Si aucune station à visiter : liste de demandes est vide. On ne fait rien
+        if (demande == null || demande.isEmpty())
+        {
+            return null;
+        }
+        // On parcours la liste "demande"
+        for (DemandeCollecte d : demande)
+        {
 
-        DemandeCollecte demandePlusProche = null;
-        double distanceMin = Double.MAX_VALUE;
-
-        // 2. Parcourir toutes les demandes pour trouver la plus proche
-        for (DemandeCollecte d : demandes) {
-            double dProfil = distanceVersProfil(dist, d.getProfil());
-            if (dProfil < distanceMin) {
-                distanceMin = dProfil;
-                demandePlusProche = d;
-            }
         }
 
-        // 3. Retourner le nom de la station la plus proche sur l'arc du profil
-        if (demandePlusProche != null) {
-            Profil p = demandePlusProche.getProfil();
-            Arc rue = p.getRue();
-            double pos = p.getPosition();
-            double distDebut = dist.get(rue.getDepart()) + pos;
-            double distFin   = dist.get(rue.getArrivee()) + (rue.getDistance() - pos);
-            Station arrivee = (distDebut <= distFin) ? rue.getDepart() : rue.getArrivee();
+        // HashMap des distances
+        HashMap<Station, Double> dist = new HashMap<>();
+        // Ensemble des stations déjà traitées
+        Set<Station> visited = new HashSet<>();
+        // File de priorité (min-heap)
+        PriorityQueue<Station> pq = new PriorityQueue<>(Comparator.comparing(dist::get));
 
-            return arrivee.getNom(); // ou getId() selon ce que tu veux afficher
-        }
-
-        return null; // Aucun résultat
-    }*/
-
-    public Map<Station, Double> dijkstraStations(Station depart)
-    {
-        Map<Station, Double> dist = new HashMap<>();
-        PriorityQueue<Station> pq = new PriorityQueue<>(Comparator.comparingDouble(dist::get));
-
-        // Initialisation
-        for (Station s : p.getStations().values()) {
-            dist.put(s, Double.MAX_VALUE);
+        // Initialisation : On met toutes les distances à l'infini
+        for (Station s : p.getStations())
+        {
+            dist.put(s, Double.POSITIVE_INFINITY);
         }
         dist.put(depart, 0.0);
         pq.add(depart);
 
+        // Dijkstra classique
         while (!pq.isEmpty())
         {
             Station courant = pq.poll();
 
-            for (Arc arc : courant.getArcsSortants())
-            {
-                Station voisin = arc.getArrivee();
-                double newDist = dist.get(courant) + arc.getDistance();
+            if (visited.contains(courant))
+                continue;
+            visited.add(courant);
 
-                if (newDist < dist.get(voisin))
-                {
+            // Si cette station est une demande → on peut s’arrêter !
+            if (demande.contains(courant)) {
+                return courant.getNom();
+            }
+
+            // Parcours des voisins
+            for (Arc arc : p.getAdjacents(courant)) {
+                Station voisin = arc.getArrivee();
+                double newDist = dist.get(courant) + arc.getPoids();
+
+                if (newDist < dist.get(voisin)) {
                     dist.put(voisin, newDist);
-                    pq.remove(voisin);
                     pq.add(voisin);
                 }
             }
         }
 
-        return dist;
+        // Aucune station de demande atteignable
+        return null;
     }
-    /*public double distanceVersProfil(Map<Station, Double> dist, Profil profil)
-    {
-        Arc rue = profil.getRue();
-        double pos = profil.getPosition();
-
-        // Distances jusqu’aux extrémités de l’arc
-        double distDebut = dist.get(rue.getDepart());
-        double distFin   = dist.get(rue.getArrivee());
-
-        // Distance interne dans la rue
-        double viaDebut = distDebut + pos;
-        double viaFin   = distFin + (rue.getDistance() - pos);
-
-        return Math.min(viaDebut, viaFin);
-    }*/
 
     //METHODE n°1 : Retirer une demande après exécution
     public void defilerDemande(DemandeCollecte demande) throws ExceptionPersonnalisable
