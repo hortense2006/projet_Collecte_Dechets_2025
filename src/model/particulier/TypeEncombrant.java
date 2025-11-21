@@ -1,5 +1,5 @@
 package model.particulier;
-
+/* CLASSE TERMINEE*/
 // ENUM
 public enum TypeEncombrant
 {

@@ -5,7 +5,6 @@ import model.map.Station;
 import model.particulier.DemandeCollecte;
 import model.particulier.TypeEncombrant;
 import model.particulier.ProfilInput;
-
 import java.util.*;
 
 // Cette classe s'occupe uniquement de l'affichage de tout ce qui se rapporte au particulier
@@ -13,6 +12,7 @@ public class ParticulierView
 {
     // APPEL DE CLASSES
     Scanner sc = new Scanner(System.in);
+    Plan plan;
 
     // CONSTRUCTEUR
     public ParticulierView(){}
@@ -57,7 +57,8 @@ public class ParticulierView
         int numero = sc.nextInt();
         sc.nextLine(); // Vide le buffer
         System.out.println("Saisissez le nom de votre rue:");
-        String rue = sc.nextLine();
+        String Nomrue = sc.nextLine();
+        Arc rue = plan.getArcParNom(Nomrue);
         System.out.println("Saisissez un mot de passe:");
         String mdp = sc.nextLine();
         return new ProfilInput(prenom,nom,numero,rue,mdp); // On retourne les informations du profil.
@@ -147,15 +148,18 @@ public class ParticulierView
         System.out.println(demande.getDateDemande());
     }
 
-    public boolean ajouterPoubelleSpecifique(Plan plan, String nomRue, double position, DemandeCollecte.TypeDechet type) {
+    public boolean ajouterPoubelleSpecifique(Plan plan, String nomRue, double position, TypeEncombrant type)
+    {
         Arc rue = trouverRueParNom(plan, nomRue);
 
-        if (rue == null) {
+        if (rue == null)
+        {
             System.err.println("Erreur : La rue " + nomRue + " n'existe pas.");
             return false;
         }
 
-        if (position < 0 || position > rue.getDistance()) {
+        if (position < 0 || position > rue.getDistance())
+        {
             System.err.println("Erreur : La position " + position + " est hors de la rue (Longueur max: " + rue.getDistance() + ")");
             return false;
         }
@@ -166,10 +170,14 @@ public class ParticulierView
         return true;
     }
 
-    private Arc trouverRueParNom(Plan plan, String idLigne) {
-        for (Station s : plan.getStations().values()) {
-            for (Arc a : s.getArcsSortants()) {
-                if (a.getIdLigne().equals(idLigne)) {
+    private Arc trouverRueParNom(Plan plan, String idLigne)
+    {
+        for (Station s : plan.getStations().values())
+        {
+            for (Arc a : s.getArcsSortants())
+            {
+                if (a.getIdLigne().equals(idLigne))
+                {
                     return a;
                 }
             }

@@ -2,7 +2,6 @@ package model;
 import exceptions.ExceptionPersonnalisable;
 import model.map.*;
 import model.particulier.DemandeCollecte;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -26,18 +25,8 @@ public class Commune
     {
         //DemandeCollecte prochaineDemande = demande.poll(); // retire en FIFO
     }
-    //METHODE n°2 : Exécuter la demande
-    // Deux cas possibles : exécution immédiate ou au bout de 5 requêtes
-    public void executerDemande(DemandeCollecte demande)
-    {
-        //La demande est reçue en paramètre
-        //Analyse de la demande
-        // Méthode Welsh-Powell
-        repartirZonesCommune();
-    }
-
-    // Méthode n°3 : Diviser la commune en plusieurs zones.
-    public int repartirZonesCommune()
+    // Méthode n°2 : Diviser la commune en plusieurs zones. Méthode Welsh-Powell
+    /*public int repartirZonesCommune()
     {
         ;
         List<Produit> couleur;
@@ -57,5 +46,5 @@ public class Commune
             }
         }
         return nbzones;
-    }
+    }*/
 }

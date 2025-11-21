@@ -1,6 +1,9 @@
 package model.particulier;
+import model.map.Arc;
+
 import java.time.LocalDate;
 
+/* CLASSE TERMINEE*/
 public class DemandeCollecte
 {
     // ATTRIBUTS
@@ -8,14 +11,19 @@ public class DemandeCollecte
     private TypeEncombrant typeEncombrant;
     private int quantite;
     private LocalDate dateDemande;
+    private Arc rue;
+    private double numero;
+
 
     // CONSTRUCTEUR
-    public DemandeCollecte(String idUtilisateur,TypeEncombrant typeEncombrant,int quantite,LocalDate dateDemande)
+    public DemandeCollecte(String idUtilisateur,TypeEncombrant typeEncombrant,int quantite,LocalDate dateDemande,Arc rue,double numero)
     {
         this.idUtilisateur = idUtilisateur;
         this.typeEncombrant = typeEncombrant;
         this.quantite = quantite;
         this.dateDemande = dateDemande;
+        this.rue = rue;
+        this.numero = numero;
     }
 
     public enum TypeDechet {
@@ -31,4 +39,8 @@ public class DemandeCollecte
     public int getQuantite() {return quantite;}
     // GETTER n°3
     public LocalDate getDateDemande() {return dateDemande;}
+    // GETTER n°4
+    public Arc getRue() {return rue;}
+    // GETTER n°5
+    public double getNumero() {return numero;}
 }

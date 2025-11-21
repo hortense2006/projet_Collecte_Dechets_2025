@@ -10,10 +10,13 @@ import view.PlanView;
 public class Plan {
 
     private Map<String, Station> stations; //plan de la ville
+    private HashMap<String, Arc> arcs; // Arcs (rues)
     public PlanView planView = new PlanView();
 
     public Plan() { //constructeur
+
         this.stations = new HashMap<>();
+        this.arcs = new HashMap<>();
     }
 
     public Map<String, Station> getStations() {
@@ -21,6 +24,19 @@ public class Plan {
     }
     public Station getStation(String nomStation) {
         return stations.get(nomStation);
+    }
+    public Station getStationP(Arc rue, double numero) {
+        String cle = rue + "-" + numero;   // clé composite
+        return stations.get(cle);
+    }
+    // Méthode pour récupérer tous les arcs
+    public HashMap<String, Arc> getArcs() {
+        return arcs;
+    }
+
+    // Récupérer un Arc à partir du nom de rue
+    public Arc getArcParNom(String nomRue) {
+        return arcs.get(nomRue); // renvoie null si le nom n'existe pas
     }
     //Permet de déterminer l'orientation du graphe
     public enum modeOrientation {

@@ -8,10 +8,17 @@ import java.util.List;
 public class Station {
     private String nom;
     private ArrayList<Arc> arcsSortants;
+    private double numero;
 
-    //constructeur
+    //constructeur n°1
     public Station(String nom) {
         this.nom = nom;
+        this.arcsSortants = new ArrayList<>();
+    }
+    // CONSTRUCTEUR n°2
+    public Station(String nom, double numero) {
+        this.nom = nom;
+        this.numero = numero;
         this.arcsSortants = new ArrayList<>();
     }
 

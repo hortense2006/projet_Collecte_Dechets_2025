@@ -1,13 +1,9 @@
 package controller;
-import model.particulier.DemandeCollecte;
-import model.particulier.TypeEncombrant;
-import java.time.LocalDate;
-import model.particulier.ProfilInput;
-import model.particulier.Profil;
-import model.particulier.ParticulierModel;
-import view.ParticulierView;
 import model.Commune;
-
+import model.EntrepriseModel;
+import model.particulier.*;
+import java.time.LocalDate;
+import view.ParticulierView;
 import static model.particulier.TypeEncombrant.*;
 
 // Cette classe s'occupe de la coordination
@@ -17,17 +13,18 @@ public class ParticulierController
     private Profil utilisateurActuel;
     private final ParticulierModel model;
     private final ParticulierView view;
-    private final Commune commune;
+    private final EntrepriseModel em;
     private DemandeCollecte demande;
+    Commune commune;
     String idPropose;
     String mdpPropose;
 
     // CONSTRUCTEUR
-    public ParticulierController(ParticulierModel model, ParticulierView view, Commune commune)
+    public ParticulierController(ParticulierModel model, ParticulierView view, EntrepriseModel em)
     {
         this.model = model;
         this.view = view;
-        this.commune = commune;
+        this.em = em;
         this.utilisateurActuel = null;
     }
 
@@ -109,7 +106,7 @@ public class ParticulierController
     public void DemandeCollecte()
     {
         int quantite = 0;
-        LocalDate dateDemande = LocalDate.now();
+        LocalDate dateDemande = LocalDate.now(); // Date de la demande
 
         TypeEncombrant choix = view.affichageDemandeCollecte(); // On demande le type d'encombrants
         switch (choix)
@@ -159,7 +156,7 @@ public class ParticulierController
         }
         // On sort du switch pour exécuter la demande :
         // deux cas possibles : exécution immédiate ou au bout de 5 requêtes
-        commune.executerDemande(demande); // L'execution et l'enlèvement de la demande sont fait par la commune
+        em.executerDemande(demande,em.dijkstra()); // L'execution et l'enlèvement de la demande sont fait par la commune
         // Celle-ci sert d'intermédiaire entre le particulier & l'entreprise
         commune.retirerDemande(demande); // Une fois la demande exécutée, on retire la demande de la file.
     }

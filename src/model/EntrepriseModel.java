@@ -1,20 +1,21 @@
 package model;
-
 import exceptions.ExceptionPersonnalisable;
-import model.map.Arc;
-import model.map.Itineraire;
-import model.map.Plan;
-import model.map.Station;
+import model.map.*;
+import model.particulier.*;
 import java.util.*;
 
 public class EntrepriseModel
 {
     // ATTRIBUTS
     private Plan p;
+    private Station courant;  // où se trouve le camion
+    private ParticulierModel pm;    // demandes restantes
+
     // CONSTRUCTEUR
     public EntrepriseModel(Plan p)
     {
         this.p = p;
+        this.courant = p.getStation("D"); // dépôt
     }
 
     // METHODE n°1 : Calcul du plus court chemin  ( méthode bsf)
@@ -84,5 +85,103 @@ public class EntrepriseModel
             courant = arcEntrant.getDepart();
         }
         return new Itineraire(depart, arrivee, new ArrayList<>(cheminInverse)); //retourne pour l'affichage
+    }
+    //METHODE n°4 : Exécuter la demande
+    // Deux cas possibles : exécution immédiate ou au bout de 5 requêtes
+    public Itineraire executerDemande(DemandeCollecte demande,String Nomarrivee)
+    {
+        // Récupérer la maison du particulier (rue)
+        Station depart = p.getStationP(demande.getRue(), demande.getNumero());
+
+        // Récupérer la station d'arrivée
+        Station arrivee = p.getStation(Nomarrivee); // Station d'arrivée
+
+        // Calcul du plus court chemin
+        Itineraire itineraire = bfsPlusCourtChemin(depart.getNom(), arrivee.getNom());
+
+        // Retourner l'itinéraire
+        return itineraire;
+    }
+
+    // METHODE n°5 :  Méthode dijkstra
+    // Méthode Dijkstra qui renvoie directement la station demandée la plus proche
+    public String dijkstra(Station depart, List<DemandeCollecte> demandes)
+    {
+        // 1. Calculer les distances depuis la station de départ
+        Map<Station, Double> dist = dijkstraStations(depart);
+
+        DemandeCollecte demandePlusProche = null;
+        double distanceMin = Double.MAX_VALUE;
+
+        // 2. Parcourir toutes les demandes pour trouver la plus proche
+        for (DemandeCollecte d : demandes) {
+            double dProfil = distanceVersProfil(dist, d.getProfil());
+            if (dProfil < distanceMin) {
+                distanceMin = dProfil;
+                demandePlusProche = d;
+            }
+        }
+
+        // 3. Retourner le nom de la station la plus proche sur l'arc du profil
+        if (demandePlusProche != null) {
+            Profil p = demandePlusProche.getProfil();
+            Arc rue = p.getRue();
+            double pos = p.getPosition();
+            double distDebut = dist.get(rue.getDepart()) + pos;
+            double distFin   = dist.get(rue.getArrivee()) + (rue.getDistance() - pos);
+            Station arrivee = (distDebut <= distFin) ? rue.getDepart() : rue.getArrivee();
+
+            return arrivee.getNom(); // ou getId() selon ce que tu veux afficher
+        }
+
+        return null; // Aucun résultat
+    }
+
+    public Map<Station, Double> dijkstraStations(Station depart)
+    {
+        Map<Station, Double> dist = new HashMap<>();
+        PriorityQueue<Station> pq = new PriorityQueue<>(Comparator.comparingDouble(dist::get));
+
+        // Initialisation
+        for (Station s : p.getStations().values()) {
+            dist.put(s, Double.MAX_VALUE);
+        }
+        dist.put(depart, 0.0);
+        pq.add(depart);
+
+        while (!pq.isEmpty())
+        {
+            Station courant = pq.poll();
+
+            for (Arc arc : courant.getArcsSortants())
+            {
+                Station voisin = arc.getArrivee();
+                double newDist = dist.get(courant) + arc.getDistance();
+
+                if (newDist < dist.get(voisin))
+                {
+                    dist.put(voisin, newDist);
+                    pq.remove(voisin);
+                    pq.add(voisin);
+                }
+            }
+        }
+
+        return dist;
+    }
+    public double distanceVersProfil(Map<Station, Double> dist, Profil profil)
+    {
+        Arc rue = profil.getRue();
+        double pos = profil.getPosition();
+
+        // Distances jusqu’aux extrémités de l’arc
+        double distDebut = dist.get(rue.getDepart());
+        double distFin   = dist.get(rue.getArrivee());
+
+        // Distance interne dans la rue
+        double viaDebut = distDebut + pos;
+        double viaFin   = distFin + (rue.getDistance() - pos);
+
+        return Math.min(viaDebut, viaFin);
     }
 }

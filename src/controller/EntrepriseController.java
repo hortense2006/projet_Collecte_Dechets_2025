@@ -1,10 +1,19 @@
 package controller;
 import model.Commune;
+import model.EntrepriseModel;
 
 public class EntrepriseController extends Commune
 {
+    private EntrepriseModel entrepriseModel;
+    public EntrepriseController(EntrepriseModel em)
+    {
+        this.entrepriseModel = em;
+    }
+    public void cheminParcouru()
+    {
+        do{}while(true);
+    }
     // Boucle while qui parcourt la liste des demandes
-    // A chaque tour, appliquer executerDemande(commune) => renvoie les maisons où il doit passer
-    // Applique le bsf pour calculer le plus court chemin (somme de bsf)
+    // (somme d'itinéraires (programme executerDemande dans EntrepriseModel))
     // Renvoie au Camion le chemin à faire.
 }

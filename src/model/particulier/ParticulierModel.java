@@ -1,4 +1,6 @@
 package model.particulier;
+import model.map.Plan;
+
 import java.time.LocalDate;
 import java.util.*;
 
@@ -7,6 +9,7 @@ public class ParticulierModel
 {
     // ATTRIBUTS
     private Map<String, Profil> compte;
+    Plan plan = new Plan();
     String nomFichier;
     private final FichiersProfil f;
     private Queue<DemandeCollecte> demande;
@@ -16,7 +19,7 @@ public class ParticulierModel
     public ParticulierModel(String nomFichier)
     {
         this.nomFichier = nomFichier;
-        this.f = new FichiersProfil(nomFichier);
+        this.f = new FichiersProfil(nomFichier,plan);
         this.compte = new HashMap<>();
         this.demande = new LinkedList<>();
         f.chargerInfos(); // charge les profils existants
@@ -24,6 +27,8 @@ public class ParticulierModel
 
     // GETTER n°1
     public Map<String, Profil> getCompte() {return compte;}
+    // GETTER n°2
+    public Queue<DemandeCollecte> getDemande() {return demande;}
 
 
     // METHODE n°1 : Demander une collecte d'encombrants
@@ -38,9 +43,7 @@ public class ParticulierModel
 
     // METHODE n°4 : Consulter le planning de collecte (ramassage devant les maisons)
 
-    public void consulterPlanningRamassage(String commune) {
-
-    }
+    public void consulterPlanningRamassage(String commune) {}
 
     // METHODE n°5: Remplir le fichier texte
     public Profil inscrire(ProfilInput input)
