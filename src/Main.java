@@ -31,7 +31,7 @@ public class Main
         // pour les particuliers
         Scanner sc = new Scanner(System.in);
         FichiersProfil f = new FichiersProfil(NOM_FICHIER_USERS,plan);
-        ParticulierView pv = new ParticulierView();
+        ParticulierView pv = new ParticulierView(plan);
         ParticulierModel pm = new ParticulierModel(NOM_FICHIER_USERS);
         ParticulierController pc = new ParticulierController(pm,pv,em);
 

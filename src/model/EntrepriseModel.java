@@ -105,7 +105,7 @@ public class EntrepriseModel
 
     // METHODE n°5 :  Méthode dijkstra
     // Méthode Dijkstra qui renvoie directement la station demandée la plus proche
-    public String dijkstra(Station depart, List<DemandeCollecte> demandes)
+    /*public String dijkstra(Station depart, List<DemandeCollecte> demandes)
     {
         // 1. Calculer les distances depuis la station de départ
         Map<Station, Double> dist = dijkstraStations(depart);
@@ -135,7 +135,7 @@ public class EntrepriseModel
         }
 
         return null; // Aucun résultat
-    }
+    }*/
 
     public Map<Station, Double> dijkstraStations(Station depart)
     {
@@ -169,7 +169,7 @@ public class EntrepriseModel
 
         return dist;
     }
-    public double distanceVersProfil(Map<Station, Double> dist, Profil profil)
+    /*public double distanceVersProfil(Map<Station, Double> dist, Profil profil)
     {
         Arc rue = profil.getRue();
         double pos = profil.getPosition();
@@ -183,5 +183,5 @@ public class EntrepriseModel
         double viaFin   = distFin + (rue.getDistance() - pos);
 
         return Math.min(viaDebut, viaFin);
-    }
+    }*/
 }

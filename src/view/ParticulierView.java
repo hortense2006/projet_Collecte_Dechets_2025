@@ -15,7 +15,7 @@ public class ParticulierView
     Plan plan;
 
     // CONSTRUCTEUR
-    public ParticulierView(){}
+    public ParticulierView(Plan plan){this.plan = plan;}
 
     // METHODE n°1 : AFFICHAGE DU LOGIN DE L'UTILISATEUR
     public String ActionLogin()
@@ -57,8 +57,7 @@ public class ParticulierView
         int numero = sc.nextInt();
         sc.nextLine(); // Vide le buffer
         System.out.println("Saisissez le nom de votre rue:");
-        String Nomrue = sc.nextLine();
-        Arc rue = plan.getArcParNom(Nomrue);
+        String rue = sc.nextLine();
         System.out.println("Saisissez un mot de passe:");
         String mdp = sc.nextLine();
         return new ProfilInput(prenom,nom,numero,rue,mdp); // On retourne les informations du profil.
@@ -164,8 +163,8 @@ public class ParticulierView
             return false;
         }
 
-        DemandeCollecte demande = new DemandeCollecte("Utilisateur_Manuel", rue, position, type, 50.0);
-        rue.ajouterDechet(demande);
+        //DemandeCollecte demande = new DemandeCollecte("Utilisateur_Manuel", rue, position, type, 50.0);
+        //rue.ajouterDechet(demande);
         System.out.println("Succès : Déchet ajouté sur " + nomRue + " à " + position + "m.");
         return true;
     }

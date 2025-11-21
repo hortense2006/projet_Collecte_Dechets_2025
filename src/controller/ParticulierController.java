@@ -114,35 +114,35 @@ public class ParticulierController
             case MEUBLE:
             {
                 quantite = view.affichageQuantiteEncombrants(MEUBLE);
-                demande = model.faireDemandeCollecte(utilisateurActuel.getId(),MEUBLE,quantite,dateDemande);
+                demande = model.faireDemandeCollecte(utilisateurActuel.getId(),MEUBLE,quantite,dateDemande,utilisateurActuel.getRue(),utilisateurActuel.getNumero());
                 view.afficherDemande(demande); // On affiche la demande pour vérification.
                 break;
             }
             case ELECTROMENAGER:
             {
                 quantite = view.affichageQuantiteEncombrants(ELECTROMENAGER);
-                demande = model.faireDemandeCollecte(utilisateurActuel.getId(),ELECTROMENAGER,quantite,dateDemande);
+                demande = model.faireDemandeCollecte(utilisateurActuel.getId(),ELECTROMENAGER,quantite,dateDemande,utilisateurActuel.getRue(),utilisateurActuel.getNumero());
                 view.afficherDemande(demande); // On affiche la demande pour vérification.
                 break;
             }
             case BOIS:
             {
                 quantite = view.affichageQuantiteEncombrants(BOIS);
-                demande = model.faireDemandeCollecte(utilisateurActuel.getId(),BOIS,quantite,dateDemande);
+                demande = model.faireDemandeCollecte(utilisateurActuel.getId(),BOIS,quantite,dateDemande,utilisateurActuel.getRue(),utilisateurActuel.getNumero());
                 view.afficherDemande(demande); // On affiche la demande pour vérification.
                 break;
             }
             case CANAPE:
             {
                 quantite = view.affichageQuantiteEncombrants(CANAPE);
-                demande = model.faireDemandeCollecte(utilisateurActuel.getId(),CANAPE,quantite,dateDemande);
+                demande = model.faireDemandeCollecte(utilisateurActuel.getId(),CANAPE,quantite,dateDemande,utilisateurActuel.getRue(),utilisateurActuel.getNumero());
                 view.afficherDemande(demande); // On affiche la demande pour vérification.
                 break;
             }
             case AUTRE:
             {
                 quantite = view.affichageQuantiteEncombrants(AUTRE);
-                demande = model.faireDemandeCollecte(utilisateurActuel.getId(),AUTRE,quantite,dateDemande);
+                demande = model.faireDemandeCollecte(utilisateurActuel.getId(),AUTRE,quantite,dateDemande,utilisateurActuel.getRue(),utilisateurActuel.getNumero());
                 view.afficherDemande(demande); // On affiche la demande pour vérification.
                 break;
             }
@@ -150,13 +150,13 @@ public class ParticulierController
             {
                 view.afficherMessage("Choix invalide, valeur par défaut : Autre");
                 quantite = view.affichageQuantiteEncombrants(AUTRE);
-                demande = model.faireDemandeCollecte(utilisateurActuel.getId(),AUTRE,quantite,dateDemande);
+                demande = model.faireDemandeCollecte(utilisateurActuel.getId(),AUTRE,quantite,dateDemande,utilisateurActuel.getRue(),utilisateurActuel.getNumero());
                 break;
             }
         }
         // On sort du switch pour exécuter la demande :
         // deux cas possibles : exécution immédiate ou au bout de 5 requêtes
-        em.executerDemande(demande,em.dijkstra()); // L'execution et l'enlèvement de la demande sont fait par la commune
+        //em.executerDemande(demande,em.dijkstra()); // L'execution et l'enlèvement de la demande sont fait par la commune
         // Celle-ci sert d'intermédiaire entre le particulier & l'entreprise
         commune.retirerDemande(demande); // Une fois la demande exécutée, on retire la demande de la file.
     }
