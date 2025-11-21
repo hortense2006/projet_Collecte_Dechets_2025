@@ -105,6 +105,7 @@ public class EntrepriseModel
             String arrivee = dijkstra(depart.getNom()); // Station d'arrivée
             // Calcul du plus court chemin
             Itineraire itineraire = bfsPlusCourtChemin(depart.getNom(), arrivee);
+            defilerDemande(demande);
             // Retourner l'itinéraire
             return itineraire;
         }
@@ -146,6 +147,6 @@ public class EntrepriseModel
     //METHODE n°1 : Retirer une demande après exécution
     public void defilerDemande(DemandeCollecte demande) throws ExceptionPersonnalisable
     {
-        //DemandeCollecte prochaineDemande = demande.poll(); // retire en FIFO
+        //DemandeCollecte prochaineDemande = demande.clear(); // retire en FIFO
     }
 }
