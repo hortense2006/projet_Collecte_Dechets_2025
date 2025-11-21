@@ -4,6 +4,8 @@ import model.EntrepriseModel;
 import model.map.Itineraire;
 import model.particulier.DemandeCollecte;
 
+import java.util.List;
+
 public class EntrepriseController extends Commune
 {
     private EntrepriseModel em;
