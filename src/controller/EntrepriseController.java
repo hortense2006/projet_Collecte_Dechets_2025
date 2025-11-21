@@ -20,6 +20,7 @@ public class EntrepriseController extends Commune
         // On récupère la demande du particulier
         DemandeCollecte demandeParticulier = pc.DemandeCollecte();
         // deux cas possibles : exécution immédiate ou au bout de 5 requêtes
+        // Pour l'instant,
         Itineraire itin = em.executerDemande(demandeParticulier); // L'execution et l'enlèvement de la demande sont fait par la commune
         // Celle-ci sert d'intermédiaire entre le particulier & l'entreprise
         em.defilerDemande(demandeParticulier); // Une fois la demande exécutée, on retire la demande de la file.

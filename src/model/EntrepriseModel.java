@@ -9,8 +9,9 @@ public class EntrepriseModel
     // ATTRIBUTS
     private Plan p;
     private Station courant;  // où se trouve le camion
-    private ParticulierModel pm;// demandes restantes
-    private Profil profil;
+    // Liste tampon pour stocker les demandes en attente
+    private List<DemandeCollecte> demandesTampon = new ArrayList<>();
+    private final int SEUIL = 10; // Nombre de demandes à attendre avant exécution
 
     // CONSTRUCTEUR
     public EntrepriseModel(Plan p)
@@ -92,17 +93,21 @@ public class EntrepriseModel
     // Deux cas possibles : exécution immédiate ou au bout de 5 requêtes
     public Itineraire executerDemande(DemandeCollecte demande)
     {
+        // Ajouter la demande à la liste tampon
+        demandesTampon.add(demande);
         // Récupérer la maison du particulier (rue)
         Station depart = p.getStationP(demande.getRue(), demande.getNumero());
-
-        // Récupérer la station d'arrivée
-        String arrivee = dijkstra(depart.getNom()); // Station d'arrivée
-
-        // Calcul du plus court chemin
-        Itineraire itineraire = bfsPlusCourtChemin(depart.getNom(), arrivee);
-
-        // Retourner l'itinéraire
-        return itineraire;
+        if(demandesTampon.size()>= SEUIL)
+        {
+            // On part de la position du camion (au dépôt)
+            // Récupérer la station d'arrivée
+            String arrivee = dijkstra(depart.getNom()); // Station d'arrivée
+            // Calcul du plus court chemin
+            Itineraire itineraire = bfsPlusCourtChemin(depart.getNom(), arrivee);
+            // Retourner l'itinéraire
+            return itineraire;
+        }
+        return null;
     }
 
     public String dijkstra(String depart)
