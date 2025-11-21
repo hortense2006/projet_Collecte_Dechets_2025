@@ -1,6 +1,7 @@
 package controller;
 import model.Commune;
 import model.EntrepriseModel;
+import model.map.Itineraire;
 import model.particulier.*;
 import java.time.LocalDate;
 import view.ParticulierView;
@@ -103,7 +104,7 @@ public class ParticulierController
         }
     }
         // METHODE n°5 : DEMANDER COLLECTE D'ENCOMBRANTS
-    public void DemandeCollecte()
+    public DemandeCollecte DemandeCollecte()
     {
         int quantite = 0;
         LocalDate dateDemande = LocalDate.now(); // Date de la demande
@@ -154,10 +155,6 @@ public class ParticulierController
                 break;
             }
         }
-        // On sort du switch pour exécuter la demande :
-        // deux cas possibles : exécution immédiate ou au bout de 5 requêtes
-        em.executerDemande(demande); // L'execution et l'enlèvement de la demande sont fait par la commune
-        // Celle-ci sert d'intermédiaire entre le particulier & l'entreprise
-        em.defilerDemande(demande); // Une fois la demande exécutée, on retire la demande de la file.
+        return demande;
     }
 }
