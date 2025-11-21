@@ -11,12 +11,12 @@ public class DemandeCollecte
     private TypeEncombrant typeEncombrant;
     private int quantite;
     private LocalDate dateDemande;
-    private Arc rue;
+    private String rue;
     private double numero;
 
 
     // CONSTRUCTEUR
-    public DemandeCollecte(String idUtilisateur,TypeEncombrant typeEncombrant,int quantite,LocalDate dateDemande,Arc rue,double numero)
+    public DemandeCollecte(String idUtilisateur,TypeEncombrant typeEncombrant,int quantite,LocalDate dateDemande,String rue,double numero)
     {
         this.idUtilisateur = idUtilisateur;
         this.typeEncombrant = typeEncombrant;
@@ -32,7 +32,7 @@ public class DemandeCollecte
     // GETTER n°3
     public LocalDate getDateDemande() {return dateDemande;}
     // GETTER n°4
-    public Arc getRue() {return rue;}
+    public String getRue() {return rue;}
     // GETTER n°5
     public double getNumero() {return numero;}
 }

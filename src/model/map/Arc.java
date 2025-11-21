@@ -23,10 +23,10 @@ public class Arc {
         this.dechetsSurLaVoie = new ArrayList<>();
     }
 
-    public void ajouterDechet(DemandeCollecte dechet) {
+    /*public void ajouterDechet(DemandeCollecte dechet) {
         this.dechetsSurLaVoie.add(dechet);//On ajoute le déchet à la liste de la rue
         this.dechetsSurLaVoie.sort(Comparator.comparingDouble(DemandeCollecte::getPosition));
-    }
+    }*/
 
     public String getIdLigne() {
         return idLigne;

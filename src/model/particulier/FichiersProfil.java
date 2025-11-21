@@ -37,8 +37,7 @@ public class FichiersProfil
                 String prenom = parts[0].trim();
                 String nom = parts[1].trim();
                 double numero = Integer.parseInt(parts[2].trim());
-                String nomRue = parts[3].trim();
-                Arc rue = plan.getArcs().get(nomRue); // conversion du texte → Arc
+                String rue = parts[3].trim();
                 String id = parts[4].trim();
                 String mdp = parts[5].trim();
 
@@ -72,8 +71,7 @@ public class FichiersProfil
                 String prenom = parts[0].trim();
                 String nom = parts[1].trim();
                 int numero = Integer.parseInt(parts[2].trim());
-                String nomRue = parts[3].trim();
-                Arc rue = plan.getArcs().get(nomRue); // conversion du texte → Arc
+                String rue = parts[3].trim();
                 // La méthode getArcs associe le nom entré par l'utilisateur
                 // (ex: Route de la Mouline) à un arc (par exemple R4)
                 // Dans le fichier texte, on aura enregistré Route de la Mouline.
@@ -100,7 +98,7 @@ public class FichiersProfil
             String ligne = p.getPrenom() + ";" +
                     p.getNom() + ";" +
                     p.getNumero() + ";" +
-                    p.getRue().getIdLigne() + ";" +
+                    p.getRue()+ ";" +
                     p.getId() + ";" +
                     p.getMdp();
             bw.write(ligne);

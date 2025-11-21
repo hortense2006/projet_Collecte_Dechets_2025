@@ -8,13 +8,13 @@ public class Profil
     private String prenom;
     private String nom;
     private double numero; // Notation américaine : correspond à la distance entre la maison et le bout de la rue
-    private Arc rue;
+    private String rue;
     private String id;
     private String mdp;
     private boolean estConnecte;
 
     // CONSTRUCTEUR
-    public Profil(String prenom, String nom, double numero, Arc rue, String id, String mdp)
+    public Profil(String prenom, String nom, double numero, String rue, String id, String mdp)
     {
         this.prenom = prenom;
         this.nom = nom;
@@ -28,7 +28,7 @@ public class Profil
     public String getPrenom() { return prenom; }
     public String getNom() { return nom; }
     public double getNumero() { return numero; }
-    public Arc getRue() { return rue; }
+    public String getRue() { return rue; }
     public String getId() { return id; }
     public String getMdp() { return mdp; }
     public boolean getEstConnecte() { return estConnecte; }

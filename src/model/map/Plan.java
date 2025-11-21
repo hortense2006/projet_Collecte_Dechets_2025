@@ -25,7 +25,7 @@ public class Plan {
     public Station getStation(String nomStation) {
         return stations.get(nomStation);
     }
-    public Station getStationP(Arc rue, double numero) {
+    public Station getStationP(String rue, double numero) {
         String cle = rue + "-" + numero;   // clé composite
         return stations.get(cle);
     }
