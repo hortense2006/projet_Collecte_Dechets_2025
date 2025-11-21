@@ -86,6 +86,7 @@ public class EntrepriseModel
         }
         return new Itineraire(depart, arrivee, new ArrayList<>(cheminInverse)); //retourne pour l'affichage
     }
+
     //METHODE n°4 : Exécuter la demande
     // Deux cas possibles : exécution immédiate ou au bout de 5 requêtes
     public Itineraire executerDemande(DemandeCollecte demande,String Nomarrivee)

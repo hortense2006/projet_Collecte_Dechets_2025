@@ -16,9 +16,11 @@ public class Main
 
         // ATTRIBUTS
         String typeUser = "";
-        int choix;
+        int choixParticulier;
+        int choixCommune;
         boolean exitAll = false;
         boolean exitParticulier = false;
+        boolean exitCommune;
         final String NOM_FICHIER_USERS = "Base_De_Donnees_Particuliers.txt";
 
         // IMPORT DES CLASSES :
@@ -26,8 +28,10 @@ public class Main
         Plan plan = new Plan();
         PlanView planV = new PlanView();
         PlanController planC = new PlanController(plan,planV);
+
         // Pour la commune
         EntrepriseModel em = new EntrepriseModel(plan);
+
         // pour les particuliers
         Scanner sc = new Scanner(System.in);
         FichiersProfil f = new FichiersProfil(NOM_FICHIER_USERS,plan);
@@ -60,27 +64,39 @@ public class Main
             System.err.println("Détail de l'erreur: " + e.getMessage());
             return;
         }
-        planC.choixFichier(); //permet de choisir le fichier qu'on utilise et affiche le plan de la ville associé
+        plan = planC.choixFichier(plan); //permet de choisir le fichier qu'on utilise et affiche le plan de la ville associé
 
         while (!exitAll)  //permet de faire tourner l'application sans fin tant que exitAll n'a pas été choisi
         {
             System.out.println("Choisissez votre profil : " +
-                    "\n collectivite" +
+                    "\n commune" +
                     "\n particulier" +
                     "\n entreprise" +
                     "\n quitter");
             typeUser = sc.nextLine();
             switch (typeUser)
             {
-                case "collectivite":
-                {
-                    System.out.println("Que souhaitez-vous faire :");
-                    System.out.println("\n1. Consulter le plan de Ranville."+
-                                       "\n2. Changer de type d'utilisateur"); //créer la case associée
+                case "commune": {
+                    exitCommune = false;
+                    while (!exitCommune){
+                        System.out.println("Que souhaitez-vous faire :");
+                        System.out.println("\n1. Consulter le plan de Ranville."+
+                                           "\n2. Changer de type d'utilisateur");
+                        choixCommune = sc.nextInt();
+                        switch (choixCommune){
+                            case 1 :
+                                planV.afficherReseau(plan);
+                                break;
+                            case 2 :
+                                exitCommune = true; // Changement d'utilisateur
+                                System.out.println("\n Changement d'utilisateur");
+                                sc.nextLine();
+                                break;
+                        }
+                    }
                     break;
                 }
-                case "particulier":
-                {
+                case "particulier": {
                     exitParticulier = false;
                     pc.login();// Connexion/Inscription
                     while (!exitParticulier)
@@ -89,8 +105,8 @@ public class Main
                         System.out.println("\n1. Demande de collecte"+
                                 "\n2. Consulter le planning de ramassage"+
                                 "\n3. Changer de type d'utilisateur");
-                        choix = sc.nextInt();
-                        switch (choix)
+                        choixParticulier = sc.nextInt();
+                        switch (choixParticulier)
                         {
                             case 1:
                             {
@@ -104,7 +120,7 @@ public class Main
                             }
                             case 3: //Sortie
                             {
-                                exitParticulier = true; // Sortir du programme
+                                exitParticulier = true; // Changement d'utilisateur
                                 System.out.println("\n Changement d'utilisateur");
                                 sc.nextLine();
                                 break;
