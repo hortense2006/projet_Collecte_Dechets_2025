@@ -1,0 +1,10 @@
+# Cas 1 : "Le Nœud Papillon"
+# 5 sommets, tous de degré PAIR (2 ou 4).
+# Circuit Eulérien possible.
+
+D;R1;100
+R1;R2;150
+R2;D;200
+R2;R3;120
+R3;R4;180
+R4;R2;160
