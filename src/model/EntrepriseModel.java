@@ -184,4 +184,10 @@ public class EntrepriseModel
 
         return Math.min(viaDebut, viaFin);
     }*/
+
+    //METHODE n°1 : Retirer une demande après exécution
+    public void defilerDemande(DemandeCollecte demande) throws ExceptionPersonnalisable
+    {
+        //DemandeCollecte prochaineDemande = demande.poll(); // retire en FIFO
+    }
 }

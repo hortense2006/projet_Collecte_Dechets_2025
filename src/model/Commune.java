@@ -20,11 +20,6 @@ public class Commune
     {
         this.estConnecte = estConnecte;
     }
-    //METHODE n°1 : Retirer une demande après exécution
-    public void retirerDemande(DemandeCollecte demande) throws ExceptionPersonnalisable
-    {
-        //DemandeCollecte prochaineDemande = demande.poll(); // retire en FIFO
-    }
     // Méthode n°2 : Diviser la commune en plusieurs zones. Méthode Welsh-Powell
     /*public int repartirZonesCommune()
     {

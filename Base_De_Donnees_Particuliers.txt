@@ -14,3 +14,5 @@ Hortense;Galtier;62;Rue Des Lilas;ea793049-c553-4781-914a-bafcf283d59a;Lilas
 Julie;Potter;15;Privet Drive;c9c0eb4c-3822-46d2-ae55-acf3733edb74;PDrive
 Carla;Soares;45;Rue de La Croix Nivert;a4e6f073-de74-4fad-b66f-af90c3a7ef57;croixNivert
 Hortense;Galtier;1345.0;Rue Des Lilas;9cfd6407-f240-480e-9be3-9191488236f8;Lilas1345
+Florence;Galtier;1345.0;Allee Des Mouline;1075f3c3-9083-480e-a465-6816d3436cdb;Mouline1345
+Maiwenn;Coleno;134.0;Avenue De La Republique;fe64b5ab-d79d-4d52-9325-fead45806eec;Republique134

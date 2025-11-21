@@ -36,7 +36,7 @@ public class FichiersProfil
                 String[] parts = ligne.split(";");
                 String prenom = parts[0].trim();
                 String nom = parts[1].trim();
-                double numero = Integer.parseInt(parts[2].trim());
+                double numero = Double.parseDouble(parts[2].trim());
                 String rue = parts[3].trim();
                 String id = parts[4].trim();
                 String mdp = parts[5].trim();
@@ -70,7 +70,7 @@ public class FichiersProfil
                 }
                 String prenom = parts[0].trim();
                 String nom = parts[1].trim();
-                int numero = Integer.parseInt(parts[2].trim());
+                double numero = Double.parseDouble(parts[2].trim());
                 String rue = parts[3].trim();
                 // La méthode getArcs associe le nom entré par l'utilisateur
                 // (ex: Route de la Mouline) à un arc (par exemple R4)

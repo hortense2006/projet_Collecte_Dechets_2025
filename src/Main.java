@@ -76,8 +76,7 @@ public class Main
                 {
                     System.out.println("Que souhaitez-vous faire :");
                     System.out.println("\n1. Consulter le plan de Ranville."+
-                                       "\n2. Mettre à jour les informations de la commune (travaux/horaires)"+
-                                       "\n3. Changer de type d'utilisateur"); //créer la case associée
+                                       "\n2. Changer de type d'utilisateur"); //créer la case associée
                     break;
                 }
                 case "particulier":
