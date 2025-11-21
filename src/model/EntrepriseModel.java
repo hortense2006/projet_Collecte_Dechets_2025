@@ -9,6 +9,7 @@ public class EntrepriseModel
     // ATTRIBUTS
     private Plan p;
     private Station courant;  // où se trouve le camion
+    private ParticulierModel pm;
     // Liste tampon pour stocker les demandes en attente
     private List<DemandeCollecte> demandesTampon = new ArrayList<>();
     private final int SEUIL = 10; // Nombre de demandes à attendre avant exécution
