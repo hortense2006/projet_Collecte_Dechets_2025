@@ -10,7 +10,7 @@ public class EntrepriseModel
     private Plan p;
     private Station courant;  // où se trouve le camion
     private ParticulierModel pm;// demandes restantes
-    private List<DemandeCollecte> demande;
+    private Profil profil;
 
     // CONSTRUCTEUR
     public EntrepriseModel(Plan p)
@@ -90,78 +90,50 @@ public class EntrepriseModel
 
     //METHODE n°4 : Exécuter la demande
     // Deux cas possibles : exécution immédiate ou au bout de 5 requêtes
-    public Itineraire executerDemande(DemandeCollecte demande,String Nomarrivee)
+    public Itineraire executerDemande(DemandeCollecte demande)
     {
         // Récupérer la maison du particulier (rue)
         Station depart = p.getStationP(demande.getRue(), demande.getNumero());
 
         // Récupérer la station d'arrivée
-        Station arrivee = p.getStation(Nomarrivee); // Station d'arrivée
+        String arrivee = dijkstra(depart.getNom()); // Station d'arrivée
 
         // Calcul du plus court chemin
-        Itineraire itineraire = bfsPlusCourtChemin(depart.getNom(), arrivee.getNom());
+        Itineraire itineraire = bfsPlusCourtChemin(depart.getNom(), arrivee);
 
         // Retourner l'itinéraire
         return itineraire;
     }
 
-    // METHODE n°5 :  Méthode dijkstra
-    // Méthode Dijkstra qui renvoie directement la station demandée la plus proche
-    public String dijkstra(Station depart)
+    public String dijkstra(String depart)
     {
-        // Si aucune station à visiter : liste de demandes est vide. On ne fait rien
-        if (demande == null || demande.isEmpty())
+        // File prioritaire
+        PriorityQueue<DemandeCollecte> maisonArrivee = new PriorityQueue<>(Comparator.comparingDouble(DemandeCollecte::getNumero));
+
+        // Charger la liste des demandes
+        Queue<DemandeCollecte> liste = pm.getDemande();
+        // On récupère la station de départ
+        Station stationDepart = p.getStation(depart);
+
+        if (liste == null || liste.isEmpty())
         {
             return null;
         }
-        // On parcours la liste "demande"
-        for (DemandeCollecte d : demande)
+        // On remplit une liste prioritaire avec les stations d'arrivée
+        // Chaque demande est associée à une lieu (rue+ numero)
+
+        // Méthode Dijkstra
+        while (!liste.isEmpty()) // Tant que la liste des demandes est pas vide
         {
-
+            // On classe les demandes de la plus proche à la plus lointaine (en fonction de numero)
+            // numero est un double
+            // On remplit la liste prioritaire maisonArrivee
+            maisonArrivee.add(liste.poll());
+            // On récupère la première maison (la plus proche)
+            DemandeCollecte plusProche = maisonArrivee.peek();
+            // On renvoie le nom de la rue de la première demande
+            return plusProche.getRue();
         }
-
-        // HashMap des distances
-        HashMap<Station, Double> dist = new HashMap<>();
-        // Ensemble des stations déjà traitées
-        Set<Station> visited = new HashSet<>();
-        // File de priorité (min-heap)
-        PriorityQueue<Station> pq = new PriorityQueue<>(Comparator.comparing(dist::get));
-
-        // Initialisation : On met toutes les distances à l'infini
-        for (Station s : p.getStations())
-        {
-            dist.put(s, Double.POSITIVE_INFINITY);
-        }
-        dist.put(depart, 0.0);
-        pq.add(depart);
-
-        // Dijkstra classique
-        while (!pq.isEmpty())
-        {
-            Station courant = pq.poll();
-
-            if (visited.contains(courant))
-                continue;
-            visited.add(courant);
-
-            // Si cette station est une demande → on peut s’arrêter !
-            if (demande.contains(courant)) {
-                return courant.getNom();
-            }
-
-            // Parcours des voisins
-            for (Arc arc : p.getAdjacents(courant)) {
-                Station voisin = arc.getArrivee();
-                double newDist = dist.get(courant) + arc.getPoids();
-
-                if (newDist < dist.get(voisin)) {
-                    dist.put(voisin, newDist);
-                    pq.add(voisin);
-                }
-            }
-        }
-
-        // Aucune station de demande atteignable
         return null;
     }
 
