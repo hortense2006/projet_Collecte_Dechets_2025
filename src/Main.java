@@ -3,7 +3,6 @@ import controller.*;
 import model.map.*;
 import model.particulier.FichiersProfil;
 import model.particulier.ParticulierModel;
-import model.particulier.Profil;
 import view.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -16,11 +15,9 @@ public class Main
 
         // ATTRIBUTS
         String typeUser = "";
-        int choixParticulier;
-        int choixCommune;
+        int choix;
         boolean exitAll = false;
-        boolean exitParticulier = false;
-        boolean exitCommune;
+        boolean exit = false;
         final String NOM_FICHIER_USERS = "Base_De_Donnees_Particuliers.txt";
 
         // IMPORT DES CLASSES :
@@ -35,6 +32,13 @@ public class Main
         ParticulierView pv = new ParticulierView();
         ParticulierModel pm = new ParticulierModel(NOM_FICHIER_USERS);
         ParticulierController pc = new ParticulierController(pm,pv);
+
+        // pour l'entreprise
+        EntrepriseModel em = new EntrepriseModel(plan,pm);
+        EntrepriseController enc = new EntrepriseController(em,plan);
+
+        // Pour le camion
+        CamionController camC = new CamionController(enc,pc);
 
         try
         {
@@ -75,14 +79,13 @@ public class Main
             {
                 case "commune":
                 {
-                    exitCommune = false;
-                    while (!exitCommune)
+                    while (!exit)
                     {
                         System.out.println("Que souhaitez-vous faire :");
                         System.out.println("\n1. Consulter le plan de Ranville."+
                                            "\n2. Changer de type d'utilisateur");
-                        choixCommune = sc.nextInt();
-                        switch (choixCommune)
+                        choix = sc.nextInt();
+                        switch (choix)
                         {
                             case 1 :
                             {
@@ -91,7 +94,7 @@ public class Main
                             }
                             case 2 :
                             {
-                                exitCommune = true; // Changement d'utilisateur
+                                exit = true; // Changement d'utilisateur
                                 System.out.println("\n Changement d'utilisateur");
                                 sc.nextLine();
                                 break;
@@ -102,16 +105,15 @@ public class Main
                 }
                 case "particulier":
                 {
-                    exitParticulier = false;
                     pc.login();// Connexion/Inscription
-                    while (!exitParticulier)
+                    while (!exit)
                     { //permet de faire tourner l'application utilisateur tant qu'on a pas demandé de changer de type d'utilisateur
                         System.out.println("Que souhaitez-vous faire :");
                         System.out.println("\n1. Demande de collecte"+
                                 "\n2. Consulter le planning de ramassage"+
                                 "\n3. Changer de type d'utilisateur");
-                        choixParticulier = sc.nextInt();
-                        switch (choixParticulier)
+                        choix = sc.nextInt();
+                        switch (choix)
                         {
                             case 1:
                             {
@@ -125,7 +127,7 @@ public class Main
                             }
                             case 3: //Sortie
                             {
-                                exitParticulier = true; // Changement d'utilisateur
+                                exit = true; // Changement d'utilisateur
                                 System.out.println("\n Changement d'utilisateur");
                                 sc.nextLine();
                                 break;
@@ -137,6 +139,31 @@ public class Main
                 case "entreprise":
                 {
                     System.out.println("Que souhaitez-vous faire :");
+                    System.out.println("\n1. Planifier une tournee"+
+                                        "\n2. Organiser une collecte d'encombrants"+
+                                        "\n3. Changer de type d'utilisateur");
+                    choix = sc.nextInt();
+                    switch (choix)
+                    {
+                        case 1: // Tournée classique
+                        {
+
+                            break;
+                        }
+                        case 2: // Collecte d'encombrants
+                        {
+                            camC.executerTournee();
+                            break;
+                        }
+                        case 3: // Sortie
+                        {
+                            exit = true; // Changement d'utilisateur
+                            System.out.println("\n Changement d'utilisateur");
+                            sc.nextLine();
+                            break;
+                        }
+                    }
+                    break;
                 }
                 case "quitter":
                 {
