@@ -16,14 +16,12 @@ public class FichiersProfil
     // ATTRIBUTS
     private HashMap<String, Profil> compte;
     public String nomFichier;
-    private Plan plan;
 
     // CONSTRUCTEUR
-    public FichiersProfil(String nomFichier, Plan plan)
+    public FichiersProfil(String nomFichier)
     {
         this.compte = new HashMap<>();
         this.nomFichier = nomFichier;
-        this.plan = plan;
     }
     // GETTER n°1
     public Map<String, Profil> getCompte() {return compte;}

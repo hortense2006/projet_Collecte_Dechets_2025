@@ -19,7 +19,7 @@ public class ParticulierModel
     public ParticulierModel(String nomFichier)
     {
         this.nomFichier = nomFichier;
-        this.f = new FichiersProfil(nomFichier,plan);
+        this.f = new FichiersProfil(nomFichier);
         this.compte = f.getCompte();
         this.demandes = new LinkedList<>();
         f.chargerInfos(); // charge les profils existants
