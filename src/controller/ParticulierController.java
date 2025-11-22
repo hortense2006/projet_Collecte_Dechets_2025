@@ -66,7 +66,6 @@ public class ParticulierController
     public void signin()
     {
         idPropose = view.afficherId();
-        System.out.println(fichiers.getCompte().keySet());
         if(checkId(idPropose))
         {
             view.afficherMessage("id valide");

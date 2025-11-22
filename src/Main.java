@@ -38,7 +38,7 @@ public class Main
         EntrepriseController enc = new EntrepriseController(em,plan);
 
         // Pour le camion
-        CamionController camC = new CamionController(enc,pc);
+        CamionController camC = new CamionController(enc,pm);
 
         try
         {
@@ -138,29 +138,32 @@ public class Main
                 }
                 case "entreprise":
                 {
-                    System.out.println("Que souhaitez-vous faire :");
-                    System.out.println("\n1. Planifier une tournee"+
-                                        "\n2. Organiser une collecte d'encombrants"+
-                                        "\n3. Changer de type d'utilisateur");
-                    choix = sc.nextInt();
-                    switch (choix)
+                    while(!exit)
                     {
-                        case 1: // Tournée classique
+                        System.out.println("Que souhaitez-vous faire :");
+                        System.out.println("\n1. Planifier une tournee"+
+                                "\n2. Organiser une collecte d'encombrants"+
+                                "\n3. Changer de type d'utilisateur");
+                        choix = sc.nextInt();
+                        switch (choix)
                         {
+                            case 1: // Tournée classique
+                            {
 
-                            break;
-                        }
-                        case 2: // Collecte d'encombrants
-                        {
-                            camC.executerTournee();
-                            break;
-                        }
-                        case 3: // Sortie
-                        {
-                            exit = true; // Changement d'utilisateur
-                            System.out.println("\n Changement d'utilisateur");
-                            sc.nextLine();
-                            break;
+                                break;
+                            }
+                            case 2: // Collecte d'encombrants
+                            {
+                                camC.executerTournee();
+                                break;
+                            }
+                            case 3: // Sortie
+                            {
+                                exit = true; // Changement d'utilisateur
+                                System.out.println("\n Changement d'utilisateur");
+                                sc.nextLine();
+                                break;
+                            }
                         }
                     }
                     break;
