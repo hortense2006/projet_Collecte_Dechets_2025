@@ -24,9 +24,10 @@ public class EntrepriseController extends Commune
         this.em = em;
         this.courant = p.getStation("D"); // dépôt
     }
-    // L'entreprise récupère la demande du particulier, exécute la demande, et renvoie l'itinéraire au camion.
+
     //METHODE n°4 : Orchestration complète de la collecte répondant à la liste de demandes
     // Renvoie l'itinéraire optimisé que le camion doit suivre.
+    // L'entreprise récupère la demande du particulier, exécute la demande, et renvoie l'itinéraire au camion.
     public Itineraire CollecteDemande(Queue<DemandeCollecte> demandes) throws ExceptionPersonnalisable
     {
         if (demandes == null || demandes.isEmpty())

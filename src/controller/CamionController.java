@@ -16,6 +16,7 @@ public class CamionController
     // METHODE n°4 : Faire la tournée
     public void executerTournee()
     {
+        // On récupère la liste de demandes et on les execute à l'aide de CollecteDemande
         entreprise.CollecteDemande(particulierm.getDemande());
     }
 }

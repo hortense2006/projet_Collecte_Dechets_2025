@@ -1,6 +1,9 @@
 package controller;
 import model.particulier.*;
 import java.time.LocalDate;
+import java.util.LinkedList;
+import java.util.Queue;
+
 import view.ParticulierView;
 import static model.particulier.TypeEncombrant.*;
 
@@ -8,6 +11,7 @@ import static model.particulier.TypeEncombrant.*;
 public class ParticulierController
 {
     // ATTRIBUTS
+    final int MAX_DEMANDES= 10;
     private Profil utilisateurActuel;
     private final ParticulierModel model;
     private final ParticulierView view;
@@ -98,7 +102,7 @@ public class ParticulierController
         }
     }
         // METHODE n°5 : DEMANDER COLLECTE D'ENCOMBRANTS
-    public DemandeCollecte DemandeCollecte()
+    public DemandeCollecte DemandeCollecteE()
     {
         int quantite = 0;
         LocalDate dateDemande = LocalDate.now(); // Date de la demande
@@ -150,5 +154,17 @@ public class ParticulierController
             }
         }
         return demande;
+    }
+    // METHODE n°6 : Remplir liste de demandes
+    public Queue<DemandeCollecte> remplirListeDemandeCollecte()
+    {
+        Queue<DemandeCollecte> listeDemande = new LinkedList<>();
+        int nbDemandes =0;
+        while (nbDemandes !=MAX_DEMANDES)
+        {
+            listeDemande.add(DemandeCollecteE());
+            nbDemandes++;
+        }
+        return listeDemande;
     }
 }

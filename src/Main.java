@@ -107,7 +107,7 @@ public class Main
                         {
                             case 1:
                             {
-                                pc.DemandeCollecte(); // Demander une collecte d'encombrants
+                                pc.DemandeCollecteE(); // Demander une collecte d'encombrants
                                 break;
                             }
                             case 2:

@@ -1,4 +1,5 @@
 package model.particulier;
+import exceptions.ExceptionPersonnalisable;
 import model.map.Plan;
 import java.time.LocalDate;
 import java.util.*;
@@ -31,17 +32,16 @@ public class ParticulierModel
 
 
     // METHODE n°1 : Demander une collecte d'encombrants
-
-    public DemandeCollecte faireDemandeCollecte(String idUtilisateur, TypeEncombrant typeEncombrant, int quantite, LocalDate dateDemande, String rue, double numero)
+    public DemandeCollecte faireDemandeCollecte(String idUtilisateur,TypeEncombrant encombrant,int quantite,LocalDate date,String rue,Double numero)
     {
         // On remplit une nouvelle demande, et on l'ajoutes à une liste de demandes
-        DemandeCollecte nouvelleDemande = new DemandeCollecte(idUtilisateur, typeEncombrant, quantite, dateDemande,rue,numero);
+        DemandeCollecte nouvelleDemande = new DemandeCollecte(idUtilisateur,encombrant, quantite,date,rue,numero);
         demandes.add(nouvelleDemande);
         return nouvelleDemande;
     }
 
-    // METHODE n°4 : Consulter le planning de collecte (ramassage devant les maisons)
 
+    // METHODE n°2 : Consulter le planning de collecte (ramassage devant les maisons)
     public void consulterPlanningRamassage(String commune) {}
 
     // METHODE n°5: Remplir le fichier texte

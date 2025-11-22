@@ -36,4 +36,6 @@ public class DemandeCollecte
     public String getRue() {return rue;}
     // GETTER n°5
     public double getNumero() {return numero;}
+
+    public String getId() { return idUtilisateur;}
 }
