@@ -91,7 +91,8 @@ public class EntrepriseModel
     }
 
     //METHODE n°4 : Exécuter la demande
-    // Deux cas possibles : exécution immédiate ou au bout de 5 requêtes
+    // On envoie une demande avec l'adresse du particulier
+    // On part de celle-ci, on identifie dans une liste de demandes celle étant la plus proche.
     public Itineraire executerDemande(DemandeCollecte demande)
     {
         // Ajouter la demande à la liste tampon
@@ -101,8 +102,8 @@ public class EntrepriseModel
         if(demandesTampon.size()>= SEUIL)
         {
             // On part de la position du camion (au dépôt)
-            // Récupérer la station d'arrivée
-            String arrivee = dijkstra(depart.getNom()); // Station d'arrivée
+            // Récupérer la station d'arrivée la plus proche de la po
+            String arrivee = plusProcheVoisin(depart.getNom()); // Station d'arrivée
             // Calcul du plus court chemin
             Itineraire itineraire = bfsPlusCourtChemin(depart.getNom(), arrivee);
             defilerDemande(demande);
@@ -112,7 +113,8 @@ public class EntrepriseModel
         return null;
     }
 
-    public String dijkstra(String depart)
+    // Identification de la maison la plus proche, grâce au numero de la maison (notation américaine)
+    public String plusProcheVoisin(String depart)
     {
         // File prioritaire
         PriorityQueue<DemandeCollecte> maisonArrivee = new PriorityQueue<>(Comparator.comparingDouble(DemandeCollecte::getNumero));
@@ -143,7 +145,6 @@ public class EntrepriseModel
         }
         return null;
     }
-
     //METHODE n°1 : Retirer une demande après exécution
     public void defilerDemande(DemandeCollecte demande) throws ExceptionPersonnalisable
     {
