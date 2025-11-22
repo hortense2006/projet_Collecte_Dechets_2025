@@ -134,7 +134,10 @@ public class Main
                     }
                     break;
                 }
-                case "entreprise":{}
+                case "entreprise":
+                {
+                    System.out.println("Que souhaitez-vous faire :");
+                }
                 case "quitter":
                 {
                     exitAll = true;
