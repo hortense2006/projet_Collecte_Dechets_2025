@@ -12,10 +12,9 @@ public class ParticulierView
 {
     // APPEL DE CLASSES
     Scanner sc = new Scanner(System.in);
-    Plan plan;
 
     // CONSTRUCTEUR
-    public ParticulierView(Plan plan){this.plan = plan;}
+    public ParticulierView(){}
 
     // METHODE n°1 : AFFICHAGE DU LOGIN DE L'UTILISATEUR
     public String ActionLogin()
