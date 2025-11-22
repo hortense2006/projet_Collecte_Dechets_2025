@@ -73,27 +73,35 @@ public class Main
             typeUser = sc.nextLine();
             switch (typeUser)
             {
-                case "commune": {
+                case "commune":
+                {
                     exitCommune = false;
-                    while (!exitCommune){
+                    while (!exitCommune)
+                    {
                         System.out.println("Que souhaitez-vous faire :");
                         System.out.println("\n1. Consulter le plan de Ranville."+
                                            "\n2. Changer de type d'utilisateur");
                         choixCommune = sc.nextInt();
-                        switch (choixCommune){
+                        switch (choixCommune)
+                        {
                             case 1 :
+                            {
                                 planV.afficherReseau(plan);
                                 break;
+                            }
                             case 2 :
+                            {
                                 exitCommune = true; // Changement d'utilisateur
                                 System.out.println("\n Changement d'utilisateur");
                                 sc.nextLine();
                                 break;
+                            }
                         }
                     }
                     break;
                 }
-                case "particulier": {
+                case "particulier":
+                {
                     exitParticulier = false;
                     pc.login();// Connexion/Inscription
                     while (!exitParticulier)
