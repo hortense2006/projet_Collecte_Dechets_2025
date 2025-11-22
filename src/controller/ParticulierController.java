@@ -16,12 +16,14 @@ public class ParticulierController
     private final ParticulierModel model;
     private final ParticulierView view;
     private DemandeCollecte demande;
+    private FichiersProfil fichiers;
     String idPropose;
     String mdpPropose;
 
     // CONSTRUCTEUR
-    public ParticulierController(ParticulierModel model, ParticulierView view)
+    public ParticulierController(ParticulierModel model, ParticulierView view,FichiersProfil fichiers)
     {
+        this.fichiers = fichiers;
         this.model = model;
         this.view = view;
         this.utilisateurActuel = null;
@@ -30,9 +32,9 @@ public class ParticulierController
     // METHODE n°1 : Vérifier l'identifiant
     public boolean checkId(String idPropose)
     {
-        if(model.getCompte().containsKey(idPropose))
+        if(fichiers.getCompte().containsKey(idPropose))
         {
-            Profil p = model.getCompte().get(idPropose);
+            Profil p = fichiers.getCompte().get(idPropose);
             if (p != null)
             {
                 this.utilisateurActuel = p;
@@ -64,6 +66,7 @@ public class ParticulierController
     public void signin()
     {
         idPropose = view.afficherId();
+        System.out.println(fichiers.getCompte().keySet());
         if(checkId(idPropose))
         {
             view.afficherMessage("id valide");

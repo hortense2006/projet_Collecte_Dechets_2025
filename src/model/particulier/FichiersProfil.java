@@ -4,6 +4,7 @@ import model.map.Arc;
 import model.map.Plan;
 import java.io.*;
 import java.util.HashMap;
+import java.util.Map;
 
 /* CLASSE TERMINEE*/
 // Cette classe s'occupe de la logique des fichiers pour les particuliers.
@@ -24,6 +25,8 @@ public class FichiersProfil
         this.nomFichier = nomFichier;
         this.plan = plan;
     }
+    // GETTER n°1
+    public Map<String, Profil> getCompte() {return compte;}
 
     // METHODE n°1 : Remplissage de la HashMap compte pour la première fois
     public void chargerInfos()
@@ -54,9 +57,9 @@ public class FichiersProfil
     }
 
     // METHODE n°2 : lecture après une première ouverture
-    public void chargerInfosDepuisBuffer()
+    public void chargerInfosDepuisBuffer(BufferedReader br) throws IOException
     {
-        try (BufferedReader br = new BufferedReader(new FileReader(nomFichier)))
+        try (br)
         {
             String ligne;
             while ((ligne = br.readLine()) != null)

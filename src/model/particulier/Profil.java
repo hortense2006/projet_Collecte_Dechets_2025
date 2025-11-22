@@ -1,7 +1,5 @@
 package model.particulier;
 
-import model.map.Arc;
-
 /* CLASSE TERMINEE */
 public class Profil
 {

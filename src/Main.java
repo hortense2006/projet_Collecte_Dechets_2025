@@ -31,7 +31,7 @@ public class Main
         FichiersProfil f = new FichiersProfil(NOM_FICHIER_USERS,plan);
         ParticulierView pv = new ParticulierView();
         ParticulierModel pm = new ParticulierModel(NOM_FICHIER_USERS);
-        ParticulierController pc = new ParticulierController(pm,pv);
+        ParticulierController pc = new ParticulierController(pm,pv,f);
 
         // pour l'entreprise
         EntrepriseModel em = new EntrepriseModel(plan,pm);
@@ -54,7 +54,7 @@ public class Main
             {
                 try (BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8)))
                 {
-                    f.chargerInfosDepuisBuffer();
+                    f.chargerInfosDepuisBuffer(br);
                 }
             }
 
