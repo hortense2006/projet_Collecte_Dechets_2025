@@ -6,17 +6,17 @@ public class CamionController
 {
     //planifierTournee()
     private EntrepriseController entreprise;
-    private ParticulierModel particulierm;
+    private ParticulierController particuliercontroller;
 
-    public CamionController(EntrepriseController entreprise,ParticulierModel particulierm)
+    public CamionController(EntrepriseController entreprise,ParticulierController particuliercontroller)
     {
         this.entreprise = entreprise;
-        this.particulierm = particulierm;
+        this.particuliercontroller= particuliercontroller;
     }
     // METHODE n°4 : Faire la tournée
     public void executerTournee()
     {
         // On récupère la liste de demandes et on les execute à l'aide de CollecteDemande
-        entreprise.CollecteDemande(particulierm.getDemande());
+        entreprise.CollecteDemande(particuliercontroller.remplirListeDemandeCollecte());
     }
 }
