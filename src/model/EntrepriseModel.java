@@ -8,7 +8,6 @@ public class EntrepriseModel
 {
     // ATTRIBUTS
     private Plan p;
-    private Station courant;  // où se trouve le camion
     private ParticulierModel pm;
     // Liste tampon pour stocker les demandes en attente
     private List<DemandeCollecte> demandesTampon = new ArrayList<>();
@@ -18,7 +17,6 @@ public class EntrepriseModel
     public EntrepriseModel(Plan p)
     {
         this.p = p;
-        this.courant = p.getStation("D"); // dépôt
     }
 
     // METHODE n°1 : Calcul du plus court chemin  ( méthode bsf)
@@ -90,53 +88,6 @@ public class EntrepriseModel
         return new Itineraire(depart, arrivee, new ArrayList<>(cheminInverse)); //retourne pour l'affichage
     }
 
-    //METHODE n°4 : Orchestration complète de la collecte répondant à la liste de demandes
-    // Renvoie l'itinéraire optimisé que le camion doit suivre.
-    public Itineraire CollecteDemande(List<DemandeCollecte> demandes) throws ExceptionPersonnalisable
-    {
-        if (demandes == null || demandes.isEmpty())
-        {
-            return null; // aucune demande
-        }
-
-        List<Arc> arcsTotaux = new ArrayList<>();
-        Station depart = courant; // départ du camion (dépôt)
-        List<DemandeCollecte> demandesRestantes = new ArrayList<>(demandes);
-
-        while (!demandesRestantes.isEmpty())
-        {
-            // Trouver la demande la plus proche du point de départ actuel
-            DemandeCollecte plusProche = null;
-            double minDistance = Double.MAX_VALUE;
-
-            for (DemandeCollecte d : demandesRestantes)
-            {
-                Station s = p.getStationP(d.getRue(), d.getNumero());
-                // Pour simplifier on compare les numéros (notation américaine)
-                double distanceApprox = Math.abs(d.getNumero() - 0); // approximation simple
-                if (distanceApprox < minDistance)
-                {
-                    minDistance = distanceApprox;
-                    plusProche = d;
-                }
-            }
-
-            // Calculer le chemin jusqu'à cette demande
-            Station stationArrivee = p.getStationP(plusProche.getRue(), plusProche.getNumero());
-            Itineraire chemin = bfsPlusCourtChemin(depart.getNom(), stationArrivee.getNom());
-            arcsTotaux.addAll(chemin.getChemin()); // ajouter les arcs de ce chemin à l'itinéraire total
-
-            // Marquer la demande comme traitée
-            defilerDemande(plusProche);
-            demandesRestantes.remove(plusProche);
-
-            // Mettre à jour le point de départ pour la prochaine boucle
-            depart = stationArrivee;
-        }
-
-        // Retourner l’itinéraire complet (depuis dépôt jusqu’au dernier point)
-        return new Itineraire(courant, depart, arcsTotaux);
-    }
 
     //METHODE n°5 : Retirer une demande après exécution
     public void defilerDemande(DemandeCollecte demande) throws ExceptionPersonnalisable
