@@ -1,7 +1,4 @@
 package controller;
-import model.Commune;
-import model.EntrepriseModel;
-import model.map.Itineraire;
 import model.particulier.*;
 import java.time.LocalDate;
 import view.ParticulierView;
@@ -14,18 +11,15 @@ public class ParticulierController
     private Profil utilisateurActuel;
     private final ParticulierModel model;
     private final ParticulierView view;
-    private final EntrepriseModel em;
     private DemandeCollecte demande;
-    Commune commune;
     String idPropose;
     String mdpPropose;
 
     // CONSTRUCTEUR
-    public ParticulierController(ParticulierModel model, ParticulierView view, EntrepriseModel em)
+    public ParticulierController(ParticulierModel model, ParticulierView view)
     {
         this.model = model;
         this.view = view;
-        this.em = em;
         this.utilisateurActuel = null;
     }
 

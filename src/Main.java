@@ -37,7 +37,7 @@ public class Main
         FichiersProfil f = new FichiersProfil(NOM_FICHIER_USERS,plan);
         ParticulierView pv = new ParticulierView();
         ParticulierModel pm = new ParticulierModel(NOM_FICHIER_USERS);
-        ParticulierController pc = new ParticulierController(pm,pv,em);
+        ParticulierController pc = new ParticulierController(pm,pv);
 
         try
         {
