@@ -1,6 +1,5 @@
 package controller;
 import exceptions.ExceptionPersonnalisable;
-import model.Commune;
 import model.EntrepriseModel;
 import model.map.Arc;
 import model.map.Itineraire;
@@ -12,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
-public class EntrepriseController extends Commune
+public class EntrepriseController
 {
     // ATTRIBUTS
     private Plan p;
