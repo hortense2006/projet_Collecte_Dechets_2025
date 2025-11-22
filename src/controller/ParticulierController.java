@@ -75,6 +75,7 @@ public class ParticulierController
         if(checkMdp(mdpPropose))
         {
             view.afficherMessage("Mdp valide");
+            view.afficherMessage("Connexion réussie !");
             view.afficherInfos();
         }
     }
