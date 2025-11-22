@@ -90,55 +90,55 @@ public class EntrepriseModel
         return new Itineraire(depart, arrivee, new ArrayList<>(cheminInverse)); //retourne pour l'affichage
     }
 
-    //METHODE n°4 : Orchestration complète de la collecte répondant à la demande.
-    public Itineraire CollecteDemande(DemandeCollecte demande)
+    //METHODE n°4 : Orchestration complète de la collecte répondant à la liste de demandes
+    // Renvoie l'itinéraire optimisé que le camion doit suivre.
+    public Itineraire CollecteDemande(List<DemandeCollecte> demandes) throws ExceptionPersonnalisable
     {
-        // Récupérer la maison du particulier (rue)
-        Station depart = p.getStationP(demande.getRue(), demande.getNumero());
-        // Récupérer la station d'arrivée la plus proche de la station de départ
-        String arrivee = plusProcheVoisin(depart.getNom()); // Station d'arrivée
-        // Calcul du plus court chemin
-        Itineraire itineraire = bfsPlusCourtChemin(depart.getNom(), arrivee);
-        // Renvoie le plus court chemin entre la station de la demande
-        // et la station la plus proche identifiée la plusProcheVoisin
-        defilerDemande(demande); // La demande est accomplie : on la défile
-        // Retourner l'itinéraire
-        return itineraire;
+        if (demandes == null || demandes.isEmpty())
+        {
+            return null; // aucune demande
+        }
+
+        List<Arc> arcsTotaux = new ArrayList<>();
+        Station depart = courant; // départ du camion (dépôt)
+        List<DemandeCollecte> demandesRestantes = new ArrayList<>(demandes);
+
+        while (!demandesRestantes.isEmpty())
+        {
+            // Trouver la demande la plus proche du point de départ actuel
+            DemandeCollecte plusProche = null;
+            double minDistance = Double.MAX_VALUE;
+
+            for (DemandeCollecte d : demandesRestantes)
+            {
+                Station s = p.getStationP(d.getRue(), d.getNumero());
+                // Pour simplifier on compare les numéros (notation américaine)
+                double distanceApprox = Math.abs(d.getNumero() - 0); // approximation simple
+                if (distanceApprox < minDistance)
+                {
+                    minDistance = distanceApprox;
+                    plusProche = d;
+                }
+            }
+
+            // Calculer le chemin jusqu'à cette demande
+            Station stationArrivee = p.getStationP(plusProche.getRue(), plusProche.getNumero());
+            Itineraire chemin = bfsPlusCourtChemin(depart.getNom(), stationArrivee.getNom());
+            arcsTotaux.addAll(chemin.getChemin()); // ajouter les arcs de ce chemin à l'itinéraire total
+
+            // Marquer la demande comme traitée
+            defilerDemande(plusProche);
+            demandesRestantes.remove(plusProche);
+
+            // Mettre à jour le point de départ pour la prochaine boucle
+            depart = stationArrivee;
+        }
+
+        // Retourner l’itinéraire complet (depuis dépôt jusqu’au dernier point)
+        return new Itineraire(courant, depart, arcsTotaux);
     }
 
-    // METHODE n°5 : Identification de la maison la plus proche, grâce au numero de la maison (notation américaine)
-    public String plusProcheVoisin(String depart)
-    {
-        // File prioritaire
-        PriorityQueue<DemandeCollecte> maisonArrivee = new PriorityQueue<>(Comparator.comparingDouble(DemandeCollecte::getNumero));
-
-        // Charger la liste des demandes
-        Queue<DemandeCollecte> liste = pm.getDemande();
-        // On récupère la station de départ
-        Station stationDepart = p.getStation(depart);
-
-        if (liste == null || liste.isEmpty())
-        {
-            return null;
-        }
-        // On remplit une liste prioritaire avec les stations d'arrivée
-        // Chaque demande est associée à une lieu (rue+ numero)
-
-        // Méthode Dijkstra
-        while (!liste.isEmpty()) // Tant que la liste des demandes est pas vide
-        {
-            // On classe les demandes de la plus proche à la plus lointaine (en fonction de numero)
-            // numero est un double
-            // On remplit la liste prioritaire maisonArrivee
-            maisonArrivee.add(liste.poll());
-            // On récupère la première maison (la plus proche)
-            DemandeCollecte plusProche = maisonArrivee.peek();
-            // On renvoie le nom de la rue de la première demande
-            return plusProche.getRue();
-        }
-        return null;
-    }
-    //METHODE n°1 : Retirer une demande après exécution
+    //METHODE n°5 : Retirer une demande après exécution
     public void defilerDemande(DemandeCollecte demande) throws ExceptionPersonnalisable
     {
         Queue<DemandeCollecte> liste = pm.getDemande();
