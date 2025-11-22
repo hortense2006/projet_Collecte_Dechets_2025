@@ -10,6 +10,7 @@ import model.particulier.DemandeCollecte;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 public class EntrepriseController extends Commune
 {
@@ -26,7 +27,7 @@ public class EntrepriseController extends Commune
     // L'entreprise récupère la demande du particulier, exécute la demande, et renvoie l'itinéraire au camion.
     //METHODE n°4 : Orchestration complète de la collecte répondant à la liste de demandes
     // Renvoie l'itinéraire optimisé que le camion doit suivre.
-    public Itineraire CollecteDemande(List<DemandeCollecte> demandes) throws ExceptionPersonnalisable
+    public Itineraire CollecteDemande(Queue<DemandeCollecte> demandes) throws ExceptionPersonnalisable
     {
         if (demandes == null || demandes.isEmpty())
         {

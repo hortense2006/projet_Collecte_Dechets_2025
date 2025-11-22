@@ -11,7 +11,7 @@ public class ParticulierModel
     Plan plan = new Plan();
     String nomFichier;
     private final FichiersProfil f;
-    private Queue<DemandeCollecte> demande;
+    private Queue<DemandeCollecte> demandes;
 
 
     // CONSTRUCTEUR
@@ -20,14 +20,14 @@ public class ParticulierModel
         this.nomFichier = nomFichier;
         this.f = new FichiersProfil(nomFichier,plan);
         this.compte = new HashMap<>();
-        this.demande = new LinkedList<>();
+        this.demandes = new LinkedList<>();
         f.chargerInfos(); // charge les profils existants
     }
 
     // GETTER n°1
     public Map<String, Profil> getCompte() {return compte;}
     // GETTER n°2
-    public Queue<DemandeCollecte> getDemande() {return demande;}
+    public Queue<DemandeCollecte> getDemande() {return demandes;}
 
 
     // METHODE n°1 : Demander une collecte d'encombrants
@@ -36,7 +36,7 @@ public class ParticulierModel
     {
         // On remplit une nouvelle demande, et on l'ajoutes à une liste de demandes
         DemandeCollecte nouvelleDemande = new DemandeCollecte(idUtilisateur, typeEncombrant, quantite, dateDemande,rue,numero);
-        demande.add(nouvelleDemande);
+        demandes.add(nouvelleDemande);
         return nouvelleDemande;
     }
 

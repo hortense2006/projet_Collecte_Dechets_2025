@@ -40,6 +40,5 @@ public class CamionModel
     public void viderCamion(){}
     // METHODE n°3 : Planification de la tournée
     public void planifierTournee(){}
-    // METHODE n°4 : Faire la tournée
-    public void executerTournee(){}
+
 }

@@ -90,8 +90,8 @@ public class EntrepriseModel
     //METHODE n°5 : Retirer une demande après exécution
     public void defilerDemande(DemandeCollecte demande) throws ExceptionPersonnalisable
     {
-        Queue<DemandeCollecte> liste = pm.getDemande();
-        if (!liste.remove(demande))
+        Queue<DemandeCollecte> listeDemandes = pm.getDemande();
+        if (!listeDemandes.remove(demande))
         {
             throw new ExceptionPersonnalisable("Demande non trouvée dans la file !");
         }
