@@ -90,30 +90,23 @@ public class EntrepriseModel
         return new Itineraire(depart, arrivee, new ArrayList<>(cheminInverse)); //retourne pour l'affichage
     }
 
-    //METHODE n°4 : Exécuter la demande
-    // On envoie une demande avec l'adresse du particulier
-    // On part de celle-ci, on identifie dans une liste de demandes celle étant la plus proche.
-    public Itineraire executerDemande(DemandeCollecte demande)
+    //METHODE n°4 : Orchestration complète de la collecte répondant à la demande.
+    public Itineraire CollecteDemande(DemandeCollecte demande)
     {
-        // Ajouter la demande à la liste tampon
-        demandesTampon.add(demande);
         // Récupérer la maison du particulier (rue)
         Station depart = p.getStationP(demande.getRue(), demande.getNumero());
-        if(demandesTampon.size()>= SEUIL)
-        {
-            // On part de la position du camion (au dépôt)
-            // Récupérer la station d'arrivée la plus proche de la po
-            String arrivee = plusProcheVoisin(depart.getNom()); // Station d'arrivée
-            // Calcul du plus court chemin
-            Itineraire itineraire = bfsPlusCourtChemin(depart.getNom(), arrivee);
-            defilerDemande(demande);
-            // Retourner l'itinéraire
-            return itineraire;
-        }
-        return null;
+        // Récupérer la station d'arrivée la plus proche de la station de départ
+        String arrivee = plusProcheVoisin(depart.getNom()); // Station d'arrivée
+        // Calcul du plus court chemin
+        Itineraire itineraire = bfsPlusCourtChemin(depart.getNom(), arrivee);
+        // Renvoie le plus court chemin entre la station de la demande
+        // et la station la plus proche identifiée la plusProcheVoisin
+        defilerDemande(demande); // La demande est accomplie : on la défile
+        // Retourner l'itinéraire
+        return itineraire;
     }
 
-    // Identification de la maison la plus proche, grâce au numero de la maison (notation américaine)
+    // METHODE n°5 : Identification de la maison la plus proche, grâce au numero de la maison (notation américaine)
     public String plusProcheVoisin(String depart)
     {
         // File prioritaire
@@ -148,6 +141,11 @@ public class EntrepriseModel
     //METHODE n°1 : Retirer une demande après exécution
     public void defilerDemande(DemandeCollecte demande) throws ExceptionPersonnalisable
     {
-        //DemandeCollecte prochaineDemande = demande.clear(); // retire en FIFO
+        Queue<DemandeCollecte> liste = pm.getDemande();
+        if (!liste.remove(demande))
+        {
+            throw new ExceptionPersonnalisable("Demande non trouvée dans la file !");
+        }
     }
+
 }
