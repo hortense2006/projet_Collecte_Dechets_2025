@@ -9,14 +9,12 @@ public class EntrepriseModel
     // ATTRIBUTS
     private Plan p;
     private ParticulierModel pm;
-    // Liste tampon pour stocker les demandes en attente
-    private List<DemandeCollecte> demandesTampon = new ArrayList<>();
-    private final int SEUIL = 10; // Nombre de demandes à attendre avant exécution
 
     // CONSTRUCTEUR
-    public EntrepriseModel(Plan p)
+    public EntrepriseModel(Plan p,ParticulierModel pm)
     {
         this.p = p;
+        this.pm = pm;
     }
 
     // METHODE n°1 : Calcul du plus court chemin  ( méthode bsf)

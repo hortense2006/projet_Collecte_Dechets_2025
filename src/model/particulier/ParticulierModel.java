@@ -1,7 +1,5 @@
 package model.particulier;
-import model.map.Arc;
 import model.map.Plan;
-
 import java.time.LocalDate;
 import java.util.*;
 

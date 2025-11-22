@@ -29,9 +29,6 @@ public class Main
         PlanView planV = new PlanView();
         PlanController planC = new PlanController(plan,planV);
 
-        // Pour la commune
-        EntrepriseModel em = new EntrepriseModel(plan);
-
         // pour les particuliers
         Scanner sc = new Scanner(System.in);
         FichiersProfil f = new FichiersProfil(NOM_FICHIER_USERS,plan);
