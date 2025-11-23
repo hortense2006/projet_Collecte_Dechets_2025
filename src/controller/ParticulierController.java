@@ -104,15 +104,16 @@ public class ParticulierController
             {
                 case "oui":
                 {
+                    Choix = true;
                     signin();
                     break;
                 }
                 case "non":
                 {
+                    Choix = true;
                     ProfilInput input = view.afficherRegister();
                     this.utilisateurActuel = model.inscrire(input);
                     view.afficherMessage("Inscription réussie !");
-                    Choix = true;
                     break;
                 }
                 default:
