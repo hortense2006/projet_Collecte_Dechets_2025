@@ -150,6 +150,7 @@ public class ParticulierController
             if(!encombrantModel.quantiteValide(choix,quantite))// Vérifie si la quantite entrée correspond au type d'encombrants.
             {
                 view.afficherMessage("Quantite invalide.");
+                view.messageErreur(choix);
             }
             else
             {

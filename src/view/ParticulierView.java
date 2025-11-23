@@ -94,6 +94,19 @@ public class ParticulierView
         System.out.println("Date de demande :");
         System.out.println(demande.getDateDemande());
     }
+    // METHODE n°10 : Renvoie le message d'erreur correspondant pour les encombrants
+    public String messageErreur(TypeEncombrant encombrant)
+    {
+        switch (encombrant)
+        {
+            case MEUBLE: return "Vous ne pouvez déclarer que 3 meubles maximum.";
+            case ELECTROMENAGER: return "Vous ne pouvez déclarer que 2 appareils maximum.";
+            case CANAPE: return "Un seul canapé est autorisé.";
+            case BOIS: return "Maximum 20 pièces de bois.";
+            case AUTRE: return "Maximum 5 objets pour la catégorie 'Autre'.";
+            default: return "Quantité invalide.";
+        }
+    }
 
     public boolean ajouterPoubelleSpecifique(Plan plan, String nomRue, double position, TypeEncombrant type)
     {
