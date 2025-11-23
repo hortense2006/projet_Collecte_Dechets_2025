@@ -1,4 +1,5 @@
 package controller;
+import model.EncombrantModel;
 import model.particulier.*;
 import java.time.LocalDate;
 import java.util.LinkedList;
@@ -17,6 +18,7 @@ public class ParticulierController
     private final ParticulierView view;
     private DemandeCollecte demande;
     private FichiersProfil fichiers;
+    private EncombrantModel encombrantModel;
     String idPropose;
     String mdpPropose;
 
@@ -27,6 +29,7 @@ public class ParticulierController
         this.model = model;
         this.view = view;
         this.utilisateurActuel = null;
+        this.encombrantModel = new EncombrantModel();
     }
 
     // METHODE n°1 : Vérifier l'identifiant
@@ -65,6 +68,7 @@ public class ParticulierController
     // METHODE n°3 : CONNEXION (METHODE LOGIQUE)
     public void signin()
     {
+        // Blindage de l'identifiant
         while(!checkId(idPropose))
         {
             idPropose = view.afficherId();
@@ -77,6 +81,7 @@ public class ParticulierController
                 view.afficherMessage("id valide");
             }
         }
+        // Blindage du mot de passe
         while (!checkMdp(mdpPropose))
         {
             mdpPropose = view.afficherMdp();
@@ -96,6 +101,7 @@ public class ParticulierController
     // METHODE n°4 : SE CONNECTER
     public void login()
     {
+        // Blindage de la connexion de l'utilisateur
         boolean Choix = false;
         while(!Choix)
         {
@@ -129,52 +135,29 @@ public class ParticulierController
         int quantite = 0;
         LocalDate dateDemande = LocalDate.now(); // Date de la demande
 
-        TypeEncombrant choix = view.affichageDemandeCollecte(); // On demande le type d'encombrants
-        switch (choix)
+        // Blindage de l'utilisateur
+        if (utilisateurActuel == null)
         {
-            case MEUBLE:
+            view.afficherMessage("Erreur : aucun utilisateur connecté.");
+            return null;
+        }
+        TypeEncombrant choix = view.affichageDemandeCollecte(); // On demande le type d'encombrants
+        boolean choixValide = false;
+        // Blindage de la quantite d'encombrants
+        while(!choixValide)
+        {
+            quantite = view.affichageQuantiteEncombrants(choix); // On demande la quantite d'encombrants.
+            if(!encombrantModel.quantiteValide(choix,quantite))// Vérifie si la quantite entrée correspond au type d'encombrants.
             {
-                quantite = view.affichageQuantiteEncombrants(MEUBLE);
-                demande = model.faireDemandeCollecte(utilisateurActuel.getId(),MEUBLE,quantite,dateDemande,utilisateurActuel.getRue(),utilisateurActuel.getNumero());
-                view.afficherDemande(demande); // On affiche la demande pour vérification.
-                break;
+                view.afficherMessage("Quantite invalide.");
             }
-            case ELECTROMENAGER:
+            else
             {
-                quantite = view.affichageQuantiteEncombrants(ELECTROMENAGER);
-                demande = model.faireDemandeCollecte(utilisateurActuel.getId(),ELECTROMENAGER,quantite,dateDemande,utilisateurActuel.getRue(),utilisateurActuel.getNumero());
-                view.afficherDemande(demande); // On affiche la demande pour vérification.
-                break;
-            }
-            case BOIS:
-            {
-                quantite = view.affichageQuantiteEncombrants(BOIS);
-                demande = model.faireDemandeCollecte(utilisateurActuel.getId(),BOIS,quantite,dateDemande,utilisateurActuel.getRue(),utilisateurActuel.getNumero());
-                view.afficherDemande(demande); // On affiche la demande pour vérification.
-                break;
-            }
-            case CANAPE:
-            {
-                quantite = view.affichageQuantiteEncombrants(CANAPE);
-                demande = model.faireDemandeCollecte(utilisateurActuel.getId(),CANAPE,quantite,dateDemande,utilisateurActuel.getRue(),utilisateurActuel.getNumero());
-                view.afficherDemande(demande); // On affiche la demande pour vérification.
-                break;
-            }
-            case AUTRE:
-            {
-                quantite = view.affichageQuantiteEncombrants(AUTRE);
-                demande = model.faireDemandeCollecte(utilisateurActuel.getId(),AUTRE,quantite,dateDemande,utilisateurActuel.getRue(),utilisateurActuel.getNumero());
-                view.afficherDemande(demande); // On affiche la demande pour vérification.
-                break;
-            }
-            default:
-            {
-                view.afficherMessage("Choix invalide, valeur par défaut : Autre");
-                quantite = view.affichageQuantiteEncombrants(AUTRE);
-                demande = model.faireDemandeCollecte(utilisateurActuel.getId(),AUTRE,quantite,dateDemande,utilisateurActuel.getRue(),utilisateurActuel.getNumero());
-                break;
+                choixValide = true;
             }
         }
+        demande = model.faireDemandeCollecte(utilisateurActuel.getId(),choix,quantite,dateDemande,utilisateurActuel.getRue(),utilisateurActuel.getNumero());
+        view.afficherDemande(demande); // On affiche la demande pour vérification.
         return demande;
     }
     // METHODE n°6 : Remplir liste de demandes

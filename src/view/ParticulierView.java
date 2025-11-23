@@ -68,7 +68,9 @@ public class ParticulierView
         System.out.println("Quel type d'encombrant voulez-vous déclarer ?");
         System.out.println("\n1. Meubles" +
                            "\n2. Electroménager"+
-                           "\n3. Autre");
+                           "\n3. Bois"+
+                           "\n4.Canape"+
+                           "\n5. Autre");
         String saisie = sc.nextLine();
         TypeEncombrant choix = TypeEncombrant.fromString(saisie);
         return choix;
@@ -78,59 +80,6 @@ public class ParticulierView
     {
         System.out.println("Combien d'objets voulez-vous déclarer ?");
         int quantite = sc.nextInt();
-
-        switch (encombrant)
-        {
-            case MEUBLE:
-            {
-                if (quantite > 3)
-                {
-                    System.out.println("Vous ne pouvez déclarer que 3 meubles maximum.");
-                    return -1;
-                }
-                break;
-            }
-
-            case ELECTROMENAGER:
-            {
-                if (quantite > 2)
-                {
-                    System.out.println("Vous ne pouvez déclarer que 2 appareils maximum.");
-                    return -1;
-                }
-                break;
-            }
-
-            case CANAPE:
-            {
-                if (quantite > 1)
-                {
-                    System.out.println("Un seul canapé est autorisé.");
-                    return -1;
-                }
-                break;
-            }
-
-            case BOIS:
-            {
-                if (quantite > 20)
-                {
-                    System.out.println("Maximum 20 pièces de bois.");
-                    return -1;
-                }
-                break;
-            }
-
-            case AUTRE:
-            {
-                if (quantite > 5)
-                {
-                    System.out.println("Maximum 5 objets pour la catégorie 'Autre'.");
-                    return -1;
-                }
-                break;
-            }
-        }
         return quantite;
     }
     // METHODE n°8 : afficher les infos du particulier

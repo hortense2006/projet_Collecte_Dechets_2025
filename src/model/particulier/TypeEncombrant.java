@@ -17,6 +17,8 @@ public enum TypeEncombrant
             case "ELECTROMENAGER":
             case "ÉLECTROMÉNAGER":
                 return ELECTROMENAGER;
+            case "CANAPE":return CANAPE;
+            case "BOIS":return BOIS;
             case "AUTRE": return AUTRE;
             default: return AUTRE;
         }
