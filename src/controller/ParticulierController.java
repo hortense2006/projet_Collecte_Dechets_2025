@@ -96,25 +96,29 @@ public class ParticulierController
     // METHODE n°4 : SE CONNECTER
     public void login()
     {
-        String choix = view.ActionLogin();
-
-        switch(choix.trim().toLowerCase())
+        boolean Choix = false;
+        while(!Choix)
         {
-            case "oui":
+            String choix = view.ActionLogin();
+            switch(choix.trim().toLowerCase())
             {
-                signin();
-                break;
-            }
-            case "non":
-            {
-                ProfilInput input = view.afficherRegister();
-                this.utilisateurActuel = model.inscrire(input);
-                view.afficherMessage("Inscription réussie !");
-                break;
-            }
-            default:
-            {
-                view.afficherMessage("Choix invalide.");
+                case "oui":
+                {
+                    signin();
+                    break;
+                }
+                case "non":
+                {
+                    ProfilInput input = view.afficherRegister();
+                    this.utilisateurActuel = model.inscrire(input);
+                    view.afficherMessage("Inscription réussie !");
+                    Choix = true;
+                    break;
+                }
+                default:
+                {
+                    view.afficherMessage("Choix invalide.");
+                }
             }
         }
     }
