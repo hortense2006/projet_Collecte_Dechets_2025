@@ -65,19 +65,33 @@ public class ParticulierController
     // METHODE n°3 : CONNEXION (METHODE LOGIQUE)
     public void signin()
     {
-        idPropose = view.afficherId();
-        if(checkId(idPropose))
+        while(!checkId(idPropose))
         {
-            view.afficherMessage("id valide");
+            idPropose = view.afficherId();
+            if(!checkId(idPropose))
+            {
+                view.afficherMessage("Identifiant introuvable !");
+            }
+            else
+            {
+                view.afficherMessage("id valide");
+            }
         }
-        mdpPropose = view.afficherMdp();
-        if(checkMdp(mdpPropose))
+        while (!checkMdp(mdpPropose))
         {
-            view.afficherMessage("Mdp valide");
-            view.afficherMessage("Connexion réussie !");
-            view.afficherInfos();
+            mdpPropose = view.afficherMdp();
+            if(!checkMdp(mdpPropose))
+            {
+                view.afficherMessage("Mot de passe incorrect !");
+            }
+            else
+            {
+                view.afficherMessage("Mdp valide");
+            }
         }
+        view.afficherInfos();
     }
+
 
     // METHODE n°4 : SE CONNECTER
     public void login()
