@@ -163,9 +163,8 @@ public class ParticulierController
         return demande;
     }
     // METHODE n°6 : Remplir liste de demandes
-    public Queue<DemandeCollecte> remplirListeDemandeCollecte(DemandeCollecte premiere)
+    public Queue<DemandeCollecte> remplirListeDemandeCollecte(DemandeCollecte premiere,Queue<DemandeCollecte> listeDemande)
     {
-        Queue<DemandeCollecte> listeDemande = new LinkedList<>();
         listeDemande.add(premiere);
         boolean continuer = true;
 

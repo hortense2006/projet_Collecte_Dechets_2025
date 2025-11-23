@@ -7,6 +7,7 @@ import model.particulier.ParticulierModel;
 import view.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
@@ -20,6 +21,8 @@ public class Main
         int choix;
         boolean exitAll = false;
         boolean exit = false;
+        Queue<DemandeCollecte> listeDemandes = new LinkedList<>();
+
         final String NOM_FICHIER_USERS = "Base_De_Donnees_Particuliers.txt";
 
         // IMPORT DES CLASSES :
@@ -124,7 +127,7 @@ public class Main
                             {
                                 exit = true;
                                 DemandeCollecte d = pc.DemandeCollecteE(); // Demander une collecte d'encombrants
-                                pc.remplirListeDemandeCollecte(d);// On remplit la liste de demandes.
+                                pc.remplirListeDemandeCollecte(d,listeDemandes);// On remplit la liste de demandes.
                                 break;
                             }
                             case 2:
