@@ -1,11 +1,13 @@
 import model.*;
 import controller.*;
 import model.map.*;
+import model.particulier.DemandeCollecte;
 import model.particulier.FichiersProfil;
 import model.particulier.ParticulierModel;
 import view.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class Main
@@ -120,7 +122,8 @@ public class Main
                             {
                                 exit = true;
                                 pc.DemandeCollecteE(); // Demander une collecte d'encombrants
-                                pc.remplirListeDemandeCollecte();// On remplit la liste de demandes.
+                                Queue<DemandeCollecte> liste = pc.remplirListeDemandeCollecte();// On remplit la liste de demandes.
+                                System.out.println(liste); // Ligne de vérification (provisoire)
                                 break;
                             }
                             case 2:
