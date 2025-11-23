@@ -75,6 +75,7 @@ public class Main
                     "\n entreprise" +
                     "\n quitter");
             typeUser = sc.nextLine();
+            exit = false;
             switch (typeUser)
             {
                 case "commune":
