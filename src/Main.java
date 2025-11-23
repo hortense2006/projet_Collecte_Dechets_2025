@@ -120,6 +120,7 @@ public class Main
                             {
                                 exit = true;
                                 pc.DemandeCollecteE(); // Demander une collecte d'encombrants
+                                pc.remplirListeDemandeCollecte();// On remplit la liste de demandes.
                                 break;
                             }
                             case 2:
