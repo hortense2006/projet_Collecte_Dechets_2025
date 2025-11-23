@@ -118,11 +118,13 @@ public class Main
                         {
                             case 1:
                             {
+                                exit = true;
                                 pc.DemandeCollecteE(); // Demander une collecte d'encombrants
                                 break;
                             }
                             case 2:
                             {
+                                exit = true;
                                 pm.consulterPlanningRamassage("ranville");
                                 break;
                             }
