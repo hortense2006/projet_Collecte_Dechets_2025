@@ -11,10 +11,10 @@ import java.util.*;
 public class ParticulierView
 {
     // APPEL DE CLASSES
-    public Scanner sc = new Scanner(System.in);
+    private Scanner sc;
 
     // CONSTRUCTEUR
-    public ParticulierView(){}
+    public ParticulierView(Scanner sc){this.sc=sc;}
 
     // METHODE n°1 : AFFICHAGE DU LOGIN DE L'UTILISATEUR
     public String ActionLogin()
@@ -80,6 +80,7 @@ public class ParticulierView
     {
         System.out.println("Combien d'objets voulez-vous déclarer ?");
         int quantite = sc.nextInt();
+        sc.nextLine();
         return quantite;
     }
     // METHODE n°8 : afficher les infos du particulier
@@ -106,6 +107,11 @@ public class ParticulierView
             case AUTRE: return "Maximum 5 objets pour la catégorie 'Autre'.";
             default: return "Quantité invalide.";
         }
+    }
+    public String demander(String message)
+    {
+        System.out.println(message);
+        return sc.nextLine();
     }
 
     public boolean ajouterPoubelleSpecifique(Plan plan, String nomRue, double position, TypeEncombrant type)

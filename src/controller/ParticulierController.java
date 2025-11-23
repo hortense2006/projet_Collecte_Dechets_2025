@@ -163,9 +163,10 @@ public class ParticulierController
         return demande;
     }
     // METHODE n°6 : Remplir liste de demandes
-    public Queue<DemandeCollecte> remplirListeDemandeCollecte()
+    public Queue<DemandeCollecte> remplirListeDemandeCollecte(DemandeCollecte premiere)
     {
         Queue<DemandeCollecte> listeDemande = new LinkedList<>();
+        listeDemande.add(premiere);
         boolean continuer = true;
 
         while (continuer && listeDemande.size() < MAX_DEMANDES)
@@ -177,11 +178,10 @@ public class ParticulierController
             }
             if (listeDemande.size() >= MAX_DEMANDES)
             {
-                System.out.println("Nombre maximum de demandes atteint.");
+                view.afficherMessage("Nombre maximum de demandes atteint.");
                 break;
             }
-            view.afficherMessage("Voulez-vous faire une autre demande ? (oui/non)");
-            String rep = view.sc.nextLine(); // ou ton scanner
+            String rep = view.demander("Voulez-vous faire une autre demande ? (oui/non)");
             if (!rep.equalsIgnoreCase("oui"))
             {
                 continuer = false;
