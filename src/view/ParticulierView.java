@@ -11,7 +11,7 @@ import java.util.*;
 public class ParticulierView
 {
     // APPEL DE CLASSES
-    Scanner sc = new Scanner(System.in);
+    public Scanner sc = new Scanner(System.in);
 
     // CONSTRUCTEUR
     public ParticulierView(){}

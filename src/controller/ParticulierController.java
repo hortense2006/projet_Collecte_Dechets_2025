@@ -165,12 +165,28 @@ public class ParticulierController
     public Queue<DemandeCollecte> remplirListeDemandeCollecte()
     {
         Queue<DemandeCollecte> listeDemande = new LinkedList<>();
-        int nbDemandes =0;
-        while (nbDemandes !=MAX_DEMANDES)
+        boolean continuer = true;
+
+        while (continuer && listeDemande.size() < MAX_DEMANDES)
         {
-            listeDemande.add(DemandeCollecteE());
-            nbDemandes++;
+            DemandeCollecte demande = DemandeCollecteE();
+            if (demande != null)
+            {
+                listeDemande.add(demande);
+            }
+            if (listeDemande.size() >= MAX_DEMANDES)
+            {
+                System.out.println("Nombre maximum de demandes atteint.");
+                break;
+            }
+            view.afficherMessage("Voulez-vous faire une autre demande ? (oui/non)");
+            String rep = view.sc.nextLine(); // ou ton scanner
+            if (!rep.equalsIgnoreCase("oui"))
+            {
+                continuer = false;
+            }
         }
         return listeDemande;
     }
+
 }

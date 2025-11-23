@@ -18,24 +18,34 @@ public class EncombrantModel
         {
             case MEUBLE:
             {
-                if(quantite <= MAX_MEUBLE) return  true;}
+                if(quantite <= MAX_MEUBLE) return  true;
+                break;
+            }
             case ELECTROMENAGER:
             {
                 if(quantite <= MAX_ELECTROMENAGER) return  true;
+                break;
             }
             case CANAPE:
             {
                 if(quantite <= MAX_CANAPE) return  true;
+                break;
             }
             case BOIS:
             {
                 if(quantite <= MAX_BOIS) return  true;
+                break;
             }
             case AUTRE:
             {
                 if(quantite <= MAX_AUTRE) return  true;
+                break;
             }
-            default: return false;
+            default:
+            {
+                return false;
+            }
         }
+        return false;
     }
 }
