@@ -69,7 +69,7 @@ public class Main
             System.err.println("Détail de l'erreur: " + e.getMessage());
             return;
         }
-        plan = planC.choixFichier(plan); //permet de choisir le fichier qu'on utilise et affiche le plan de la ville associé
+        //plan = planC.choixFichier(plan); //permet de choisir le fichier qu'on utilise et affiche le plan de la ville associé
 
         while (!exitAll)  //permet de faire tourner l'application sans fin tant que exitAll n'a pas été choisi
         {
