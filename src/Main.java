@@ -127,7 +127,8 @@ public class Main
                             {
                                 exit = true;
                                 DemandeCollecte d = pc.DemandeCollecteE(); // Demander une collecte d'encombrants
-                                pc.remplirListeDemandeCollecte(d,listeDemandes);// On remplit la liste de demandes.
+                                Queue<DemandeCollecte> liste = pc.remplirListeDemandeCollecte(d,listeDemandes);// On remplit la liste de demandes.
+                                System.out.println(liste);
                                 break;
                             }
                             case 2:
