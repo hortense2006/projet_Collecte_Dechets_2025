@@ -141,6 +141,7 @@ public class ParticulierController
             view.afficherMessage("Erreur : aucun utilisateur connecté.");
             return null;
         }
+        // Blindage du choix du type d'encombrants
         TypeEncombrant choix = view.affichageDemandeCollecte(); // On demande le type d'encombrants
         boolean choixValide = false;
         // Blindage de la quantite d'encombrants
