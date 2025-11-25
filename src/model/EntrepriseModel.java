@@ -9,6 +9,7 @@ public class EntrepriseModel
     // ATTRIBUTS
     private Plan p;
     private ParticulierModel pm;
+    private Itineraire itineraire;
 
     // CONSTRUCTEUR
     public EntrepriseModel(Plan p,ParticulierModel pm)
@@ -18,8 +19,7 @@ public class EntrepriseModel
     }
 
     // METHODE n°1 : Calcul du plus court chemin  ( méthode bsf)
-    public Itineraire bfsPlusCourtChemin (String nomDepart, String nomArrivee) throws ExceptionPersonnalisable
-    {
+    public Itineraire bfsPlusCourtChemin (String nomDepart, String nomArrivee) throws ExceptionPersonnalisable {
         Station depart = verifierStations(nomDepart, nomArrivee); // verifie qu'il n'y a pas d'exception
         Station destination = p.getStation(nomArrivee); // arc par lequel on découvre la station
         Map<Station, Arc> predecesseurs = new HashMap<>(); //mémoire pour garder toutes les stations passées
@@ -44,7 +44,7 @@ public class EntrepriseModel
                 }
             }
         }
-        return reconstituerChemin(depart, destination, stationArriveeTrouvee, predecesseurs);//pour afficher grace à la méthode dans afficher itinéraire
+        return itineraire.reconstituerChemin(depart, destination, stationArriveeTrouvee, predecesseurs);//pour afficher grace à la méthode dans afficher itinéraire
     }
 
 
@@ -68,23 +68,7 @@ public class EntrepriseModel
         return arrivee;
     }
 
-    // METHODE n°3 : reconstitution du trajet parcouru
-    private Itineraire reconstituerChemin(Station depart, Station arrivee, Station stationArriveeTrouvee, Map<Station, Arc> predecesseurs)
-    { //méthode qui servira à l'affichage d'un chemin
-        if (stationArriveeTrouvee == null)
-        {
-            return new Itineraire(depart, arrivee, Collections.emptyList());
-        }
-        LinkedList<Arc> cheminInverse = new LinkedList<>(); //retrace le chemin à l'envers
-        Station courant = arrivee;
-        while (predecesseurs.get(courant) != null)
-        { //si on a une information avant
-            Arc arcEntrant = predecesseurs.get(courant);
-            cheminInverse.addFirst(arcEntrant);
-            courant = arcEntrant.getDepart();
-        }
-        return new Itineraire(depart, arrivee, new ArrayList<>(cheminInverse)); //retourne pour l'affichage
-    }
+
 
     // METHODE n°4 : Charger demande
     public Queue<DemandeCollecte> chargerDemande(){return null;}
