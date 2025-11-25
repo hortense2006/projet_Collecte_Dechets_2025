@@ -51,7 +51,7 @@ public class Main
             InputStream is = Main.class.getClassLoader().getResourceAsStream(NOM_FICHIER_USERS);
             if (is == null)
             {
-                System.out.println("Échec de la lecture ClassLoader. Tentative de lecture de fichier simple...");
+                System.out.println("Échec de la lecture. Tentative de lecture de fichier simple...");
                 f.chargerInfos();
             }
             else
