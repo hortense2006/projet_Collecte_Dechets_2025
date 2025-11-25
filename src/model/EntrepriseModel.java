@@ -87,7 +87,7 @@ public class EntrepriseModel
     }
 
     // METHODE n°4 : Charger demande
-    public void chargerDemande(){}
+    public Queue<DemandeCollecte> chargerDemande(){return null;}
     // METHODE n°5 : Sauvegarder demande
     public void sauvegarderDemande(){}
 
