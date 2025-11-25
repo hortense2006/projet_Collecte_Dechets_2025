@@ -12,6 +12,7 @@ public class ParticulierView
 {
     // APPEL DE CLASSES
     private Scanner sc;
+
     // ATTRIBUTS
     String saisie;
 
@@ -144,40 +145,4 @@ public class ParticulierView
         return sc.nextLine();
     }
 
-    public boolean ajouterPoubelleSpecifique(Plan plan, String nomRue, double position, TypeEncombrant type)
-    {
-        Arc rue = trouverRueParNom(plan, nomRue);
-
-        if (rue == null)
-        {
-            System.err.println("Erreur : La rue " + nomRue + " n'existe pas.");
-            return false;
-        }
-
-        if (position < 0 || position > rue.getDistance())
-        {
-            System.err.println("Erreur : La position " + position + " est hors de la rue (Longueur max: " + rue.getDistance() + ")");
-            return false;
-        }
-
-        //DemandeCollecte demande = new DemandeCollecte("Utilisateur_Manuel", rue, position, type, 50.0);
-        //rue.ajouterDechet(demande);
-        System.out.println("Succès : Déchet ajouté sur " + nomRue + " à " + position + "m.");
-        return true;
-    }
-
-    private Arc trouverRueParNom(Plan plan, String idLigne)
-    {
-        for (Station s : plan.getStations().values())
-        {
-            for (Arc a : s.getArcsSortants())
-            {
-                if (a.getIdLigne().equals(idLigne))
-                {
-                    return a;
-                }
-            }
-        }
-        return null;
-    }
 }
