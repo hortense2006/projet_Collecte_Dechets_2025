@@ -1,0 +1,18 @@
+# HO1 : Toutes les rues sont à double sens (graphe non orienté)
+# Format : sommet1 sommet2 distance
+
+D;R1;250
+D;R2;300
+R1;R3;180
+R1;R4;220
+R2;R4;200
+R2;R5;250
+R3;R4;150
+R3;P1;120
+R4;R6;200
+R4;P2;180
+R5;R6;160
+R6;R7;210
+R6;P3;130
+R7;R8;240
+R8;D;350
