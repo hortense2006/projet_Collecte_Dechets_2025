@@ -171,20 +171,23 @@ public class ParticulierController
 
         while (continuer && listeDemande.size() < MAX_DEMANDES)
         {
-            DemandeCollecte demande = DemandeCollecteE();
-            if (demande != null)
-            {
-                listeDemande.add(demande);
-            }
-            if (listeDemande.size() >= MAX_DEMANDES)
-            {
-                view.afficherMessage("Nombre maximum de demandes atteint.");
-                break;
-            }
             String rep = view.demander("Voulez-vous faire une autre demande ? (oui/non)");
             if (!rep.equalsIgnoreCase("oui"))
             {
                 continuer = false;
+            }
+            else
+            {
+                DemandeCollecte demande = DemandeCollecteE();
+                if (demande != null)
+                {
+                    listeDemande.add(demande);
+                }
+                if (listeDemande.size() >= MAX_DEMANDES)
+                {
+                    view.afficherMessage("Nombre maximum de demandes atteint.");
+                    break;
+                }
             }
         }
         return listeDemande;

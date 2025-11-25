@@ -12,6 +12,8 @@ public class ParticulierView
 {
     // APPEL DE CLASSES
     private Scanner sc;
+    // ATTRIBUTS
+    String saisie;
 
     // CONSTRUCTEUR
     public ParticulierView(Scanner sc){this.sc=sc;}
@@ -65,19 +67,20 @@ public class ParticulierView
     // METHODE n°6 : AFFICHAGE DEMANDE COLLECTE
     public TypeEncombrant affichageDemandeCollecte()
     {
-        System.out.println("Quel type d'encombrant voulez-vous déclarer ?");
-        System.out.println("\n1. Meubles" +
-                           "\n2. Electroménager"+
-                           "\n3. Bois"+
-                           "\n4.Canape"+
-                           "\n5. Autre");
-        int saisie = sc.nextInt();
-        sc.nextLine();
-        if(saisie <1 || saisie>5)
+        do
         {
-            System.out.println("Choix invalide");
-        }
-        TypeEncombrant choix = TypeEncombrant.fromString(String.valueOf(saisie));
+            System.out.println("Quel type d'encombrant voulez-vous déclarer ?");
+            System.out.println("\n1. Meubles" +
+                    "\n2. Electroménager" +
+                    "\n3. Bois" +
+                    "\n4.Canape" +
+                    "\n5. Autre");
+            saisie = sc.nextLine();
+            saisie = saisie.trim();// Enlève les espaces avant/après en trop
+        }while(!saisie.equalsIgnoreCase("Meubles") && !saisie.equalsIgnoreCase("Electroménager") &&
+                !saisie.equalsIgnoreCase("Bois") && !saisie.equalsIgnoreCase("Canape") &&
+                !saisie.equalsIgnoreCase("Autre"));
+        TypeEncombrant choix = TypeEncombrant.fromString(saisie);
         return choix;
     }
     // METHODE n°7 : QUELLE QUANTITE D'ENCOMBRANTS
@@ -101,16 +104,38 @@ public class ParticulierView
         System.out.println(demande.getDateDemande());
     }
     // METHODE n°10 : Renvoie le message d'erreur correspondant pour les encombrants
-    public String messageErreur(TypeEncombrant encombrant)
+    public void messageErreur(TypeEncombrant encombrant)
     {
         switch (encombrant)
         {
-            case MEUBLE: return "Vous ne pouvez déclarer que 3 meubles maximum.";
-            case ELECTROMENAGER: return "Vous ne pouvez déclarer que 2 appareils maximum.";
-            case CANAPE: return "Un seul canapé est autorisé.";
-            case BOIS: return "Maximum 20 pièces de bois.";
-            case AUTRE: return "Maximum 5 objets pour la catégorie 'Autre'.";
-            default: return "Quantité invalide.";
+            case MEUBLE:
+            {
+                System.out.println("Vous ne pouvez déclarer que 3 meubles maximum.");
+                break;
+            }
+            case ELECTROMENAGER:
+            {
+                System.out.println("Vous ne pouvez déclarer que 2 appareils maximum.");
+                break;
+            }
+            case CANAPE:
+            {
+                System.out.println("Un seul canapé est autorisé.");
+                break;
+            }
+            case BOIS:
+            {
+                System.out.println("Maximum 20 pièces de bois.");
+                break;
+            }
+            case AUTRE:
+            {
+                System.out.println("Maximum 5 objets pour la catégorie 'Autre'.");
+            }
+            default:
+            {
+                System.out.println("Quantité invalide.");
+            }
         }
     }
     public String demander(String message)
