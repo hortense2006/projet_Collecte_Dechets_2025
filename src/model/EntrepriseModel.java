@@ -70,8 +70,12 @@ public class EntrepriseModel
 
 
 
+    // METHODE n°4 : Charger demande
+    public Queue<DemandeCollecte> chargerDemande(){return null;}
+    // METHODE n°5 : Sauvegarder demande
+    public void sauvegarderDemande(){}
 
-    //METHODE n°5 : Retirer une demande après exécution
+    //METHODE n°6 : Retirer une demande après exécution
     public void defilerDemande(DemandeCollecte demande) throws ExceptionPersonnalisable
     {
         Queue<DemandeCollecte> listeDemandes = pm.getDemande();
