@@ -71,8 +71,13 @@ public class ParticulierView
                            "\n3. Bois"+
                            "\n4.Canape"+
                            "\n5. Autre");
-        String saisie = sc.nextLine();
-        TypeEncombrant choix = TypeEncombrant.fromString(saisie);
+        int saisie = sc.nextInt();
+        sc.nextLine();
+        if(saisie <1 || saisie>5)
+        {
+            System.out.println("Choix invalide");
+        }
+        TypeEncombrant choix = TypeEncombrant.fromString(String.valueOf(saisie));
         return choix;
     }
     // METHODE n°7 : QUELLE QUANTITE D'ENCOMBRANTS
