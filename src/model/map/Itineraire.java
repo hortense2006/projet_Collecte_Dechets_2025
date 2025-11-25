@@ -1,6 +1,6 @@
 package model.map;
 
-import java.util.List;
+import java.util.*;
 
 public class Itineraire {
     private final Station depart;
@@ -70,5 +70,19 @@ public class Itineraire {
                 System.out.println("Continuer jusqu'à " + current.getNom()); //continue si elle n'est pas trouvée
             }
         }
+    }
+
+    public Itineraire reconstituerChemin (Station depart, Station arrivee, Station stationArriveeTrouvee, Map<Station, Arc> predecesseurs) { //méthode qui servira à l'affichage d'un chemin
+        if (stationArriveeTrouvee == null) {
+            return new Itineraire(depart, arrivee, Collections.emptyList());
+        }
+        LinkedList<Arc> cheminInverse = new LinkedList<>(); //retrace le chemin à l'envers
+        Station courant = arrivee;
+        while (predecesseurs.get(courant) != null) { //si on a une information avant
+            Arc arcEntrant = predecesseurs.get(courant);
+            cheminInverse.addFirst(arcEntrant);
+            courant = arcEntrant.getDepart();
+        }
+        return new Itineraire(depart, arrivee, new ArrayList<>(cheminInverse)); //retourne pour l'affichage
     }
 }
