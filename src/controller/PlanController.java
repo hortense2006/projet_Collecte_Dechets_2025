@@ -18,10 +18,11 @@ public class PlanController {
     //Menu qui permet de choisir le type de fichier qu'on veut et l'affiche
     public Plan choixFichier(Plan p) {
         String nomFichier = "";
-        int choix;
+        int choix = 0;
+        while (choix >=3  || choix <= 1) {
         Scanner sc = new Scanner(System.in);
         choix = planView.afficherMenu();
-        while (choix > 3 || choix < 1) {
+
             switch (choix) { //applique le type de plan que nous utilisons
                 case 1:
                     nomFichier = "C:\\Users\\valsa\\IdeaProjects\\Théorie des graphes\\projet_Collecte_Dechets_2025\\src\\Ranville_HO1.txt";
