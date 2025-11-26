@@ -51,7 +51,7 @@ public class EntrepriseController
 
             for (DemandeCollecte d : demandesRestantes)
             {
-                Station s = p.getStationP(d.getRue(), d.getNumero());
+                Station s = p.getStationP(d.getRue(), d.getNumero()); // A REFAIRE !!
                 // Pour simplifier on compare les numéros (notation américaine)
                 double distanceApprox = Math.abs(d.getNumero() - 0); // approximation simple
                 if (distanceApprox < minDistance)
