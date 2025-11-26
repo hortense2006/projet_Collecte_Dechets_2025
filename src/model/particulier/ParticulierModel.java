@@ -61,4 +61,10 @@ public class ParticulierModel
 
         return p;
     }
+
+    public Queue<DemandeCollecte> setDemande(Queue<DemandeCollecte> fileDemandes)
+    {
+        this.demandes = fileDemandes;
+        return fileDemandes;
+    }
 }
