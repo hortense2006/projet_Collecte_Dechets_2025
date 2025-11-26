@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class FichierDemandes extends ChargerFichiers
+public class FichierDemandes implements ChargerFichiers
 {
     // ATTRIBUTS
     public String nomFichier;
@@ -90,7 +90,7 @@ public class FichierDemandes extends ChargerFichiers
             for (DemandeCollecte demande : fileDemandes)
             {
                 // Exemple de format : idUtilisateur,typeEncombrant,quantite,date,rue,numero
-                String ligne = demande.getIdUtilisateur() + "," +
+                String ligne = demande.getId() + "," +
                         demande.getTypeEncombrant() + "," +
                         demande.getQuantite() + "," +
                         demande.getDateDemande() + "," +
