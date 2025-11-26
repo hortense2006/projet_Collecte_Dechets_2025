@@ -37,6 +37,10 @@ public class EntrepriseController
         List<Arc> arcsTotaux = new ArrayList<>();
         Station depart = courant; // départ du camion (dépôt)
         List<DemandeCollecte> demandesRestantes = new ArrayList<>(demandes);
+        if (courant == null)
+        {
+            throw new ExceptionPersonnalisable("Le dépôt du camion n'est pas défini.");
+        }
 
         // Boucle while qui parcourt la liste des demandes
         while (!demandesRestantes.isEmpty())

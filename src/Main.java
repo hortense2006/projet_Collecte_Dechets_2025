@@ -39,6 +39,9 @@ public class Main
         ParticulierModel pm = new ParticulierModel(NOM_FICHIER_USERS);
         ParticulierController pc = new ParticulierController(pm,pv,f);
 
+        // Chargement & choix du plan
+        plan = planC.choixFichier(plan); //permet de choisir le fichier qu'on utilise et affiche le plan de la ville associé
+
         // pour l'entreprise
         FichierDemandes fd = new FichierDemandes(NOM_FICHIER_DEMANDES);
         EntrepriseModel em = new EntrepriseModel(plan,pm);
@@ -50,8 +53,6 @@ public class Main
         // Chargement des différents fichiers texte
         chargerGenerique(NOM_FICHIER_USERS, f);
         chargerGenerique(NOM_FICHIER_DEMANDES, fd);
-
-        plan = planC.choixFichier(plan); //permet de choisir le fichier qu'on utilise et affiche le plan de la ville associé
 
         //On récupère la liste de demandes
         Queue<DemandeCollecte> listeDemandes = fd.getFileDemandes();

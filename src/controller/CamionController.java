@@ -23,7 +23,6 @@ public class CamionController
         FichierDemandes fd = new FichierDemandes(nomFichier);
         fd.chargerDepuisFichier(); // lit le fichier et remplit fileDemandes
         particuliermodel.setDemande(fd.getFileDemandes());
-
         // Récupère la liste des demandes
         Queue<DemandeCollecte> liste = particuliermodel.getDemande();
         System.out.println(liste);
