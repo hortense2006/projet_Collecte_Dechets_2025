@@ -107,4 +107,8 @@ public class FichierDemandes extends ChargerFichiers
         }
     }
 
+    public Queue<DemandeCollecte> getFileDemandes()
+    {
+        return fileDemandes;
+    }
 }

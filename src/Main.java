@@ -22,7 +22,6 @@ public class Main
         int choix;
         boolean exitAll = false;
         boolean exit = false;
-        Queue<DemandeCollecte> listeDemandes = new LinkedList<>();
 
         final String NOM_FICHIER_USERS = "Base_De_Donnees_Particuliers.txt";
         final String NOM_FICHIER_DEMANDES = "Liste_Demandes.txt";
@@ -54,6 +53,8 @@ public class Main
 
         plan = planC.choixFichier(plan); //permet de choisir le fichier qu'on utilise et affiche le plan de la ville associé
 
+        //On récupère la liste de demandes
+        Queue<DemandeCollecte> listeDemandes = fd.getFileDemandes();
 
         while (!exitAll)  //permet de faire tourner l'application sans fin tant que exitAll n'a pas été choisi
         {
