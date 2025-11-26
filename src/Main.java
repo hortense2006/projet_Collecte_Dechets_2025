@@ -112,6 +112,7 @@ public class Main
                                 exit = true;
                                 DemandeCollecte d = pc.DemandeCollecteE(); // Demander une collecte d'encombrants
                                 Queue<DemandeCollecte> liste = pc.remplirListeDemandeCollecte(d,listeDemandes);// On remplit la liste de demandes.
+                                fd.sauvegarderDemande(NOM_FICHIER_DEMANDES); // On enregistre la demande dans le bon fichier texte
                                 System.out.println(liste);
                                 break;
                             }
