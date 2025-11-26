@@ -69,8 +69,6 @@ public class EntrepriseModel
     }
 
 
-
-
     //METHODE n°6 : Retirer une demande après exécution
     public void defilerDemande(DemandeCollecte demande) throws ExceptionPersonnalisable
     {
