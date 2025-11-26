@@ -11,6 +11,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
+import static model.ChargeurFichiers.chargerGenerique;
+
 public class Main
 {
     public static void main(String[] args) {
@@ -23,6 +25,7 @@ public class Main
         Queue<DemandeCollecte> listeDemandes = new LinkedList<>();
 
         final String NOM_FICHIER_USERS = "Base_De_Donnees_Particuliers.txt";
+        final String NOM_FICHIER_DEMANDES = "Liste_Demandes.txt";
 
         // IMPORT DES CLASSES :
         //pour le plan
@@ -38,39 +41,19 @@ public class Main
         ParticulierController pc = new ParticulierController(pm,pv,f);
 
         // pour l'entreprise
+        FichierDemandes fd = new FichierDemandes(NOM_FICHIER_DEMANDES);
         EntrepriseModel em = new EntrepriseModel(plan,pm);
         EntrepriseController enc = new EntrepriseController(em,plan);
 
         // Pour le camion
         CamionController camC = new CamionController(enc,pm);
 
-        try
-        {
-            //lecture du fichier
-            System.out.println("Tentative de chargement du réseau en tant que ressource: " + NOM_FICHIER_USERS);
-            InputStream is = Main.class.getClassLoader().getResourceAsStream(NOM_FICHIER_USERS);
-            if (is == null)
-            {
-                System.out.println("Échec de la lecture. Tentative de lecture de fichier simple...");
-                f.chargerInfos();
-            }
-            else
-            {
-                try (BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8)))
-                {
-                    f.chargerInfosDepuisBuffer(br);
-                }
-            }
+        // Chargement des différents fichiers texte
+        chargerGenerique(NOM_FICHIER_USERS, f);
+        chargerGenerique(NOM_FICHIER_DEMANDES, fd);
 
-        }
-        catch (IOException e)
-        {
-            System.err.println("ERREUR Impossible de lire le fichier du réseau (" + NOM_FICHIER_USERS + ").");
-            System.err.println("Détail de l'erreur: " + e.getMessage());
-            return;
-        }
         plan = planC.choixFichier(plan); //permet de choisir le fichier qu'on utilise et affiche le plan de la ville associé
-        //Queue<DemandeCollecte> listeDemandes = em.chargerDemande(); // Charge le fichier texte contenant les demandes
+
 
         while (!exitAll)  //permet de faire tourner l'application sans fin tant que exitAll n'a pas été choisi
         {

@@ -1,7 +1,7 @@
 package model.particulier;
 import exceptions.ExceptionPersonnalisable;
-import model.map.Arc;
-import model.map.Plan;
+import model.ChargerFichiers;
+
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +11,7 @@ import java.util.Map;
 // ATTENTION : On enregistre le numéro de la maison (distance entre la maison & le bout de la rue)
 // dans la variable double numero.
 // Le nom de la rue est enregistré comme "Route de la Mouline" par exemple, mais ce nom est associé à un arc.
-public class FichiersProfil
+public class FichiersProfil extends ChargerFichiers
 {
     // ATTRIBUTS
     private HashMap<String, Profil> compte;
@@ -27,7 +27,8 @@ public class FichiersProfil
     public Map<String, Profil> getCompte() {return compte;}
 
     // METHODE n°1 : Remplissage de la HashMap compte pour la première fois
-    public void chargerInfos()
+    @Override
+    public void chargerDepuisFichier()
     {
         try (BufferedReader br = new BufferedReader(new FileReader(nomFichier)))
         {
@@ -55,7 +56,8 @@ public class FichiersProfil
     }
 
     // METHODE n°2 : lecture après une première ouverture
-    public void chargerInfosDepuisBuffer(BufferedReader br) throws IOException
+    @Override
+    public void chargerDepuisBuffer(BufferedReader br) throws IOException
     {
         try (br)
         {
