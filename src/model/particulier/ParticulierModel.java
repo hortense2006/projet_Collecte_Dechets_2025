@@ -22,7 +22,7 @@ public class ParticulierModel
         this.f = new FichiersProfil(nomFichier);
         this.compte = f.getCompte();
         this.demandes = new LinkedList<>();
-        f.chargerInfos(); // charge les profils existants
+        f.chargerDepuisFichier(); // charge les profils existants
     }
 
     // GETTER n°2

@@ -8,7 +8,7 @@ import model.map.Station;
 
 import java.util.*;
 
-public class Tournee {
+/*public class Tournee {
     public Plan plan;
     public List<Arc> itineraire; // La suite des rues empruntées
     public double distanceTotale;
@@ -92,4 +92,4 @@ public class Tournee {
         }
     }
 
-}
+}*/

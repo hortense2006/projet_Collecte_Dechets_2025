@@ -26,7 +26,7 @@ public class FichierDemandes implements ChargerFichiers
     }
     // METHODE n°1 : Remplissage de la HashMap compte pour la première fois
     @Override
-    public void chargerDepuisFichier() throws IOException
+    public void chargerDepuisFichier()
     {
         try (BufferedReader br = new BufferedReader(new FileReader(nomFichier)))
         {

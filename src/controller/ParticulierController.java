@@ -159,7 +159,6 @@ public class ParticulierController
             }
         }
         demande = model.faireDemandeCollecte(utilisateurActuel.getId(),choix,quantite,dateDemande,utilisateurActuel.getRue(),utilisateurActuel.getNumero());
-        f.sauvegarderDemande(demande);
         view.afficherDemande(demande); // On affiche la demande pour vérification.
         view.afficherMessage("Votre demande a été enregistrée.");
         return demande;
