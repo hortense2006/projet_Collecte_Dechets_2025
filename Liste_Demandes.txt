@@ -1,1 +1,3 @@
 7382af9c-1f91-4fae-abef-d83851b25835;MEUBLE;1;2025-11-26;Privet Drive;15.0
+7382af9c-1f91-4fae-abef-d83851b25835;MEUBLE;1;2025-11-26;Privet Drive;15.0
+fc26de1c-f240-4411-952d-8b65b1d19dbe;MEUBLE;3;2025-11-27;privet Drive;14.0

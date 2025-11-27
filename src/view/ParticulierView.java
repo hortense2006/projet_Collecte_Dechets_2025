@@ -23,6 +23,7 @@ public class ParticulierView
     public String ActionLogin()
     {
         System.out.println("Etes-vous déjà inscrit ? (oui/non)");
+        sc.nextLine();
         return sc.nextLine();
     }
 
@@ -71,11 +72,11 @@ public class ParticulierView
         do
         {
             System.out.println("Quel type d'encombrant voulez-vous déclarer ?");
-            System.out.println("\n1. Meubles" +
-                    "\n2. Electroménager" +
-                    "\n3. Bois" +
-                    "\n4.Canape" +
-                    "\n5. Autre");
+            System.out.println("\n Meubles" +
+                    "\n Electroménager" +
+                    "\n Bois" +
+                    "\n Canape" +
+                    "\n Autre");
             saisie = sc.nextLine();
             saisie = saisie.trim();// Enlève les espaces avant/après en trop
         }while(!saisie.equalsIgnoreCase("Meubles") && !saisie.equalsIgnoreCase("Electroménager") &&
@@ -94,6 +95,7 @@ public class ParticulierView
     }
     // METHODE n°8 : afficher les infos du particulier
     public void afficherInfos(){}
+
     // METHODE n°9: Afficher la demande de l'utilisateur
     public void afficherDemande(DemandeCollecte demande)
     {

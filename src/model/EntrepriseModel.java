@@ -78,5 +78,4 @@ public class EntrepriseModel
             throw new ExceptionPersonnalisable("Demande non trouvée dans la file !");
         }
     }
-
 }

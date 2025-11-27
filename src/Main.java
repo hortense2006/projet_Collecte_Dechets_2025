@@ -20,7 +20,7 @@ public class Main
     public static void main(String[] args) {
 
         // ATTRIBUTS
-        String typeUser = "";
+        int typeUser ;
         int choix;
         boolean exitAll = false;
         boolean exit = false;
@@ -61,15 +61,15 @@ public class Main
         while (!exitAll)  //permet de faire tourner l'application sans fin tant que exitAll n'a pas été choisi
         {
             System.out.println("Choisissez votre profil : " +
-                    "\n commune" +
-                    "\n particulier" +
-                    "\n entreprise" +
-                    "\n quitter");
-            typeUser = sc.nextLine();
+                    "\n 1. commune" +
+                    "\n 2. particulier" +
+                    "\n 3. entreprise" +
+                    "\n 4. quitter");
+            typeUser = sc.nextInt();
             exit = false;
             switch (typeUser)
             {
-                case "commune":
+                case 1:
                 {
                     while (!exit)
                     {
@@ -96,7 +96,7 @@ public class Main
                     }
                     break;
                 }
-                case "particulier":
+                case 2:
                 {
                     pc.login();// Connexion/Inscription
                     while (!exit)
@@ -128,14 +128,13 @@ public class Main
                             {
                                 exit = true; // Changement d'utilisateur
                                 System.out.println("\n Changement d'utilisateur");
-                                sc.nextLine();
                                 break;
                             }
                         }
                     }
                     break;
                 }
-                case "entreprise":
+                case 3:
                 {
                     while(!exit)
                     {
@@ -173,7 +172,7 @@ public class Main
                     }
                     break;
                 }
-                case "quitter":
+                case 4:
                 {
                     exitAll = true;
                     System.out.println("\n Au revoir. ");
