@@ -104,7 +104,8 @@ public class Main
                         System.out.println("Que souhaitez-vous faire :");
                         System.out.println("\n1. Demande de collecte"+
                                 "\n2. Consulter le planning de ramassage"+
-                                "\n3. Changer de type d'utilisateur");
+                                "\n3. Aller jeter ses déchets au point de collecte " +
+                                "\n4. Changer de type d'utilisateur");
                         choix = sc.nextInt();
                         sc.nextLine();
                         switch (choix)
@@ -124,7 +125,12 @@ public class Main
                                 pm.consulterPlanningRamassage("ranville");
                                 break;
                             }
-                            case 3: //Sortie
+                            case 3 :
+                                PointCollecteView pcView = new PointCollecteView();
+                                PointCollecteController pcController = new PointCollecteController(planDeVille, pcView);
+                                pcController.depotDechetAuPointCollecte();
+                                break;
+                            case 4: //Sortie
                             {
                                 exit = true; // Changement d'utilisateur
                                 System.out.println("\n Changement d'utilisateur");
@@ -159,7 +165,7 @@ public class Main
                             }
                             case 3:
                                 TourneePointCollecte tourneePC = new TourneePointCollecte(planDeVille);
-                                tourneePC.tournee();
+                                tourneePC.tourneePlusProcheVoisinSansCapacite();
                                 TourneePointCollecteView tpcView = new TourneePointCollecteView(tourneePC);
                                 tpcView.afficherResultats();
                                 break;

@@ -3,6 +3,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+import java.util.Random;
 
 import exceptions.ExceptionPersonnalisable;
 import view.PlanView;
@@ -12,6 +13,7 @@ public class Plan {
     private Map<String, Station> stations; //plan de la ville
     private HashMap<String, Arc> arcs; // Arcs (rues)
     public PlanView planView = new PlanView();
+    Random rand = new Random();
 
     public Plan() { //constructeur
 
@@ -53,7 +55,10 @@ public class Plan {
         } else if (nom.startsWith("R")) {
             return new Intersection(nom);
         } else if (nom.startsWith("P")) {
-            return new PointCollecte(nom);
+            int min = 500;
+            int max = 5000;
+            int randomCapacite = rand.nextInt((max - min) + 1) + min;
+            return new PointCollecte(nom, randomCapacite);
         }
         return null;
     }

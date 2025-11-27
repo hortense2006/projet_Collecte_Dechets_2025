@@ -10,9 +10,9 @@ import java.util.*;
 public class CamionModel
 {
     // ATTRIBUTS
-    private String idCamion;                       // Identifiant unique
-    private double capaciteMax;                    // Charge maximale (kg ou L)
-    private double capaciteActuelle;               // Charge actuelle
+    private String idCamion; // Identifiant unique
+    private double capaciteMax; // Charge maximale (kg ou L)
+    private double capaciteActuelle; // Charge actuelle
     private boolean disponible; // Statut du camion
     private Station posCamion;
 
