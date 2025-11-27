@@ -18,8 +18,9 @@ public class PlanController {
     //Menu qui permet de choisir le type de fichier qu'on veut et l'affiche
     public Plan choixFichier(Plan p) {
         String nomFichier = "";
-        int choix = 0;
-        while (choix >=3  || choix <= 1) {
+        int choix;
+        do {
+
         Scanner sc = new Scanner(System.in);
         choix = planView.afficherMenu();
 
@@ -59,7 +60,7 @@ public class PlanController {
                     }
                     break;
             }
-        }
+        } while (choix >=3  || choix <= 1);
         return p = null;
     }
 }

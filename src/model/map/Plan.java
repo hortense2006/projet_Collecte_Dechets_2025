@@ -22,24 +22,26 @@ public class Plan {
     public Map<String, Station> getStations() {
         return stations;
     }
+
     public Station getStation(String nomStation) {
         return stations.get(nomStation);
     }
+
     public Station getStationP(String rue, double numero) {
         String cle = rue + "-" + numero;   // clé composite
         return stations.get(cle);
     }
-    // Méthode pour récupérer tous les arcs
+
     public HashMap<String, Arc> getArcs() {
         return arcs;
-    }
+    } // Méthode pour récupérer tous les arcs
 
     // Récupérer un Arc à partir du nom de rue
     public Arc getArcParNom(String nomRue) {
         return arcs.get(nomRue); // renvoie null si le nom n'existe pas
     }
-    //Permet de déterminer l'orientation du graphe
-    public enum modeOrientation {
+
+    public enum modeOrientation { //Permet de déterminer l'orientation du graphe
         HO1_NON_ORIENTE, // rue à double sens
         HO2_ORIENTE, // rue à sens unique
         HO3_MIXTE // rue mixte (double sens et sens unique)

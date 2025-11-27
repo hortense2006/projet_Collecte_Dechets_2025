@@ -4,6 +4,8 @@ import model.map.*;
 import model.particulier.DemandeCollecte;
 import model.particulier.FichiersProfil;
 import model.particulier.ParticulierModel;
+import model.Tournee.TourneePointCollecte;
+
 import view.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -51,7 +53,7 @@ public class Main
         chargerGenerique(NOM_FICHIER_USERS, f);
         chargerGenerique(NOM_FICHIER_DEMANDES, fd);
 
-        plan = planC.choixFichier(plan); //permet de choisir le fichier qu'on utilise et affiche le plan de la ville associé
+        Plan planDeVille = planC.choixFichier(plan); //permet de choisir le fichier qu'on utilise et affiche le plan de la ville associé
 
         //On récupère la liste de demandes
         Queue<DemandeCollecte> listeDemandes = fd.getFileDemandes();
@@ -140,7 +142,8 @@ public class Main
                         System.out.println("Que souhaitez-vous faire :");
                         System.out.println("\n1. Planifier une tournee"+
                                 "\n2. Organiser une collecte d'encombrants"+
-                                "\n3. Changer de type d'utilisateur");
+                                "\n3. Faire une tournée des points de collectes"+
+                                "\n4. Changer de type d'utilisateur");
                         choix = sc.nextInt();
                         sc.nextLine();
                         switch (choix)
@@ -155,13 +158,17 @@ public class Main
                                 camC.executerTournee();
                                 break;
                             }
-                            case 3: // Sortie
-                            {
+                            case 3:
+                                TourneePointCollecte tourneePC = new TourneePointCollecte(planDeVille);
+                                tourneePC.tournee();
+                                TourneePointCollecteView tpcView = new TourneePointCollecteView(tourneePC);
+                                tpcView.afficherResultats();
+                                break;
+                            case 4: // Sortie
                                 exit = true; // Changement d'utilisateur
                                 System.out.println("\n Changement d'utilisateur");
                                 sc.nextLine();
                                 break;
-                            }
                         }
                     }
                     break;
