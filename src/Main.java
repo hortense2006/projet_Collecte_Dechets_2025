@@ -155,7 +155,7 @@ public class Main
                             }
                             case 2: // Collecte d'encombrants
                             {
-                                camC.executerTournee();
+                                camC.executerTournee(NOM_FICHIER_DEMANDES);
                                 break;
                             }
                             case 3:

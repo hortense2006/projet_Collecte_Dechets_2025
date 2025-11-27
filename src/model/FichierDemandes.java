@@ -18,9 +18,15 @@ public class FichierDemandes implements ChargerFichiers
         this.fileDemandes = new LinkedList<>();
         this.nomFichier = nomFichier;
     }
+
+    // GETTER n°1
+    public Queue<DemandeCollecte> getFileDemandes()
+    {
+        return fileDemandes;
+    }
     // METHODE n°1 : Remplissage de la HashMap compte pour la première fois
     @Override
-    public void chargerDepuisFichier() throws IOException
+    public void chargerDepuisFichier()
     {
         try (BufferedReader br = new BufferedReader(new FileReader(nomFichier)))
         {
@@ -90,11 +96,11 @@ public class FichierDemandes implements ChargerFichiers
             for (DemandeCollecte demande : fileDemandes)
             {
                 // Exemple de format : idUtilisateur,typeEncombrant,quantite,date,rue,numero
-                String ligne = demande.getId() + "," +
-                        demande.getTypeEncombrant() + "," +
-                        demande.getQuantite() + "," +
-                        demande.getDateDemande() + "," +
-                        demande.getRue() + "," +
+                String ligne = demande.getId() + ";" +
+                        demande.getTypeEncombrant() + ";" +
+                        demande.getQuantite() + ";" +
+                        demande.getDateDemande() + ";" +
+                        demande.getRue() + ";" +
                         demande.getNumero();
                 bw.write(ligne);
                 bw.newLine();
@@ -105,10 +111,5 @@ public class FichierDemandes implements ChargerFichiers
         {
             System.err.println("Erreur lors de l'écriture dans le fichier : " + e.getMessage());
         }
-    }
-
-    public Queue<DemandeCollecte> getFileDemandes()
-    {
-        return fileDemandes;
     }
 }

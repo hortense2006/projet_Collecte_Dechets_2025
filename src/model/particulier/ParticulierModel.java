@@ -22,7 +22,7 @@ public class ParticulierModel
         this.f = new FichiersProfil(nomFichier);
         this.compte = f.getCompte();
         this.demandes = new LinkedList<>();
-        f.chargerInfos(); // charge les profils existants
+        f.chargerDepuisFichier(); // charge les profils existants
     }
 
     // GETTER n°2
@@ -60,5 +60,11 @@ public class ParticulierModel
         compte.put(id, p);
 
         return p;
+    }
+
+    public Queue<DemandeCollecte> setDemande(Queue<DemandeCollecte> fileDemandes)
+    {
+        this.demandes = fileDemandes;
+        return fileDemandes;
     }
 }

@@ -37,6 +37,10 @@ public class EntrepriseController
         List<Arc> arcsTotaux = new ArrayList<>();
         Station depart = courant; // départ du camion (dépôt)
         List<DemandeCollecte> demandesRestantes = new ArrayList<>(demandes);
+        if (courant == null)
+        {
+            throw new ExceptionPersonnalisable("Le dépôt du camion n'est pas défini.");
+        }
 
         // Boucle while qui parcourt la liste des demandes
         while (!demandesRestantes.isEmpty())
@@ -47,7 +51,7 @@ public class EntrepriseController
 
             for (DemandeCollecte d : demandesRestantes)
             {
-                Station s = p.getStationP(d.getRue(), d.getNumero());
+                Station s = p.getStationP(d.getRue(), d.getNumero()); // A REFAIRE !!
                 // Pour simplifier on compare les numéros (notation américaine)
                 double distanceApprox = Math.abs(d.getNumero() - 0); // approximation simple
                 if (distanceApprox < minDistance)

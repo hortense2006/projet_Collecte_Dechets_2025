@@ -1,5 +1,6 @@
 package controller;
 
+import model.FichierDemandes;
 import model.particulier.DemandeCollecte;
 import model.particulier.ParticulierModel;
 
@@ -17,8 +18,11 @@ public class CamionController
         this.particuliermodel= particuliermodel;
     }
     // METHODE n°4 : Faire la tournée
-    public void executerTournee()
+    public void executerTournee(String nomFichier)
     {
+        FichierDemandes fd = new FichierDemandes(nomFichier);
+        fd.chargerDepuisFichier(); // lit le fichier et remplit fileDemandes
+        particuliermodel.setDemande(fd.getFileDemandes());
         // Récupère la liste des demandes
         Queue<DemandeCollecte> liste = particuliermodel.getDemande();
         System.out.println(liste);
