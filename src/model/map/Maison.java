@@ -12,29 +12,30 @@ public class Maison extends Station
     }
 
     // METHODE n°1 : Création d'une maison (station temporaire)
-    public Station creerMaison(String rue, double numero)
-    {
+    public Station creerMaison(String rue, double numero) {
         Arc arc = plan.getArcParNom(rue);
-        if (arc == null)
-        {
-            return null; // rue inconnue
+        if (arc == null) {
+            System.err.println("Rue inconnue : " + rue);
+            return null;
         }
 
+        // Limiter le numéro à l'intérieur de l'arc
+        if (numero < 0) numero = 0;
+        if (numero > arc.getDistance()) numero = arc.getDistance();
+
         // Créer la station temporaire
-        String nomTemp = "M" + rue + "_" + numero;
-
-        // Ajouter la station au graphe
+        String nomTemp = "M_" + rue + "_" + numero;
         Station maisonTemp = plan.creerStation(nomTemp);
+        if (maisonTemp == null) {
+            System.err.println("Impossible de créer la station " + nomTemp);
+            return null;
+        }
 
-        // Définir la position sur l’arc selon numérotation américaine
-        double numeroDebut = 0;               // début de la rue
-        double numeroFin = arc.getDistance();  // longueur totale de la rue
-        // Découper l’arc en deux arcs : début -> maison, maison -> fin
-        Arc arc1 = new Arc(arc.getDepart(), maisonTemp, numero - numeroDebut);
-        Arc arc2 = new Arc(maisonTemp, arc.getArrivee(), numeroFin - numero);
+        // Créer deux arcs pour la maison sur l'arc existant
+        Arc arc1 = new Arc(arc.getDepart(), maisonTemp, numero);
+        Arc arc2 = new Arc(maisonTemp, arc.getArrivee(), arc.getDistance() - numero);
 
-        // Mettre à jour arcs sortants
-        arc.getDepart().getArcsSortants().remove(arc);
+        // Ajouter les arcs sortants
         arc.getDepart().ajouterArcSortant(arc1);
         maisonTemp.ajouterArcSortant(arc2);
 

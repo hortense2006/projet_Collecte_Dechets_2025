@@ -34,9 +34,6 @@ public class Main
         Plan plan = new Plan();
         PlanView planV = new PlanView();
         PlanController planC = new PlanController(plan,planV);
-        
-        // Pour les maisons
-        Maison maison = new Maison(plan,nom);
 
         // pour les particuliers
         Scanner sc = new Scanner(System.in);
@@ -45,10 +42,15 @@ public class Main
         ParticulierModel pm = new ParticulierModel(NOM_FICHIER_USERS);
         ParticulierController pc = new ParticulierController(pm,pv,f);
 
+        Plan planDeVille = planC.choixFichier(plan); //permet de choisir le fichier qu'on utilise et affiche le plan de la ville associé
+
+
+        // Pour les maisons
+        Maison maison = new Maison(planDeVille,nom);
         // pour l'entreprise
         FichierDemandes fd = new FichierDemandes(NOM_FICHIER_DEMANDES);
-        EntrepriseModel em = new EntrepriseModel(plan,pm);
-        EntrepriseController enc = new EntrepriseController(em,plan,maison);
+        EntrepriseModel em = new EntrepriseModel(planDeVille,pm);
+        EntrepriseController enc = new EntrepriseController(em,planDeVille,maison);
 
         // Pour le camion
         CamionController camC = new CamionController(enc,pm);
@@ -56,8 +58,6 @@ public class Main
         // Chargement des différents fichiers texte
         chargerGenerique(NOM_FICHIER_USERS, f);
         chargerGenerique(NOM_FICHIER_DEMANDES, fd);
-
-        Plan planDeVille = planC.choixFichier(plan); //permet de choisir le fichier qu'on utilise et affiche le plan de la ville associé
 
         //On récupère la liste de demandes
         Queue<DemandeCollecte> listeDemandes = fd.getFileDemandes();

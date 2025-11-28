@@ -36,8 +36,6 @@ public class EntrepriseController
         List<Arc> arcsTotaux = new ArrayList<>();
         Station depart = courant; // départ du camion (dépôt)
         List<DemandeCollecte> demandesRestantes = new ArrayList<>(demandes);
-        System.out.println("Stations chargées : " + p.getStations().keySet());
-        System.out.println("Station D : " + p.getStation("D"));
 
         if (courant == null)
         {
