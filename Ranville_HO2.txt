@@ -1,21 +1,22 @@
 # HO2 : Certaines rues sont à sens unique (graphe orienté)
 # Format : sommet1 sommet2 distance (sens unique)
 
-D;R1;250
-D;R2;300
-R1;R3;180
-R1;R4;220
-R2;R4;200
-R2;R5;250
-R3;R4;150
-R3;P1;120
-P1;R4;140
-R4;R6;200
-R4;P2;180
-P2;R5;160
-R5;R6;160
-R6;R7;210
-R6;P3;130
-P3;R8;190
-R7;R8;240
-R8;D;350
+Rue de la Gare;D;>;R1;250
+Rue du Moulin;D;>;R2;300
+Rue du Parc;R1;>;R3;180
+Rue du Stade;R1;>;R4;220
+Rue du Château;R2;>;R4;200
+Avenue des Lilas;R2;>;R5;250
+Rue des Tilleuls;R3;>;R4;150
+Rue des Écoles;R3;>;P1;120
+Rue de la Mairie;P1;>;R4;140
+Boulevard Victor Hugo;R4;>;R6;200
+Rue des Fleurs;R4;>;P2;180
+Rue du Marché;P2;>;R5;160
+Rue du Moulin (bis);R5;>;R6;160
+Rue de la République;R6;>;R7;210
+Rue des Acacias;R6;>;P3;130
+Avenue de l’Église;P3;>;R8;190
+Rue des Jardins;R7;>;R8;240
+Route du Dépôt;R8;>;D;350
+
