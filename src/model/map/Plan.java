@@ -29,11 +29,6 @@ public class Plan {
         return stations.get(nomStation);
     }
 
-    public Station getStationP(String rue, double numero) {
-        String cle = rue + "-" + numero;   // clé composite
-        return stations.get(cle);
-    }
-
     public HashMap<String, Arc> getArcs() {
         return arcs;
     } // Méthode pour récupérer tous les arcs

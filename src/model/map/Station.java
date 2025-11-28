@@ -40,5 +40,19 @@ public class Station {
     public String toString() { //afficher détail
         return "Station : " + getNom();
     }
+    // Ajouter un arc au graphe
+    public void ajouterArc(Arc a)
+    {
+        // Ajoute l'arc à la station de départ
+        a.getDepart().ajouterArcSortant(a);
+    }
+
+    // Supprimer un arc du graphe
+    public void supprimerArc(Arc a) {
+        // Supprime l'arc de la liste des arcs sortants de la station de départ
+        a.getDepart().getArcsSortants().remove(a);
+    }
+
+
 
 }
