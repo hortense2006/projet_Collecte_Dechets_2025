@@ -1,3 +1,6 @@
+# HO1 : Toutes rues sont à sens unique (graphe orienté)
+# Format : sommet1 sommet2 distance (sens unique)
+
 Rue de la Gare;D;-;R1;250
 Rue du Moulin;D;-;R2;300
 Rue du Parc;R1;-;R3;180
