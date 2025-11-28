@@ -5,11 +5,8 @@ import model.particulier.DemandeCollecte;
 import model.particulier.FichiersProfil;
 import model.particulier.ParticulierModel;
 import model.Tournee.TourneePointCollecte;
-
 import view.*;
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
