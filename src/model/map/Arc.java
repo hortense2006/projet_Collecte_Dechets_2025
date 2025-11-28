@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Arc {
 
-    private final String idLigne;
+    private String idLigne;
     private final Station depart;
     private final Station arrivee;
     private double distance;
@@ -20,6 +20,12 @@ public class Arc {
         this.arrivee = arrivee;
         this.distance = duree;
         this.dechetsSurLaVoie = new ArrayList<>();
+    }
+    public Arc(Station depart, Station arrivee, double duree)
+    {
+        this.depart = depart;
+        this.arrivee = arrivee;
+        this.distance = duree;
     }
 
     public String getIdLigne() {
@@ -42,5 +48,4 @@ public class Arc {
         }
         return tous;
     }
-
 }

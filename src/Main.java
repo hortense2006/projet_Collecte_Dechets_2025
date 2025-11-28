@@ -5,11 +5,8 @@ import model.particulier.DemandeCollecte;
 import model.particulier.FichiersProfil;
 import model.particulier.ParticulierModel;
 import model.Tournee.TourneePointCollecte;
-
 import view.*;
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
@@ -21,6 +18,7 @@ public class Main
 
         // ATTRIBUTS
         int typeUser ;
+        String nom = "";
         int choix;
         boolean exitAll = false;
         boolean exit = false;
@@ -41,10 +39,15 @@ public class Main
         ParticulierModel pm = new ParticulierModel(NOM_FICHIER_USERS);
         ParticulierController pc = new ParticulierController(pm,pv,f);
 
+        Plan planDeVille = planC.choixFichier(plan); //permet de choisir le fichier qu'on utilise et affiche le plan de la ville associé
+
+
+        // Pour les maisons
+        Maison maison = new Maison(planDeVille,nom);
         // pour l'entreprise
         FichierDemandes fd = new FichierDemandes(NOM_FICHIER_DEMANDES);
-        EntrepriseModel em = new EntrepriseModel(plan,pm);
-        EntrepriseController enc = new EntrepriseController(em,plan);
+        EntrepriseModel em = new EntrepriseModel(planDeVille,pm);
+        EntrepriseController enc = new EntrepriseController(em,planDeVille,maison);
 
         // Pour le camion
         CamionController camC = new CamionController(enc,pm);
@@ -52,8 +55,6 @@ public class Main
         // Chargement des différents fichiers texte
         chargerGenerique(NOM_FICHIER_USERS, f);
         chargerGenerique(NOM_FICHIER_DEMANDES, fd);
-
-        Plan planDeVille = planC.choixFichier(plan); //permet de choisir le fichier qu'on utilise et affiche le plan de la ville associé
 
         //On récupère la liste de demandes
         Queue<DemandeCollecte> listeDemandes = fd.getFileDemandes();

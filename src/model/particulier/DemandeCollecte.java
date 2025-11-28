@@ -13,6 +13,8 @@ public class DemandeCollecte
     private LocalDate dateDemande;
     private String rue;
     private double numero;
+    private Arc arcMaison;
+    private double position;
 
 
     // CONSTRUCTEUR
@@ -36,6 +38,6 @@ public class DemandeCollecte
     public String getRue() {return rue;}
     // GETTER n°5
     public double getNumero() {return numero;}
-
+    // GETTER n°6
     public String getId() { return idUtilisateur;}
 }
