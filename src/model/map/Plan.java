@@ -85,25 +85,30 @@ public class Plan {
                 }
                 String[] parties = ligne.split(";");//sépare au niveau de chaque ;
 
+                String nomRue = ""; //permet d'avoir un vrai nom de rue
                 String nomDepart;
                 String nomArrivee;
                 boolean estSensUnique = false;
                 double distance = 0.0;
                 boolean ajouterArcBA = false;
 
-                if (parties.length == 3) { // pour les 2 premier HO1 et HO2
-                    nomDepart = parties[0].trim();
-                    nomArrivee = parties[1].trim();
+                if (parties.length == 4) {// pour les 2 premier HO1 et HO2
+                    nomRue = parties[0].trim(); //nom de la rue donc l'arc
+                    nomDepart = parties[1].trim(); //intersection d'arrivée
+                    nomArrivee = parties[2].trim(); //intersection de fin
+
                     try {
-                        distance = Double.parseDouble(parties[2].trim());//récupère la distance de la rue
+                        distance = Double.parseDouble(parties[3].trim());//récupère la distance de la rue
                     } catch (ExceptionPersonnalisable e) {
                         planView.afficherErreurPlan("Ligne ignorée (distance invalide) : " + ligne); //lance une exception si elle n'est pas valide
                         continue;
                     }
-                } else if (parties.length == 4) { // pour HO3
-                    nomDepart = parties[0].trim(); //récupère le départ de la rue
-                    String sens = parties[1].trim();
-                    nomArrivee = parties[2].trim(); //récupère la fin de la rue
+                } else if (parties.length == 5) { // pour HO3
+                    nomRue = parties[0].trim(); //le nom de la rue
+                    nomDepart = parties[1].trim(); // le point de départ
+                    String sens = parties[2].trim(); //le sens
+                    nomArrivee = parties[3].trim(); //fin de la rue
+
                     if (sens.equals(">")) {
                         estSensUnique = true;
                     } else if (sens.equals("-")) {
@@ -113,7 +118,7 @@ public class Plan {
                         continue;
                     }
                     try {
-                        distance = Double.parseDouble(parties[3].trim());
+                        distance = Double.parseDouble(parties[4].trim());
                     } catch (ExceptionPersonnalisable e) {
                         planView.afficherErreurPlan("Ligne ignorée (distance invalide) : " + ligne); //lance une exception si elle n'est pas valide
                         continue;
@@ -125,7 +130,7 @@ public class Plan {
 
                 Station depart = stations.computeIfAbsent(nomDepart, this::creerStation); // création des sommets
                 Station arrivee = stations.computeIfAbsent(nomArrivee, this::creerStation);
-                Arc arcAB = new Arc(nomDepart + "-" + nomArrivee, depart, arrivee, distance); // créer un arc type
+                Arc arcAB = new Arc(nomRue, depart, arrivee, distance); // créer un arc type
                 depart.ajouterArcSortant(arcAB); // créer la première connection
                 nbArcsAjoutes++; //incrémente de nom d'arc
 

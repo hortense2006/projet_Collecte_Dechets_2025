@@ -41,11 +41,4 @@ public class Arc {
         return distance;
     }
 
-    public List<Arc> recupererTousLesArcs(Plan plan) {
-        List<Arc> tous = new ArrayList<>();
-        for (Station s : plan.getStations().values()) {
-            tous.addAll(s.getArcsSortants());
-        }
-        return tous;
-    }
 }

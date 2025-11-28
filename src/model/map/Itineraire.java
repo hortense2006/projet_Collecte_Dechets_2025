@@ -6,13 +6,13 @@ public class Itineraire {
     private final Station depart;
     private final Station arrivee;
     private final List<Arc> chemin;
-    private double dureeTotale;
+    private double distanceTotal;
 
     public Itineraire(Station depart, Station arrivee, List<Arc> chemin) {
         this.depart = depart;
         this.arrivee = arrivee;
         this.chemin = chemin;
-        this.dureeTotale = -1;
+        this.distanceTotal = -1;
     }
 
     public int getNombreStations() {
@@ -21,8 +21,8 @@ public class Itineraire {
     public List<Arc> getChemin () {
         return chemin;
     }
-    public double getDureeTotale() {
-        return dureeTotale;
+    public double getDistanceTotale() {
+        return distanceTotal;
     }
 
     public int getNombreChangements() {
@@ -39,37 +39,6 @@ public class Itineraire {
             }
         }
         return changements;
-    }
-
-    public void afficherItineraire() {
-        if (chemin.isEmpty()) {
-            System.out.println("Itinéraire non trouvé");
-            return;
-        }
-        System.out.println("Itinéraire : " + depart.getNom() + " vers " + arrivee.getNom() + " - ");
-        System.out.println("Total Stations : " + getNombreStations() + " : Total de changements : " + getNombreChangements());
-        if (dureeTotale != -1.0) {
-            System.out.println("Durée totale estimée : " +dureeTotale+ " minutes.");
-        }
-        Station current = depart; // on initialise la station à celle de départ
-        String ligneCourante = "";
-        for (int i = 0; i < chemin.size(); i++) {
-            Arc arc = chemin.get(i);
-            String ligneArc = arc.getIdLigne();
-            if (!ligneArc.equals(ligneCourante)) { // vérifie si la ligne courante est différente de la suivant
-                if (i > 0) {
-                    System.out.println(" Correspondance à " + current.getNom());
-                }
-                System.out.println("Prendre la ligne " + ligneArc + " depuis " + current.getNom());
-                ligneCourante = ligneArc;
-            }
-            current = arc.getArrivee();
-            if (i == chemin.size() - 1) {
-                System.out.println("Arrivée : " + current.getNom()); //arrivée atteinte
-            } else {
-                System.out.println("Continuer jusqu'à " + current.getNom()); //continue si elle n'est pas trouvée
-            }
-        }
     }
 
     public Itineraire reconstituerChemin (Station depart, Station arrivee, Station stationArriveeTrouvee, Map<Station, Arc> predecesseurs) { //méthode qui servira à l'affichage d'un chemin

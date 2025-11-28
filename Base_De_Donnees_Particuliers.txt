@@ -1,1 +1,2 @@
 Hortense;Galtier;15.0;Avenue de l'Eglise;d042cd73-0b44-4a6e-bc5f-78e38a5c4c43;AvEg15
+Harry;Potter;12.0;Rue du Parc;138685a8-7063-48e6-8d50-9ba1e991d8ee;LAjolieChouette
