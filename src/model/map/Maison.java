@@ -12,9 +12,11 @@ public class Maison extends Station
     }
 
     // METHODE n°1 : Création d'une maison (station temporaire)
-    public Station creerMaison(String rue, double numero) {
+    public Station creerMaison(String rue, double numero)
+    {
         Arc arc = plan.getArcParNom(rue);
-        if (arc == null) {
+        if (arc == null)
+        {
             System.err.println("Rue inconnue : " + rue);
             return null;
         }
