@@ -49,16 +49,26 @@ public class Plan {
         HO3_MIXTE // rue mixte (double sens et sens unique)
     }
 
-    private Station creerStation(String nom) {
-        if (nom.startsWith("D")) {
+    public Station creerStation(String nom)
+    {
+        if (nom.startsWith("D"))
+        {
             return new Depot(nom);
-        } else if (nom.startsWith("R")) {
+        }
+        else if (nom.startsWith("R"))
+        {
             return new Intersection(nom);
-        } else if (nom.startsWith("P")) {
+        }
+        else if (nom.startsWith("P"))
+        {
             int min = 500;
             int max = 5000;
             int randomCapacite = rand.nextInt((max - min) + 1) + min;
             return new PointCollecte(nom, randomCapacite);
+        }
+        else if (nom.startsWith("M"))
+        {
+            return new Station(nom);
         }
         return null;
     }
