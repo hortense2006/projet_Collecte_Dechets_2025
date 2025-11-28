@@ -167,8 +167,8 @@ public class Main
                             case 3:
                                 TourneePointCollecte tourneePC = new TourneePointCollecte(planDeVille);
                                 tourneePC.tourneePlusProcheVoisinSansCapacite();
-                                TourneePointCollecteView tpcView = new TourneePointCollecteView(tourneePC);
-                                tpcView.afficherResultats();
+                                //TourneePointCollecteView tpcView = new TourneePointCollecteView(tourneePC);
+                                //tpcView.afficherResultats();
                                 break;
                             case 4: // Sortie
                                 exit = true; // Changement d'utilisateur

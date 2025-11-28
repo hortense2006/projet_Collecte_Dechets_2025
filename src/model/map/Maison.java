@@ -28,11 +28,12 @@ public class Maison extends Station
         // Créer la station temporaire
         String nomTemp = "M_" + rue + "_" + numero;
         Station maisonTemp = plan.creerStation(nomTemp);
-        if (maisonTemp == null) {
+        if (maisonTemp == null)
+        {
             System.err.println("Impossible de créer la station " + nomTemp);
             return null;
         }
-
+        plan.getStations().put(nomTemp, maisonTemp);
         // Créer deux arcs pour la maison sur l'arc existant
         Arc arc1 = new Arc(arc.getDepart(), maisonTemp, numero);
         Arc arc2 = new Arc(maisonTemp, arc.getArrivee(), arc.getDistance() - numero);
