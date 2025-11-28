@@ -21,8 +21,17 @@ public class Itineraire {
     public List<Arc> getChemin () {
         return chemin;
     }
+    public int getCheminSize () {
+        return chemin.size();
+    }
     public double getDistanceTotale() {
         return distanceTotal;
+    }
+    public Station  getDepart() {
+        return depart;
+    }
+    public Station getArrivee() {
+        return arrivee;
     }
 
     public int getNombreChangements() {

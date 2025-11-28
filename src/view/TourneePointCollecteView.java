@@ -15,8 +15,9 @@ public class TourneePointCollecteView {
         System.out.println("Affichage du trajet de la tournée");
         int etape = 1;
         for (Itineraire segment : tpc.listeSeg) {
+            ItineraireView itineraireV = new ItineraireView(segment);
             System.out.println("\n Étape n°" + etape + " : ");
-            segment.afficherItineraire(); // affiche le trajet
+            itineraireV.afficherItineraire(segment); // affiche le trajet
             etape++;
         }
         System.out.println("\n");
