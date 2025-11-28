@@ -68,8 +68,9 @@ public class EntrepriseModel
         return arrivee;
     }
 
+    // METHODE n°3 : Algorithme du Plus Proche Voisin
 
-    //METHODE n°6 : Retirer une demande après exécution
+    //METHODE n°4 : Retirer une demande après exécution
     public void defilerDemande(DemandeCollecte demande) throws ExceptionPersonnalisable
     {
         Queue<DemandeCollecte> listeDemandes = pm.getDemande();
