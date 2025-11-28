@@ -4,9 +4,8 @@ public class Maison extends Station
 {
     // ATTRIBUTS
     private Plan plan;
-    private String nom;
     // CONSTRUCTEUR
-    public Maison(Plan plan)
+    public Maison(Plan plan,String nom)
     {
         super(nom);
         this.plan = plan;

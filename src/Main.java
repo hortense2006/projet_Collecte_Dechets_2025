@@ -21,6 +21,7 @@ public class Main
 
         // ATTRIBUTS
         int typeUser ;
+        String nom = "";
         int choix;
         boolean exitAll = false;
         boolean exit = false;
@@ -33,6 +34,9 @@ public class Main
         Plan plan = new Plan();
         PlanView planV = new PlanView();
         PlanController planC = new PlanController(plan,planV);
+        
+        // Pour les maisons
+        Maison maison = new Maison(plan,nom);
 
         // pour les particuliers
         Scanner sc = new Scanner(System.in);
@@ -44,7 +48,7 @@ public class Main
         // pour l'entreprise
         FichierDemandes fd = new FichierDemandes(NOM_FICHIER_DEMANDES);
         EntrepriseModel em = new EntrepriseModel(plan,pm);
-        EntrepriseController enc = new EntrepriseController(em,plan);
+        EntrepriseController enc = new EntrepriseController(em,plan,maison);
 
         // Pour le camion
         CamionController camC = new CamionController(enc,pm);

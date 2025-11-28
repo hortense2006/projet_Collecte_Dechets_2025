@@ -1,4 +1,6 @@
 package model.map;
+import model.particulier.DemandeCollecte;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,4 +42,9 @@ public class Station {
     public String toString() { //afficher détail
         return "Station : " + getNom();
     }
+    public double distanceVers(DemandeCollecte d)
+    {
+        return Math.abs(this.numero - d.getNumero());
+    }
+
 }
