@@ -47,7 +47,7 @@ public class Main
         // pour l'entreprise
         FichierDemandes fd = new FichierDemandes(NOM_FICHIER_DEMANDES);
         EntrepriseModel em = new EntrepriseModel(planDeVille,pm);
-        EntrepriseController enc = new EntrepriseController(em,planDeVille,maison);
+        EntrepriseController enc = new EntrepriseController(em,planDeVille,maison,pv);
 
         // Pour le camion
         CamionView camionView = new CamionView();

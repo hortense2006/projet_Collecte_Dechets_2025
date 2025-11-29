@@ -3,6 +3,7 @@ import exceptions.ExceptionPersonnalisable;
 import model.EntrepriseModel;
 import model.map.*;
 import model.particulier.DemandeCollecte;
+import view.ParticulierView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,12 +15,14 @@ public class EntrepriseController
     private Plan p;
     private Station courant;  // où se trouve le camion
     private EntrepriseModel em;
+    private ParticulierView pv;
     private Maison maison;
-    public EntrepriseController(EntrepriseModel em,Plan p,Maison maison)
+    public EntrepriseController(EntrepriseModel em,Plan p,Maison maison,ParticulierView pv)
     {
         this.p = p;
         this.em = em;
         this.maison = maison;
+        this.pv = pv;
         this.courant = p.getStation("D"); // dépôt
     }
 
@@ -52,10 +55,9 @@ public class EntrepriseController
             for (DemandeCollecte d : demandesRestantes)
             {
                 Station stationpossible = maison.creerMaison(d.getRue(), d.getNumero());
-                // --- VÉRIFICATION CLÉ (Ajout) ---
+                // vérification
                 if (stationpossible == null || stationpossible.getNom().equals(depart.getNom()))
                 {
-                    // Si la demande est nulle, ou si elle se trouve à la même station que le camion (le dépôt "D" au départ), on l'ignore.
                     continue;
                 }
                 double distanceApprox = depart.distanceVers(d); // calculer distance depuis depart
@@ -69,7 +71,7 @@ public class EntrepriseController
             // Calculer le chemin jusqu'à cette demande
             if (plusProche == null)
             {
-                System.out.println("Arrêt de la collecte : aucune demande restante ne correspond à une rue du plan.");
+                pv.afficherMessage("Arrêt de la collecte : aucune demande restante ne correspond à une rue du plan.");
                 break; // Sort de la boucle while
             }
             Station stationArrivee = maison.creerMaison(plusProche.getRue(), plusProche.getNumero());
@@ -82,13 +84,13 @@ public class EntrepriseController
             {
                 // Le camion est déjà à cette adresse (demande dupliquée).
                 // On retire cette demande et on passe à la suivante sans chercher de chemin.
-                System.out.println("Demande ignorée : adresse déjà visitée pour " + plusProche.getRue() + " " + plusProche.getNumero());
+               pv.afficherMessage("Demande ignorée : adresse déjà visitée pour " + plusProche.getRue() + " " + plusProche.getNumero());
                 demandesRestantes.remove(plusProche);
                 continue; // Passe à l'itération suivante de la boucle while
             }
             Itineraire chemin = em.bfsPlusCourtChemin(depart.getNom(), stationArrivee.getNom());
             arcsTotaux.addAll(chemin.getChemin()); // ajouter les arcs de ce chemin à l'itinéraire total
-            System.out.println("Chemin trouvé: " + chemin.toString());
+            pv.afficherMessage("Chemin trouvé: " + chemin.toString());
             // Marquer la demande comme traitée
             //em.defilerDemande(plusProche); // On la supprime du fichier texte des demandes
             demandesRestantes.remove(plusProche); // On la supprime de la liste des demandes
