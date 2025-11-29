@@ -51,6 +51,14 @@ public class EntrepriseController
 
             for (DemandeCollecte d : demandesRestantes)
             {
+                // CRÉER LA STATION CANDIDATE POUR VÉRIFIER SA COHÉRENCE AVEC LE PLAN
+                Station stationCandidate = maison.creerMaison(d.getRue(), d.getNumero());
+                // --- VÉRIFICATION CLÉ (Ajout) ---
+                if (stationCandidate == null || stationCandidate.getNom().equals(depart.getNom()))
+                {
+                    // Si la demande est nulle, ou si elle se trouve à la même station que le camion (le dépôt "D" au départ), on l'ignore.
+                    continue;
+                }
                 double distanceApprox = depart.distanceVers(d); // calculer distance depuis depart
                 if (distanceApprox < minDistance) {
                     minDistance = distanceApprox;
@@ -68,12 +76,22 @@ public class EntrepriseController
             arcsTotaux.addAll(chemin.getChemin()); // ajouter les arcs de ce chemin à l'itinéraire total
 
             // Marquer la demande comme traitée
-            em.defilerDemande(plusProche); // On la supprime du fichier texte des demandes
+            //em.defilerDemande(plusProche); // On la supprime du fichier texte des demandes
             demandesRestantes.remove(plusProche); // On la supprime de la liste des demandes
 
             // Mettre à jour le point de départ pour la prochaine boucle
             depart = stationArrivee;
         }
+        // --- NOUVELLE ÉTAPE : Retour au dépôt ---
+        Station stationDepot = p.getStation("D"); // On récupère la station de dépôt
+        // Calculer le chemin de la dernière maison visitée ('depart') au dépôt
+        Itineraire cheminRetour = em.bfsPlusCourtChemin(depart.getNom(), stationDepot.getNom());
+        if (cheminRetour != null)
+        {
+            arcsTotaux.addAll(cheminRetour.getChemin()); // Ajout des arcs du retour
+            depart = stationDepot; // Met à jour 'depart' pour être le dépôt final
+        }
+        this.courant = depart;
         // Renvoie au Camion le chemin à faire.
         return new Itineraire(courant, depart, arcsTotaux);
     }
