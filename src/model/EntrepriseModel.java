@@ -9,8 +9,6 @@ public class EntrepriseModel
     // ATTRIBUTS
     private Plan p;
     private ParticulierModel pm;
-    private Itineraire itineraire;
-
     // CONSTRUCTEUR
     public EntrepriseModel(Plan p,ParticulierModel pm)
     {
@@ -19,7 +17,8 @@ public class EntrepriseModel
     }
 
     // METHODE n°1 : Calcul du plus court chemin  ( méthode bsf)
-    public Itineraire bfsPlusCourtChemin (String nomDepart, String nomArrivee) throws ExceptionPersonnalisable {
+    public Itineraire bfsPlusCourtChemin (String nomDepart, String nomArrivee) throws ExceptionPersonnalisable
+    {
         Station depart = verifierStations(nomDepart, nomArrivee); // verifie qu'il n'y a pas d'exception
         Station destination = p.getStation(nomArrivee); // arc par lequel on découvre la station
         Map<Station, Arc> predecesseurs = new HashMap<>(); //mémoire pour garder toutes les stations passées
@@ -44,7 +43,7 @@ public class EntrepriseModel
                 }
             }
         }
-        return itineraire.reconstituerChemin(depart, destination, stationArriveeTrouvee, predecesseurs);//pour afficher grace à la méthode dans afficher itinéraire
+        return Itineraire.reconstituerChemin(depart, destination, stationArriveeTrouvee, predecesseurs);//pour afficher grace à la méthode dans afficher itinéraire
     }
 
 
@@ -65,11 +64,8 @@ public class EntrepriseModel
         {
             throw new ExceptionPersonnalisable("Départ et Arrivée identiques.");
         }
-        return arrivee;
+        return depart;
     }
-
-    // METHODE n°3 : Algorithme du Plus Proche Voisin
-
     //METHODE n°4 : Retirer une demande après exécution
     public void defilerDemande(DemandeCollecte demande) throws ExceptionPersonnalisable
     {
