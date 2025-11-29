@@ -28,6 +28,9 @@ public class CamionModel {
     public String getIdCamion() {
         return idCamion;
     }
+    public boolean getDisponible() {
+        return disponible;
+    }
 
     public void setCapaciteActuelle(double capaciteActuelle)
     {
