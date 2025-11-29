@@ -34,8 +34,39 @@ public class Plan {
     } // Méthode pour récupérer tous les arcs
 
     // Récupérer un Arc à partir du nom de rue
-    public Arc getArcParNom(String nomRue) {
-        return arcs.get(nomRue); // renvoie null si le nom n'existe pas
+    public Arc getArcParNom(String nomRue)
+    {
+        String nomRechercheNettoye = nettoyerNomRue(nomRue);
+
+        for (Arc arc : arcs.values())
+        {
+            String idArcComplet = arc.getIdLigne();
+            if (idArcComplet == null) continue; // Sécurité
+
+            // On nettoie l'id complet de l'arc
+            String idArcNettoye = nettoyerNomRue(idArcComplet);
+
+            // Vérification
+            if (idArcNettoye.startsWith(nomRechercheNettoye))
+            {
+                return arc;
+            }
+        }
+        return null;
+    }// renvoie null si le nom n'existe pas
+    private String nettoyerNomRue(String rue)
+    {
+        if (rue == null) return "";
+        return rue
+                .trim()
+                .toLowerCase()
+                .replace("'", "") // Retirer l'apostrophe droite
+                .replace("’", "") // Retirer l'apostrophe typographique
+                .replace("é", "e") // Remplacer é
+                .replace("è", "e") // Remplacer è
+                .replace("à", "a") // Remplacer à
+                .replace("â", "a")// Remplacer â
+                .replace("ô","o"); // Remplacer ô
     }
 
     public enum modeOrientation { //Permet de déterminer l'orientation du graphe
@@ -86,6 +117,7 @@ public class Plan {
                 String[] parties = ligne.split(";");//sépare au niveau de chaque ;
 
                 String nomRue = ""; //permet d'avoir un vrai nom de rue
+                String nomRueNormalise = null;
                 String nomDepart;
                 String nomArrivee;
                 boolean estSensUnique = false;
@@ -94,6 +126,7 @@ public class Plan {
 
                 if (parties.length == 4) {// pour les 2 premier HO1 et HO2
                     nomRue = parties[0].trim(); //nom de la rue donc l'arc
+                    nomRueNormalise = nomRue.toLowerCase();
                     nomDepart = parties[1].trim(); //intersection d'arrivée
                     nomArrivee = parties[2].trim(); //intersection de fin
 
@@ -105,6 +138,7 @@ public class Plan {
                     }
                 } else if (parties.length == 5) { // pour HO3
                     nomRue = parties[0].trim(); //le nom de la rue
+                    nomRueNormalise = nomRue.toLowerCase();
                     nomDepart = parties[1].trim(); // le point de départ
                     String sens = parties[2].trim(); //le sens
                     nomArrivee = parties[3].trim(); //fin de la rue
@@ -131,7 +165,8 @@ public class Plan {
                 Station depart = stations.computeIfAbsent(nomDepart, this::creerStation); // création des sommets
                 Station arrivee = stations.computeIfAbsent(nomArrivee, this::creerStation);
                 Arc arcAB = new Arc(nomRue, depart, arrivee, distance); // créer un arc type
-                this.arcs.put(nomRue, arcAB);
+                String cleAB = nomRueNormalise + "_" + nomDepart + "_" + nomArrivee;
+                this.arcs.put(cleAB, arcAB);
                 depart.ajouterArcSortant(arcAB); // créer la première connection
                 nbArcsAjoutes++; //incrémente de nom d'arc
 
@@ -148,8 +183,9 @@ public class Plan {
                 }
 
                 if (ajouterArcBA) { //si c'est à double sens alors elle créer l'arc associé dans le sens inverse
-                    Arc arcBA = new Arc(nomArrivee + "-" + nomDepart, arrivee, depart, distance);
-                    this.arcs.put(nomRue, arcBA);
+                    Arc arcBA = new Arc(nomRue, arrivee, depart, distance);
+                    String cleBA = nomRueNormalise + "_" + nomArrivee + "_" + nomDepart;
+                    this.arcs.put(cleBA, arcBA);
                     arrivee.ajouterArcSortant(arcBA);
                     nbArcsAjoutes++;
                 }

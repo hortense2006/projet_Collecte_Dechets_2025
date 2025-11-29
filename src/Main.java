@@ -50,7 +50,8 @@ public class Main
         EntrepriseController enc = new EntrepriseController(em,planDeVille,maison);
 
         // Pour le camion
-        CamionController camC = new CamionController(enc,pm);
+        CamionView camionView = new CamionView();
+        CamionController camC = new CamionController(enc,pm,camionView);
 
         // Chargement des différents fichiers texte
         chargerGenerique(NOM_FICHIER_USERS, f);
