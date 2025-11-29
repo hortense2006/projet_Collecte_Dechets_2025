@@ -1,21 +1,25 @@
 package controller;
 
 import model.FichierDemandes;
+import model.map.Itineraire;
 import model.particulier.DemandeCollecte;
 import model.particulier.ParticulierModel;
+import view.CamionView;
+import view.ItineraireView;
 
 import java.util.Queue;
 
 public class CamionController
 {
-    //planifierTournee()
     private EntrepriseController entreprise;
     private ParticulierModel particuliermodel;
+    private CamionView camionView;
 
-    public CamionController(EntrepriseController entreprise,ParticulierModel particuliermodel)
+    public CamionController(EntrepriseController entreprise, ParticulierModel particuliermodel, CamionView camionView)
     {
         this.entreprise = entreprise;
         this.particuliermodel= particuliermodel;
+        this.camionView = camionView;
     }
     // METHODE n°4 : Faire la tournée
     public void executerTournee(String nomFichier)
@@ -27,6 +31,7 @@ public class CamionController
         Queue<DemandeCollecte> liste = particuliermodel.getDemande();
         System.out.println(liste);
         // On récupère la liste de demandes et on les execute à l'aide de CollecteDemande
-        entreprise.CollecteDemande(liste);
+        Itineraire itineraireFinal = entreprise.CollecteDemande(liste);
+        camionView.afficherItineraire(itineraireFinal);
     }
 }
