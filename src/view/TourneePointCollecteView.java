@@ -23,4 +23,6 @@ public class TourneePointCollecteView {
         System.out.println("\n");
         System.out.println("Distance parcouru lors de la tournée : " + tpc.distanceTotale + " mètres");
     }
+
+
 }

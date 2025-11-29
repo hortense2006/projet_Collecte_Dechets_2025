@@ -40,4 +40,8 @@ public class PointCollecteController {
         pdcV.afficherMessage("Vous avez déposé " + quantite + " unités dans " + pc.getNom());
         pdcV.afficherMessage("Niveau actuel du conteneur : " + pc.getNiveauRemplissage());
     }
+
+    public void mettreAJourFichierPoints() {
+        PointCollecte.sauvegarderEtat(plan);
+    }
 }

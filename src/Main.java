@@ -41,7 +41,6 @@ public class Main
 
         Plan planDeVille = planC.choixFichier(plan); //permet de choisir le fichier qu'on utilise et affiche le plan de la ville associé
 
-
         // Pour les maisons
         Maison maison = new Maison(planDeVille,nom);
         // pour l'entreprise
@@ -50,7 +49,11 @@ public class Main
         EntrepriseController enc = new EntrepriseController(em,planDeVille,maison);
 
         // Pour le camion
-        CamionController camC = new CamionController(enc,pm);
+        CamionView camionV= new CamionView();
+        CamionController camionC = new CamionController(enc,pm, camionV);
+
+        // point de collecte
+        PointCollecteView pdcV = new PointCollecteView();
 
         // Chargement des différents fichiers texte
         chargerGenerique(NOM_FICHIER_USERS, f);
@@ -130,7 +133,6 @@ public class Main
                             {
                                 PointCollecteView pcView = new PointCollecteView();
                                 PointCollecteController pcController = new PointCollecteController(planDeVille, pcView);
-                                PointCollecte.chargerEtat(planDeVille);
                                 pcController.depotDechetAuPointCollecte();
                                 break;
                             }
@@ -152,8 +154,9 @@ public class Main
                         System.out.println("\n1. Planifier une tournee"+
                                 "\n2. Organiser une collecte d'encombrants"+
                                 "\n3. Faire une tournée des points de collectes" +
-                                "\n4. Afficher l'état des points de collectes"+
-                                "\n5. Changer de type d'utilisateur");
+                                "\n4. Afficher l'état des points de collectes" +
+                                "\n5. Vider un camion"+
+                                "\n6. Changer de type d'utilisateur");
                         choix = sc.nextInt();
                         sc.nextLine();
                         switch (choix)
@@ -165,15 +168,30 @@ public class Main
                             }
                             case 2: // Collecte d'encombrants
                             {
-                                camC.executerTournee(NOM_FICHIER_DEMANDES);
+                                camionC.executerTournee(NOM_FICHIER_DEMANDES);
                                 break;
                             }
                             case 3: // faire la tournée des points de collecte
                             {
+                                model.map.PointCollecte.chargerEtat(planDeVille);
+                                CamionView cView = new CamionView();
+                                CamionController cc = new CamionController(enc, pm, cView);
+                                PointCollecteView pcViewTournee = new PointCollecteView();
+                                PointCollecteController pcControllerTournee = new PointCollecteController(planDeVille, pcViewTournee);
+                                model.CamionModel monCamion = cc.selectionnerCamion(); // Le camion passe à "occupé"
                                 TourneePointCollecte tourneePC = new TourneePointCollecte(planDeVille);
-                                tourneePC.tourneePlusProcheVoisinSansCapacite();
+                                tourneePC.tourneePlusProcheVoisinAvecCapacite(monCamion);
                                 TourneePointCollecteView tpcView = new TourneePointCollecteView(tourneePC);
                                 tpcView.afficherResultats();
+                                pcControllerTournee.mettreAJourFichierPoints();
+                                cc.sauvegarderEtatCamion(monCamion);
+                                System.out.println("Bilan de la tournée");
+                                System.out.println("\nEtat des camions");
+                                System.out.println("ID : " + monCamion.getIdCamion());
+                                System.out.println("Charge finale : " + (int)monCamion.getCapaciteActuelle() + " / " + (int)monCamion.getCapaciteMax());
+                                pdcV.afficherEtatPointCollecte();
+
+                                System.out.println("\nTournée terminée. Les fichiers ont été mis à jour.");
                                 break;
                             }
                             case 4 : // afficher le niveau des points de collectes
@@ -182,7 +200,12 @@ public class Main
                                 pcView.afficherEtatPointCollecte();
                                 break;
                             }
-                            case 5:// Changement d'utilisateur
+                            case 5 :
+                            {
+                                camionC.viderUnCamion();
+                                break;
+                            }
+                            case 6:// Changement d'utilisateur
                             {
                                 exit = true; // Changement d'utilisateur
                                 System.out.println("\n Changement d'utilisateur");
