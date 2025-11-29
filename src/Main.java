@@ -81,14 +81,14 @@ public class Main
                         sc.nextLine();
                         switch (choix)
                         {
-                            case 1 :
+                            case 1 : // consulter le plan de la ville
                             {
                                 planV.afficherReseau(plan);
                                 break;
                             }
-                            case 2 :
+                            case 2 :// Changement d'utilisateur
                             {
-                                exit = true; // Changement d'utilisateur
+                                exit = true;
                                 System.out.println("\n Changement d'utilisateur");
                                 sc.nextLine();
                                 break;
@@ -111,7 +111,7 @@ public class Main
                         sc.nextLine();
                         switch (choix)
                         {
-                            case 1:
+                            case 1: // faire une demande d'encombrant
                             {
                                 exit = true;
                                 DemandeCollecte d = pc.DemandeCollecteE(); // Demander une collecte d'encombrants
@@ -120,18 +120,21 @@ public class Main
                                 System.out.println(liste);
                                 break;
                             }
-                            case 2:
+                            case 2: //afficher le plan de ranville
                             {
                                 exit = true;
                                 pm.consulterPlanningRamassage("ranville");
                                 break;
                             }
-                            case 3 :
+                            case 3 : //aller jeter au point de collecte
+                            {
                                 PointCollecteView pcView = new PointCollecteView();
                                 PointCollecteController pcController = new PointCollecteController(planDeVille, pcView);
+                                PointCollecte.chargerEtat(planDeVille);
                                 pcController.depotDechetAuPointCollecte();
                                 break;
-                            case 4: //Sortie
+                            }
+                            case 4: //changement d'utilisateur
                             {
                                 exit = true; // Changement d'utilisateur
                                 System.out.println("\n Changement d'utilisateur");
@@ -148,8 +151,9 @@ public class Main
                         System.out.println("Que souhaitez-vous faire :");
                         System.out.println("\n1. Planifier une tournee"+
                                 "\n2. Organiser une collecte d'encombrants"+
-                                "\n3. Faire une tournée des points de collectes"+
-                                "\n4. Changer de type d'utilisateur");
+                                "\n3. Faire une tournée des points de collectes" +
+                                "\n4. Afficher l'état des points de collectes"+
+                                "\n5. Changer de type d'utilisateur");
                         choix = sc.nextInt();
                         sc.nextLine();
                         switch (choix)
@@ -164,22 +168,31 @@ public class Main
                                 camC.executerTournee(NOM_FICHIER_DEMANDES);
                                 break;
                             }
-                            case 3:
+                            case 3: // faire la tournée des points de collecte
+                            {
                                 TourneePointCollecte tourneePC = new TourneePointCollecte(planDeVille);
                                 tourneePC.tourneePlusProcheVoisinSansCapacite();
-                                //TourneePointCollecteView tpcView = new TourneePointCollecteView(tourneePC);
-                                //tpcView.afficherResultats();
+                                TourneePointCollecteView tpcView = new TourneePointCollecteView(tourneePC);
+                                tpcView.afficherResultats();
                                 break;
-                            case 4: // Sortie
+                            }
+                            case 4 : // afficher le niveau des points de collectes
+                            {
+                                PointCollecteView pcView = new PointCollecteView();
+                                pcView.afficherEtatPointCollecte();
+                                break;
+                            }
+                            case 5:// Changement d'utilisateur
+                            {
                                 exit = true; // Changement d'utilisateur
                                 System.out.println("\n Changement d'utilisateur");
-                                sc.nextLine();
                                 break;
+                            }
                         }
                     }
                     break;
                 }
-                case 4:
+                case 4: // sortie du programme
                 {
                     exitAll = true;
                     System.out.println("\n Au revoir. ");

@@ -7,38 +7,56 @@ import model.map.Station;
 
 import java.util.*;
 
-public class CamionModel
-{
-    // ATTRIBUTS
+public class CamionModel {
+
     private String idCamion; // Identifiant unique
-    private double capaciteMax; // Charge maximale (kg ou L)
-    private double capaciteActuelle; // Charge actuelle
+    private double capaciteMax; // en kg
+    private double capaciteActuelle; // en kg
     private boolean disponible; // Statut du camion
     private Station posCamion;
 
-    // CONSTRUCTEUR
     public CamionModel(String idCamion, double capaciteMax)
     {
         this.idCamion = idCamion;
         this.capaciteMax = capaciteMax;
+        this.capaciteActuelle = 0; //vide au départ
     }
 
-    // GETTER n°1
-    public void getIdCamion(String idCamion)
-    {
-        this.idCamion = idCamion;
+    public double getCapaciteActuelle() {
+        return capaciteActuelle;
     }
-    // GETTER n°2
-    public void getCapaciteActuelle(double capaciteActuelle)
+    public String getIdCamion() {
+        return idCamion;
+    }
+    public boolean getDisponible() {
+        return disponible;
+    }
+
+    public void setCapaciteActuelle(double capaciteActuelle)
     {
         this.capaciteActuelle = capaciteActuelle;
     }
+    public void setIdCamion(String idCamion)
+    {
+        this.idCamion = idCamion;
+    }
 
-    // METHODE n°1 : Chargement du camion
-    public void chargerDechets(double quantite){}
-    // METHODE n°2 : Vider le camion
-    public void viderCamion(){}
-    // METHODE n°3 : Planification de la tournée
-    public void planifierTournee(){}
+    public boolean aDeLaPlace(double quantite) {
+        return (this.capaciteActuelle + quantite) <= this.capaciteMax;
+    }
+
+    // permet de remplir le camion
+    public void chargerDechets(double quantite) {
+        if (aDeLaPlace(quantite)) {
+            this.capaciteActuelle += quantite;
+        } else {
+            System.err.println("Erreur : Surcharge du camion !");
+        }
+    }
+
+    public void viderCamion() {
+        this.capaciteActuelle = 0;
+        System.out.println("-> Le camion a été vidé au dépôt.");
+    }
 
 }

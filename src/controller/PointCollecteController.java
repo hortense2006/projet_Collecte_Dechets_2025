@@ -32,8 +32,10 @@ public class PointCollecteController {
             pdcV.afficherMessage("Erreur : La quantité doit être un nombre positif.");
             return;
         }
+
         PointCollecte pc = (PointCollecte) station;
         pc.remplir(quantite); // on le remplie
+        PointCollecte.sauvegarderEtat(plan);
 
         pdcV.afficherMessage("Vous avez déposé " + quantite + " unités dans " + pc.getNom());
         pdcV.afficherMessage("Niveau actuel du conteneur : " + pc.getNiveauRemplissage());
