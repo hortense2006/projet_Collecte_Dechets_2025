@@ -41,12 +41,13 @@ public class Main
 
         Plan planDeVille = planC.choixFichier(plan); //permet de choisir le fichier qu'on utilise et affiche le plan de la ville associé
 
+
         // Pour les maisons
         Maison maison = new Maison(planDeVille,nom);
         // pour l'entreprise
         FichierDemandes fd = new FichierDemandes(NOM_FICHIER_DEMANDES);
         EntrepriseModel em = new EntrepriseModel(planDeVille,pm);
-        EntrepriseController enc = new EntrepriseController(em,planDeVille,maison);
+        EntrepriseController enc = new EntrepriseController(em,planDeVille,maison,pv);
 
         // Pour le camion
         CamionView camionV= new CamionView();

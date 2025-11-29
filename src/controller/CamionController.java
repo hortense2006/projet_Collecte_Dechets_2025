@@ -2,9 +2,11 @@ package controller;
 
 import model.CamionModel;
 import model.FichierDemandes;
+import model.map.Itineraire;
 import model.particulier.DemandeCollecte;
 import model.particulier.ParticulierModel;
 import view.CamionView;
+import view.ItineraireView;
 
 import java.util.List;
 import java.util.Queue;
@@ -31,7 +33,8 @@ public class CamionController {
         Queue<DemandeCollecte> liste = particuliermodel.getDemande();
         System.out.println(liste);
         // On récupère la liste de demandes et on les execute à l'aide de CollecteDemande
-        entreprise.CollecteDemande(liste);
+        Itineraire itineraireFinal = entreprise.CollecteDemande(liste);
+        camionView.afficherItineraire(itineraireFinal);
     }
 
     public CamionModel selectionnerCamion() {

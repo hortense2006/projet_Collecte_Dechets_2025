@@ -46,5 +46,6 @@ public class Station {
     {
         return Math.abs(this.numero - d.getNumero());
     }
+    public void retirerArcSortant(Arc arc) {this.arcsSortants.remove(arc);}
 
 }
