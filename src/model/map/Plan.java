@@ -131,6 +131,7 @@ public class Plan {
                 Station depart = stations.computeIfAbsent(nomDepart, this::creerStation); // création des sommets
                 Station arrivee = stations.computeIfAbsent(nomArrivee, this::creerStation);
                 Arc arcAB = new Arc(nomRue, depart, arrivee, distance); // créer un arc type
+                this.arcs.put(nomRue, arcAB);
                 depart.ajouterArcSortant(arcAB); // créer la première connection
                 nbArcsAjoutes++; //incrémente de nom d'arc
 
@@ -148,6 +149,7 @@ public class Plan {
 
                 if (ajouterArcBA) { //si c'est à double sens alors elle créer l'arc associé dans le sens inverse
                     Arc arcBA = new Arc(nomArrivee + "-" + nomDepart, arrivee, depart, distance);
+                    this.arcs.put(nomRue, arcBA);
                     arrivee.ajouterArcSortant(arcBA);
                     nbArcsAjoutes++;
                 }

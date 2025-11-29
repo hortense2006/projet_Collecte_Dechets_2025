@@ -50,7 +50,7 @@ public class Itineraire {
         return changements;
     }
 
-    public Itineraire reconstituerChemin (Station depart, Station arrivee, Station stationArriveeTrouvee, Map<Station, Arc> predecesseurs) { //méthode qui servira à l'affichage d'un chemin
+    public static Itineraire reconstituerChemin (Station depart, Station arrivee, Station stationArriveeTrouvee, Map<Station, Arc> predecesseurs) { //méthode qui servira à l'affichage d'un chemin
         if (stationArriveeTrouvee == null) {
             return new Itineraire(depart, arrivee, Collections.emptyList());
         }

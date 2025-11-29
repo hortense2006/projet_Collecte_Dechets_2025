@@ -172,8 +172,8 @@ public class Main
                             {
                                 TourneePointCollecte tourneePC = new TourneePointCollecte(planDeVille);
                                 tourneePC.tourneePlusProcheVoisinSansCapacite();
-                                TourneePointCollecteView tpcView = new TourneePointCollecteView(tourneePC);
-                                tpcView.afficherResultats();
+                                //TourneePointCollecteView tpcView = new TourneePointCollecteView(tourneePC);
+                                //tpcView.afficherResultats();
                                 break;
                             }
                             case 4 : // afficher le niveau des points de collectes

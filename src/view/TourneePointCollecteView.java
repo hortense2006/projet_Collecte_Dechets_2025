@@ -3,7 +3,7 @@ package view;
 import model.Tournee.TourneePointCollecte;
 import model.map.Itineraire;
 
-public class TourneePointCollecteView {
+/*public class TourneePointCollecteView {
 
     TourneePointCollecte tpc;
 
@@ -23,4 +23,4 @@ public class TourneePointCollecteView {
         System.out.println("\n");
         System.out.println("Distance parcouru lors de la tournée : " + tpc.distanceTotale + " mètres");
     }
-}
+}*/
