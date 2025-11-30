@@ -55,6 +55,10 @@ public class Main
 
         // point de collecte
         PointCollecteView pdcV = new PointCollecteView();
+        PointCollecteController pcController = new PointCollecteController(planDeVille, pdcV);
+        // Tournée des points de collecte
+        TourneePointCollecte tourneePC = new TourneePointCollecte(planDeVille);
+        TourneePointCollecteView tpcView = new TourneePointCollecteView(tourneePC);
 
         // Chargement des différents fichiers texte
         chargerGenerique(NOM_FICHIER_USERS, f);
@@ -132,8 +136,6 @@ public class Main
                             }
                             case 3 : //aller jeter au point de collecte
                             {
-                                PointCollecteView pcView = new PointCollecteView();
-                                PointCollecteController pcController = new PointCollecteController(planDeVille, pcView);
                                 pcController.depotDechetAuPointCollecte();
                                 break;
                             }
@@ -175,30 +177,23 @@ public class Main
                             case 3: // faire la tournée des points de collecte
                             {
                                 model.map.PointCollecte.chargerEtat(planDeVille);
-                                CamionView cView = new CamionView();
-                                CamionController cc = new CamionController(enc, pm, cView);
-                                PointCollecteView pcViewTournee = new PointCollecteView();
-                                PointCollecteController pcControllerTournee = new PointCollecteController(planDeVille, pcViewTournee);
-                                model.CamionModel monCamion = cc.selectionnerCamion(); // Le camion passe à "occupé"
-                                TourneePointCollecte tourneePC = new TourneePointCollecte(planDeVille);
+                                model.CamionModel monCamion = camionC.selectionnerCamion(); // Le camion passe à "occupé"
                                 tourneePC.tourneePlusProcheVoisinAvecCapacite(monCamion);
-                                TourneePointCollecteView tpcView = new TourneePointCollecteView(tourneePC);
                                 tpcView.afficherResultats();
-                                pcControllerTournee.mettreAJourFichierPoints();
-                                cc.sauvegarderEtatCamion(monCamion);
-                                System.out.println("Bilan de la tournée");
-                                System.out.println("\nEtat des camions");
-                                System.out.println("ID : " + monCamion.getIdCamion());
-                                System.out.println("Charge finale : " + (int)monCamion.getCapaciteActuelle() + " / " + (int)monCamion.getCapaciteMax());
-                                pdcV.afficherEtatPointCollecte();
+                                pcController.mettreAJourFichierPoints();
+                                camionC.sauvegarderEtatCamion(monCamion);
+                                System.out.println("Bilan de la tournée"+
+                                                    "\nEtat des camions"+
+                                                    "ID : " + monCamion.getIdCamion() +
+                                                    "Charge finale : " + (int)monCamion.getCapaciteActuelle() + " / " + (int)monCamion.getCapaciteMax());
+                                PointCollecteView.afficherEtatPointCollecte();
 
                                 System.out.println("\nTournée terminée. Les fichiers ont été mis à jour.");
                                 break;
                             }
                             case 4 : // afficher le niveau des points de collectes
                             {
-                                PointCollecteView pcView = new PointCollecteView();
-                                pcView.afficherEtatPointCollecte();
+                                PointCollecteView.afficherEtatPointCollecte();
                                 break;
                             }
                             case 5 :
