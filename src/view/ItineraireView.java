@@ -6,14 +6,21 @@ import model.map.Station;
 
 import java.util.List;
 
-public class ItineraireView {
+public class ItineraireView
+{
 
+    // ATTRIBUT
     Itineraire itineraire;
 
-    public ItineraireView (Itineraire itineraire) {
+    // CONSTRUCTEUR
+    public ItineraireView (Itineraire itineraire)
+    {
         this.itineraire = itineraire;
     }
-    public void afficherItineraire(Itineraire itineraire) {
+
+    // METHODE n°1 : Afficher l'itinéraire de la tournée
+    public void afficherItineraire(Itineraire itineraire)
+    {
 
         List<Arc> chemin = itineraire.getChemin(); // On récupère la liste une bonne fois pour toutes
         int sizeChemin = chemin.size();

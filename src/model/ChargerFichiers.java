@@ -1,7 +1,4 @@
 package model;
-
-import model.particulier.Profil;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 

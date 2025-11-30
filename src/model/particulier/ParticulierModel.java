@@ -1,5 +1,4 @@
 package model.particulier;
-import exceptions.ExceptionPersonnalisable;
 import model.map.Plan;
 import java.time.LocalDate;
 import java.util.*;

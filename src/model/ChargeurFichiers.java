@@ -10,6 +10,7 @@ import java.nio.charset.StandardCharsets;
 
 public class ChargeurFichiers
 {
+    // METHODE n°1 : Simplification du chargement d'un fichier texte
     public static void chargerGenerique(String nomFichier, ChargerFichiers chargeur)
     {
         try

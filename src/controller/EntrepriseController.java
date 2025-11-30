@@ -71,7 +71,7 @@ public class EntrepriseController
             // Calculer le chemin jusqu'à cette demande
             if (plusProche == null)
             {
-                pv.afficherMessage("Arrêt de la collecte : aucune demande restante ne correspond à une rue du plan.");
+                pv.afficherMessage("Fin de la collecte : aucune demande restante ne correspond à une rue du plan.");
                 break; // Sort de la boucle while
             }
             Station stationArrivee = maison.creerMaison(plusProche.getRue(), plusProche.getNumero());
@@ -90,7 +90,6 @@ public class EntrepriseController
             }
             Itineraire chemin = em.bfsPlusCourtChemin(depart.getNom(), stationArrivee.getNom());
             arcsTotaux.addAll(chemin.getChemin()); // ajouter les arcs de ce chemin à l'itinéraire total
-            pv.afficherMessage("Chemin trouvé: " + chemin.toString());
             // Marquer la demande comme traitée
             //em.defilerDemande(plusProche); // On la supprime du fichier texte des demandes
             demandesRestantes.remove(plusProche); // On la supprime de la liste des demandes

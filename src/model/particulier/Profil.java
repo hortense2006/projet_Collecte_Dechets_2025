@@ -1,6 +1,5 @@
 package model.particulier;
 
-/* CLASSE TERMINEE */
 public class Profil
 {
     private String prenom;
@@ -29,7 +28,6 @@ public class Profil
     public String getRue() { return rue; }
     public String getId() { return id; }
     public String getMdp() { return mdp; }
-    public boolean getEstConnecte() { return estConnecte; }
 
     // SETTER n°1
     public boolean setEstConnecte(boolean estConnecte)

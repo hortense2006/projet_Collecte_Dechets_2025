@@ -8,15 +8,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class PlanView {
+public class PlanView
+{
 
+    // ATTRIBUTS
     private Scanner scanner;
 
+    // CONSTRUCTEUR
     public PlanView() {
         this.scanner = new Scanner(System.in);
     }
 
-    public void afficherReseau(Plan plan) { //affiche le plan de la ville chargée
+    // METHODE n°1 : Affiche le plan de la ville chargée
+    public void afficherReseau(Plan plan)
+    {
         System.out.println("Affichage du plan de la ville");
         if (plan.getStations().isEmpty()) {
             System.out.println("Le plan est vide.");
@@ -36,6 +41,7 @@ public class PlanView {
         }
     }
 
+    // METHODE n°2 : Affichage du menu du graphe
     public int afficherMenu () {
         int choix;
         Scanner sc = new Scanner(System.in);
@@ -51,10 +57,12 @@ public class PlanView {
         return choix;
     }
 
+    // METHODE n°3 : Afficher une message
     public void afficherMessagePlan (String message) {
         System.out.println(message);
     }
 
+    // METHODE n°4 : Afficher un message d'erreur
     public void afficherErreurPlan (String message) {
         System.err.println(message);
     }

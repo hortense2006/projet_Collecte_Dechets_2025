@@ -141,6 +141,8 @@ public class ParticulierView
             }
         }
     }
+
+    // METHODE n°11 : Affichage d'un message + retour de la réponse
     public String demander(String message)
     {
         System.out.println(message);

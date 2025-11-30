@@ -13,6 +13,8 @@ public class FichierDemandes implements ChargerFichiers
     // ATTRIBUTS
     public String nomFichier;
     private Queue<DemandeCollecte> fileDemandes;
+
+    // CONSTRUCTEUR
     public FichierDemandes(String nomFichier)
     {
         this.fileDemandes = new LinkedList<>();

@@ -8,9 +8,10 @@ import java.util.List;
 
 public class CamionView
 {
-    // METHODE n°5 : Afficher l'itinéraire
+    // CONSTRUCTEUR
     public void afficherItineraire(){}
-    public void afficherItineraire(Itineraire itineraire)
+    // METHODE n°1 : Afficher l'itinéraire
+    public void afficherItineraireE(Itineraire itineraire)
     {
 
         List<Arc> chemin = itineraire.getChemin(); // On récupère la liste une bonne fois pour toutes
@@ -29,7 +30,7 @@ public class CamionView
         for (int i = 0; i < sizeChemin; i++)
         {
             Arc arc = chemin.get(i);
-            String ligneArc = arc.getIdLigne();
+            String ligneArc = simplifierNomLigne(arc.getIdLigne());
             if (!ligneArc.equals(ligneCourante))
             { // vérifie si la ligne courante est différente de la suivant
                 if (i > 0)
@@ -50,4 +51,12 @@ public class CamionView
             }
         }
     }
+    // METHODE n°2 : Simplifier l'affichage des noms de lignes (évite la multiplication de M-M1-M2 à la suite)
+    private String simplifierNomLigne(String nomLigne)
+    {
+        int pos = nomLigne.indexOf("-");
+        if (pos == -1) return nomLigne; // pas de M1/M2
+        return nomLigne.substring(0, pos); // on prend seulement la rue
+    }
+
 }

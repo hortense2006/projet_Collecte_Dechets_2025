@@ -66,7 +66,7 @@ public class EntrepriseModel
         }
         return depart;
     }
-    //METHODE n°4 : Retirer une demande après exécution
+    //METHODE n°3 : Retirer une demande après exécution
     public void defilerDemande(DemandeCollecte demande) throws ExceptionPersonnalisable
     {
         Queue<DemandeCollecte> listeDemandes = pm.getDemande();

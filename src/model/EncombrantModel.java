@@ -5,13 +5,14 @@ import model.particulier.TypeEncombrant;
 public class EncombrantModel
 {
 
+    // ATTRIBUTS
     public static final int MAX_MEUBLE = 3;
     public static final int MAX_ELECTROMENAGER = 2;
     public static final int MAX_CANAPE = 1;
     public static final int MAX_BOIS = 20;
     public static final int MAX_AUTRE = 5;
 
-    // Vérifie si la quantité est valide pour le type d'encombrant
+    // METHODE n°1 :  Vérifie si la quantité est valide pour le type d'encombrant
     public boolean quantiteValide(TypeEncombrant encombrant, int quantite)
     {
         switch (encombrant)

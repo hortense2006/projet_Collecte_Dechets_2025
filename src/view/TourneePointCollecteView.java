@@ -3,14 +3,18 @@ package view;
 import model.Tournee.TourneePointCollecte;
 import model.map.Itineraire;
 
-public class TourneePointCollecteView {
+public class TourneePointCollecteView
+{
 
+    // ATTRIBUTS
     TourneePointCollecte tpc;
 
+    // CONSTRUCTEUR
     public TourneePointCollecteView(TourneePointCollecte tpc) {
         this.tpc = tpc;
     }
 
+    // METHODE N°1 : Afficher le trajet de la tournée + la distance parcourue
     public void afficherResultats() {
         System.out.println("Affichage du trajet de la tournée");
         int etape = 1;

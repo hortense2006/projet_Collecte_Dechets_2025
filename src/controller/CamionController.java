@@ -29,9 +29,8 @@ public class CamionController
         particuliermodel.setDemande(fd.getFileDemandes());
         // Récupère la liste des demandes
         Queue<DemandeCollecte> liste = particuliermodel.getDemande();
-        System.out.println(liste);
         // On récupère la liste de demandes et on les execute à l'aide de CollecteDemande
         Itineraire itineraireFinal = entreprise.CollecteDemande(liste);
-        camionView.afficherItineraire(itineraireFinal);
+        camionView.afficherItineraireE(itineraireFinal);
     }
 }
