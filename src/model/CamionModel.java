@@ -28,26 +28,23 @@ public class CamionModel
     }
 
     // GETTER n°1
-    public String getIdCamion() {
-        return idCamion;
-    }
-    public double getCapaciteActuelle() {
-        return capaciteActuelle;
-    }
-    public double getCapaciteMax() {
-        return capaciteMax;
-    }
-    public String getEtat() {
-        return etat;
-    }
-
+    public String getIdCamion() {return idCamion;}
+    // GETTER n°2
+    public double getCapaciteActuelle() {return capaciteActuelle;}
+    //GETTER n°3
+    public double getCapaciteMax() {return capaciteMax;}
+    //GETTER n°4
+    public String getEtat() {return etat;}
+    //SETTER n°1
     public void setEtat(String etat) {
         this.etat = etat;
     }
+    // SETTER n°2
     public void setCapaciteActuelle(double capaciteActuelle)
     {
         this.capaciteActuelle = capaciteActuelle;
     }
+    // SETTER n°3
     public void setIdCamion(String idCamion)
     {
         this.idCamion = idCamion;
@@ -79,12 +76,13 @@ public class CamionModel
         System.out.println("-> Le camion a été vidé au dépôt.");
     }
 
+    // METHODE n°4
     @Override
     public String toString() {
         return "ID: " + idCamion + " | Capacité: " + capaciteMax + " | État: " + etat;
     }
 
-    // permet de lire le fichier de camion et de créer les camions
+    // METHODE n°5 : permet de lire le fichier de camion et de créer les camions
     public static List<CamionModel> chargerCamions() {
         List<CamionModel> liste = new ArrayList<>();
         File file = new File(FICHIER);
@@ -117,7 +115,7 @@ public class CamionModel
         return liste;
     }
 
-    //réécrit le fichier si on décide de choisir un camion et donc changer l'état
+    //METHODE n°6 : réécrit le fichier si on décide de choisir un camion et donc changer l'état
     public static void changerEtatCamion(String idCamion, String nouvelEtat) {
         List<CamionModel> tousLesCamions = chargerCamions();
         for (CamionModel c : tousLesCamions) { // modification de la liste
@@ -139,6 +137,7 @@ public class CamionModel
         }
     }
 
+    // METHODE n°7 : Mise à jour des infos du camion
     public static void mettreAJourCamion(CamionModel camionModifie) {
         List<CamionModel> tous = chargerCamions();
 
@@ -163,7 +162,4 @@ public class CamionModel
             System.err.println("Erreur sauvegarde : " + e.getMessage());
         }
     }
-
-
-
 }
