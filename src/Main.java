@@ -154,27 +154,21 @@ public class Main
                     while(!exit)
                     {
                         System.out.println("Que souhaitez-vous faire :");
-                        System.out.println("\n1. Planifier une tournee"+
-                                "\n2. Organiser une collecte d'encombrants"+
-                                "\n3. Faire une tournée des points de collectes" +
-                                "\n4. Afficher l'état des points de collectes" +
-                                "\n5. Vider un camion"+
-                                "\n6. Changer de type d'utilisateur");
+                        System.out.println("\n1. Organiser une collecte d'encombrants"+
+                                "\n2. Faire une tournée des points de collectes" +
+                                "\n3. Afficher l'état des points de collectes" +
+                                "\n4. Vider un camion"+
+                                "\n5. Changer de type d'utilisateur");
                         choix = sc.nextInt();
                         sc.nextLine();
                         switch (choix)
                         {
-                            case 1: // Tournée classique
-                            {
-
-                                break;
-                            }
-                            case 2: // Collecte d'encombrants
+                            case 1: // Collecte d'encombrants
                             {
                                 camionC.executerTournee(NOM_FICHIER_DEMANDES);
                                 break;
                             }
-                            case 3: // faire la tournée des points de collecte
+                            case 2: // faire la tournée des points de collecte
                             {
                                 model.map.PointCollecte.chargerEtat(planDeVille);
                                 model.CamionModel monCamion = camionC.selectionnerCamion(); // Le camion passe à "occupé"
@@ -191,17 +185,17 @@ public class Main
                                 System.out.println("\nTournée terminée. Les fichiers ont été mis à jour.");
                                 break;
                             }
-                            case 4 : // afficher le niveau des points de collectes
+                            case 3 : // afficher le niveau des points de collectes
                             {
                                 PointCollecteView.afficherEtatPointCollecte();
                                 break;
                             }
-                            case 5 :
+                            case 4 :
                             {
                                 camionC.viderUnCamion();
                                 break;
                             }
-                            case 6:// Changement d'utilisateur
+                            case 5:// Changement d'utilisateur
                             {
                                 exit = true; // Changement d'utilisateur
                                 System.out.println("\n Changement d'utilisateur");
