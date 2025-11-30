@@ -13,18 +13,19 @@ import java.util.Queue;
 import java.util.Scanner;
 
 public class CamionController {
-    //planifierTournee()
+    //ATTRIBUTD
     private EntrepriseController entreprise;
     private ParticulierModel particuliermodel;
     CamionView camionV;
     Scanner sc = new Scanner(System.in);
 
+    // CONSTRUCTEUR
     public CamionController(EntrepriseController entreprise,ParticulierModel particuliermodel, CamionView camionV) {
         this.entreprise = entreprise;
         this.particuliermodel= particuliermodel;
         this.camionV = camionV;
     }
-    // METHODE n°4 : Faire la tournée
+    // METHODE n°1 : Faire la tournée
     public void executerTournee(String nomFichier) {
         FichierDemandes fd = new FichierDemandes(nomFichier);
         fd.chargerDepuisFichier(); // lit le fichier et remplit fileDemandes
@@ -36,6 +37,7 @@ public class CamionController {
         camionV.afficherItineraireE(itineraireFinal);
     }
 
+    // METHODE n°2 : Choix du camion
     public CamionModel selectionnerCamion() {
         CamionModel camionChoisi = null;
         while (camionChoisi == null) {
@@ -64,17 +66,17 @@ public class CamionController {
         return camionChoisi;
     }
 
-    // remettre le bon état au camion s'il est libre
+    // METHODE n°3 : Remettre le bon état au camion s'il est libre
     public void libererCamion(String idCamion) {
         CamionModel.changerEtatCamion(idCamion, "disponible");
         camionV.afficherMessage("Info : Le camion " + idCamion + " est de nouveau disponible.");
     }
-
+    // METHODE n°4 : Sauvegarde de l'état du camion
     public void sauvegarderEtatCamion(CamionModel c) {
         CamionModel.mettreAJourCamion(c);
     }
 
-    //vider les camions
+    //METHODE n°5 : vider les camions
     public void viderUnCamion() {
 
         List<CamionModel> camions = CamionModel.chargerCamions();// affiche les camions
