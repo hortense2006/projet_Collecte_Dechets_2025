@@ -1,21 +1,26 @@
 package model.map;
 
-public class SecteursModel extends Secteurs
+import exceptions.ExceptionPersonnalisable;
+
+import java.util.Comparator;
+
+public class SecteursModel implements Comparator<Secteurs>
 {
     /// Comparer deux secteurs
-    /*public int compare(Produit p1, Produit p2)
-    {
+
+    @Override
+    public int compare(Secteurs o1, Secteurs o2) {
         int degre1; // 0 si c'est incompatible, 1 si c'est compatible
         try {
-            degre1 = n.getIncompatibilitesProduits(p1,p2);
+            degre1 = n.getIncompatibilitesProduits(o1,o2);
         }
-        catch (ProduitNonTrouveException p)
+        catch (Exception e)
         {
-            throw new ProduitNonTrouveException("Produit non trouve.");
+            throw new ExceptionPersonnalisable("Produit non trouve.");
         }
         int degre2 = n.getIncompatibilitesProduits(p1,p2);
         return Integer.compare(degre1,degre2);
-    }*/
+    }
 
     /// Répartition par zones : établissement des secteurs
     // Méthode n°3 : Répartir la cargaison
