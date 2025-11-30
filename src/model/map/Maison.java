@@ -24,12 +24,11 @@ public class Maison extends Station
             System.err.println("Rue inconnue : " + rue);
             return null;
         }
-
+        double dist = arc.getDistance();
         String idArcOriginal = arc.getIdLigne(); // le nom enregistré dans le fichier texte
 
         // Limitation des numéros
-        if (numero < 0) numero = 0;
-        if (numero > arc.getDistance()) numero = arc.getDistance();
+        numero = Math.max(0, Math.min(numero, dist));
 
         // Créer la station temporaire
         String nomTemp = "M_" + rueNettoyee.replace(" ", "_") + "_" + numero;
@@ -40,40 +39,34 @@ public class Maison extends Station
             return null;
         }
         plan.getStations().put(nomTemp, maisonTemp);
-
-        // Création des nouveaux arcs (id uniques pour éviter doublons)
-        Arc arc1 = new Arc(idArcOriginal + "-M1", arc.getDepart(), maisonTemp, numero);
-        Arc arc2 = new Arc(idArcOriginal + "-M2", maisonTemp, arc.getArrivee(), arc.getDistance() - numero);
-
         //On retire l'arc original
         arc.getDepart().retirerArcSortant(arc);
         String cleARetirer = null;
         for (Map.Entry<String, Arc> entry : plan.getArcs().entrySet())
         {
             if (entry.getValue().equals(arc)) // On compare les arcs
-            {
-                cleARetirer = entry.getKey();
-                break;
-            }
+                {
+                    cleARetirer = entry.getKey();
+                    break;
+                }
         }
         if (cleARetirer != null)
-        {
-            plan.getArcs().remove(cleARetirer);
-        }
-
-        // Ajout des arcs
-        arc.getDepart().ajouterArcSortant(arc1);
-        maisonTemp.ajouterArcSortant(arc2);
-
-        // On utilise des clés uniques basées sur le nom nettoyé + segments
+        { plan.getArcs().remove(cleARetirer); }
         String cle1 = rueNettoyee + "_M1";
         String cle2 = rueNettoyee + "_M2";
+        // Création des nouveaux arcs (id uniques pour éviter doublons)
+        Arc arc1 = new Arc(cle1, arc.getDepart(), maisonTemp, numero);
+        Arc arc2 = new Arc(cle2, maisonTemp, arc.getArrivee(), dist - numero);
+        // Ajout des arcs
+        arc.getDepart().ajouterArcSortant(arc1);
+        maisonTemp.ajouterArcSortant(arc2); // On utilise des clés uniques basées sur le nom nettoyé + segments
 
         plan.getArcs().put(cle1, arc1);
         plan.getArcs().put(cle2, arc2);
 
         return maisonTemp;
     }
+    // METHODE n°2 : Uniformisation des noms de rue
     private String nettoyerNomRue(String rue)
     {
         if (rue == null) return "";

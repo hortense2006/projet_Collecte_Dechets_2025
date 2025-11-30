@@ -47,25 +47,25 @@ public class CamionView
         return sc.nextLine().trim();
     }
     // METHODE n°5 : Afficher l'itinéraire
-    public void afficherItineraireE(Itineraire itineraire)
+    public void afficherItineraireE(Itineraire itin)
     {
 
-        List<Arc> chemin = itineraire.getChemin(); // On récupère la liste une bonne fois pour toutes
-        int sizeChemin = chemin.size();
+        List<Arc> cheminE = itin.getChemin(); // On récupère la liste une bonne fois pour toutes
+        int sizeChemin = cheminE.size();
 
-        if (chemin.isEmpty())
+        if (cheminE.isEmpty())
         {
             System.out.println("Itinéraire non trouvé");
             return;
         }
-        System.out.println("Itinéraire : " + itineraire.getDepart().getNom() + " vers " + itineraire.getArrivee().getNom() + " - ");
-        System.out.println("Total Stations : " + itineraire.getNombreStations() + " : Total de changements : " + itineraire.getNombreChangements());
+        System.out.println("Itinéraire : " + itin.getDepart().getNom() + " vers " + itin.getArrivee().getNom() + " - ");
+        System.out.println("Total Stations : " + itin.getNombreStations() + " : Total de changements : " + itin.getNombreChangements());
 
-        Station current = itineraire.getDepart(); // on initialise la station à celle de départ
+        Station current = itin.getDepart(); // on initialise la station à celle de départ
         String ligneCourante = "";
         for (int i = 0; i < sizeChemin; i++)
         {
-            Arc arc = chemin.get(i);
+            Arc arc = cheminE.get(i);
             String ligneArc = simplifierNomLigne(arc.getIdLigne());
             if (!ligneArc.equals(ligneCourante))
             { // vérifie si la ligne courante est différente de la suivant
@@ -80,10 +80,6 @@ public class CamionView
             if (i == sizeChemin - 1)
             {
                 System.out.println("Arrivée : " + current.getNom()); //arrivée atteinte
-            }
-            else
-            {
-                System.out.println("Continuer jusqu'à " + current.getNom()); //continue si elle n'est pas trouvée
             }
         }
     }
