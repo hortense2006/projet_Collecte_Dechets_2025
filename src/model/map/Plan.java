@@ -13,10 +13,9 @@ public class Plan {
     private Map<String, Station> stations; //plan de la ville
     private HashMap<String, Arc> arcs; // Arcs (rues)
     public PlanView planView = new PlanView();
-    Random rand = new Random();
 
-    public Plan() { //constructeur
-
+    //constructeur
+    public Plan() {
         this.stations = new HashMap<>();
         this.arcs = new HashMap<>();
     }
@@ -75,25 +74,17 @@ public class Plan {
         HO3_MIXTE // rue mixte (double sens et sens unique)
     }
 
-    public Station creerStation(String nom)
-    {
-        if (nom.startsWith("D"))
-        {
+    public Station creerStation(String nom) {
+        if (nom.startsWith("D")) {
             return new Depot(nom);
         }
-        else if (nom.startsWith("R"))
-        {
+        else if (nom.startsWith("R")) {
             return new Intersection(nom);
         }
-        else if (nom.startsWith("P"))
-        {
-            int min = 500;
-            int max = 5000;
-            int randomCapacite = rand.nextInt((max - min) + 1) + min;
-            return new PointCollecte(nom, randomCapacite);
+        else if (nom.startsWith("P")) {
+            return new PointCollecte(nom, 5000);
         }
-        else if (nom.startsWith("M"))
-        {
+        else if (nom.startsWith("M")) {
             return new Station(nom);
         }
         return null;
@@ -193,6 +184,4 @@ public class Plan {
         }
         planView.afficherMessagePlan("Le plan a été chargé avec succés. L'orientation est : " + typeGraphe);
     }
-
-
 }
