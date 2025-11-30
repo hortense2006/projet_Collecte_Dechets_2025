@@ -4,23 +4,32 @@ import model.CamionModel;
 
 import java.util.List;
 import java.util.Scanner;
+import model.map.Arc;
+import model.map.Itineraire;
+import model.map.Station;
 
-public class CamionView {
+import java.util.List;
+public class CamionView
+{
 
+    // ATTRIBUTS
     private Scanner sc;
 
+    // CONSTRUCTEUR
     public CamionView() {
         this.sc = new Scanner(System.in);
     }
 
+    // METHODE n°1 : Afficher un message
     public void afficherMessage(String message) {
         System.out.println(message);
     }
 
+    // METHODE n°2 :Afficher un message d'erreur
     public void afficherErreur(String message) {
         System.err.println(message); // Affiche en rouge dans la console souvent
     }
-
+    // METHODE n°3 : Afficher la liste des camions disponibles
     public void afficherListeCamions(List<CamionModel> camions) {
         System.out.println("\n-Liste des camions");
         System.out.printf("%-15s | %-15s | %s%n", "ID", "État", "Capacité");
@@ -32,22 +41,12 @@ public class CamionView {
                     (int)c.getCapaciteMax());
         }
     }
-
+    // METHODE n°4 : Demander l'id du camion
     public String demanderIdCamion() {
         System.out.print("Entrez l'identifiant du camion à utiliser : ");
         return sc.nextLine().trim();
     }
-import model.map.Arc;
-import model.map.Itineraire;
-import model.map.Station;
-
-import java.util.List;
-
-public class CamionView
-{
-    // CONSTRUCTEUR
-    public void afficherItineraire(){}
-    // METHODE n°1 : Afficher l'itinéraire
+    // METHODE n°5 : Afficher l'itinéraire
     public void afficherItineraireE(Itineraire itineraire)
     {
 
@@ -88,7 +87,7 @@ public class CamionView
             }
         }
     }
-    // METHODE n°2 : Simplifier l'affichage des noms de lignes (évite la multiplication de M-M1-M2 à la suite)
+    // METHODE n°6 : Simplifier l'affichage des noms de lignes (évite la multiplication de M-M1-M2 à la suite)
     private String simplifierNomLigne(String nomLigne)
     {
         int pos = nomLigne.indexOf("-");

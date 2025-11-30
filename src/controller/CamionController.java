@@ -33,7 +33,7 @@ public class CamionController {
         Queue<DemandeCollecte> liste = particuliermodel.getDemande();
         // On récupère la liste de demandes et on les execute à l'aide de CollecteDemande
         Itineraire itineraireFinal = entreprise.CollecteDemande(liste);
-        camionView.afficherItineraireE(itineraireFinal);
+        camionV.afficherItineraireE(itineraireFinal);
     }
 
     public CamionModel selectionnerCamion() {
