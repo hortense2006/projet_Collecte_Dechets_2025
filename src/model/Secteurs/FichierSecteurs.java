@@ -38,7 +38,7 @@ public class FichierSecteurs implements ChargerFichiers
                 String arcs = parts[4].trim();
 
                 Secteurs secteur = new Secteurs(nomSecteur,couleurAssociee,PointCollecteAssocie,sommets,arcs);
-                secteurs.put(couleurAssociee,secteur); // couleur comme clé, secteur comme valeur
+                secteurs.put(nomSecteur,secteur); // couleur comme clé, secteur comme valeur
             }
         }
         catch (IOException e)
