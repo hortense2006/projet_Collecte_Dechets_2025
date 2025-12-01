@@ -13,14 +13,14 @@ public class FichierSecteurs implements ChargerFichiers
     // ATTRIBUTS
     public String nomFichier;
     private HashMap<String, Secteurs> secteurs;
-    // CONSTRUCTEUR
+    // CONSTRUCTEUR n°1
     public FichierSecteurs(String nomFichier)
     {
         this.nomFichier = nomFichier;
         this.secteurs = new HashMap<>();
     }
     // GETTER n°1
-    public Map<String, Secteurs> getSecteurs() {return secteurs;}
+    public HashMap<String, Secteurs> getSecteurs() {return secteurs;}
     //METHODE n°1
     @Override
     public void chargerDepuisBuffer(BufferedReader br) throws IOException
@@ -32,12 +32,11 @@ public class FichierSecteurs implements ChargerFichiers
             {
                 String[] parts = ligne.split(";");
                 String nomSecteur = parts[0].trim();
-                String couleurAssociee = parts[1].trim();
-                String PointCollecteAssocie = parts[2].trim();
-                String sommets = parts[3].trim();
-                String arcs = parts[4].trim();
+                String couleur = parts[1].trim();
+                String sommets = parts[2].trim();
+                String arcs = parts[3].trim();
 
-                Secteurs secteur = new Secteurs(nomSecteur,couleurAssociee,PointCollecteAssocie,sommets,arcs);
+                Secteurs secteur = new Secteurs(nomSecteur,couleur,sommets,arcs);
                 secteurs.put(nomSecteur,secteur); // couleur comme clé, secteur comme valeur
             }
         }
@@ -60,12 +59,11 @@ public class FichierSecteurs implements ChargerFichiers
             {
                 String[] parts = ligne.split(";");
                 String nomSecteur = parts[0].trim();
-                String couleurAssociee = parts[1].trim();
-                String PointCollecteAssocie = parts[2].trim();
-                String sommets = parts[3].trim();
-                String arcs = parts[4].trim();
+                String couleur = parts[1].trim();
+                String sommets = parts[2].trim();
+                String arcs = parts[3].trim();
 
-                Secteurs secteur = new Secteurs(nomSecteur,couleurAssociee,PointCollecteAssocie,sommets,arcs);
+                Secteurs secteur = new Secteurs(nomSecteur,couleur,sommets,arcs);
                 secteurs.put(nomSecteur,secteur); // couleur comme clé, secteur comme valeur
             }
         }
@@ -83,7 +81,6 @@ public class FichierSecteurs implements ChargerFichiers
         {
             String ligne = p.getNom() + ";" +
                     p.getCouleur() + ";" +
-                    p.getPointCollecteAssocie() + ";" +
                     p.getSommets() + ";" +
                     p.getArcAssocie();
             bw.write(ligne);

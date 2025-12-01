@@ -1,7 +1,8 @@
 # GRAPHE DES QUARTIERS DE LA VILLE DE RANVILLE
 # CHAQUE QUARTIER A 1 POINT DE COLLECTE
-# FORMAT : Nom du Quartier;Couleur associée;Point de Collecte;Sommets;Arcs
+# FORMAT : Nom du Quartier;Couleur;Sommets;Arcs
 # La couleur sera rempli grâce à un algorithme de Welsh-Powell
-Quartier Nord-Est;?;P1;P1,R3,R4,R1,R2;R3-R4,R4-R1,R1-R2,R3-P1,R2-P1
-Quartier Sud-Est;?;P2;P2,R4,R5,R6;R4-R5,R5-R6,R4-P2,P2-R5
-Quartier Ouest;2;P3;P3,R6,R7,R8,D;R6-R7,R7-R8,R8-D,R6-P3
+S1_Centre;;D,R1,R2;D-R1,D>R2,R2-R5
+S2_NordOuest;;R1,R3,P1;R1-R3,R3-R4,R3>P1,P1>R4
+S3_CentreEst;;R4,R6,P2,P3;R4-R6,R4>P2,P2>R5,R6-R7,R6>P3,P3>R8
+S4_Sud;;R5,R7,R8;R7-R8,R5>R6,R8>D
