@@ -1,5 +1,6 @@
 import model.*;
 import controller.*;
+import model.Secteurs.FichierSecteurs;
 import model.map.*;
 import model.particulier.DemandeCollecte;
 import model.particulier.FichiersProfil;
@@ -25,6 +26,7 @@ public class Main
 
         final String NOM_FICHIER_USERS = "Base_De_Donnees_Particuliers.txt";
         final String NOM_FICHIER_DEMANDES = "Liste_Demandes.txt";
+        final String NOM_FICHIER_SECTEURS = "Graphe_Secteurs_Ranville.txt";
 
         // IMPORT DES CLASSES :
         //pour le plan
@@ -32,6 +34,8 @@ public class Main
         PlanView planV = new PlanView();
         PlanController planC = new PlanController(plan,planV);
 
+        // Pour les secteurs de la ville
+        FichierSecteurs fs = new FichierSecteurs(NOM_FICHIER_SECTEURS);
         // pour les particuliers
         Scanner sc = new Scanner(System.in);
         FichiersProfil f = new FichiersProfil(NOM_FICHIER_USERS);
@@ -63,6 +67,7 @@ public class Main
         // Chargement des différents fichiers texte
         chargerGenerique(NOM_FICHIER_USERS, f);
         chargerGenerique(NOM_FICHIER_DEMANDES, fd);
+        chargerGenerique(NOM_FICHIER_SECTEURS,fs);
 
         //On récupère la liste de demandes
         Queue<DemandeCollecte> listeDemandes = fd.getFileDemandes();

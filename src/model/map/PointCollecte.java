@@ -9,7 +9,6 @@ public class PointCollecte extends Station {
 
     private int capaciteMax;
     private int niveauRemplissage;
-    PointCollecteView pdcV = new PointCollecteView();
 
     private static final String FICHIER_SAUVEGARDE = "Etat_point_de_collecte.txt";
 

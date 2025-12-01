@@ -6,7 +6,6 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
-/* CLASSE TERMINEE*/
 // Cette classe s'occupe de la logique des fichiers pour les particuliers.
 // ATTENTION : On enregistre le numéro de la maison (distance entre la maison & le bout de la rue)
 // dans la variable double numero.

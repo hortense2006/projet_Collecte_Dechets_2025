@@ -1,4 +1,4 @@
-package model.map;
+package model.Secteurs;
 
 import exceptions.ExceptionPersonnalisable;
 
