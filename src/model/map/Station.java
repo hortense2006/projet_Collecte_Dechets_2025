@@ -12,7 +12,7 @@ public class Station {
     private ArrayList<Arc> arcsSortants;
     private double numero;
 
-    //constructeur n°1
+    //constructeur 1
     public Station(String nom) {
         this.nom = nom;
         this.arcsSortants = new ArrayList<>();

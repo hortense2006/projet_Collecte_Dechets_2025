@@ -1,6 +1,6 @@
 import model.*;
 import controller.*;
-import model.Secteurs.FichierSecteurs;
+//import model.Secteurs.FichierSecteurs;
 import model.map.*;
 import model.particulier.DemandeCollecte;
 import model.particulier.FichiersProfil;
@@ -35,7 +35,7 @@ public class Main
         PlanController planC = new PlanController(plan,planV);
 
         // Pour les secteurs de la ville
-        FichierSecteurs fs = new FichierSecteurs(NOM_FICHIER_SECTEURS);
+        //FichierSecteurs fs = new FichierSecteurs(NOM_FICHIER_SECTEURS);
         // pour les particuliers
         Scanner sc = new Scanner(System.in);
         FichiersProfil f = new FichiersProfil(NOM_FICHIER_USERS);
@@ -67,7 +67,7 @@ public class Main
         // Chargement des différents fichiers texte
         chargerGenerique(NOM_FICHIER_USERS, f);
         chargerGenerique(NOM_FICHIER_DEMANDES, fd);
-        chargerGenerique(NOM_FICHIER_SECTEURS,fs);
+        //chargerGenerique(NOM_FICHIER_SECTEURS,fs);
 
         //On récupère la liste de demandes
         Queue<DemandeCollecte> listeDemandes = fd.getFileDemandes();
@@ -126,7 +126,6 @@ public class Main
                         {
                             case 1: // faire une demande d'encombrant
                             {
-                                exit = true;
                                 DemandeCollecte d = pc.DemandeCollecteE(); // Demander une collecte d'encombrants
                                 Queue<DemandeCollecte> liste = pc.remplirListeDemandeCollecte(d,listeDemandes);// On remplit la liste de demandes.
                                 fd.sauvegarderDemande(NOM_FICHIER_DEMANDES); // On enregistre la demande dans le bon fichier texte

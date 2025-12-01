@@ -8,81 +8,67 @@ import model.map.Station;
 import java.io.*;
 import java.util.*;
 
-public class CamionModel
-{
+public class CamionModel {
 
-    // ATTRIBUTS
     private String idCamion; // Identifiant unique
     private double capaciteMax; // en kg
     private double capaciteActuelle; // en kg
     private String etat; // Statut du camion
     private static final String FICHIER = "Camion_ville.txt";
 
-    // CONSTRUCTEUR
-    public CamionModel(String idCamion, String etat,double capaciteMax, double capaciteActuelle )
-    {
+    public CamionModel(String idCamion, String etat,double capaciteMax, double capaciteActuelle ) {
         this.idCamion = idCamion;
         this.capaciteMax = capaciteMax;
         this.capaciteActuelle = capaciteActuelle;
         this.etat = etat;
     }
 
-    // GETTER n°1
+
     public String getIdCamion() {return idCamion;}
-    // GETTER n°2
     public double getCapaciteActuelle() {return capaciteActuelle;}
-    //GETTER n°3
     public double getCapaciteMax() {return capaciteMax;}
-    //GETTER n°4
     public String getEtat() {return etat;}
-    //SETTER n°1
+
     public void setEtat(String etat) {
         this.etat = etat;
     }
-    // SETTER n°2
     public void setCapaciteActuelle(double capaciteActuelle)
     {
         this.capaciteActuelle = capaciteActuelle;
     }
-    // SETTER n°3
     public void setIdCamion(String idCamion)
     {
         this.idCamion = idCamion;
     }
 
+    @Override
+    public String toString() {
+        return "ID: " + idCamion + " | Capacité: " + capaciteMax + " | État: " + etat;
+    }
+
     // verifie si le camion n'est pas plein
-    // METHODE n°1 : Identifie la capacité du camion
     public boolean aDeLaPlace(double quantite) {
         return (this.capaciteActuelle + quantite) <= this.capaciteMax;
     }
 
-    // METHODE n°2 : permet de remplir le camion
-    public void chargerDechets(double quantite)
-    {
-        if (aDeLaPlace(quantite))
-        {
+    //remplie la camion
+    public void chargerDechets(double quantite) {
+        if (aDeLaPlace(quantite)) {
             this.capaciteActuelle += quantite;
         }
-        else
-        {
+        else {
             System.err.println("Erreur : Surcharge du camion !");
         }
     }
 
-    // METHODE n°3 : On réinitialise la capacité du camion
+    //vide le camion si on le demande
     public void viderCamion()
     {
         this.capaciteActuelle = 0;
         System.out.println("-> Le camion a été vidé au dépôt.");
     }
 
-    // METHODE n°4
-    @Override
-    public String toString() {
-        return "ID: " + idCamion + " | Capacité: " + capaciteMax + " | État: " + etat;
-    }
-
-    // METHODE n°5 : permet de lire le fichier de camion et de créer les camions
+    // permet de lire le fichier de camion et de créer les camions
     public static List<CamionModel> chargerCamions() {
         List<CamionModel> liste = new ArrayList<>();
         File file = new File(FICHIER);
@@ -115,7 +101,7 @@ public class CamionModel
         return liste;
     }
 
-    //METHODE n°6 : réécrit le fichier si on décide de choisir un camion et donc changer l'état
+    //réécrit le fichier si on décide de choisir un camion et donc changer l'état
     public static void changerEtatCamion(String idCamion, String nouvelEtat) {
         List<CamionModel> tousLesCamions = chargerCamions();
         for (CamionModel c : tousLesCamions) { // modification de la liste
@@ -137,7 +123,7 @@ public class CamionModel
         }
     }
 
-    // METHODE n°7 : Mise à jour des infos du camion
+    // Mise à jour des infos du camion
     public static void mettreAJourCamion(CamionModel camionModifie) {
         List<CamionModel> tous = chargerCamions();
 
