@@ -3,6 +3,7 @@ package model.Secteurs;
 import exceptions.ExceptionPersonnalisable;
 
 import java.util.Comparator;
+import java.util.List;
 
 public class SecteursModel implements Comparator<Secteurs>
 {
@@ -25,4 +26,24 @@ public class SecteursModel implements Comparator<Secteurs>
     // METHODE n°2 : Incompatilibités des secteurs
     public int getIncompatibilitesSecteurs(Secteurs o1,Secteurs o2)
     {return 0;}
+    // METHODE 3 : Remplissage des couleurs
+    public int welshPowell()
+    { /*List<Secteurs> couleur;
+        Secteurs color;
+        String nbzones;
+        // Lire la liste produits
+        while(!couleur.isEmpty()) // On lit la case de la liste
+        {
+            for (Secteurs p : couleur)
+            {
+                // Si le produit n'a pas encore de zone
+                if (p.getCouleur() == 0)
+                {
+                    nbzones++;
+                    p.setCouleur(nbzones); // on lui attribue une nouvelle zone
+                }
+            }
+        }*/
+        return 1;
+    }
 }

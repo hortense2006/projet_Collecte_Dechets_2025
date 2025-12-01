@@ -34,4 +34,6 @@ public class Secteurs
     public String getSommets() {return sommets;}
     // GETTER n°5
     public String getArcAssocie() {return arcAssocie;}
+
+    public void setCouleur(String couleur) {this.couleur = couleur;}
 }
