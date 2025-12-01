@@ -1,11 +1,5 @@
 package model.Secteurs;
 
-import model.map.Arc;
-import model.map.PointCollecte;
-import model.map.Station;
-
-import java.util.List;
-
 // Création des secteurs dans la ville
 public class Secteurs
 {
