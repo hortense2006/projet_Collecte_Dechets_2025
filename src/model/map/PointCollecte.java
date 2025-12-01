@@ -1,8 +1,5 @@
 package model.map;
 
-import view.PlanView;
-import view.PointCollecteView;
-
 import java.io.*;
 
 public class PointCollecte extends Station {

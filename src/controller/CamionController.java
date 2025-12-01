@@ -75,10 +75,8 @@ public class CamionController {
     }
 
     public void viderUnCamion() {
-
         List<CamionModel> camions = CamionModel.chargerCamions();// affiche les camions
         camionV.afficherListeCamions(camions);
-
         String id = camionV.demanderIdCamion(); //demande qui doit être vider
         for (CamionModel c : camions) {
             if (c.getIdCamion().equals(id)) {
@@ -92,4 +90,12 @@ public class CamionController {
         }
         camionV.afficherErreur("Camion introuvable.");
     }
+
+    public void viderTousCamions() {
+        List<CamionModel> camions = CamionModel.chargerCamions();
+        CamionModel.reinitialiserTousCamions(); // appel de la fonction créée ci-dessus
+        camionV.afficherMessage("Succès : Tous les camions ont été vidés et sont disponibles.");
+        camionV.afficherListeCamions(camions);
+    }
+
 }

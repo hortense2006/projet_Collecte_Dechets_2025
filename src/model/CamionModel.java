@@ -65,7 +65,7 @@ public class CamionModel {
     public void viderCamion()
     {
         this.capaciteActuelle = 0;
-        System.out.println("-> Le camion a été vidé au dépôt.");
+        System.out.println(" Le camion a été vidé au dépôt.");
     }
 
     // permet de lire le fichier de camion et de créer les camions
@@ -123,7 +123,7 @@ public class CamionModel {
         }
     }
 
-    // Mise à jour des infos du camion
+    // Mise à jour de la capacité du camion
     public static void mettreAJourCamion(CamionModel camionModifie) {
         List<CamionModel> tous = chargerCamions();
 
@@ -146,6 +146,23 @@ public class CamionModel {
             }
         } catch (IOException e) {
             System.err.println("Erreur sauvegarde : " + e.getMessage());
+        }
+    }
+
+    // vide instantanement tout les camions et les remets à disponible
+    public static void reinitialiserTousCamions() {
+        List<CamionModel> tous = chargerCamions(); // On récupère tout le monde
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(FICHIER))) {
+            for (CamionModel c : tous) {
+                bw.write(c.getIdCamion() + ";" +// force les valeurs : "disponible" et 0 chargement
+                        "disponible" + ";" + // force l'état
+                        (int)c.getCapaciteMax() + ";" +
+                        0); // force à le vider (0)
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            System.err.println("Erreur réinitialisation flotte : " + e.getMessage());
         }
     }
 }
