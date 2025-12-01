@@ -8,19 +8,15 @@ import model.map.Station;
 import java.io.*;
 import java.util.*;
 
-public class CamionModel
-{
+public class CamionModel {
 
-    // ATTRIBUTS
     private String idCamion; // Identifiant unique
     private double capaciteMax; // en kg
     private double capaciteActuelle; // en kg
     private String etat; // Statut du camion
     private static final String FICHIER = "Camion_ville.txt";
 
-    // CONSTRUCTEUR
-    public CamionModel(String idCamion, String etat,double capaciteMax, double capaciteActuelle )
-    {
+    public CamionModel(String idCamion, String etat,double capaciteMax, double capaciteActuelle ) {
         this.idCamion = idCamion;
         this.capaciteMax = capaciteMax;
         this.capaciteActuelle = capaciteActuelle;
