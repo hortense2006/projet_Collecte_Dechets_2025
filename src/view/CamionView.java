@@ -26,13 +26,14 @@ public class CamionView {
 
     public void afficherListeCamions(List<CamionModel> camions) {
         System.out.println("\n-Liste des camions");
-        System.out.printf("%-15s | %-15s | %s%n", "ID", "État", "Capacité");
+        System.out.printf("%-15s | %-15s | %-15s | %s%n", "ID", "État", "Capacité maximum", "Capacité actuelle");
         System.out.println("\n");
         for (CamionModel c : camions) {
-            System.out.printf("%-15s | %-15s | %s%n",
+            System.out.printf("%-15s | %-15s | %-15d | %d%n",
                     c.getIdCamion(),
                     c.getEtat(),
-                    (int)c.getCapaciteMax());
+                    (int)c.getCapaciteMax(),
+                    (int)c.getCapaciteActuelle());
         }
     }
 

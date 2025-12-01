@@ -88,8 +88,8 @@ public class Main
                     while (!exit)
                     {
                         System.out.println("Que souhaitez-vous faire :");
-                        System.out.println("\n1. Consulter le plan de Ranville."+
-                                           "\n2. Changer de type d'utilisateur");
+                        System.out.println("\n 1. Consulter le plan de Ranville."+
+                                           "\n 2. Changer de type d'utilisateur");
                         choix = sc.nextInt();
                         sc.nextLine();
                         switch (choix)
@@ -116,10 +116,10 @@ public class Main
                     while (!exit)
                     { //permet de faire tourner l'application utilisateur tant qu'on a pas demandé de changer de type d'utilisateur
                         System.out.println("Que souhaitez-vous faire :");
-                        System.out.println("\n1. Demande de collecte"+
-                                "\n2. Consulter le planning de ramassage"+
-                                "\n3. Aller jeter ses déchets au point de collecte " +
-                                "\n4. Changer de type d'utilisateur");
+                        System.out.println("\n 1. Demande de collecte"+
+                                "\n 2. Consulter le planning de ramassage"+
+                                "\n 3. Aller jeter ses déchets au point de collecte " +
+                                "\n 4. Changer de type d'utilisateur");
                         choix = sc.nextInt();
                         sc.nextLine();
                         switch (choix)
@@ -158,11 +158,11 @@ public class Main
                     while(!exit)
                     {
                         System.out.println("Que souhaitez-vous faire :");
-                        System.out.println("\n1. Organiser une collecte d'encombrants"+
-                                "\n2. Faire une tournée des points de collectes" +
-                                "\n3. Afficher l'état des points de collectes" +
-                                "\n4. Vider un camion"+
-                                "\n5. Changer de type d'utilisateur");
+                        System.out.println("\n 1. Organiser une collecte d'encombrants"+
+                                "\n 2. Faire une tournée des points de collectes" +
+                                "\n 3. Afficher l'état des points de collectes" +
+                                "\n 4. Vider un ou plusieurs camions"+
+                                "\n 5. Changer de type d'utilisateur");
                         choix = sc.nextInt();
                         sc.nextLine();
                         switch (choix)
@@ -179,6 +179,13 @@ public class Main
                                 tourneePC.tourneePlusProcheVoisinAvecCapacite(monCamion);
                                 tpcView.afficherResultats();
                                 pcController.mettreAJourFichierPoints();
+                                if (monCamion.getCapaciteActuelle() < monCamion.getCapaciteMax()) { // s'il reste de la place dans mon camion à la fin de la tournée
+                                    monCamion.setEtat("disponible");
+                                    System.out.println("Info : Le camion n'est pas plein, il est marqué 'disponible'.");
+                                } else { // s'il est plein
+                                    monCamion.setEtat("occupé");
+                                    System.out.println("Info : Le camion est plein, il reste marqué 'occupé' (nécessite vidage).");
+                                }
                                 camionC.sauvegarderEtatCamion(monCamion);
                                 System.out.println("Bilan de la tournée"+
                                                     "\nEtat des camions"+
@@ -194,9 +201,26 @@ public class Main
                                 PointCollecteView.afficherEtatPointCollecte();
                                 break;
                             }
-                            case 4 :
+                            case 4 : // vider les camions
                             {
-                                camionC.viderUnCamion();
+                                int choixCamion;
+                                System.out.println("\n 1. Vider tous les camions" +
+                                        "\n 2. Vider un camion spécifique");
+                                choixCamion = sc.nextInt();
+                                switch (choixCamion){
+                                    case 1 :
+                                    {
+                                        CamionView cv = new CamionView();
+                                        CamionController ccGlobal = new CamionController(enc, pm, cv);
+                                        ccGlobal.viderTousCamions();
+                                        break;
+                                    }
+                                    case 2 :
+                                    {
+                                        camionC.viderUnCamion();
+                                        break;
+                                    }
+                                }
                                 break;
                             }
                             case 5:// Changement d'utilisateur

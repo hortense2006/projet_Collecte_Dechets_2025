@@ -33,12 +33,10 @@ public class Plan {
     } // Méthode pour récupérer tous les arcs
 
     // Récupérer un Arc à partir du nom de rue
-    public Arc getArcParNom(String nomRue)
-    {
+    public Arc getArcParNom(String nomRue) {
         String nomRechercheNettoye = nettoyerNomRue(nomRue);
 
-        for (Arc arc : arcs.values())
-        {
+        for (Arc arc : arcs.values()) {
             String idArcComplet = arc.getIdLigne();
             if (idArcComplet == null) continue; // Sécurité
 
@@ -46,15 +44,13 @@ public class Plan {
             String idArcNettoye = nettoyerNomRue(idArcComplet);
 
             // Vérification
-            if (idArcNettoye.startsWith(nomRechercheNettoye))
-            {
+            if (idArcNettoye.startsWith(nomRechercheNettoye)) {
                 return arc;
             }
         }
         return null;
     }// renvoie null si le nom n'existe pas
-    private String nettoyerNomRue(String rue)
-    {
+    private String nettoyerNomRue(String rue) {
         if (rue == null) return "";
         return rue
                 .trim()
@@ -82,7 +78,7 @@ public class Plan {
             return new Intersection(nom);
         }
         else if (nom.startsWith("P")) {
-            return new PointCollecte(nom, 5000);
+            return new PointCollecte(nom, 10000);
         }
         else if (nom.startsWith("M")) {
             return new Station(nom);
