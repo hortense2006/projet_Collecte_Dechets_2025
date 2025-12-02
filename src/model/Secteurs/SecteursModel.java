@@ -1,4 +1,6 @@
 package model.Secteurs;
+import model.map.Arc;
+
 import java.io.IOException;
 import java.util.*;
 
@@ -8,6 +10,7 @@ public class SecteursModel
     private FichierSecteurs fichiers;
     HashMap<String, Secteurs> secteur;
     List<Secteurs> secteursIncompatibles;
+    private List<Secteurs> voisins;
     // CONSTRUCTEUR
     public SecteursModel(FichierSecteurs fichiers)
     {
@@ -100,5 +103,10 @@ public class SecteursModel
         }
     }
     // METHODE n°4 : Tri de la HashMap
-    public void triSecteursPardegre(List<Secteurs> secteursIncompatibles){}
+    public void triSecteursPardegre(List<Secteurs> secteursIncompatibles)
+    {
+        // On récupère la liste de secteurs et on la trie
+        //secteursIncompatibles.sort(Comparator.comparingInt(Secteurs::getDegre).reversed());
+
+    }
 }
