@@ -53,14 +53,16 @@ public class SecteursModel
         nouveauxArcs.addAll(Arrays.asList(s2.getArcAssocie().split(",")));
 
         // Créer un nouveau secteur fusionné
-        return new Secteurs(
+        Secteurs s = new Secteurs(
                 nouveauNom,"BLANC",  // couleur par défaut, car on ne l'as pas encore calculée
                 String.join(",", nouveauxSommets),
                 String.join(",", nouveauxArcs)
         );
+        fichiers.sauvegarderSecteurs(s);
+        return s;
     }
 
-    //METHODE n°3 :  Renvoie le nombre de couleurs (le nombre de secteur
+    //METHODE n°3 :  Renvoie le nombre de couleurs (le nombre de secteurs)
     // 1 couleur/secteur
     public void welshPowell() throws IOException
     {
