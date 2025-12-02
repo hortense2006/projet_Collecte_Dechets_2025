@@ -32,10 +32,9 @@ public class SecteursModel
         // Les secteurs sont incompatibles (voisins)
         Secteurs sfusionne = fusionnerSecteurs(o1, o2);
         secteursIncompatibles.add(sfusionne);// On met le couple de secteurs compatibles dans une hashmap.
-        return secteursIncompatibles;
     }
     // Sinon : compatibles (ne sont pas voisins)
-        return null;
+        return secteursIncompatibles;
     }
 
     // METHODE 2: Fusion des secteurs
@@ -46,21 +45,19 @@ public class SecteursModel
         String nouveauNom = s1.getNom() + "_" + s2.getNom();
 
         // Fusion des sommets (évite les doublons)
-        Set<String> nouveauxSommets = new HashSet<>(Collections.singleton(s1.getSommets()));
-        nouveauxSommets.addAll(Collections.singleton(s2.getSommets()));
+        Set<String> nouveauxSommets = new HashSet<>(Arrays.asList(s1.getSommets().split(",")));
+        nouveauxSommets.addAll(Arrays.asList(s2.getSommets().split(",")));
 
         // Fusion des arcs
-        Set<String> nouveauxArcs = new HashSet<>(Collections.singleton(s1.getArcAssocie()));
-        nouveauxArcs.addAll(Collections.singleton(s2.getArcAssocie()));
+        Set<String> nouveauxArcs = new HashSet<>(Arrays.asList(s1.getArcAssocie().split(",")));
+        nouveauxArcs.addAll(Arrays.asList(s2.getArcAssocie().split(",")));
 
         // Créer un nouveau secteur fusionné
-        Secteurs fusion = new Secteurs(
+        return new Secteurs(
                 nouveauNom,"BLANC",  // couleur par défaut, car on ne l'as pas encore calculée
-                nouveauxSommets.toString(),
-                nouveauxArcs.toString()
+                String.join(",", nouveauxSommets),
+                String.join(",", nouveauxArcs)
         );
-
-        return fusion;
     }
 
     //METHODE n°3 :  Renvoie le nombre de couleurs (le nombre de secteur
@@ -76,13 +73,15 @@ public class SecteursModel
         {
             for(Secteurs o2 : secteur.values())
             {
-                secteursIncompatibles = comparerSecteurs(o1,o2);
+                if(!o1.equals(o2))
+                {
+                    comparerSecteurs(o1, o2);
+                }
             }
         }
         // On trie les secteurs
         triSecteursPardegre(secteursIncompatibles);
         // Welsh-Powell
-        Secteurs color;
         int nbzones = 0;
         // Lire la liste produits
         while(!secteursIncompatibles.isEmpty()) // On lit la case de la liste
