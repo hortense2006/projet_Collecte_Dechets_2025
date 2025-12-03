@@ -1,0 +1,11 @@
+# GRAPHE SIMPLIFIE DES QUARTIERS DE LA VILLE DE BORDEAUX
+# FORMAT : NomQuartier;Couleur;NbSommets;NbArcs
+# Résumé obtenu en comptant les sommets (Rxxx) et arcs (Rxx-Ryy ou Rxx>Ryy) de chaque quartier.
+Bordeaux Centre;;546;414
+Chartrons - Grand Parc - Jardin Public;;546;458
+La Bastide;;546;369
+Bordeaux Maritime;;546;342
+Caudéran;;546;274
+Saint-Augustin - Tauzin - Alphonse Dupeux;;546;238
+Nansouty - Saint-Genès;;546;282
+Bordeaux Sud;;539;425
