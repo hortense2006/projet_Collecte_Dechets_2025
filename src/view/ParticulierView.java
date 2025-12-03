@@ -73,13 +73,13 @@ public class ParticulierView
         {
             System.out.println("Quel type d'encombrant voulez-vous déclarer ?");
             System.out.println("\n Meubles" +
-                    "\n Electroménager" +
+                    "\n Electromenager" +
                     "\n Bois" +
                     "\n Canape" +
                     "\n Autre");
             saisie = sc.nextLine();
             saisie = saisie.trim();// Enlève les espaces avant/après en trop
-        }while(!saisie.equalsIgnoreCase("Meubles") && !saisie.equalsIgnoreCase("Electroménager") &&
+        }while(!saisie.equalsIgnoreCase("Meubles") && !saisie.equalsIgnoreCase("Electromenager") &&
                 !saisie.equalsIgnoreCase("Bois") && !saisie.equalsIgnoreCase("Canape") &&
                 !saisie.equalsIgnoreCase("Autre"));
         TypeEncombrant choix = TypeEncombrant.fromString(saisie);
