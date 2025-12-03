@@ -106,6 +106,5 @@ public class SecteursModel
     {
         // On récupère la liste de secteurs et on la trie
         secteursIncompatibles.sort(Comparator.comparingInt(Secteurs::getDegre).reversed());
-
     }
 }
