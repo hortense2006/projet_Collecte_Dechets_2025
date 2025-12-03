@@ -1,5 +1,4 @@
 package model.Secteurs;
-import model.map.Arc;
 
 import java.io.IOException;
 import java.util.*;
@@ -106,7 +105,7 @@ public class SecteursModel
     public void triSecteursPardegre(List<Secteurs> secteursIncompatibles)
     {
         // On récupère la liste de secteurs et on la trie
-        //secteursIncompatibles.sort(Comparator.comparingInt(Secteurs::getDegre).reversed());
+        secteursIncompatibles.sort(Comparator.comparingInt(Secteurs::getDegre).reversed());
 
     }
 }
