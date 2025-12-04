@@ -27,7 +27,8 @@ public class Main
         int choixDeVille = 0;
 
         final String NOM_FICHIER_USERS = "Base_De_Donnees_Particuliers.txt";
-        final String NOM_FICHIER_DEMANDES = "Liste_Demandes.txt";
+        final String NOM_FICHIER_DEMANDES_RANVILLE = "Liste_Demandes_Ranville.txt";
+        final String NOM_FICHIER_DEMANDES_BORDEAUX = "Liste_Demandes_Bordeaux.txt";
         final String NOM_FICHIER_SECTEURS = "Graphe_Secteurs_Ranville.txt";
 
         // IMPORT DES CLASSES :
@@ -61,7 +62,8 @@ public class Main
         // Pour les maisons
         Maison maison = new Maison(planDeVille,nom);
         // pour l'entreprise
-        FichierDemandes fd = new FichierDemandes(NOM_FICHIER_DEMANDES);
+        FichierDemandes fdRanville = new FichierDemandes(NOM_FICHIER_DEMANDES_RANVILLE);
+        FichierDemandes fdBordeaux = new FichierDemandes(NOM_FICHIER_DEMANDES_BORDEAUX);
         EntrepriseModel em = new EntrepriseModel(planDeVille,pm);
         EntrepriseController enc = new EntrepriseController(em,planDeVille,maison,pv);
 
@@ -79,11 +81,13 @@ public class Main
 
         // Chargement des différents fichiers texte
         chargerGenerique(NOM_FICHIER_USERS, f);
-        chargerGenerique(NOM_FICHIER_DEMANDES, fd);
+        chargerGenerique(NOM_FICHIER_DEMANDES_BORDEAUX, fdBordeaux);
+        chargerGenerique(NOM_FICHIER_DEMANDES_RANVILLE,fdRanville);
         //chargerGenerique(NOM_FICHIER_SECTEURS,fs);
 
         //On récupère la liste de demandes
-        Queue<DemandeCollecte> listeDemandes = fd.getFileDemandes();
+        if(choixDeVille == 1) {Queue<DemandeCollecte> listeDemandes = fdRanville.getFileDemandes();}
+        else if(choixDeVille == 2) {Queue<DemandeCollecte> listeDemandes = fdBordeaux.getFileDemandes();}
 
         while (!exitAll)  //permet de faire tourner l'application sans fin tant que exitAll n'a pas été choisi
         {
@@ -141,7 +145,8 @@ public class Main
                             {
                                 DemandeCollecte d = pc.DemandeCollecteE(); // Demander une collecte d'encombrants
                                 Queue<DemandeCollecte> liste = pc.remplirListeDemandeCollecte(d,listeDemandes);// On remplit la liste de demandes.
-                                fd.sauvegarderDemande(NOM_FICHIER_DEMANDES); // On enregistre la demande dans le bon fichier texte
+                                if(choixDeVille == 1) {fdRanville.sauvegarderDemande(NOM_FICHIER_DEMANDES_RANVILLE);} // On enregistre la demande dans le bon fichier texte}
+                                else if (choixDeVille == 2){fdBordeaux.sauvegarderDemande(NOM_FICHIER_DEMANDES_BORDEAUX);} // On enregistre la demande dans le bon fichier texte
                                 System.out.println(liste);
                                 break;
                             }
@@ -247,7 +252,8 @@ public class Main
                             }
                             case 3 : // afficher le niveau des points de collectes
                             {
-                                if (choixDeVille == 1){
+                                if (choixDeVille == 1)
+                                {
                                     PointCollecteView.afficherEtatPointCollecteRanville();
                                 } else if (choixDeVille == 2){
                                     PointCollecteView.afficherEtatPointCollecteBordeaux();

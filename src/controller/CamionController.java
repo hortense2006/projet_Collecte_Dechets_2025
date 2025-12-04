@@ -24,7 +24,8 @@ public class CamionController {
         this.camionV = camionV;
     }
 
-    public void executerTournee(String nomFichier) {
+    public void executerTournee(String nomFichier)
+    {
         FichierDemandes fd = new FichierDemandes(nomFichier);
         fd.chargerDepuisFichier(); // lit le fichier et remplit fileDemandes
         particuliermodel.setDemande(fd.getFileDemandes());
