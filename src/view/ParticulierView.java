@@ -158,7 +158,7 @@ public class ParticulierView
         return sc.nextLine();
     }
     // METHODE n°12 : Consulter le planning de collecte (ramassage devant les maisons)
-    public void consulterPlanningRamassage()
+    public void consulterPlanningRamassageBordeaux()
     {
         System.out.println("-----------------PLANNING DE RAMASSAGE-----------------");
         System.out.println("Lundi : Caudéran\n" +
@@ -169,5 +169,6 @@ public class ParticulierView
                            "Samedi : Bordeaux Sud\n" +
                            "Dimanche : La Bastide, Bordeaux Maritime");
     }
+    public void consulterPlanningRamassageRanville(){}
 
 }

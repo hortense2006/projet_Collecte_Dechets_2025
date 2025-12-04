@@ -48,7 +48,8 @@ public class Main
         ParticulierController pc = new ParticulierController(pm,pv,f);
 
         //permet de choisir le fichier qu'on utilise et affiche le plan de la ville associé
-        while (choixDeVille < 1 || choixDeVille > 2) {
+        while (choixDeVille < 1 || choixDeVille > 2)
+        {
             System.out.println("Veuillez choisir la ville que vous voulez tester : " +
                     "\n 1. Ranville" +
                     "\n 2. Bordeaux");
@@ -100,7 +101,7 @@ public class Main
                     while (!exit)
                     {
                         System.out.println("Que souhaitez-vous faire :");
-                        System.out.println("\n 1. Consulter le plan de Ranville."+
+                        System.out.println("\n 1. Consulter le plan de la ville."+
                                            "\n 2. Changer de type d'utilisateur");
                         choix = sc.nextInt();
                         sc.nextLine();
@@ -144,10 +145,17 @@ public class Main
                                 System.out.println(liste);
                                 break;
                             }
-                            case 2: //afficher le plan de ranville
+                            case 2: //afficher le plan de la ville
                             {
                                 exit = true;
-                                pv.consulterPlanningRamassage();
+                                if(choixDeVille == 1)
+                                {
+                                    pv.consulterPlanningRamassageRanville();
+                                }
+                                else if(choixDeVille == 2)
+                                {
+                                    pv.consulterPlanningRamassageBordeaux();
+                                }
                                 break;
                             }
                             case 3 : //aller jeter au point de collecte
