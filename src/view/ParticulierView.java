@@ -3,6 +3,7 @@ import model.map.Arc;
 import model.map.Plan;
 import model.map.Station;
 import model.particulier.DemandeCollecte;
+import model.particulier.Profil;
 import model.particulier.TypeEncombrant;
 import model.particulier.ProfilInput;
 import java.util.*;
@@ -94,7 +95,15 @@ public class ParticulierView
         return quantite;
     }
     // METHODE n°8 : afficher les infos du particulier
-    public void afficherInfos(){}
+    public void afficherInfos(Profil profil)
+    {
+        System.out.println("Nom :"+ profil.getNom());
+        System.out.println("Prenom :" + profil.getPrenom());
+        System.out.println("Id:"+ profil.getId());
+        System.out.println("Mot de passe :" + profil.getMdp());
+        System.out.println("Numero de rue :" + profil.getNumero());
+        System.out.println("Nom de la rue :"+ profil.getRue());
+    }
 
     // METHODE n°9: Afficher la demande de l'utilisateur
     public void afficherDemande(DemandeCollecte demande)
@@ -147,6 +156,18 @@ public class ParticulierView
     {
         System.out.println(message);
         return sc.nextLine();
+    }
+    // METHODE n°12 : Consulter le planning de collecte (ramassage devant les maisons)
+    public void consulterPlanningRamassage()
+    {
+        System.out.println("-----------------PLANNING DE RAMASSAGE-----------------");
+        System.out.println("Lundi : Caudéran\n" +
+                           "Mardi : Chartrons - Grand Parc - Jardin Public\n" +
+                           "Mercredi : Bordeaux Centre\n" +
+                           "Jeudi : Saint-Augustin - Tauzin - Alphonse Dupeux\n" +
+                           "Vendredi : Nansouty - Saint-Genès\n" +
+                           "Samedi : Bordeaux Sud\n" +
+                           "Dimanche : La Bastide, Bordeaux Maritime");
     }
 
 }

@@ -20,7 +20,6 @@ public class ChargeurFichiers
 
             if (is == null)
             {
-                System.out.println("Échec de la lecture. Lecture directe du fichier...");
                 chargeur.chargerDepuisFichier();
             }
             else

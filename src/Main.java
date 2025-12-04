@@ -144,7 +144,7 @@ public class Main
                             case 2: //afficher le plan de ranville
                             {
                                 exit = true;
-                                pm.consulterPlanningRamassage("ranville");
+                                pv.consulterPlanningRamassage();
                                 break;
                             }
                             case 3 : //aller jeter au point de collecte
