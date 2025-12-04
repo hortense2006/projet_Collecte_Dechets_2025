@@ -2,6 +2,7 @@ import model.*;
 import controller.*;
 //import model.Secteurs.FichierSecteurs;
 import model.Secteurs.FichierSecteurs;
+import model.Secteurs.SecteursModel;
 import model.map.*;
 import model.particulier.DemandeCollecte;
 import model.particulier.FichiersProfil;
@@ -40,6 +41,14 @@ public class Main
 
         // Pour les secteurs de la ville
         FichierSecteurs fs = new FichierSecteurs(NOM_FICHIER_SECTEURS);
+        SecteursModel secteursM = new SecteursModel(fs);
+
+        try {
+            secteursM.welshPowell();
+            System.out.println("Secteurs initialisés et coloriés avec succès.");
+        } catch (java.io.IOException e) {
+            System.err.println("Erreur critique : Impossible de charger les secteurs ! " + e.getMessage());
+        }
 
         // pour les particuliers
         Scanner sc = new Scanner(System.in);
@@ -193,8 +202,9 @@ public class Main
                         System.out.println("\n 1. Organiser une collecte d'encombrants"+
                                 "\n 2. Faire une tournée des points de collectes" +
                                 "\n 3. Afficher l'état des points de collectes" +
-                                "\n 4. Vider un ou plusieurs camions"+
-                                "\n 5. Changer de type d'utilisateur");
+                                "\n 4. Faire la tournée au pied des habitations" +
+                                "\n 5. Vider un ou plusieurs camions"+
+                                "\n 6. Changer de type d'utilisateur");
                         choix = sc.nextInt();
                         sc.nextLine();
                         switch (choix)
@@ -264,7 +274,13 @@ public class Main
                                 }
                                 break;
                             }
-                            case 4 : // vider les camions
+                            case 4 :
+                            {
+                                TourneeAuPiedHabitationController tsc = new TourneeAuPiedHabitationController(planDeVille, camionC, secteursM);
+                                tsc.lancerProcessusComplet();
+                                break;
+                            }
+                            case 5 : // vider les camions
                             {
                                 int choixCamion;
                                 System.out.println("\n 1. Vider tous les camions" +
@@ -284,7 +300,7 @@ public class Main
                                 }
                                 break;
                             }
-                            case 5:// Changement d'utilisateur
+                            case 6:// Changement d'utilisateur
                             {
                                 exit = true; // Changement d'utilisateur
                                 System.out.println("\n Changement d'utilisateur");

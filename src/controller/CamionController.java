@@ -17,6 +17,7 @@ public class CamionController {
     private EntrepriseController entreprise;
     private ParticulierModel particuliermodel;
     CamionView camionV;
+    Scanner sc = new Scanner(System.in);
 
     public CamionController(EntrepriseController entreprise,ParticulierModel particuliermodel, CamionView camionV) {
         this.entreprise = entreprise;
@@ -24,8 +25,7 @@ public class CamionController {
         this.camionV = camionV;
     }
 
-    public void executerTournee(String nomFichier)
-    {
+    public void executerTournee(String nomFichier) {
         FichierDemandes fd = new FichierDemandes(nomFichier);
         fd.chargerDepuisFichier(); // lit le fichier et remplit fileDemandes
         particuliermodel.setDemande(fd.getFileDemandes());
@@ -33,7 +33,6 @@ public class CamionController {
         Queue<DemandeCollecte> liste = particuliermodel.getDemande();
         // On récupère la liste de demandes et on les execute à l'aide de CollecteDemande
         Itineraire itineraireFinal = entreprise.CollecteDemande(liste);
-        fd.viderDemande(nomFichier);// On la supprime du fichier texte des demandes
         camionV.afficherItineraireE(itineraireFinal);
     }
 
