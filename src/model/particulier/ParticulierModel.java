@@ -37,11 +37,7 @@ public class ParticulierModel
         return nouvelleDemande;
     }
 
-
-    // METHODE n°2 : Consulter le planning de collecte (ramassage devant les maisons)
-    public void consulterPlanningRamassage(String commune) {}
-
-    // METHODE n°5: Remplir le fichier texte
+    // METHODE n°2: Remplir le fichier texte
     public Profil inscrire(ProfilInput input)
     {
         String id = UUID.randomUUID().toString(); // Chaque id est différent
@@ -61,6 +57,7 @@ public class ParticulierModel
         return p;
     }
 
+    // SETTER n°1
     public Queue<DemandeCollecte> setDemande(Queue<DemandeCollecte> fileDemandes)
     {
         this.demandes = fileDemandes;
