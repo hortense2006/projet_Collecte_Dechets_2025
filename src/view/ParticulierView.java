@@ -3,6 +3,7 @@ import model.map.Arc;
 import model.map.Plan;
 import model.map.Station;
 import model.particulier.DemandeCollecte;
+import model.particulier.Profil;
 import model.particulier.TypeEncombrant;
 import model.particulier.ProfilInput;
 import java.util.*;
@@ -94,7 +95,15 @@ public class ParticulierView
         return quantite;
     }
     // METHODE n°8 : afficher les infos du particulier
-    public void afficherInfos(){}
+    public void afficherInfos(Profil profil)
+    {
+        System.out.println("Nom :"+ profil.getNom());
+        System.out.println("Prenom :" + profil.getPrenom());
+        System.out.println("Id:"+ profil.getId());
+        System.out.println("Mot de passe :" + profil.getMdp());
+        System.out.println("Numero de rue :" + profil.getNumero());
+        System.out.println("Nom de la rue :"+ profil.getRue());
+    }
 
     // METHODE n°9: Afficher la demande de l'utilisateur
     public void afficherDemande(DemandeCollecte demande)

@@ -94,7 +94,6 @@ public class ParticulierController
                 view.afficherMessage("Mdp valide");
             }
         }
-        view.afficherInfos();
     }
 
 
@@ -112,6 +111,7 @@ public class ParticulierController
                 {
                     Choix = true;
                     signin();
+                    view.afficherInfos(this.utilisateurActuel);
                     break;
                 }
                 case "non":
@@ -119,6 +119,7 @@ public class ParticulierController
                     Choix = true;
                     ProfilInput input = view.afficherRegister();
                     this.utilisateurActuel = model.inscrire(input);
+                    view.afficherInfos(this.utilisateurActuel);
                     view.afficherMessage("Inscription réussie !");
                     break;
                 }
