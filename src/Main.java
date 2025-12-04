@@ -7,7 +7,7 @@ import model.particulier.FichiersProfil;
 import model.particulier.ParticulierModel;
 import model.Tournee.TourneePointCollecte;
 import view.*;
-import java.io.*;
+
 import java.util.Queue;
 import java.util.Scanner;
 
@@ -33,6 +33,7 @@ public class Main
         Plan plan = new Plan();
         PlanView planV = new PlanView();
         PlanController planC = new PlanController(plan,planV);
+        Plan planDeVille = new Plan();
 
         // Pour les secteurs de la ville
         //FichierSecteurs fs = new FichierSecteurs(NOM_FICHIER_SECTEURS);
@@ -43,7 +44,9 @@ public class Main
         ParticulierModel pm = new ParticulierModel(NOM_FICHIER_USERS);
         ParticulierController pc = new ParticulierController(pm,pv,f);
 
-        Plan planDeVille = planC.choixFichier(plan); //permet de choisir le fichier qu'on utilise et affiche le plan de la ville associé
+       planDeVille = planV.ChoixVille(planDeVille);
+
+         //permet de choisir le fichier qu'on utilise et affiche le plan de la ville associé
 
 
         // Pour les maisons

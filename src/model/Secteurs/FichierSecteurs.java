@@ -8,8 +8,7 @@ import model.particulier.Profil;
 import java.io.*;
 import java.util.*;
 
-public class FichierSecteurs implements ChargerFichiers
-{
+public class FichierSecteurs implements ChargerFichiers {
     // ATTRIBUTS
     public String nomFichier;
     private HashMap<String, Secteurs> secteurs;

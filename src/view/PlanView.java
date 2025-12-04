@@ -1,5 +1,6 @@
 package view;
 
+import controller.PlanController;
 import model.map.Arc;
 import model.map.Station;
 import model.map.Plan;
@@ -8,20 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class PlanView
-{
+public class PlanView {
 
-    // ATTRIBUTS
-    private Scanner scanner;
+    private Scanner sc;
 
-    // CONSTRUCTEUR
     public PlanView() {
-        this.scanner = new Scanner(System.in);
+        this.sc = new Scanner(System.in);
     }
 
     // METHODE n°1 : Affiche le plan de la ville chargée
-    public void afficherReseau(Plan plan)
-    {
+    public void afficherReseau(Plan plan) {
         System.out.println("Affichage du plan de la ville");
         if (plan.getStations().isEmpty()) {
             System.out.println("Le plan est vide.");
@@ -49,9 +46,9 @@ public class PlanView
         System.out.println("\n" +//permet le choix du type de plan que nous utiliserons
                 "Sur quel type de plan voulez vous vous baser : " +
                 "\n" +
-                "\n - 1 : à double sens" +
-                "\n - 2 : à sens unique" +
-                "\n - 3 : réaliste");
+                "\n 1 : à double sens" +
+                "\n 2 : à sens unique" +
+                "\n 3 : réaliste");
         choix = sc.nextInt();
 
         return choix;
@@ -65,6 +62,28 @@ public class PlanView
     // METHODE n°4 : Afficher un message d'erreur
     public void afficherErreurPlan (String message) {
         System.err.println(message);
+    }
+
+    public Plan ChoixVille (Plan p){
+        int choixVille;
+        PlanController pc = new PlanController(p, this);
+        System.out.println("Veuillez choisir la ville que vous voulez tester : " +
+                "\n 1. Ranville" +
+                "\n 2. Bordeaux");
+        choixVille = sc.nextInt();
+        switch (choixVille) {
+            case 1:
+            {
+                p = pc.choixFichierRanville(p);
+                return p;
+            }
+            case 2:
+            {
+                p = pc.choixFichierBordeaux(p);
+                return p;
+            }
+        }
+        return null;
     }
 
 }
