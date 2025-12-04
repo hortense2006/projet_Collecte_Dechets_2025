@@ -1,5 +1,6 @@
 package controller;
 import model.EncombrantModel;
+import model.FichierDemandes;
 import model.particulier.*;
 import java.time.LocalDate;
 import java.util.LinkedList;
@@ -18,14 +19,16 @@ public class ParticulierController
     private final ParticulierView view;
     private DemandeCollecte demande;
     private FichiersProfil fichiers;
+    private FichierDemandes fichiersD;
     private EncombrantModel encombrantModel;
     String idPropose;
     String mdpPropose;
 
     // CONSTRUCTEUR
-    public ParticulierController(ParticulierModel model, ParticulierView view,FichiersProfil fichiers)
+    public ParticulierController(ParticulierModel model, ParticulierView view,FichiersProfil fichiers,FichierDemandes fichiersD)
     {
         this.fichiers = fichiers;
+        this.fichiersD = fichiersD;
         this.model = model;
         this.view = view;
         this.utilisateurActuel = null;
@@ -159,8 +162,9 @@ public class ParticulierController
                 choixValide = true;
             }
         }
-        demande = model.faireDemandeCollecte(utilisateurActuel.getId(),choix,quantite,dateDemande,utilisateurActuel.getRue(),utilisateurActuel.getNumero());
+        demande = model.faireDemandeCollecte(utilisateurActuel.getNomVille(), utilisateurActuel.getId(),choix,quantite,dateDemande,utilisateurActuel.getRue(),utilisateurActuel.getNumero());
         view.afficherDemande(demande); // On affiche la demande pour vérification.
+        fichiersD.sauvegarderDemande(fichiersD.nomFichier);
         view.afficherMessage("Votre demande a été enregistrée.");
         return demande;
     }

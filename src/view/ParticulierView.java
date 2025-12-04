@@ -53,6 +53,8 @@ public class ParticulierView
     // METHODE n°5 : AFFICHAGE INSCRIPTION
     public ProfilInput afficherRegister()
     {
+        System.out.println("Saisissez le nom de votre ville :");
+        String nomVille = sc.nextLine();
         System.out.println("Saisissez votre prenom");
         String prenom = sc.nextLine();
         System.out.println("Saisissez votre nom de famille:");
@@ -64,7 +66,7 @@ public class ParticulierView
         String rue = sc.nextLine();
         System.out.println("Saisissez un mot de passe:");
         String mdp = sc.nextLine();
-        return new ProfilInput(prenom,nom,numero,rue,mdp); // On retourne les informations du profil.
+        return new ProfilInput(nomVille,prenom,nom,numero,rue,mdp); // On retourne les informations du profil.
     }
 
     // METHODE n°6 : AFFICHAGE DEMANDE COLLECTE
@@ -97,6 +99,7 @@ public class ParticulierView
     // METHODE n°8 : afficher les infos du particulier
     public void afficherInfos(Profil profil)
     {
+        System.out.println("Ville :"+profil.getNomVille());
         System.out.println("Nom :"+ profil.getNom());
         System.out.println("Prenom :" + profil.getPrenom());
         System.out.println("Id:"+ profil.getId());

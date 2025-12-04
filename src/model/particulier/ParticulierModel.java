@@ -29,10 +29,10 @@ public class ParticulierModel
 
 
     // METHODE n°1 : Demander une collecte d'encombrants
-    public DemandeCollecte faireDemandeCollecte(String idUtilisateur,TypeEncombrant encombrant,int quantite,LocalDate date,String rue,Double numero)
+    public DemandeCollecte faireDemandeCollecte(String nomVille,String idUtilisateur,TypeEncombrant encombrant,int quantite,LocalDate date,String rue,Double numero)
     {
         // On remplit une nouvelle demande, et on l'ajoutes à une liste de demandes
-        DemandeCollecte nouvelleDemande = new DemandeCollecte(idUtilisateur,encombrant, quantite,date,rue,numero);
+        DemandeCollecte nouvelleDemande = new DemandeCollecte(nomVille,idUtilisateur,encombrant, quantite,date,rue,numero);
         demandes.add(nouvelleDemande);
         return nouvelleDemande;
     }

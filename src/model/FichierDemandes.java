@@ -35,15 +35,19 @@ public class FichierDemandes implements ChargerFichiers
             String ligne;
             while ((ligne = br.readLine()) != null)
             {
+                if (ligne.trim().isEmpty()) {
+                    continue;
+                }
                 String[] parts = ligne.split(";");
-                String id = parts[0].trim();
-                TypeEncombrant encombrant = TypeEncombrant.valueOf(parts[1].trim());
-                int quantite = Integer.parseInt(parts[2].trim());
-                LocalDate dateDemande = LocalDate.parse(parts[3].trim());
-                String rue = parts[4].trim();
-                double numero = Double.parseDouble(parts[5].trim());
+                String nomVille = parts[0].trim();
+                String id = parts[1].trim();
+                TypeEncombrant encombrant = TypeEncombrant.valueOf(parts[2].trim());
+                int quantite = Integer.parseInt(parts[3].trim());
+                LocalDate dateDemande = LocalDate.parse(parts[4].trim());
+                String rue = parts[5].trim();
+                double numero = Double.parseDouble(parts[6].trim());
 
-                DemandeCollecte demande = new DemandeCollecte(id,encombrant,quantite,dateDemande,rue,numero);
+                DemandeCollecte demande = new DemandeCollecte(nomVille,id,encombrant,quantite,dateDemande,rue,numero);
                 fileDemandes.add(demande); //On ajoutes la demande à la file
             }
         }
@@ -64,21 +68,25 @@ public class FichierDemandes implements ChargerFichiers
             String ligne;
             while ((ligne = br.readLine()) != null)
             {
+                if (ligne.trim().isEmpty()) {
+                    continue;
+                }
                 String[] parts = ligne.split(";");
 
-                if (parts.length != 6)
+                if (parts.length != 7)
                 {
                     System.out.println("Ligne ignorée : format invalide");
                     continue;
                 }
-                String id = parts[0].trim();
-                TypeEncombrant encombrant = TypeEncombrant.valueOf(parts[1].trim());
-                int quantite = Integer.parseInt(parts[2].trim());
-                LocalDate dateDemande = LocalDate.parse(parts[3].trim());
-                String rue = parts[4].trim();
-                double numero = Double.parseDouble(parts[5].trim());
+                String nomVille = parts[0].trim();
+                String id = parts[1].trim();
+                TypeEncombrant encombrant = TypeEncombrant.valueOf(parts[2].trim());
+                int quantite = Integer.parseInt(parts[3].trim());
+                LocalDate dateDemande = LocalDate.parse(parts[4].trim());
+                String rue = parts[5].trim();
+                double numero = Double.parseDouble(parts[6].trim());
 
-                DemandeCollecte demande = new DemandeCollecte(id,encombrant,quantite,dateDemande,rue,numero);
+                DemandeCollecte demande = new DemandeCollecte(nomVille,id,encombrant,quantite,dateDemande,rue,numero);
                 fileDemandes.add(demande); //On ajoutes la demande à la file
             }
         }
@@ -97,8 +105,9 @@ public class FichierDemandes implements ChargerFichiers
         {
             for (DemandeCollecte demande : fileDemandes)
             {
-                // Exemple de format : idUtilisateur,typeEncombrant,quantite,date,rue,numero
-                String ligne = demande.getId() + ";" +
+                // Exemple de format : nomVille;idUtilisateur,typeEncombrant,quantite,date,rue,numero
+                String ligne = demande.getNomVille() + ";" +
+                        demande.getId() + ";" +
                         demande.getTypeEncombrant() + ";" +
                         demande.getQuantite() + ";" +
                         demande.getDateDemande() + ";" +

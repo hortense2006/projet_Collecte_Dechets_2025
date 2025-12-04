@@ -13,12 +13,13 @@ public class DemandeCollecte
     private LocalDate dateDemande;
     private String rue;
     private double numero;
+    private String nomVille;
     private Arc arcMaison;
     private double position;
 
 
     // CONSTRUCTEUR
-    public DemandeCollecte(String idUtilisateur,TypeEncombrant typeEncombrant,int quantite,LocalDate dateDemande,String rue,double numero)
+    public DemandeCollecte(String nomVille,String idUtilisateur,TypeEncombrant typeEncombrant,int quantite,LocalDate dateDemande,String rue,double numero)
     {
         this.idUtilisateur = idUtilisateur;
         this.typeEncombrant = typeEncombrant;
@@ -26,6 +27,7 @@ public class DemandeCollecte
         this.dateDemande = dateDemande;
         this.rue = rue;
         this.numero = numero;
+        this.nomVille = nomVille;
     }
 
     // GETTER n°1
@@ -40,4 +42,6 @@ public class DemandeCollecte
     public double getNumero() {return numero;}
     // GETTER n°6
     public String getId() { return idUtilisateur;}
+    // GETTER n°7
+    public String getNomVille() {return nomVille;}
 }

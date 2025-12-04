@@ -85,8 +85,6 @@ public class Main
         chargerGenerique(NOM_FICHIER_DEMANDES_RANVILLE,fdRanville);
         //chargerGenerique(NOM_FICHIER_SECTEURS,fs);
 
-        //On récupère la liste de demandes
-        Queue<DemandeCollecte>listeDemandes = null;
         while (!exitAll)  //permet de faire tourner l'application sans fin tant que exitAll n'a pas été choisi
         {
             System.out.println("Choisissez votre profil : " +

@@ -17,6 +17,7 @@ public class EntrepriseController
     private ParticulierView pv;
     private ParticulierController pc;
     private Maison maison;
+    private Queue<DemandeCollecte> liste;
     public EntrepriseController(EntrepriseModel em,Plan p,Maison maison,ParticulierView pv,ParticulierController pc)
     {
         this.p = p;
@@ -24,6 +25,7 @@ public class EntrepriseController
         this.maison = maison;
         this.pv = pv;
         this.pc = pc;
+        this.liste = new LinkedList<>();
         this.courant = p.getStation("D"); // dépôt
     }
 
@@ -131,7 +133,6 @@ public class EntrepriseController
     // METHODE n°3
     public Queue<DemandeCollecte> recupListeDemandes(int choixDeVille, FichierDemandes fichierDemandes,DemandeCollecte d)
     {
-        Queue<DemandeCollecte> liste = null;
         if(choixDeVille == 1)
         {
             Queue<DemandeCollecte>  listeDemandes = fichierDemandes.getFileDemandes();

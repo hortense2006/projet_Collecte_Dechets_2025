@@ -8,6 +8,7 @@ import model.particulier.ParticulierModel;
 import view.CamionView;
 import view.ItineraireView;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Scanner;
@@ -16,12 +17,14 @@ public class CamionController {
 
     private EntrepriseController entreprise;
     private ParticulierModel particuliermodel;
+    private Queue<DemandeCollecte> liste;
     CamionView camionV;
 
     public CamionController(EntrepriseController entreprise,ParticulierModel particuliermodel, CamionView camionV) {
         this.entreprise = entreprise;
         this.particuliermodel= particuliermodel;
         this.camionV = camionV;
+        this.liste = new LinkedList<>();
     }
 
     public void executerTournee(String nomFichier)
@@ -30,7 +33,7 @@ public class CamionController {
         fd.chargerDepuisFichier(); // lit le fichier et remplit fileDemandes
         particuliermodel.setDemande(fd.getFileDemandes());
         // Récupère la liste des demandes
-        Queue<DemandeCollecte> liste = particuliermodel.getDemande();
+        liste = particuliermodel.getDemande();
         // On récupère la liste de demandes et on les execute à l'aide de CollecteDemande
         Itineraire itineraireFinal = entreprise.CollecteDemande(liste);
         fd.viderDemande(nomFichier);// On la supprime du fichier texte des demandes
