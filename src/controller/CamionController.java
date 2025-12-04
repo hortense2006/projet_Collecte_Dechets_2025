@@ -27,8 +27,7 @@ public class CamionController {
         this.liste = new LinkedList<>();
     }
 
-    public void executerTournee(String nomFichier)
-    {
+    public void executerTournee(String nomFichier) {
         FichierDemandes fd = new FichierDemandes(nomFichier);
         fd.chargerDepuisFichier(); // lit le fichier et remplit fileDemandes
         particuliermodel.setDemande(fd.getFileDemandes());
@@ -36,7 +35,6 @@ public class CamionController {
         liste = particuliermodel.getDemande();
         // On récupère la liste de demandes et on les execute à l'aide de CollecteDemande
         Itineraire itineraireFinal = entreprise.CollecteDemande(liste);
-        fd.viderDemande(nomFichier);// On la supprime du fichier texte des demandes
         camionV.afficherItineraireE(itineraireFinal);
     }
 

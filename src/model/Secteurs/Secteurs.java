@@ -1,8 +1,11 @@
 package model.Secteurs;
 
 import model.map.Arc;
+import model.map.Plan;
+import model.map.Station;
 
 import java.util.ArrayList;
+import java.util.List;
 
 // Création des secteurs dans la ville
 public class Secteurs
@@ -13,6 +16,9 @@ public class Secteurs
     private String sommets;
     private String arcAssocie;
     private ArrayList<Arc> arcsSortantsSecteurs;
+
+    private boolean etat = false;
+
     // CONSTRUCTEUR
     public Secteurs(String nomSecteur, String couleur, String sommets,String arcAssocie)
     {
@@ -34,7 +40,34 @@ public class Secteurs
     public int getDegre() {
         return this.arcsSortantsSecteurs.size();
     }
+
+    public boolean getEtat() {
+        return this.etat;
+    }
     // SETTER n°1
     public void setCouleur(String couleur) {this.couleur = couleur;}
+
+    public void setEtat(boolean etat) {
+        this.etat = etat;
+    }
+
+    @Override
+    public String toString() {
+        String etat = this.etat ? "[BLOQUÉ/FAIT]" : "[DISPONIBLE]";
+        return nomSecteur + " (" + couleur + ") " + etat;
+    }
+
+    public List<Station> getStationsDuSecteur(Plan plan) {
+        List<Station> liste = new ArrayList<>();
+        if (sommets == null || sommets.isEmpty()) return liste;
+        String[] noms = sommets.split(","); //separe les virgule
+        for (String nom : noms) {
+            Station s = plan.getStation(nom.trim());
+            if (s != null) {
+                liste.add(s);
+            }
+        }
+        return liste;
+    }
 
 }
