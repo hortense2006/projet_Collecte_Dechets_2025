@@ -17,7 +17,6 @@ public class CamionController {
     private EntrepriseController entreprise;
     private ParticulierModel particuliermodel;
     CamionView camionV;
-    Scanner sc = new Scanner(System.in);
 
     public CamionController(EntrepriseController entreprise,ParticulierModel particuliermodel, CamionView camionV) {
         this.entreprise = entreprise;
