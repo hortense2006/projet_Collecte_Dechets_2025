@@ -20,8 +20,6 @@ public class PlanController {
         String nomFichier = "";
         int choix;
         do {
-
-        Scanner sc = new Scanner(System.in);
         choix = planView.afficherMenu();
 
             switch (choix) { //applique le type de plan que nous utilisons
@@ -68,8 +66,6 @@ public class PlanController {
         String nomFichier = "";
         int choix;
         do {
-
-            Scanner sc = new Scanner(System.in);
             choix = planView.afficherMenu();
 
             switch (choix) { //applique le type de plan que nous utilisons

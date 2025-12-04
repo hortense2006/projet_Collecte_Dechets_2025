@@ -16,27 +16,25 @@ import java.util.Scanner;
 public class CamionController {
 
     private EntrepriseController entreprise;
-    private DemandeCollecte demandeC;
     private ParticulierModel particuliermodel;
     private Queue<DemandeCollecte> liste;
     CamionView camionV;
 
-    public CamionController(EntrepriseController entreprise,ParticulierModel particuliermodel, CamionView camionV,DemandeCollecte demandeC) {
+    public CamionController(EntrepriseController entreprise,ParticulierModel particuliermodel, CamionView camionV) {
         this.entreprise = entreprise;
         this.particuliermodel= particuliermodel;
         this.camionV = camionV;
         this.liste = new LinkedList<>();
-        this.demandeC = demandeC;
     }
 
     public void executerTournee(String nomFichier)
     {
         FichierDemandes fd = new FichierDemandes(nomFichier);
         fd.chargerDepuisFichier(); // lit le fichier et remplit fileDemandes
-        particuliermodel.setDemande(demandeC.getNomVille(),fd.getFileDemandes());
+        particuliermodel.setDemande(fd.getFileDemandes());
         // Récupère la liste des demandes
-        liste = particuliermodel.getDemande(demandeC.getNomVille());
-        // On récupère la liste de demandes et on les execute à l'aide de CollecteDemande
+        liste = particuliermodel.getDemande();
+        // On récupère la liste de demandes et on les exécute à l'aide de CollecteDemande
         Itineraire itineraireFinal = entreprise.CollecteDemande(liste);
         camionV.afficherItineraireE(itineraireFinal);
     }

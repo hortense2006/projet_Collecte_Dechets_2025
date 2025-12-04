@@ -58,7 +58,7 @@ public class FichierSecteurs implements ChargerFichiers {
             {
                 String[] parts = ligne.split(";");
                 String nomSecteur = parts[0].trim();
-                String couleur = parts[1].trim();
+                String couleur = "";
                 String sommets = parts[2].trim();
                 String arcs = parts[3].trim();
 

@@ -6,11 +6,13 @@ public class Maison extends Station
 {
     // ATTRIBUTS
     private Plan plan;
+    private int choixVille;
     // CONSTRUCTEUR
-    public Maison(Plan plan,String nom)
+    public Maison(Plan plan,String nom,int choixVille)
     {
         super(nom);
-        this.plan = plan;
+        this.choixVille=choixVille;
+        this.plan = plan.planView.ChoixVille(plan,choixVille);
     }
 
     // METHODE n°1 : Création d'une maison (station temporaire)
@@ -79,6 +81,7 @@ public class Maison extends Station
         .replace("è", "e") // Remplacer è
         .replace("à", "a") // Remplacer à
         .replace("â", "a")// Remplacer â
-        .replace("ô","o");  // Remplacer ô
+        .replace("ô","o") // Remplacer ô
+        .replace("-","");  // Remplacer le tiret -
     }
 }

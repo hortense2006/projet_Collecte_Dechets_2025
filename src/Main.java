@@ -54,7 +54,7 @@ public class Main
         Scanner sc = new Scanner(System.in);
         FichiersProfil f = new FichiersProfil(NOM_FICHIER_USERS);
         ParticulierView pv = new ParticulierView(sc);
-        ParticulierModel pm = new ParticulierModel(NOM_FICHIER_USERS);
+        ParticulierModel pm = new ParticulierModel(NOM_FICHIER_USERS,choixDeVille);
 
         //permet de choisir le fichier qu'on utilise et affiche le plan de la ville associé
         while (choixDeVille < 1 || choixDeVille > 2)
@@ -68,7 +68,7 @@ public class Main
         }
 
         // Pour les maisons
-        Maison maison = new Maison(planDeVille,nom);
+        Maison maison = new Maison(planDeVille,nom,choixDeVille);
         // pour l'entreprise
         FichierDemandes fdRanville = new FichierDemandes(NOM_FICHIER_DEMANDES_RANVILLE);
         FichierDemandes fdBordeaux = new FichierDemandes(NOM_FICHIER_DEMANDES_BORDEAUX);
@@ -98,7 +98,7 @@ public class Main
         EntrepriseController enc = new EntrepriseController(em,planDeVille,maison,pv,pc);
         // Pour le camion
         CamionView camionV= new CamionView();
-        CamionController camionC = new CamionController(enc,pm, camionV,demandeC);
+        CamionController camionC = new CamionController(enc,pm, camionV);
 
         // point de collecte
         PointCollecteView pdcV = new PointCollecteView();

@@ -10,6 +10,7 @@ public class ParticulierModel
     private Map<String, Profil> compte;
     Plan plan = new Plan();
     String nomFichier;
+    private int nomVille;
     private final FichiersProfil f;
     private Queue<DemandeCollecte> demandesRanville;
     private Queue<DemandeCollecte> demandesBordeaux;
@@ -17,9 +18,10 @@ public class ParticulierModel
 
 
     // CONSTRUCTEUR
-    public ParticulierModel(String nomFichier)
+    public ParticulierModel(String nomFichier,int nomVille)
     {
         this.nomFichier = nomFichier;
+        this.nomVille = nomVille;
         this.f = new FichiersProfil(nomFichier);
         this.compte = f.getCompte();
         this.demandesRanville = new LinkedList<>();
@@ -27,12 +29,11 @@ public class ParticulierModel
 
         f.chargerDepuisFichier(); // charge les profils existants
     }
-
-    // GETTER n°2
-    public Queue<DemandeCollecte> getDemande(String nomVille)
+    // GETTER n°1
+    public Queue<DemandeCollecte> getDemande()
     {
-        if(nomVille.equals("Ranville")) return demandesRanville;
-        else if(nomVille.equals("Bordeaux")) return demandesBordeaux;
+        if(nomVille == 1) return demandesRanville;
+        else if(nomVille == 2) return demandesBordeaux;
         return null;
     }
 
@@ -69,10 +70,10 @@ public class ParticulierModel
     }
 
     // SETTER n°1
-    public Queue<DemandeCollecte> setDemande(String nomVille,Queue<DemandeCollecte> fileDemandes)
+    public Queue<DemandeCollecte> setDemande(Queue<DemandeCollecte> fileDemandes)
     {
-        if(nomVille.equals("Ranville")) this.demandesRanville = fileDemandes;
-        else if(nomVille.equals("Bordeaux")) this.demandesBordeaux = fileDemandes;
+        if(nomVille == 1) this.demandesRanville = fileDemandes;
+        else if(nomVille == 2) this.demandesBordeaux = fileDemandes;
         return fileDemandes;
     }
 }

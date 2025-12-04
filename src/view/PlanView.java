@@ -64,7 +64,8 @@ public class PlanView {
         System.err.println(message);
     }
 
-    public Plan ChoixVille (Plan p, int choixDeVille){
+    public Plan ChoixVille (Plan p, int choixDeVille)
+    {
 
         PlanController pc = new PlanController(p, this);
 
