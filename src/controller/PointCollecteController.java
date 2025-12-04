@@ -15,7 +15,7 @@ public class PointCollecteController {
         this.pdcV = pdcV;
     }
 
-    public void depotDechetAuPointCollecte() {
+    public void depotDechetAuPointCollecteRanville() {
         String nomPoint = pdcV.demanderNomPoint(); //saisie du nom du point
         Station station = plan.getStation(nomPoint); //on le trouve sur le plan
         if (station == null) { // on verifie s'il existe
@@ -35,13 +35,43 @@ public class PointCollecteController {
 
         PointCollecte pc = (PointCollecte) station;
         pc.remplir(quantite); // on le remplie
-        PointCollecte.sauvegarderEtat(plan);
+        PointCollecte.sauvegarderEtatRanville(plan);
 
         pdcV.afficherMessage("Vous avez déposé " + quantite + " unités dans " + pc.getNom());
         pdcV.afficherMessage("Niveau actuel du conteneur : " + pc.getNiveauRemplissage());
     }
 
-    public void mettreAJourFichierPoints() {
-        PointCollecte.sauvegarderEtat(plan);
+    public void mettreAJourFichierPointsRanville() {
+        PointCollecte.sauvegarderEtatRanville(plan);
+    }
+
+    public void depotDechetAuPointCollecteBordeaux() {
+        String nomPoint = pdcV.demanderNomPoint(); //saisie du nom du point
+        Station station = plan.getStation(nomPoint); //on le trouve sur le plan
+        if (station == null) { // on verifie s'il existe
+            pdcV.afficherMessage("Erreur : Ce point de collecte n'existe pas dans la ville.");
+            return;
+        }
+        if (!(station instanceof PointCollecte)) {
+            pdcV.afficherMessage("Erreur : " + nomPoint + " n'est pas un point de collecte (c'est une intersection ou un dépôt).");
+            return;
+        }
+        int quantite = pdcV.demanderQuantite();// on demande la quantité
+
+        if (quantite <= 0) {
+            pdcV.afficherMessage("Erreur : La quantité doit être un nombre positif.");
+            return;
+        }
+
+        PointCollecte pc = (PointCollecte) station;
+        pc.remplir(quantite); // on le remplie
+        PointCollecte.sauvegarderEtatBordeaux(plan);
+
+        pdcV.afficherMessage("Vous avez déposé " + quantite + " unités dans " + pc.getNom());
+        pdcV.afficherMessage("Niveau actuel du conteneur : " + pc.getNiveauRemplissage());
+    }
+
+    public void mettreAJourFichierPointsBordeaux() {
+        PointCollecte.sauvegarderEtatBordeaux(plan);
     }
 }

@@ -23,6 +23,7 @@ public class Main
         int choix;
         boolean exitAll = false;
         boolean exit = false;
+        int choixDeVille = 0;
 
         final String NOM_FICHIER_USERS = "Base_De_Donnees_Particuliers.txt";
         final String NOM_FICHIER_DEMANDES = "Liste_Demandes.txt";
@@ -44,10 +45,15 @@ public class Main
         ParticulierModel pm = new ParticulierModel(NOM_FICHIER_USERS);
         ParticulierController pc = new ParticulierController(pm,pv,f);
 
-       planDeVille = planV.ChoixVille(planDeVille);
+        //permet de choisir le fichier qu'on utilise et affiche le plan de la ville associé
+        while (choixDeVille < 1 || choixDeVille > 2) {
+            System.out.println("Veuillez choisir la ville que vous voulez tester : " +
+                    "\n 1. Ranville" +
+                    "\n 2. Bordeaux");
+            choixDeVille = sc.nextInt();
 
-         //permet de choisir le fichier qu'on utilise et affiche le plan de la ville associé
-
+            planDeVille = planV.ChoixVille(planDeVille, choixDeVille);
+        }
 
         // Pour les maisons
         Maison maison = new Maison(planDeVille,nom);
@@ -143,7 +149,11 @@ public class Main
                             }
                             case 3 : //aller jeter au point de collecte
                             {
-                                pcController.depotDechetAuPointCollecte();
+                                if (choixDeVille == 1) {
+                                    pcController.depotDechetAuPointCollecteRanville();
+                                } else if (choixDeVille == 2) {
+                                    pcController.depotDechetAuPointCollecteBordeaux();
+                                }
                                 break;
                             }
                             case 4: //changement d'utilisateur
@@ -177,27 +187,52 @@ public class Main
                             }
                             case 2: // faire la tournée des points de collecte
                             {
-                                model.map.PointCollecte.chargerEtat(planDeVille);
-                                model.CamionModel monCamion = camionC.selectionnerCamion(); // Le camion passe à "occupé"
-                                tourneePC.tourneePlusProcheVoisinAvecCapacite(monCamion);
-                                tpcView.afficherResultats();
-                                pcController.mettreAJourFichierPoints();
-                                if (monCamion.getCapaciteActuelle() < monCamion.getCapaciteMax()) { // s'il reste de la place dans mon camion à la fin de la tournée
-                                    monCamion.setEtat("disponible");
-                                    System.out.println("Info : Le camion n'est pas plein, il est marqué 'disponible'.");
-                                } else { // s'il est plein
-                                    monCamion.setEtat("occupé");
-                                    System.out.println("Info : Le camion est plein, il reste marqué 'occupé' (nécessite vidage).");
-                                }
-                                camionC.sauvegarderEtatCamion(monCamion);
-                                System.out.println("Bilan de la tournée"+
-                                                    "\nEtat des camions"+
-                                                    "ID : " + monCamion.getIdCamion() +
-                                                    "Charge finale : " + (int)monCamion.getCapaciteActuelle() + " / " + (int)monCamion.getCapaciteMax());
-                                PointCollecteView.afficherEtatPointCollecte();
+                                if (choixDeVille == 1){
+                                    model.map.PointCollecte.chargerEtatRanville(planDeVille);
+                                    model.CamionModel monCamion = camionC.selectionnerCamion(); // Le camion passe à "occupé"
+                                    tourneePC.tourneePlusProcheVoisinAvecCapacite(monCamion);
+                                    tpcView.afficherResultats();
+                                    pcController.mettreAJourFichierPointsRanville();
+                                    if (monCamion.getCapaciteActuelle() < monCamion.getCapaciteMax()) { // s'il reste de la place dans mon camion à la fin de la tournée
+                                        monCamion.setEtat("disponible");
+                                        System.out.println("Info : Le camion n'est pas plein, il est marqué 'disponible'.");
+                                    } else { // s'il est plein
+                                        monCamion.setEtat("occupé");
+                                        System.out.println("Info : Le camion est plein, il reste marqué 'occupé' (nécessite vidage).");
+                                    }
+                                    camionC.sauvegarderEtatCamion(monCamion);
+                                    System.out.println("Bilan de la tournée"+
+                                            "\nEtat des camions"+
+                                            "ID : " + monCamion.getIdCamion() +
+                                            "Charge finale : " + (int)monCamion.getCapaciteActuelle() + " / " + (int)monCamion.getCapaciteMax());
+                                    PointCollecteView.afficherEtatPointCollecte();
 
-                                System.out.println("\nTournée terminée. Les fichiers ont été mis à jour.");
-                                break;
+                                    System.out.println("\nTournée terminée. Les fichiers ont été mis à jour.");
+                                    break;
+                                } else if (choixDeVille == 2){
+                                    model.map.PointCollecte.chargerEtatBordeaux(planDeVille);
+                                    model.CamionModel monCamion = camionC.selectionnerCamion(); // Le camion passe à "occupé"
+                                    tourneePC.tourneePlusProcheVoisinAvecCapacite(monCamion);
+                                    tpcView.afficherResultats();
+                                    pcController.mettreAJourFichierPointsBordeaux();
+                                    if (monCamion.getCapaciteActuelle() < monCamion.getCapaciteMax()) { // s'il reste de la place dans mon camion à la fin de la tournée
+                                        monCamion.setEtat("disponible");
+                                        System.out.println("Info : Le camion n'est pas plein, il est marqué 'disponible'.");
+                                    } else { // s'il est plein
+                                        monCamion.setEtat("occupé");
+                                        System.out.println("Info : Le camion est plein, il reste marqué 'occupé' (nécessite vidage).");
+                                    }
+                                    camionC.sauvegarderEtatCamion(monCamion);
+                                    System.out.println("Bilan de la tournée"+
+                                            "\nEtat des camions"+
+                                            "ID : " + monCamion.getIdCamion() +
+                                            "Charge finale : " + (int)monCamion.getCapaciteActuelle() + " / " + (int)monCamion.getCapaciteMax());
+                                    PointCollecteView.afficherEtatPointCollecte();
+
+                                    System.out.println("\nTournée terminée. Les fichiers ont été mis à jour.");
+                                    break;
+                            }
+
                             }
                             case 3 : // afficher le niveau des points de collectes
                             {

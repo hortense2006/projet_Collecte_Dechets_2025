@@ -64,14 +64,11 @@ public class PlanView {
         System.err.println(message);
     }
 
-    public Plan ChoixVille (Plan p){
-        int choixVille;
+    public Plan ChoixVille (Plan p, int choixDeVille){
+
         PlanController pc = new PlanController(p, this);
-        System.out.println("Veuillez choisir la ville que vous voulez tester : " +
-                "\n 1. Ranville" +
-                "\n 2. Bordeaux");
-        choixVille = sc.nextInt();
-        switch (choixVille) {
+
+        switch (choixDeVille) {
             case 1:
             {
                 p = pc.choixFichierRanville(p);
