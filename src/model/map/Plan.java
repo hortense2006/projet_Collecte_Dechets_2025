@@ -63,7 +63,8 @@ public class Plan {
                 .replace("è", "e") // Remplacer è
                 .replace("à", "a") // Remplacer à
                 .replace("â", "a")// Remplacer â
-                .replace("ô","o"); // Remplacer ô
+                .replace("ô","o")// Remplacer ô
+                .replace("-","");  // Remplacer le tiret -
     }
 
     public enum modeOrientation { //Permet de déterminer l'orientation du graphe

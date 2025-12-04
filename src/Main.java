@@ -66,6 +66,9 @@ public class Main
 
             planDeVille = planV.ChoixVille(planDeVille, choixDeVille);
         }
+        /* PERMET DE CHARGER L'ETAT DE LA VILLE DE FACON A POUVOIR FAIRE LA
+        COLLECTE D'ENCOMBRANTS PEU IMPORTE L'ORDRE DE CONNEXION
+        (particulier->entreprise ou juste entreprise directement)*/
         if (choixDeVille == 1)
         {
             model.map.PointCollecte.chargerEtatRanville(planDeVille);
