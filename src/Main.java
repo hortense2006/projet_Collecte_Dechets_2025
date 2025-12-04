@@ -263,9 +263,7 @@ public class Main
                                 switch (choixCamion){
                                     case 1 :
                                     {
-                                        CamionView cv = new CamionView();
-                                        CamionController ccGlobal = new CamionController(enc, pm, cv);
-                                        ccGlobal.viderTousCamions();
+                                        camionC.viderTousCamions();
                                         break;
                                     }
                                     case 2 :
