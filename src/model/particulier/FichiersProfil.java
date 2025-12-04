@@ -66,7 +66,7 @@ public class FichiersProfil implements ChargerFichiers
             {
                 String[] parts = ligne.split(";");
 
-                if (parts.length != 6)
+                if (parts.length != 7)
                 {
                     System.out.println("Ligne ignorée : format invalide");
                     continue;

@@ -7,3 +7,4 @@ Ranville;Sirus;Black;18.0;Rue de la Mairie;d381635d-f667-4023-a2ee-86b5fda194a9;
 Ranville;Maurice;Vella;5.0;Rue du Marché;1d26d502-c0a2-4456-920e-6d4dd06d4642;LaPiscine
 Bordeaux;Armande;Dacourt;19.0;Place de La Bourse;8609853b-c1ed-4cca-91f3-414c2462fb7d;Elite19
 Bordeaux;Armand;Dacourt;19.0;Rue Saint-Rémi;adc9066d-894b-4a9e-954b-d63e1d42d827;Remi12
+Bordeaux;Hortense;Galtier;33.0;Place De La Bourse;4d1fbd79-49eb-48dd-8d81-5d704d703a9b;33FID

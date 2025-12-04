@@ -66,6 +66,14 @@ public class Main
 
             planDeVille = planV.ChoixVille(planDeVille, choixDeVille);
         }
+        if (choixDeVille == 1)
+        {
+            model.map.PointCollecte.chargerEtatRanville(planDeVille);
+        }
+        else if (choixDeVille == 2)
+        {
+            model.map.PointCollecte.chargerEtatBordeaux(planDeVille);
+        }
 
         // Pour les maisons
         Maison maison = new Maison(planDeVille,nom,choixDeVille);
@@ -94,11 +102,11 @@ public class Main
         DemandeCollecte demandeC = new DemandeCollecte();
 
         //Entreprises
-        EntrepriseModel em = new EntrepriseModel(planDeVille,pm,demandeC);
+        EntrepriseModel em = new EntrepriseModel(planDeVille,pm);
         EntrepriseController enc = new EntrepriseController(em,planDeVille,maison,pv,pc);
         // Pour le camion
         CamionView camionV= new CamionView();
-        CamionController camionC = new CamionController(enc,pm, camionV);
+        CamionController camionC = new CamionController(enc,pm, camionV,demandeC);
 
         // point de collecte
         PointCollecteView pdcV = new PointCollecteView();
@@ -138,7 +146,7 @@ public class Main
                         {
                             case 1 : // consulter le plan de la ville
                             {
-                                planV.afficherReseau(plan);
+                                planV.afficherReseau(planDeVille);
                                 break;
                             }
                             case 2 :// Changement d'utilisateur
@@ -229,8 +237,8 @@ public class Main
                         {
                             case 1: // Collecte d'encombrants
                             {
-                                if(choixDeVille == 1) {camionC.executerTournee(NOM_FICHIER_DEMANDES_RANVILLE);}
-                                else if(choixDeVille == 2) {camionC.executerTournee(NOM_FICHIER_DEMANDES_BORDEAUX);}
+                                if(choixDeVille == 1) {camionC.executerTournee("Ranville",NOM_FICHIER_DEMANDES_RANVILLE);}
+                                else if(choixDeVille == 2) {camionC.executerTournee("Bordeaux",NOM_FICHIER_DEMANDES_BORDEAUX);}
                                 break;
                             }
                             case 2: // faire la tournée des points de collecte

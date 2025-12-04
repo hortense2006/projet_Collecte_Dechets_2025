@@ -1,4 +1,4 @@
-ab-222-cd;disponible;1000;0
+ab-222-cd;occupé;1000;0
 ab-223-ef;disponible;2000;0
 ab-234-gh;disponible;3000;0
 zw-999-xy;disponible;10000;0

@@ -1,7 +1,4 @@
 package view;
-import model.map.Arc;
-import model.map.Plan;
-import model.map.Station;
 import model.particulier.DemandeCollecte;
 import model.particulier.Profil;
 import model.particulier.TypeEncombrant;

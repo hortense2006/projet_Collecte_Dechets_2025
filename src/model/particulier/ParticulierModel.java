@@ -30,10 +30,10 @@ public class ParticulierModel
         f.chargerDepuisFichier(); // charge les profils existants
     }
     // GETTER n°1
-    public Queue<DemandeCollecte> getDemande()
+    public Queue<DemandeCollecte> getDemande(String nomVille)
     {
-        if(nomVille == 1) return demandesRanville;
-        else if(nomVille == 2) return demandesBordeaux;
+        if(nomVille.equals("Ranville")) return demandesRanville;
+        else if(nomVille.equals("Bordeaux")) return demandesBordeaux;
         return null;
     }
 
@@ -70,10 +70,10 @@ public class ParticulierModel
     }
 
     // SETTER n°1
-    public Queue<DemandeCollecte> setDemande(Queue<DemandeCollecte> fileDemandes)
+    public Queue<DemandeCollecte> setDemande(String nomVille,Queue<DemandeCollecte> fileDemandes)
     {
-        if(nomVille == 1) this.demandesRanville = fileDemandes;
-        else if(nomVille == 2) this.demandesBordeaux = fileDemandes;
+        if(nomVille.equals("Ranville")) this.demandesRanville = fileDemandes;
+        else if(nomVille.equals("Bordeaux")) this.demandesBordeaux = fileDemandes;
         return fileDemandes;
     }
 }
