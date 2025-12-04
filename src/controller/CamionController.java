@@ -95,7 +95,6 @@ public class CamionController {
         List<CamionModel> camions = CamionModel.chargerCamions();
         CamionModel.reinitialiserTousCamions(); // appel de la fonction créée ci-dessus
         camionV.afficherMessage("Succès : Tous les camions ont été vidés et sont disponibles.");
-        camionV.afficherListeCamions(camions);
     }
 
 }

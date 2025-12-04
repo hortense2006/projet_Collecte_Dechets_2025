@@ -1,6 +1,7 @@
 import model.*;
 import controller.*;
 //import model.Secteurs.FichierSecteurs;
+import model.Secteurs.FichierSecteurs;
 import model.map.*;
 import model.particulier.DemandeCollecte;
 import model.particulier.FichiersProfil;
@@ -37,7 +38,8 @@ public class Main
         Plan planDeVille = new Plan();
 
         // Pour les secteurs de la ville
-        //FichierSecteurs fs = new FichierSecteurs(NOM_FICHIER_SECTEURS);
+        FichierSecteurs fs = new FichierSecteurs(NOM_FICHIER_SECTEURS);
+
         // pour les particuliers
         Scanner sc = new Scanner(System.in);
         FichiersProfil f = new FichiersProfil(NOM_FICHIER_USERS);
@@ -70,6 +72,7 @@ public class Main
         // point de collecte
         PointCollecteView pdcV = new PointCollecteView();
         PointCollecteController pcController = new PointCollecteController(planDeVille, pdcV);
+
         // Tournée des points de collecte
         TourneePointCollecte tourneePC = new TourneePointCollecte(planDeVille);
         TourneePointCollecteView tpcView = new TourneePointCollecteView(tourneePC);
@@ -213,7 +216,7 @@ public class Main
                                             "\nEtat des camions"+
                                             "ID : " + monCamion.getIdCamion() +
                                             "Charge finale : " + (int)monCamion.getCapaciteActuelle() + " / " + (int)monCamion.getCapaciteMax());
-                                    PointCollecteView.afficherEtatPointCollecte();
+                                    PointCollecteView.afficherEtatPointCollecteRanville();
 
                                     System.out.println("\nTournée terminée. Les fichiers ont été mis à jour.");
                                     break;
@@ -235,7 +238,7 @@ public class Main
                                             "\nEtat des camions"+
                                             "ID : " + monCamion.getIdCamion() +
                                             "Charge finale : " + (int)monCamion.getCapaciteActuelle() + " / " + (int)monCamion.getCapaciteMax());
-                                    PointCollecteView.afficherEtatPointCollecte();
+                                    PointCollecteView.afficherEtatPointCollecteBordeaux();
 
                                     System.out.println("\nTournée terminée. Les fichiers ont été mis à jour.");
                                     break;
@@ -244,7 +247,11 @@ public class Main
                             }
                             case 3 : // afficher le niveau des points de collectes
                             {
-                                PointCollecteView.afficherEtatPointCollecte();
+                                if (choixDeVille == 1){
+                                    PointCollecteView.afficherEtatPointCollecteRanville();
+                                } else if (choixDeVille == 2){
+                                    PointCollecteView.afficherEtatPointCollecteBordeaux();
+                                }
                                 break;
                             }
                             case 4 : // vider les camions
@@ -256,9 +263,7 @@ public class Main
                                 switch (choixCamion){
                                     case 1 :
                                     {
-                                        CamionView cv = new CamionView();
-                                        CamionController ccGlobal = new CamionController(enc, pm, cv);
-                                        ccGlobal.viderTousCamions();
+                                        camionC.viderTousCamions();
                                         break;
                                     }
                                     case 2 :
