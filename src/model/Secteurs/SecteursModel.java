@@ -7,7 +7,7 @@ public class SecteursModel
 {
     //ATTRIBUTS
     private FichierSecteurs fichiers;
-    HashMap<String, Secteurs> secteur;
+    public HashMap<String, Secteurs> secteur;
     List<Secteurs> secteursIncompatibles;
     private List<Secteurs> voisins;
     // CONSTRUCTEUR
