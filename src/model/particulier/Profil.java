@@ -8,10 +8,11 @@ public class Profil
     private String rue;
     private String id;
     private String mdp;
+    private String nomVille;
     private boolean estConnecte;
 
     // CONSTRUCTEUR
-    public Profil(String prenom, String nom, double numero, String rue, String id, String mdp)
+    public Profil(String nomVille,String prenom, String nom, double numero, String rue, String id, String mdp)
     {
         this.prenom = prenom;
         this.nom = nom;
@@ -19,6 +20,7 @@ public class Profil
         this.rue = rue;
         this.id = id;
         this.mdp = mdp;
+        this.nomVille = nomVille;
     }
 
     // -------- GETTERS --------
@@ -28,6 +30,7 @@ public class Profil
     public String getRue() { return rue; }
     public String getId() { return id; }
     public String getMdp() { return mdp; }
+    public String getNomVille() { return nomVille;}
 
     // SETTER n°1
     public boolean setEstConnecte(boolean estConnecte)

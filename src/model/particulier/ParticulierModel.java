@@ -43,6 +43,7 @@ public class ParticulierModel
         String id = UUID.randomUUID().toString(); // Chaque id est différent
 
         Profil p = new Profil(
+                input.nomVille(),
                 input.prenom(),
                 input.nom(),
                 input.numero(),

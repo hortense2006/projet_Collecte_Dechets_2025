@@ -27,7 +27,8 @@ public class Main
         int choixDeVille = 0;
 
         final String NOM_FICHIER_USERS = "Base_De_Donnees_Particuliers.txt";
-        final String NOM_FICHIER_DEMANDES = "Liste_Demandes.txt";
+        final String NOM_FICHIER_DEMANDES_RANVILLE = "Liste_Demandes_Ranville.txt";
+        final String NOM_FICHIER_DEMANDES_BORDEAUX = "Liste_Demandes_Bordeaux.txt";
         final String NOM_FICHIER_SECTEURS = "Graphe_Secteurs_Ranville.txt";
 
         // IMPORT DES CLASSES :
@@ -61,9 +62,10 @@ public class Main
         // Pour les maisons
         Maison maison = new Maison(planDeVille,nom);
         // pour l'entreprise
-        FichierDemandes fd = new FichierDemandes(NOM_FICHIER_DEMANDES);
+        FichierDemandes fdRanville = new FichierDemandes(NOM_FICHIER_DEMANDES_RANVILLE);
+        FichierDemandes fdBordeaux = new FichierDemandes(NOM_FICHIER_DEMANDES_BORDEAUX);
         EntrepriseModel em = new EntrepriseModel(planDeVille,pm);
-        EntrepriseController enc = new EntrepriseController(em,planDeVille,maison,pv);
+        EntrepriseController enc = new EntrepriseController(em,planDeVille,maison,pv,pc);
 
         // Pour le camion
         CamionView camionV= new CamionView();
@@ -79,12 +81,12 @@ public class Main
 
         // Chargement des différents fichiers texte
         chargerGenerique(NOM_FICHIER_USERS, f);
-        chargerGenerique(NOM_FICHIER_DEMANDES, fd);
+        chargerGenerique(NOM_FICHIER_DEMANDES_BORDEAUX, fdBordeaux);
+        chargerGenerique(NOM_FICHIER_DEMANDES_RANVILLE,fdRanville);
         //chargerGenerique(NOM_FICHIER_SECTEURS,fs);
 
         //On récupère la liste de demandes
-        Queue<DemandeCollecte> listeDemandes = fd.getFileDemandes();
-
+        Queue<DemandeCollecte>listeDemandes = null;
         while (!exitAll)  //permet de faire tourner l'application sans fin tant que exitAll n'a pas été choisi
         {
             System.out.println("Choisissez votre profil : " +
@@ -139,10 +141,16 @@ public class Main
                         {
                             case 1: // faire une demande d'encombrant
                             {
-                                DemandeCollecte d = pc.DemandeCollecteE(); // Demander une collecte d'encombrants
-                                Queue<DemandeCollecte> liste = pc.remplirListeDemandeCollecte(d,listeDemandes);// On remplit la liste de demandes.
-                                fd.sauvegarderDemande(NOM_FICHIER_DEMANDES); // On enregistre la demande dans le bon fichier texte
-                                System.out.println(liste);
+                                if(choixDeVille == 1)
+                                {
+                                    DemandeCollecte d = pc.DemandeCollecteE(); // Demander une collecte d'encombrants
+                                    Queue<DemandeCollecte> liste = enc.recupListeDemandes(choixDeVille, fdRanville, d);
+                                }
+                                else if (choixDeVille == 2)
+                                {
+                                    DemandeCollecte d = pc.DemandeCollecteE(); // Demander une collecte d'encombrants
+                                    Queue<DemandeCollecte> liste = enc.recupListeDemandes(choixDeVille, fdBordeaux, d);
+                                }
                                 break;
                             }
                             case 2: //afficher le plan de la ville
@@ -193,7 +201,8 @@ public class Main
                         {
                             case 1: // Collecte d'encombrants
                             {
-                                camionC.executerTournee(NOM_FICHIER_DEMANDES);
+                                if(choixDeVille == 1) {camionC.executerTournee(NOM_FICHIER_DEMANDES_RANVILLE);}
+                                else if(choixDeVille == 2) {camionC.executerTournee(NOM_FICHIER_DEMANDES_BORDEAUX);}
                                 break;
                             }
                             case 2: // faire la tournée des points de collecte
@@ -247,7 +256,8 @@ public class Main
                             }
                             case 3 : // afficher le niveau des points de collectes
                             {
-                                if (choixDeVille == 1){
+                                if (choixDeVille == 1)
+                                {
                                     PointCollecteView.afficherEtatPointCollecteRanville();
                                 } else if (choixDeVille == 2){
                                     PointCollecteView.afficherEtatPointCollecteBordeaux();

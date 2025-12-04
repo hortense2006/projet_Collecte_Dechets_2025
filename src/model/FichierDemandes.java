@@ -114,4 +114,21 @@ public class FichierDemandes implements ChargerFichiers
             System.err.println("Erreur lors de l'écriture dans le fichier : " + e.getMessage());
         }
     }
+    // METHODE n°4 : Vider le fichier texte des demandes
+    public void viderDemande(String nomFichier)
+    {
+        // 1. On vide la liste Java
+        fileDemandes.clear();
+
+        // 2. On vide le fichier texte
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(nomFichier, false)))
+        {
+            // Écrire rien = fichier effacé
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
 }

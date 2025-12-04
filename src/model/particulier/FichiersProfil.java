@@ -35,14 +35,15 @@ public class FichiersProfil implements ChargerFichiers
             while ((ligne = br.readLine()) != null)
             {
                 String[] parts = ligne.split(";");
-                String prenom = parts[0].trim();
-                String nom = parts[1].trim();
-                double numero = Double.parseDouble(parts[2].trim());
-                String rue = parts[3].trim();
-                String id = parts[4].trim();
-                String mdp = parts[5].trim();
+                String nomVille = parts[0].trim();
+                String prenom = parts[1].trim();
+                String nom = parts[2].trim();
+                double numero = Double.parseDouble(parts[3].trim());
+                String rue = parts[4].trim();
+                String id = parts[5].trim();
+                String mdp = parts[6].trim();
 
-                Profil p = new Profil(prenom,nom,numero,rue,id,mdp);
+                Profil p = new Profil(nomVille,prenom,nom,numero,rue,id,mdp);
                 compte.put(id, p); // id comme clé, Profil comme valeur
             }
         }
@@ -70,17 +71,18 @@ public class FichiersProfil implements ChargerFichiers
                     System.out.println("Ligne ignorée : format invalide");
                     continue;
                 }
-                String prenom = parts[0].trim();
-                String nom = parts[1].trim();
-                double numero = Double.parseDouble(parts[2].trim());
-                String rue = parts[3].trim();
+                String nomVille = parts[0].trim();
+                String prenom = parts[1].trim();
+                String nom = parts[2].trim();
+                double numero = Double.parseDouble(parts[3].trim());
+                String rue = parts[4].trim();
                 // La méthode getArcs associe le nom entré par l'utilisateur
                 // (ex: Route de la Mouline) à un arc (par exemple R4)
                 // Dans le fichier texte, on aura enregistré Route de la Mouline.
-                String id = parts[4].trim();
-                String mdp = parts[5].trim();
+                String id = parts[5].trim();
+                String mdp = parts[6].trim();
 
-                Profil p = new Profil(prenom,nom,numero,rue,id,mdp);
+                Profil p = new Profil(nomVille,prenom,nom,numero,rue,id,mdp);
                 compte.put(id, p); // id comme clé, Profil comme valeur
             }
         }
@@ -97,12 +99,13 @@ public class FichiersProfil implements ChargerFichiers
     {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(nomFichier, true)))
         {
-            String ligne = p.getPrenom() + ";" +
-                    p.getNom() + ";" +
-                    p.getNumero() + ";" +
-                    p.getRue()+ ";" +
-                    p.getId() + ";" +
-                    p.getMdp();
+            String ligne = p.getNomVille()+ ";"+
+                           p.getPrenom() + ";" +
+                           p.getNom() + ";" +
+                           p.getNumero() + ";" +
+                           p.getRue()+ ";" +
+                           p.getId() + ";" +
+                           p.getMdp();
             bw.write(ligne);
             bw.newLine();
         }
