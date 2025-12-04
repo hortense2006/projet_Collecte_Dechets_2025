@@ -12,7 +12,7 @@ public class Maison extends Station
     {
         super(nom);
         this.choixVille=choixVille;
-        this.plan = plan.planView.ChoixVille(plan,choixVille);
+        this.plan = plan;
     }
 
     // METHODE n°1 : Création d'une maison (station temporaire)

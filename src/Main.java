@@ -17,7 +17,8 @@ import static model.ChargeurFichiers.chargerGenerique;
 
 public class Main
 {
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
 
         // ATTRIBUTS
         int typeUser ;

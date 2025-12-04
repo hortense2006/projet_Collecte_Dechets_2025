@@ -58,7 +58,7 @@ public class PlanController {
                     }
                     break;
             }
-        } while (choix >=3  || choix <= 1);
+        } while (choix >3  || choix < 1);
         return p = null;
     }
 
