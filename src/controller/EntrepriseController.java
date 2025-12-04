@@ -100,7 +100,6 @@ public class EntrepriseController
             Itineraire chemin = em.bfsPlusCourtChemin(depart.getNom(), stationArrivee.getNom());
             arcsTotaux.addAll(chemin.getChemin()); // ajouter les arcs de ce chemin à l'itinéraire total
             // Marquer la demande comme traitée
-            //em.defilerDemande(plusProche); // On la supprime du fichier texte des demandes
             String clePlusProche = getCleAdresse(plusProche);
             adressesRestantes.remove(clePlusProche); // On la supprime de la liste des demandes
 
