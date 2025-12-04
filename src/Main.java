@@ -31,7 +31,8 @@ public class Main
         final String NOM_FICHIER_USERS = "Base_De_Donnees_Particuliers.txt";
         final String NOM_FICHIER_DEMANDES_RANVILLE = "Liste_Demandes_Ranville.txt";
         final String NOM_FICHIER_DEMANDES_BORDEAUX = "Liste_Demandes_Bordeaux.txt";
-        final String NOM_FICHIER_SECTEURS = "Graphe_Secteurs_Ranville.txt";
+        final String NOM_FICHIER_SECTEURS_RANVILLE = "Graphe_Secteurs_Ranville.txt";
+        final String NOM_FICHIER_SECTEURS_BORDEAUX = "Graphe_Quartiers_Bordeaux.txt";
 
         // IMPORT DES CLASSES :
         //pour le plan
@@ -39,17 +40,6 @@ public class Main
         PlanView planV = new PlanView();
         PlanController planC = new PlanController(plan,planV);
         Plan planDeVille = new Plan();
-
-        // Pour les secteurs de la ville
-        FichierSecteurs fs = new FichierSecteurs(NOM_FICHIER_SECTEURS);
-        SecteursModel secteursM = new SecteursModel(fs);
-
-        /*try {
-            secteursM.welshPowell();
-            System.out.println("Secteurs initialisés et coloriés avec succès.");
-        } catch (java.io.IOException e) {
-            System.err.println("Erreur critique : Impossible de charger les secteurs ! " + e.getMessage());
-        }*/
 
         // pour les particuliers
         Scanner sc = new Scanner(System.in);
@@ -85,23 +75,43 @@ public class Main
         FichierDemandes fdRanville = new FichierDemandes(NOM_FICHIER_DEMANDES_RANVILLE);
         FichierDemandes fdBordeaux = new FichierDemandes(NOM_FICHIER_DEMANDES_BORDEAUX);
         ParticulierController pc; // Déclaration de la variable dans la portée principale
+        // Pour les secteurs de la ville
+        FichierSecteurs fs;
+        SecteursModel secteursM;
 
         if(choixDeVille == 1)
         {
             // Initialisation avec le FichierDemandes de Ranville
             pc = new ParticulierController(pm,pv,f,fdRanville);
+            fs = new FichierSecteurs(NOM_FICHIER_SECTEURS_RANVILLE);
+
         }
         else if(choixDeVille == 2)
         {
             // Initialisation avec le FichierDemandes de Bordeaux
             pc = new ParticulierController(pm,pv,f,fdBordeaux);
+            fs = new FichierSecteurs(NOM_FICHIER_SECTEURS_BORDEAUX);
         }
         else
         {
             System.err.println("Erreur: Choix de ville invalide après la boucle de sélection.");
             pc = new ParticulierController(pm,pv,f,fdRanville);
+            fs = new FichierSecteurs(NOM_FICHIER_SECTEURS_RANVILLE);
         }
-
+        // Initialisation de la classe SecteursModel pour les quartiers des villes
+        secteursM = new SecteursModel(fs);
+        // Chargement des fichiers texte des quartiers des villes
+        chargerGenerique(fs.getNomFichier(),fs);
+        // Coloration des secteurs via Welsh-Powell
+        try
+        {
+            secteursM.welshPowell();
+            System.out.println("Secteurs initialisés et coloriés avec succès.");
+        }
+        catch (java.io.IOException e)
+        {
+            System.err.println("Erreur critique : Impossible de charger les secteurs ! " + e.getMessage());
+        }
         // Demande de collecte
         DemandeCollecte demandeC = new DemandeCollecte();
 
@@ -120,11 +130,11 @@ public class Main
         TourneePointCollecte tourneePC = new TourneePointCollecte(planDeVille);
         TourneePointCollecteView tpcView = new TourneePointCollecteView(tourneePC);
 
-        // Chargement des différents fichiers texte
+        // Chargement du fichier texte des comptes des particuliers
         chargerGenerique(NOM_FICHIER_USERS, f);
+        // Chargement du fichier texte des demandes de collecte d'encombrants
         chargerGenerique(NOM_FICHIER_DEMANDES_BORDEAUX, fdBordeaux);
         chargerGenerique(NOM_FICHIER_DEMANDES_RANVILLE,fdRanville);
-        //chargerGenerique(NOM_FICHIER_SECTEURS,fs);
 
         while (!exitAll)  //permet de faire tourner l'application sans fin tant que exitAll n'a pas été choisi
         {

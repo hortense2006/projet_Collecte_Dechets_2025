@@ -20,6 +20,8 @@ public class FichierSecteurs implements ChargerFichiers {
     }
     // GETTER n°1
     public HashMap<String, Secteurs> getSecteurs() {return secteurs;}
+    // GETTER n°2
+    public String getNomFichier(){return nomFichier;}
     //METHODE n°1
     @Override
     public void chargerDepuisBuffer(BufferedReader br) throws IOException
@@ -29,7 +31,17 @@ public class FichierSecteurs implements ChargerFichiers {
             String ligne;
             while ((ligne = br.readLine()) != null)
             {
+                if (ligne.trim().isEmpty())
+                {
+                    continue;
+                }
                 String[] parts = ligne.split(";");
+
+                if (parts.length != 4)
+                {
+                    System.out.println("Ligne ignorée : format invalide");
+                    continue;
+                }
                 String nomSecteur = parts[0].trim();
                 String couleur = parts[1].trim();
                 String sommets = parts[2].trim();
@@ -56,7 +68,16 @@ public class FichierSecteurs implements ChargerFichiers {
             String ligne;
             while ((ligne = br.readLine()) != null)
             {
+                if (ligne.trim().isEmpty())
+                {
+                    continue;
+                }
                 String[] parts = ligne.split(";");
+                if (parts.length != 4)
+                {
+                    System.out.println("Ligne ignorée : format invalide");
+                    continue;
+                }
                 String nomSecteur = parts[0].trim();
                 String couleur = "";
                 String sommets = parts[2].trim();
@@ -70,7 +91,6 @@ public class FichierSecteurs implements ChargerFichiers {
         {
             throw new ExceptionPersonnalisable("Erreur de lecture du fichier");
         }
-
         System.out.println("Secteurs chargés avec succès depuis " + nomFichier);
     }
     // METHODE n°3 : Sauvegarde dans le fichier texte

@@ -35,7 +35,8 @@ public class FichierDemandes implements ChargerFichiers
             String ligne;
             while ((ligne = br.readLine()) != null)
             {
-                if (ligne.trim().isEmpty()) {
+                if (ligne.trim().isEmpty())
+                {
                     continue;
                 }
                 String[] parts = ligne.split(";");

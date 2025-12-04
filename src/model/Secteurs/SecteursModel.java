@@ -97,6 +97,8 @@ public class SecteursModel
                 {
                     nbzones++;
                     s.setCouleur(String.valueOf(nbzones)); // on lui attribue une nouvelle zone
+                    // Enregistrer la zone dans le fichier texte
+                    fichiers.sauvegarderSecteurs(s);
                 }
             }
         }
