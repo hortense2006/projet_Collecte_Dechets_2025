@@ -720,7 +720,8 @@ Rue de l'École Normale;R1687;R328;19
 Rue de l'École Normale;R328;R1687;19
 Rue de l'École Normale;R1660;R328;68
 Rue de l'École Normale;R328;R1660;68
-Place de la Bourse;R329;R55;23
+Place de la Bourse;R329;D;12
+Place de la Bourse;D;R55;11
 Rue Saint-Rémi;R329;R86;249
 Quai du Maréchal Lyautey;R330;R2161;375
 Cours du Chapeau Rouge;R331;R433;22
