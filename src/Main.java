@@ -65,7 +65,7 @@ public class Main
         FichierDemandes fdRanville = new FichierDemandes(NOM_FICHIER_DEMANDES_RANVILLE);
         FichierDemandes fdBordeaux = new FichierDemandes(NOM_FICHIER_DEMANDES_BORDEAUX);
         EntrepriseModel em = new EntrepriseModel(planDeVille,pm);
-        EntrepriseController enc = new EntrepriseController(em,planDeVille,maison,pv);
+        EntrepriseController enc = new EntrepriseController(em,planDeVille,maison,pv,pc);
 
         // Pour le camion
         CamionView camionV= new CamionView();
@@ -86,9 +86,7 @@ public class Main
         //chargerGenerique(NOM_FICHIER_SECTEURS,fs);
 
         //On récupère la liste de demandes
-        if(choixDeVille == 1) {Queue<DemandeCollecte> listeDemandes = fdRanville.getFileDemandes();}
-        else if(choixDeVille == 2) {Queue<DemandeCollecte> listeDemandes = fdBordeaux.getFileDemandes();}
-
+        Queue<DemandeCollecte>listeDemandes = null;
         while (!exitAll)  //permet de faire tourner l'application sans fin tant que exitAll n'a pas été choisi
         {
             System.out.println("Choisissez votre profil : " +
@@ -143,11 +141,16 @@ public class Main
                         {
                             case 1: // faire une demande d'encombrant
                             {
-                                DemandeCollecte d = pc.DemandeCollecteE(); // Demander une collecte d'encombrants
-                                Queue<DemandeCollecte> liste = pc.remplirListeDemandeCollecte(d,listeDemandes);// On remplit la liste de demandes.
-                                if(choixDeVille == 1) {fdRanville.sauvegarderDemande(NOM_FICHIER_DEMANDES_RANVILLE);} // On enregistre la demande dans le bon fichier texte}
-                                else if (choixDeVille == 2){fdBordeaux.sauvegarderDemande(NOM_FICHIER_DEMANDES_BORDEAUX);} // On enregistre la demande dans le bon fichier texte
-                                System.out.println(liste);
+                                if(choixDeVille == 1)
+                                {
+                                    DemandeCollecte d = pc.DemandeCollecteE(); // Demander une collecte d'encombrants
+                                    Queue<DemandeCollecte> liste = enc.recupListeDemandes(choixDeVille, fdRanville, d);
+                                }
+                                else if (choixDeVille == 2)
+                                {
+                                    DemandeCollecte d = pc.DemandeCollecteE(); // Demander une collecte d'encombrants
+                                    Queue<DemandeCollecte> liste = enc.recupListeDemandes(choixDeVille, fdBordeaux, d);
+                                }
                                 break;
                             }
                             case 2: //afficher le plan de la ville
@@ -198,7 +201,8 @@ public class Main
                         {
                             case 1: // Collecte d'encombrants
                             {
-                                camionC.executerTournee(NOM_FICHIER_DEMANDES);
+                                if(choixDeVille == 1) {camionC.executerTournee(NOM_FICHIER_DEMANDES_RANVILLE);}
+                                else if(choixDeVille == 2) {camionC.executerTournee(NOM_FICHIER_DEMANDES_BORDEAUX);}
                                 break;
                             }
                             case 2: // faire la tournée des points de collecte

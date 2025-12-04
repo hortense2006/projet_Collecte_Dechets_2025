@@ -6,6 +6,8 @@ import java.util.*;
 import java.util.Random;
 
 import exceptions.ExceptionPersonnalisable;
+import model.FichierDemandes;
+import model.particulier.DemandeCollecte;
 import view.PlanView;
 
 public class Plan {

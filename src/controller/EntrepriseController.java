@@ -1,6 +1,7 @@
 package controller;
 import exceptions.ExceptionPersonnalisable;
 import model.EntrepriseModel;
+import model.FichierDemandes;
 import model.map.*;
 import model.particulier.DemandeCollecte;
 import view.ParticulierView;
@@ -14,13 +15,15 @@ public class EntrepriseController
     private Station courant;  // où se trouve le camion
     private EntrepriseModel em;
     private ParticulierView pv;
+    private ParticulierController pc;
     private Maison maison;
-    public EntrepriseController(EntrepriseModel em,Plan p,Maison maison,ParticulierView pv)
+    public EntrepriseController(EntrepriseModel em,Plan p,Maison maison,ParticulierView pv,ParticulierController pc)
     {
         this.p = p;
         this.em = em;
         this.maison = maison;
         this.pv = pv;
+        this.pc = pc;
         this.courant = p.getStation("D"); // dépôt
     }
 
@@ -125,5 +128,20 @@ public class EntrepriseController
     {
         return d.getRue().trim().toLowerCase() + "_" + d.getNumero();
     }
-
+    // METHODE n°3
+    public Queue<DemandeCollecte> recupListeDemandes(int choixDeVille, FichierDemandes fichierDemandes,DemandeCollecte d)
+    {
+        Queue<DemandeCollecte> liste = null;
+        if(choixDeVille == 1)
+        {
+            Queue<DemandeCollecte>  listeDemandes = fichierDemandes.getFileDemandes();
+            liste = pc.remplirListeDemandeCollecte(d,listeDemandes);// On remplit la liste de demandes.
+        }
+        else if(choixDeVille == 2)
+        {
+            Queue<DemandeCollecte>  listeDemandes = fichierDemandes.getFileDemandes();
+            liste = pc.remplirListeDemandeCollecte(d,listeDemandes);// On remplit la liste de demandes.
+        }
+        return liste;
+    }
 }
