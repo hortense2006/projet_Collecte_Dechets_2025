@@ -4,3 +4,4 @@ Hermione;Granger;14.0;Avenue de l'église;79097199-885a-4215-ace1-7fc281a96261;L
 valentine;sauvaire;12.0;rue du belvédère;7f02c72b-2c7e-4dce-8d4d-09f85acc40f1;MamieMonique
 vlentin;sveiro;23.0;Rue des Fleurs;470b9e4f-bd11-4e8e-ac0b-ae545a394670;ahzut
 Sirus;Black;18.0;Rue de la Mairie;d381635d-f667-4023-a2ee-86b5fda194a9;L'ordreDuPhoenix
+Maurice;Vella;5.0;Rue du Marché;1d26d502-c0a2-4456-920e-6d4dd06d4642;LaPiscine
