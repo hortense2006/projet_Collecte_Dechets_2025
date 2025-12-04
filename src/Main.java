@@ -43,19 +43,18 @@ public class Main
         FichierSecteurs fs = new FichierSecteurs(NOM_FICHIER_SECTEURS);
         SecteursModel secteursM = new SecteursModel(fs);
 
-        try {
+        /*try {
             secteursM.welshPowell();
             System.out.println("Secteurs initialisés et coloriés avec succès.");
         } catch (java.io.IOException e) {
             System.err.println("Erreur critique : Impossible de charger les secteurs ! " + e.getMessage());
-        }
+        }*/
 
         // pour les particuliers
         Scanner sc = new Scanner(System.in);
         FichiersProfil f = new FichiersProfil(NOM_FICHIER_USERS);
         ParticulierView pv = new ParticulierView(sc);
         ParticulierModel pm = new ParticulierModel(NOM_FICHIER_USERS);
-        ParticulierController pc = new ParticulierController(pm,pv,f);
 
         //permet de choisir le fichier qu'on utilise et affiche le plan de la ville associé
         while (choixDeVille < 1 || choixDeVille > 2)
@@ -73,12 +72,33 @@ public class Main
         // pour l'entreprise
         FichierDemandes fdRanville = new FichierDemandes(NOM_FICHIER_DEMANDES_RANVILLE);
         FichierDemandes fdBordeaux = new FichierDemandes(NOM_FICHIER_DEMANDES_BORDEAUX);
-        EntrepriseModel em = new EntrepriseModel(planDeVille,pm);
-        EntrepriseController enc = new EntrepriseController(em,planDeVille,maison,pv,pc);
+        ParticulierController pc; // Déclaration de la variable dans la portée principale
 
+        if(choixDeVille == 1)
+        {
+            // Initialisation avec le FichierDemandes de Ranville
+            pc = new ParticulierController(pm,pv,f,fdRanville);
+        }
+        else if(choixDeVille == 2)
+        {
+            // Initialisation avec le FichierDemandes de Bordeaux
+            pc = new ParticulierController(pm,pv,f,fdBordeaux);
+        }
+        else
+        {
+            System.err.println("Erreur: Choix de ville invalide après la boucle de sélection.");
+            pc = new ParticulierController(pm,pv,f,fdRanville);
+        }
+
+        // Demande de collecte
+        DemandeCollecte demandeC = new DemandeCollecte();
+
+        //Entreprises
+        EntrepriseModel em = new EntrepriseModel(planDeVille,pm,demandeC);
+        EntrepriseController enc = new EntrepriseController(em,planDeVille,maison,pv,pc);
         // Pour le camion
         CamionView camionV= new CamionView();
-        CamionController camionC = new CamionController(enc,pm, camionV);
+        CamionController camionC = new CamionController(enc,pm, camionV,demandeC);
 
         // point de collecte
         PointCollecteView pdcV = new PointCollecteView();

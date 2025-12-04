@@ -18,7 +18,7 @@ public class DemandeCollecte
     private double position;
 
 
-    // CONSTRUCTEUR
+    // CONSTRUCTEUR n°1
     public DemandeCollecte(String nomVille,String idUtilisateur,TypeEncombrant typeEncombrant,int quantite,LocalDate dateDemande,String rue,double numero)
     {
         this.idUtilisateur = idUtilisateur;
@@ -29,7 +29,8 @@ public class DemandeCollecte
         this.numero = numero;
         this.nomVille = nomVille;
     }
-
+    // CONSTRUCTEUR n°2
+    public DemandeCollecte(){}
     // GETTER n°1
     public TypeEncombrant getTypeEncombrant() {return typeEncombrant;}
     // GETTER n°2

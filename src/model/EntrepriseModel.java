@@ -9,11 +9,13 @@ public class EntrepriseModel
     // ATTRIBUTS
     private Plan p;
     private ParticulierModel pm;
+    private DemandeCollecte demande;
     // CONSTRUCTEUR
-    public EntrepriseModel(Plan p,ParticulierModel pm)
+    public EntrepriseModel(Plan p,ParticulierModel pm,DemandeCollecte demande)
     {
         this.p = p;
         this.pm = pm;
+        this.demande = demande;
     }
 
     // METHODE n°1 : Calcul du plus court chemin  ( méthode bsf)
@@ -69,7 +71,7 @@ public class EntrepriseModel
     //METHODE n°3 : Retirer une demande après exécution
     public void defilerDemande(DemandeCollecte demande) throws ExceptionPersonnalisable
     {
-        Queue<DemandeCollecte> listeDemandes = pm.getDemande();
+        Queue<DemandeCollecte> listeDemandes = pm.getDemande(demande.getNomVille());
         if (!listeDemandes.remove(demande))
         {
             throw new ExceptionPersonnalisable("Demande non trouvée dans la file !");

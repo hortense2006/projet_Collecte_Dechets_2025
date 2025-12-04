@@ -164,6 +164,7 @@ public class ParticulierController
         }
         demande = model.faireDemandeCollecte(utilisateurActuel.getNomVille(), utilisateurActuel.getId(),choix,quantite,dateDemande,utilisateurActuel.getRue(),utilisateurActuel.getNumero());
         view.afficherDemande(demande); // On affiche la demande pour vérification.
+        fichiersD.getFileDemandes().add(demande);
         fichiersD.sauvegarderDemande(fichiersD.nomFichier);
         view.afficherMessage("Votre demande a été enregistrée.");
         return demande;
