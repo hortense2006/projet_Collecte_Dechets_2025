@@ -98,7 +98,7 @@ public class FichierSecteurs implements ChargerFichiers {
     // METHODE n°3 : Sauvegarde dans le fichier texte
     public void sauvegarderSecteurs(Secteurs p)
     {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(nomFichier, true)))
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(nomFichier, false)))
         {
             String ligne = p.getNom() + ";" +
                     p.getCouleur() + ";" +
