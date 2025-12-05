@@ -1,4 +1,4 @@
-package model.Secteurs;
+package model.secteurs;
 
 import model.map.Arc;
 import model.map.Plan;
@@ -20,8 +20,7 @@ public class Secteurs
     private boolean etat = false;
 
     // CONSTRUCTEUR
-    public Secteurs(String nomSecteur, String couleur, String sommets,String arcAssocie)
-    {
+    public Secteurs(String nomSecteur, String couleur, String sommets,String arcAssocie) {
         this.nomSecteur = nomSecteur;
         this.couleur = couleur;
         this.sommets = sommets;
@@ -53,8 +52,7 @@ public class Secteurs
 
     @Override
     public String toString() {
-        String etat = this.etat ? "[BLOQUÉ/FAIT]" : "[DISPONIBLE]";
-        return nomSecteur + " (" + couleur + ") " + etat;
+        return nomSecteur + " (" + couleur + ")";
     }
 
     public List<Station> getStationsDuSecteur(Plan plan) {
@@ -70,4 +68,19 @@ public class Secteurs
         return liste;
     }
 
+    public boolean aUnVoisinBloque(List<Secteurs> tousLesSecteurs) {
+        if (arcAssocie == null || arcAssocie.isEmpty()) return false;
+        String[] nomsVoisins = arcAssocie.split(",");
+        for (String nomVoisin : nomsVoisins) {
+            String voisinClean = nomVoisin.trim();
+            for (Secteurs s : tousLesSecteurs) {
+                if (s.getNom().trim().equalsIgnoreCase(voisinClean)) {
+                    if (s.getEtat()) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
 }

@@ -1,4 +1,4 @@
-package model.Tournee;
+package model.tournee;
 
 import model.map.Arc;
 import model.map.Plan;
@@ -16,7 +16,7 @@ public class Dijkstra {
         this.plan = plan;
     }
 
-    public ResultatDijkstra dijkstra (Station depart) {
+    public model.tournee.ResultatDijkstra dijkstra (Station depart) {
 
         Map<Station, Double> distances = new HashMap<>();
         Map<Station, Arc> predecesseurs = new HashMap<>();
@@ -48,4 +48,3 @@ public class Dijkstra {
         return new ResultatDijkstra(distances, predecesseurs);// retourne l'objet contenant les deux trajets
     }
 }
-

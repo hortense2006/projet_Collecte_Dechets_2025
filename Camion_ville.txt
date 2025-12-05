@@ -1,7 +1,7 @@
-ab-222-cd;occupé;1000;0
-ab-223-ef;occupé;2000;2000
+ab-222-cd;occupé;1000;1000
+ab-223-ef;disponible;2000;0
 ab-234-gh;disponible;3000;0
-zw-999-xy;disponible;10000;0
-zw-998-vt;disponible;15000;0
+zw-999-xy;disponible;10000;7400
+zw-998-vt;disponible;15000;4400
 mn-555-op;disponible;6000;0
 mn-556-qr;disponible;7000;0

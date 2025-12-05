@@ -31,21 +31,19 @@ public class Station {
         return this.arcsSortants;
     }
 
-    public String setNom(String nom) {
-        this.nom = nom;
-        return nom;
-    }
-
     public void ajouterArcSortant(Arc arc) {
         this.arcsSortants.add(arc);
     }
+
     public String toString() { //afficher détail
         return "Station : " + getNom();
     }
+
     public double distanceVers(DemandeCollecte d)
     {
         return Math.abs(this.numero - d.getNumero());
     }
+
     public void retirerArcSortant(Arc arc) {this.arcsSortants.remove(arc);}
 
 }

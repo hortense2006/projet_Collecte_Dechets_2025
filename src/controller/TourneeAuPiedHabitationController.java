@@ -28,6 +28,7 @@ public class TourneeAuPiedHabitationController {
     }
 
     public void lancerProcessusComplet() {
+        // 1. Récupération des secteurs
         if (secteursModel.getSecteurs() .isEmpty()) { // recupere les secteurs et les tri
             view.afficherErreur("Erreur : Aucun secteur chargé.");
             return;

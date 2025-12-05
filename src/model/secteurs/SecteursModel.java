@@ -1,4 +1,4 @@
-package model.Secteurs;
+package model.secteurs;
 
 import model.map.Arc;
 import model.map.Plan;

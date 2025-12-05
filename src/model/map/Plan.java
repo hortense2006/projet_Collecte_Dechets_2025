@@ -3,11 +3,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
-import java.util.Random;
 
 import exceptions.ExceptionPersonnalisable;
-import model.FichierDemandes;
-import model.particulier.DemandeCollecte;
 import view.PlanView;
 
 public class Plan {
@@ -52,6 +49,7 @@ public class Plan {
         }
         return null;
     }// renvoie null si le nom n'existe pas
+    
     private String nettoyerNomRue(String rue) {
         if (rue == null) return "";
         return rue
