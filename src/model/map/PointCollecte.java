@@ -19,8 +19,6 @@ public class PointCollecte extends Station {
         return "PointDeCollecte : " + getNom();
     }
     public int getNiveauRemplissage () {return this.niveauRemplissage;}
-    public int getCapaciteMax() {return this.capaciteMax;}
-
 
     public void setNiveauRemplissage (int niveauRemplissage) {this.niveauRemplissage = niveauRemplissage;}
 

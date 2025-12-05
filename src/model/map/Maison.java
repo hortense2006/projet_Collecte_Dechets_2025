@@ -2,14 +2,12 @@ package model.map;
 
 import java.util.Map;
 
-public class Maison extends Station
-{
+public class Maison extends Station {
     // ATTRIBUTS
     private Plan plan;
     private int choixVille;
     // CONSTRUCTEUR
-    public Maison(Plan plan,String nom,int choixVille)
-    {
+    public Maison(Plan plan,String nom,int choixVille) {
         super(nom);
         this.choixVille=choixVille;
         this.plan = plan;

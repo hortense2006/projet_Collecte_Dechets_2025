@@ -59,12 +59,10 @@ public class Main
         COLLECTE D'ENCOMBRANTS PEU IMPORTE L'ORDRE DE CONNEXION
         (particulier->entreprise ou juste entreprise directement)*/
         // mais ça ne fait que charger les point de collecte ???
-        if (choixDeVille == 1)
-        {
+        if (choixDeVille == 1) {
             model.map.PointCollecte.chargerEtatRanville(planDeVille);
         }
-        else if (choixDeVille == 2)
-        {
+        else if (choixDeVille == 2) {
             model.map.PointCollecte.chargerEtatBordeaux(planDeVille);
         }
 

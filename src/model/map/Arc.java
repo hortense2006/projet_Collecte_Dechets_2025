@@ -14,11 +14,11 @@ public class Arc {
 
     private List<DemandeCollecte> dechetsSurLaVoie;
 
-    public Arc(String idLigne, Station depart, Station arrivee, double duree) {
+    public Arc(String idLigne, Station depart, Station arrivee, double distance) {
         this.idLigne = idLigne;
         this.depart = depart;
         this.arrivee = arrivee;
-        this.distance = duree;
+        this.distance = distance;
         this.dechetsSurLaVoie = new ArrayList<>();
     }
 
