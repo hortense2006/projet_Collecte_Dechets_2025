@@ -138,8 +138,8 @@ public class SecteursModel {
                 {
                     s2.setCouleur("C" + couleurActuelle);
                 }
+                couleurActuelle++;
             }
-
             couleurActuelle++;
         }
 
