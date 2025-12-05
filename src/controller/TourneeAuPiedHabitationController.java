@@ -27,9 +27,9 @@ public class TourneeAuPiedHabitationController {
         this.view = new TourAuPiedHabitationView();
     }
 
-    public void lancerProcessusComplet() {
+    public void lancerProcessusComplet(CamionModel camion) {
         // 1. Récupération des secteurs
-        if (secteursModel.getSecteurs() .isEmpty()) { // recupere les secteurs et les tri
+        if (secteursModel.getSecteurs().isEmpty()) { // recupere les secteurs et les tri
             view.afficherErreur("Erreur : Aucun secteur chargé.");
             return;
         }
@@ -50,18 +50,11 @@ public class TourneeAuPiedHabitationController {
         }
 
         view.afficherMessage(" -> Secteur sélectionné : " + secteurChoisi.getNom());
-        CamionModel camion = camionController.selectionnerCamion(); // selection d'un camion parmis la liste
-        TourneeAuPiedHabitation algo = new TourneeAuPiedHabitation(plan); // calcul de l'itineraire de la tournée
-        TourneePointCollecte resultat = algo.calculerTournee(camion, secteurChoisi);
+        TourneeAuPiedHabitation taph = new TourneeAuPiedHabitation(plan); // calcul de l'itineraire de la tournée
+        TourneePointCollecte resultat = taph.calculerTournee(camion, secteurChoisi);
         if (resultat != null) { // affiche le resultat de la tournée
             TourneePointCollecteView vueResultat = new TourneePointCollecteView(resultat);
             vueResultat.afficherResultats();
         }
-        if (camion.getCapaciteActuelle() < camion.getCapaciteMax()) { // sauvegarde l'état du camion
-            camion.setEtat("disponible");
-        } else {
-            camion.setEtat("occupé");
-        }
-        camionController.sauvegarderEtatCamion(camion);
     }
 }
