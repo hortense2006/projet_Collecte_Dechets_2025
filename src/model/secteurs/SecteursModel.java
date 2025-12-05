@@ -1,4 +1,4 @@
-package model.Secteurs;
+package model.secteurs;
 
 import java.io.IOException;
 import java.util.*;

@@ -52,6 +52,7 @@ public class Plan {
         }
         return null;
     }// renvoie null si le nom n'existe pas
+    
     private String nettoyerNomRue(String rue) {
         if (rue == null) return "";
         return rue

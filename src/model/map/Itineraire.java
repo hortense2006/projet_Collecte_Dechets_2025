@@ -21,9 +21,6 @@ public class Itineraire {
     public List<Arc> getChemin () {
         return chemin;
     }
-    public int getCheminSize () {
-        return chemin.size();
-    }
     public double getDistanceTotale() {
         return distanceTotal;
     }

@@ -1,4 +1,4 @@
-package model.Tournee;
+package model.tournee;
 
 import model.map.Arc;
 import model.map.Station;

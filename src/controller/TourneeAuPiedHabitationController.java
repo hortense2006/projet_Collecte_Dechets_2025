@@ -1,10 +1,10 @@
 package controller;
 
 import model.CamionModel;
-import model.Secteurs.Secteurs;
-import model.Secteurs.SecteursModel;
-import model.Tournee.TourneeAuPiedHabitation;
-import model.Tournee.TourneePointCollecte;
+import model.secteurs.Secteurs;
+import model.secteurs.SecteursModel;
+import model.tournee.TourneeAuPiedHabitation;
+import model.tournee.TourneePointCollecte;
 import model.map.Plan;
 import view.TourneePointCollecteView;
 import view.TourAuPiedHabitationView;

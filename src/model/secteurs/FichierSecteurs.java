@@ -1,9 +1,7 @@
-package model.Secteurs;
+package model.secteurs;
 
 import exceptions.ExceptionPersonnalisable;
 import model.ChargerFichiers;
-import model.map.PointCollecte;
-import model.particulier.Profil;
 
 import java.io.*;
 import java.util.*;

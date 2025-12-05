@@ -1,7 +1,7 @@
 package view;
 
 import model.CamionModel;
-import model.Tournee.TourneePointCollecte;
+import model.tournee.TourneePointCollecte;
 import model.map.Itineraire;
 import model.map.Plan;
 import model.map.PointCollecte;

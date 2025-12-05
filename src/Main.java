@@ -1,13 +1,13 @@
 import model.*;
 import controller.*;
 //import model.Secteurs.FichierSecteurs;
-import model.Secteurs.FichierSecteurs;
-import model.Secteurs.SecteursModel;
+import model.secteurs.FichierSecteurs;
+import model.secteurs.SecteursModel;
 import model.map.*;
 import model.particulier.DemandeCollecte;
 import model.particulier.FichiersProfil;
 import model.particulier.ParticulierModel;
-import model.Tournee.TourneePointCollecte;
+import model.tournee.TourneePointCollecte;
 import view.*;
 
 import java.util.Queue;

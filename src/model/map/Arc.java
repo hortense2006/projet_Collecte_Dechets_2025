@@ -21,12 +21,6 @@ public class Arc {
         this.distance = duree;
         this.dechetsSurLaVoie = new ArrayList<>();
     }
-    public Arc(Station depart, Station arrivee, double duree)
-    {
-        this.depart = depart;
-        this.arrivee = arrivee;
-        this.distance = duree;
-    }
 
     public String getIdLigne() {
         return idLigne;

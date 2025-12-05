@@ -1,20 +1,16 @@
-package model.Tournee;
+package model.tournee;
 
-import controller.CamionController;
+
 import model.CamionModel;
-import model.Secteurs.Secteurs;
-import model.Secteurs.SecteursModel;
+import model.secteurs.Secteurs;
 import model.map.Depot;
 import model.map.Itineraire;
 import model.map.Plan;
 import model.map.Station;
 import view.PlanView;
-import view.TourneePointCollecteView;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Scanner;
 
 public class TourneeAuPiedHabitation {
 

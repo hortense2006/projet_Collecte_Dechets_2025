@@ -1,6 +1,6 @@
 package view;
 
-import model.Secteurs.Secteurs;
+import model.secteurs.Secteurs;
 
 import java.util.List;
 import java.util.Scanner;
