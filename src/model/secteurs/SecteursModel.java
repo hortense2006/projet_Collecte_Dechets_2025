@@ -144,9 +144,7 @@ public class SecteursModel {
         }
 
         // Sauvegarde
-        for (Secteurs s : secteurs.values())
-        {
-            fichierSecteurs.sauvegarderSecteurs(s);
-        }
+        fichierSecteurs.sauvegarderSecteurs();
+
     }
 }

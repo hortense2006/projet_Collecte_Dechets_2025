@@ -96,16 +96,18 @@ public class FichierSecteurs implements ChargerFichiers {
         System.out.println("Secteurs chargés avec succès depuis " + nomFichier);
     }
     // METHODE n°3 : Sauvegarde dans le fichier texte
-    public void sauvegarderSecteurs(Secteurs p)
+    public void sauvegarderSecteurs()
     {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(nomFichier, false)))
         {
-            String ligne = p.getNom() + ";" +
-                    p.getCouleur() + ";" +
-                    p.getSommets() + ";" +
-                    p.getArcAssocie();
-            bw.write(ligne);
-            bw.newLine();
+            for(Secteurs s : secteurs.values()) {
+                String ligne = s.getNom() + ";" +
+                        s.getCouleur() + ";" +
+                        s.getSommets() + ";" +
+                        s.getArcAssocie();
+                bw.write(ligne);
+                bw.newLine();
+            }
         }
         catch (IOException e)
         {
