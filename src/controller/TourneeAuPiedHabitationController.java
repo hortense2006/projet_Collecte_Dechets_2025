@@ -29,56 +29,35 @@ public class TourneeAuPiedHabitationController {
 
     public void lancerProcessusComplet() {
         // 1. Récupération des secteurs
-        if (secteursModel.secteur.isEmpty()) {
+        if (secteursModel.getSecteurs() .isEmpty()) { // recupere les secteurs et les tri
             view.afficherErreur("Erreur : Aucun secteur chargé.");
             return;
         }
-
-        List<Secteurs> listeSecteurs = new ArrayList<>(secteursModel.secteur.values());
+        List<Secteurs> listeSecteurs = new ArrayList<>(secteursModel.getSecteurs().values());
         listeSecteurs.sort(Comparator.comparing(Secteurs::getNom));
+        view.afficherListeSecteurs(listeSecteurs); // affiche les secteurs
+        int choix = view.demanderChoixSecteur();
 
-        Secteurs secteurChoisi = null;
-
-        // 2. Boucle de choix (Tant que l'utilisateur ne choisit pas un secteur valide)
-        while (secteurChoisi == null) {
-            // On affiche la liste (je modifierai la vue juste après pour enlever les voisins)
-            view.afficherListeSecteurs(listeSecteurs, listeSecteurs);
-
-            int choix = view.demanderChoixSecteur();
-
-            if (choix < 1 || choix > listeSecteurs.size()) {
-                view.afficherErreur("Choix invalide. Veuillez entrer un numéro valide.");
-                continue; // On recommence la boucle
-            }
-
-            Secteurs candidat = listeSecteurs.get(choix - 1);
-
-            // Règle unique : Est-ce qu'il est déjà fait ?
-            if (candidat.getEtat()) {
-                view.afficherErreur("ERREUR : Le secteur " + candidat.getNom() + " est déjà fait/bloqué. Choisissez-en un autre.");
-                continue; // On recommence la boucle
-            }
-
-            // Si on arrive ici, c'est bon
-            secteurChoisi = candidat;
+        if (choix < 1 || choix > listeSecteurs.size()) {
+            view.afficherErreur("Choix invalide.");
+            return;
         }
 
-        view.afficherMessage(" -> Secteur validé : " + secteurChoisi.getNom());
+        Secteurs secteurChoisi = listeSecteurs.get(choix - 1);
+        if (secteurChoisi.getEtat()) { // verifie si le secteur n'a pas deja ete fait
+            int continuer = view.demanderChoixSecteur();
+            if (continuer != 0) return;
+        }
 
-        // 3. Camion et Tournée
-        CamionModel camion = camionController.selectionnerCamion();
-
-        TourneeAuPiedHabitation taph = new TourneeAuPiedHabitation(plan);
-        TourneePointCollecte resultat = taph.calculerTournee(camion, secteurChoisi);
-
-        // 4. Affichage
-        if (resultat != null) {
+        view.afficherMessage(" -> Secteur sélectionné : " + secteurChoisi.getNom());
+        CamionModel camion = camionController.selectionnerCamion(); // selection d'un camion parmis la liste
+        TourneeAuPiedHabitation algo = new TourneeAuPiedHabitation(plan); // calcul de l'itineraire de la tournée
+        TourneePointCollecte resultat = algo.calculerTournee(camion, secteurChoisi);
+        if (resultat != null) { // affiche le resultat de la tournée
             TourneePointCollecteView vueResultat = new TourneePointCollecteView(resultat);
             vueResultat.afficherResultats();
         }
-
-        // 5. Sauvegarde Camion
-        if (camion.getCapaciteActuelle() < camion.getCapaciteMax()) {
+        if (camion.getCapaciteActuelle() < camion.getCapaciteMax()) { // sauvegarde l'état du camion
             camion.setEtat("disponible");
         } else {
             camion.setEtat("occupé");

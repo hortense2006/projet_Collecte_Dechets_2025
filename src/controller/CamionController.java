@@ -16,12 +16,12 @@ import java.util.Scanner;
 public class CamionController {
 
     private EntrepriseController entreprise;
-    private DemandeCollecte DemandeC;
+    private FichierDemandes DemandeC;
     private ParticulierModel particuliermodel;
     private Queue<DemandeCollecte> liste;
     CamionView camionV;
 
-    public CamionController(EntrepriseController entreprise,ParticulierModel particuliermodel, CamionView camionV,DemandeCollecte DemandeC) {
+    public CamionController(EntrepriseController entreprise,ParticulierModel particuliermodel, CamionView camionV,FichierDemandes DemandeC) {
         this.entreprise = entreprise;
         this.particuliermodel= particuliermodel;
         this.camionV = camionV;
@@ -39,6 +39,7 @@ public class CamionController {
         // On récupère la liste de demandes et on les exécute à l'aide de CollecteDemande
         Itineraire itineraireFinal = entreprise.CollecteDemande(liste);
         camionV.afficherItineraireE(itineraireFinal);
+        DemandeC.viderDemande(nomFichier);
     }
 
     public CamionModel selectionnerCamion() {
