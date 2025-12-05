@@ -28,11 +28,11 @@ public class TourneeAuPiedHabitationController {
     }
 
     public void lancerProcessusComplet() {
-        if (secteursModel.secteur.isEmpty()) { // recupere les secteurs et les tri
+        if (secteursModel.getSecteurs() .isEmpty()) { // recupere les secteurs et les tri
             view.afficherErreur("Erreur : Aucun secteur chargé.");
             return;
         }
-        List<Secteurs> listeSecteurs = new ArrayList<>(secteursModel.secteur.values());
+        List<Secteurs> listeSecteurs = new ArrayList<>(secteursModel.getSecteurs().values());
         listeSecteurs.sort(Comparator.comparing(Secteurs::getNom));
         view.afficherListeSecteurs(listeSecteurs); // affiche les secteurs
         int choix = view.demanderChoixSecteur();

@@ -1,112 +1,152 @@
 package model.Secteurs;
 
+import model.map.Arc;
+import model.map.Plan;
+
 import java.io.IOException;
 import java.util.*;
 
-public class SecteursModel
-{
-    //ATTRIBUTS
-    private FichierSecteurs fichiers;
-    public HashMap<String, Secteurs> secteur;
-    List<Secteurs> secteursIncompatibles;
-    private List<Secteurs> voisins;
+public class SecteursModel {
+
+    // ATTRIBUTS
+    private final FichierSecteurs fichierSecteurs;
+    private final Plan plan;
+    private HashMap<String, Secteurs> secteurs;
+    private Map<String, Set<String>> voisins;
+
     // CONSTRUCTEUR
-    public SecteursModel(FichierSecteurs fichiers)
+    public SecteursModel(FichierSecteurs fichierSecteurs, Plan plan)
     {
-        this.fichiers = fichiers;
-        secteur = fichiers.getSecteurs();
-        secteursIncompatibles = new ArrayList<>();
-    }
-    // METHODE n°1 : Comparer deux secteurs (incompatibilité selon critères géographiques + jours de passage)
-
-    public List<Secteurs> comparerSecteurs(Secteurs o1, Secteurs o2)
-    {
-    // On récupère les sommets du secteur o1 sous forme de liste
-    List<String> s1 = Arrays.asList(o1.getSommets().split(","));
-    // On récupère les sommets du secteur o2 sous forme de liste
-    List<String> s2 = Arrays.asList(o2.getSommets().split(","));
-
-    // Deux secteurs sont incompatibles s'ils ont au moins 1 sommet en commun
-    boolean incompatibles = s1.stream().anyMatch(s2::contains);
-
-    if (incompatibles)
-    {
-        // Les secteurs sont incompatibles (voisins)
-        Secteurs sfusionne = fusionnerSecteurs(o1, o2);
-        secteursIncompatibles.add(sfusionne);// On met le couple de secteurs compatibles dans une hashmap.
-    }
-    // Sinon : compatibles (ne sont pas voisins)
-        return secteursIncompatibles;
+        this.fichierSecteurs = fichierSecteurs;
+        this.plan = plan;
+        this.secteurs = fichierSecteurs.getSecteurs();
+        this.voisins = new HashMap<>();
     }
 
-    // METHODE 2: Fusion des secteurs
-    public Secteurs fusionnerSecteurs(Secteurs s1, Secteurs s2)
+    // GETTER n°1
+    public Map<String, Secteurs> getSecteurs()
     {
-
-        // Nouveau nom pour le secteur fusionné
-        String nouveauNom = s1.getNom() + "_" + s2.getNom();
-
-        // Fusion des sommets (évite les doublons)
-        Set<String> nouveauxSommets = new HashSet<>(Arrays.asList(s1.getSommets().split(",")));
-        nouveauxSommets.addAll(Arrays.asList(s2.getSommets().split(",")));
-
-        // Fusion des arcs
-        Set<String> nouveauxArcs = new HashSet<>(Arrays.asList(s1.getArcAssocie().split(",")));
-        nouveauxArcs.addAll(Arrays.asList(s2.getArcAssocie().split(",")));
-
-        // Créer un nouveau secteur fusionné
-        Secteurs s = new Secteurs(
-                nouveauNom,"BLANC",  // couleur par défaut, car on ne l'as pas encore calculée
-                String.join(",", nouveauxSommets),
-                String.join(",", nouveauxArcs)
-        );
-        fichiers.sauvegarderSecteurs(s);
-        return s;
+        return secteurs;
+    }
+    // GETTER n°2
+    public Map<String, Set<String>> getAdjacence()
+    {
+        return voisins;
     }
 
-    //METHODE n°3 :  Renvoie le nombre de couleurs (le nombre de secteurs)
-    // 1 couleur/secteur
+    // METHODE n°1 : Chargement des secteurs
+    public void chargerSecteurs() throws IOException
+    {
+        fichierSecteurs.chargerDepuisFichier();
+        secteurs = fichierSecteurs.getSecteurs();
+    }
+
+    // Construire le graphe d'appartenance des sommets
+    private Map<String, String> construireAppartenanceSommet()
+    {
+        Map<String, String> appartenance = new HashMap<>();
+
+        for (Secteurs s : secteurs.values())
+        {
+            String[] sommets = s.getSommets().split(",");
+            for (String sommet : sommets)
+            {
+                appartenance.put(sommet.trim(), s.getNom());
+            }
+        }
+        return appartenance;
+    }
+
+    // METHODE n°3 : Construire l'adjacence entre secteurs
+    public void construireAdjacence()
+    {
+        voisins.clear();
+        Map<String, String> appartenance = construireAppartenanceSommet();
+
+        for (Arc arc : plan.getArcs().values())
+        {
+
+            String s1 = arc.getDepart().getNom();
+            String s2 = arc.getArrivee().getNom();
+
+            String q1 = appartenance.get(s1);
+            String q2 = appartenance.get(s2);
+
+            // Pas d’adjacence si 1 sommet n'appartient à aucun secteur
+            if (q1 == null || q2 == null) continue;
+
+            // Pas d’adjacence si même secteur
+            if (q1.equals(q2)) continue;
+
+            // On enregistre l’adjacence bilatérale
+            voisins.computeIfAbsent(q1, k -> new HashSet<>()).add(q2);
+            voisins.computeIfAbsent(q2, k -> new HashSet<>()).add(q1);
+        }
+    }
+
+    // METHODE n°4 : welsh Powell
     public void welshPowell() throws IOException
     {
-        // On charge le graphe des secteurs
-        fichiers.chargerDepuisFichier();
-        // On récupère la liste des secteurs incompatibles
-        // secteursIncompatibles = graphe d'adjacence
-        // Chaque secteur a un nom, une couleur, un point de collecte,des sommets & des arcs
-        for(Secteurs o1 : secteur.values())
+        chargerSecteurs();//Charger les secteurs depuis fichier
+        construireAdjacence();//Construire le graphe d'adjacence
+
+        //Trier par degré (secteurs les plus contraints d'abord)
+        List<Secteurs> liste = new ArrayList<>(secteurs.values());
+        liste.sort((a, b) ->
         {
-            for(Secteurs o2 : secteur.values())
+            int da = voisins.getOrDefault(a.getNom(), Set.of()).size();
+            int db = voisins.getOrDefault(b.getNom(), Set.of()).size();
+            return Integer.compare(db, da);
+        });
+
+        //Welsh–Powell : coloration
+        int couleurActuelle = 1;
+
+        for (Secteurs s : liste)
+        {
+            if (s.getCouleur() != null && !s.getCouleur().isEmpty()) continue;
+
+            s.setCouleur("C" + couleurActuelle);
+
+            for (Secteurs s2 : liste)
             {
-                if(!o1.equals(o2))
+
+                if (s2.getCouleur() != null && !s2.getCouleur().isEmpty()) continue;
+
+                boolean compatible = true;
+
+                Set<String> voisinV = voisins.getOrDefault(s.getNom(), Set.of());
+
+                if (voisinV.contains(s2.getNom()))
                 {
-                    comparerSecteurs(o1, o2);
+                    compatible = false;
+                }
+                else
+                {
+                    // Vérifier aussi les voisins déjà colorés
+                    for (String voisin : voisins.getOrDefault(s2.getNom(), Set.of()))
+                    {
+                        Secteurs vSecteur = secteurs.get(voisin);
+                        if (vSecteur != null && ("C" + couleurActuelle).equals(vSecteur.getCouleur()))
+                        {
+                            compatible = false;
+                            break;
+                        }
+                    }
+                }
+                if (compatible)
+                {
+                    s2.setCouleur("C" + couleurActuelle);
                 }
             }
+
+            couleurActuelle++;
         }
-        // On trie les secteurs
-        triSecteursPardegre(secteursIncompatibles);
-        // Welsh-Powell
-        int nbzones = 0;
-        // Lire la liste produits
-        while(!secteursIncompatibles.isEmpty()) // On lit la case de la liste
+
+        // Sauvegarde
+        for (Secteurs s : secteurs.values())
         {
-            for (Secteurs s : secteursIncompatibles)
-            {
-                // Si le produit n'a pas encore de zone
-                if (s.getCouleur() == null)
-                {
-                    nbzones++;
-                    s.setCouleur(String.valueOf(nbzones)); // on lui attribue une nouvelle zone
-                    // Enregistrer la zone dans le fichier texte
-                    fichiers.sauvegarderSecteurs(s);
-                }
-            }
+            fichierSecteurs.sauvegarderSecteurs(s);
         }
-    }
-    // METHODE n°4 : Tri de la HashMap
-    public void triSecteursPardegre(List<Secteurs> secteursIncompatibles)
-    {
-        // On récupère la liste de secteurs et on la trie
-        secteursIncompatibles.sort(Comparator.comparingInt(Secteurs::getDegre).reversed());
     }
 }

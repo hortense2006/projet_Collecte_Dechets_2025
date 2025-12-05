@@ -99,11 +99,11 @@ public class Main
             fs = new FichierSecteurs(NOM_FICHIER_SECTEURS_RANVILLE);
         }
         // Initialisation de la classe SecteursModel pour les quartiers des villes
-        secteursM = new SecteursModel(fs);
+        secteursM = new SecteursModel(fs,plan);
         // Chargement des fichiers texte des quartiers des villes
         chargerGenerique(fs.getNomFichier(),fs);
         // Coloration des secteurs via Welsh-Powell
-        try
+       try
         {
             secteursM.welshPowell();
             System.out.println("Secteurs initialisés et coloriés avec succès.");
