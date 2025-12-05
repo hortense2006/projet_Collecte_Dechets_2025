@@ -60,6 +60,7 @@ public class Main
         /* PERMET DE CHARGER L'ETAT DE LA VILLE DE FACON A POUVOIR FAIRE LA
         COLLECTE D'ENCOMBRANTS PEU IMPORTE L'ORDRE DE CONNEXION
         (particulier->entreprise ou juste entreprise directement)*/
+        // mais ça ne fait que charger les point de collecte ???
         if (choixDeVille == 1)
         {
             model.map.PointCollecte.chargerEtatRanville(planDeVille);
@@ -79,21 +80,16 @@ public class Main
         FichierSecteurs fs;
         SecteursModel secteursM;
 
-        if(choixDeVille == 1)
-        {
+        if(choixDeVille == 1) {
             // Initialisation avec le FichierDemandes de Ranville
             pc = new ParticulierController(pm,pv,f,fdRanville);
             fs = new FichierSecteurs(NOM_FICHIER_SECTEURS_RANVILLE);
 
-        }
-        else if(choixDeVille == 2)
-        {
+        } else if(choixDeVille == 2) {
             // Initialisation avec le FichierDemandes de Bordeaux
             pc = new ParticulierController(pm,pv,f,fdBordeaux);
             fs = new FichierSecteurs(NOM_FICHIER_SECTEURS_BORDEAUX);
-        }
-        else
-        {
+        } else {
             System.err.println("Erreur: Choix de ville invalide après la boucle de sélection.");
             pc = new ParticulierController(pm,pv,f,fdRanville);
             fs = new FichierSecteurs(NOM_FICHIER_SECTEURS_RANVILLE);

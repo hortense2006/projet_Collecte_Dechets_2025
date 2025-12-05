@@ -3,11 +3,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
-import java.util.Random;
 
 import exceptions.ExceptionPersonnalisable;
-import model.FichierDemandes;
-import model.particulier.DemandeCollecte;
 import view.PlanView;
 
 public class Plan {

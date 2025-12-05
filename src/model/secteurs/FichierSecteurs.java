@@ -29,14 +29,17 @@ public class FichierSecteurs implements ChargerFichiers {
             String ligne;
             while ((ligne = br.readLine()) != null)
             {
-                if (ligne.trim().isEmpty())
-                {
+                if (ligne.trim().isEmpty()) {
                     continue;
                 }
+
+                if (ligne.trim().isEmpty() || ligne.startsWith("#")) {
+                    continue;
+                }
+
                 String[] parts = ligne.split(";");
 
-                if (parts.length != 4)
-                {
+                if (parts.length != 4) {
                     System.out.println("Ligne ignorée : format invalide");
                     continue;
                 }
@@ -66,13 +69,15 @@ public class FichierSecteurs implements ChargerFichiers {
             String ligne;
             while ((ligne = br.readLine()) != null)
             {
-                if (ligne.trim().isEmpty())
-                {
+                ligne = ligne.trim();
+                if (ligne.trim().isEmpty()) {
+                    continue;
+                }
+                if (ligne.trim().isEmpty() || ligne.startsWith("#")) {
                     continue;
                 }
                 String[] parts = ligne.split(";");
-                if (parts.length != 4)
-                {
+                if (parts.length != 4) {
                     System.out.println("Ligne ignorée : format invalide");
                     continue;
                 }
@@ -85,8 +90,7 @@ public class FichierSecteurs implements ChargerFichiers {
                 secteurs.put(nomSecteur,secteur); // couleur comme clé, secteur comme valeur
             }
         }
-        catch (IOException e)
-        {
+        catch (IOException e) {
             throw new ExceptionPersonnalisable("Erreur de lecture du fichier");
         }
         System.out.println("Secteurs chargés avec succès depuis " + nomFichier);
