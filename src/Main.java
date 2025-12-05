@@ -1,8 +1,6 @@
 import model.*;
 import controller.*;
-//import model.Secteurs.FichierSecteurs;
-import model.secteurs.FichierSecteurs;
-import model.secteurs.SecteursModel;
+import model.secteurs.*;
 import model.map.*;
 import model.particulier.DemandeCollecte;
 import model.particulier.FichiersProfil;

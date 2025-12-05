@@ -21,13 +21,13 @@ public class TourAuPiedHabitationView {
         System.err.println(msg);
     }
 
-    public void afficherListeSecteurs(List<Secteurs> listeSecteurs, List<Secteurs> tousLesSecteurs) {
+    public void afficherListeSecteurs(List<Secteurs> listeSecteurs) {
         System.out.println("\n Choisir le secteur : ");
 
         for (int i = 0; i < listeSecteurs.size(); i++) {
             Secteurs s = listeSecteurs.get(i);
             String etatInfo = "";
-
+            List<Secteurs> tousLesSecteurs = List.of();
             if (s.getEtat()) {
                 etatInfo = " Bloqué";
             } else if (s.aUnVoisinBloque(tousLesSecteurs)) {

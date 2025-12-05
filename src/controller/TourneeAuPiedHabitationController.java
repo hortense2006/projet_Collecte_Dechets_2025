@@ -1,10 +1,10 @@
 package controller;
 
 import model.CamionModel;
-import model.Secteurs.Secteurs;
-import model.Secteurs.SecteursModel;
-import model.Tournee.TourneeAuPiedHabitation;
-import model.Tournee.TourneePointCollecte;
+import model.secteurs.Secteurs;
+import model.secteurs.SecteursModel;
+import model.tournee.TourneeAuPiedHabitation;
+import model.tournee.TourneePointCollecte;
 import model.map.Plan;
 import view.TourneePointCollecteView;
 import view.TourAuPiedHabitationView;
@@ -45,8 +45,8 @@ public class TourneeAuPiedHabitationController {
 
         Secteurs secteurChoisi = listeSecteurs.get(choix - 1);
         if (secteurChoisi.getEtat()) { // verifie si le secteur n'a pas deja ete fait
-            boolean continuer = view.demanderConfirmation(secteurChoisi.getNom());
-            if (!continuer) return;
+            int continuer = view.demanderChoixSecteur();
+            if (continuer != 0) return;
         }
 
         view.afficherMessage(" -> Secteur sélectionné : " + secteurChoisi.getNom());

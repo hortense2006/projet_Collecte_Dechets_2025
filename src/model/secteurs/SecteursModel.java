@@ -11,7 +11,7 @@ public class SecteursModel {
     // ATTRIBUTS
     private final FichierSecteurs fichierSecteurs;
     private final Plan plan;
-    private HashMap<String, Secteurs> secteurs;
+    private HashMap<String,Secteurs> secteurs;
     private Map<String, Set<String>> voisins;
 
     // CONSTRUCTEUR
