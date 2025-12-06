@@ -3,11 +3,9 @@ import model.EncombrantModel;
 import model.FichierDemandes;
 import model.particulier.*;
 import java.time.LocalDate;
-import java.util.LinkedList;
 import java.util.Queue;
 
 import view.ParticulierView;
-import static model.particulier.TypeEncombrant.*;
 
 // Cette classe s'occupe de la coordination
 public class ParticulierController
@@ -21,8 +19,8 @@ public class ParticulierController
     private FichiersProfil fichiers;
     private FichierDemandes fichiersD;
     private EncombrantModel encombrantModel;
-    String idPropose;
-    String mdpPropose;
+    public String idPropose;
+    public String mdpPropose;
 
     // CONSTRUCTEUR
     public ParticulierController(ParticulierModel model, ParticulierView view,FichiersProfil fichiers,FichierDemandes fichiersD)
@@ -99,7 +97,6 @@ public class ParticulierController
         }
     }
 
-
     // METHODE n°4 : SE CONNECTER
     public void login()
     {
@@ -133,8 +130,9 @@ public class ParticulierController
             }
         }
     }
-        // METHODE n°5 : DEMANDER COLLECTE D'ENCOMBRANTS
-    public DemandeCollecte DemandeCollecteE()
+
+    // METHODE n°5 : DEMANDER COLLECTE D'ENCOMBRANTS
+    public DemandeCollecte demandeCollecteE()
     {
         int quantite = 0;
         LocalDate dateDemande = LocalDate.now(); // Date de la demande
@@ -169,6 +167,7 @@ public class ParticulierController
         view.afficherMessage("Votre demande a été enregistrée.");
         return demande;
     }
+
     // METHODE n°6 : Remplir liste de demandes
     public Queue<DemandeCollecte> remplirListeDemandeCollecte(DemandeCollecte premiere,Queue<DemandeCollecte> listeDemande)
     {
@@ -184,7 +183,7 @@ public class ParticulierController
             }
             else
             {
-                DemandeCollecte demande = DemandeCollecteE();
+                DemandeCollecte demande = demandeCollecteE();
                 if (demande != null)
                 {
                     listeDemande.add(demande);

@@ -9,7 +9,6 @@ public class PointCollecteController {
 
     private Plan plan;
     private PointCollecteView pdcV;
-    public String nomFicher;
 
     public PointCollecteController(Plan plan, PointCollecteView pdcV) {
         this.plan = plan;

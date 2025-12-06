@@ -191,12 +191,12 @@ public class Main
                             {
                                 if(choixDeVille == 1)
                                 {
-                                    DemandeCollecte d = pc.DemandeCollecteE(); // Demander une collecte d'encombrants
+                                    DemandeCollecte d = pc.demandeCollecteE(); // Demander une collecte d'encombrants
                                     Queue<DemandeCollecte> liste = enc.recupListeDemandes(choixDeVille, fd, d);
                                 }
                                 else if (choixDeVille == 2)
                                 {
-                                    DemandeCollecte d = pc.DemandeCollecteE(); // Demander une collecte d'encombrants
+                                    DemandeCollecte d = pc.demandeCollecteE(); // Demander une collecte d'encombrants
                                     Queue<DemandeCollecte> liste = enc.recupListeDemandes(choixDeVille, fd, d);
                                 }
                                 break;

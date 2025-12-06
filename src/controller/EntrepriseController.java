@@ -18,6 +18,7 @@ public class EntrepriseController
     private ParticulierController pc;
     private Maison maison;
     private Queue<DemandeCollecte> liste;
+
     public EntrepriseController(EntrepriseModel em,Plan p,Maison maison,ParticulierView pv,ParticulierController pc)
     {
         this.p = p;
@@ -32,7 +33,7 @@ public class EntrepriseController
     //METHODE n°1 : Orchestration complète de la collecte répondant à la liste de demandes
     // Renvoie l'itinéraire optimisé que le camion doit suivre.
     // L'entreprise récupère la demande du particulier, exécute la demande, et renvoie l'itinéraire au camion.
-    public Itineraire CollecteDemande(Queue<DemandeCollecte> demandes) throws ExceptionPersonnalisable
+    public Itineraire collecteDemande(Queue<DemandeCollecte> demandes) throws ExceptionPersonnalisable
     {
 
         if (demandes == null || demandes.isEmpty())
@@ -130,6 +131,7 @@ public class EntrepriseController
     {
         return d.getRue().trim().toLowerCase() + "_" + d.getNumero();
     }
+
     // METHODE n°3
     public Queue<DemandeCollecte> recupListeDemandes(int choixDeVille, FichierDemandes fichierDemandes,DemandeCollecte d)
     {

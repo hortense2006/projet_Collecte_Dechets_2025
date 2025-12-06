@@ -16,17 +16,17 @@ import java.util.Scanner;
 public class CamionController {
 
     private EntrepriseController entreprise;
-    private FichierDemandes DemandeC;
+    private FichierDemandes demandeC;
     private ParticulierModel particuliermodel;
     private Queue<DemandeCollecte> liste;
-    CamionView camionV;
+    public CamionView camionV;
     public String nomFichier;
 
-    public CamionController(EntrepriseController entreprise,ParticulierModel particuliermodel, CamionView camionV,FichierDemandes DemandeC) {
+    public CamionController(EntrepriseController entreprise,ParticulierModel particuliermodel, CamionView camionV,FichierDemandes demandeC) {
         this.entreprise = entreprise;
         this.particuliermodel= particuliermodel;
         this.camionV = camionV;
-        this.DemandeC = DemandeC;
+        this.demandeC = demandeC;
         this.liste = new LinkedList<>();
     }
 
@@ -37,9 +37,9 @@ public class CamionController {
         // Récupère la liste des demandes
         liste = particuliermodel.getDemande(nomVille);
         // On récupère la liste de demandes et on les exécute à l'aide de CollecteDemande
-        Itineraire itineraireFinal = entreprise.CollecteDemande(liste);
+        Itineraire itineraireFinal = entreprise.collecteDemande(liste);
         camionV.afficherItineraireE(itineraireFinal);
-        DemandeC.viderDemande(nomFichier);
+        demandeC.viderDemande(nomFichier);
     }
 
     public CamionModel selectionnerCamion(String nomFichier) {
@@ -70,17 +70,10 @@ public class CamionController {
         return camionChoisi;
     }
 
-    // remettre le bon état au camion s'il est libre
-    public void libererCamion(String idCamion, String nomFichier) {
-        CamionModel.changerEtatCamion(idCamion, "disponible", nomFichier);
-        camionV.afficherMessage("Info : Le camion " + idCamion + " est de nouveau disponible.");
-    }
-
     // sauvegarde l'état du camion à la fin de la tournée
     public void sauvegarderEtatCamion(CamionModel c, String nomFichier) {
-        CamionModel.mettreAJourCamion(c, c.nomFichier);
+        CamionModel.mettreAJourCamion(c, nomFichier);
     }
-
 
     // vide un camion
     public void viderUnCamion(String nomFichier) {
@@ -99,7 +92,6 @@ public class CamionController {
         }
         camionV.afficherErreur("Camion introuvable.");
     }
-
 
     // permet de vider tout les camions à la fois
     public void viderTousCamions() {
