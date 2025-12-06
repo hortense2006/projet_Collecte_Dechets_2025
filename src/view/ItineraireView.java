@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ItineraireView {
 
-    Itineraire itineraire;
+    public Itineraire itineraire;
 
     public ItineraireView (Itineraire itineraire)
     {

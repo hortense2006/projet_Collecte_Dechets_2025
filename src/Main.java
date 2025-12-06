@@ -58,7 +58,7 @@ public class Main
                     "\n 2. Bordeaux");
             choixDeVille = sc.nextInt();
 
-            planDeVille = planV.ChoixVille(planDeVille, choixDeVille);
+            planDeVille = planV.choixVille(planDeVille, choixDeVille);
         }
         /* PERMET DE CHARGER L'ETAT DE LA VILLE DE FACON A POUVOIR FAIRE LA
         COLLECTE D'ENCOMBRANTS PEU IMPORTE L'ORDRE DE CONNEXION

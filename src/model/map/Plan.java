@@ -121,7 +121,7 @@ public class Plan {
                     try {
                         distance = Double.parseDouble(parties[3].trim());//récupère la distance de la rue
                     } catch (ExceptionPersonnalisable e) {
-                        planView.afficherErreurPlan("Ligne ignorée (distance invalide) : " + ligne); //lance une exception si elle n'est pas valide
+                        planView.afficherErreur("Ligne ignorée (distance invalide) : " + ligne); //lance une exception si elle n'est pas valide
                         continue;
                     }
                 } else if (parties.length == 5) { // pour HO3
@@ -136,17 +136,17 @@ public class Plan {
                     } else if (sens.equals("-")) {
                         estSensUnique = false;
                     } else {
-                        planView.afficherErreurPlan("Symbole de direction inconnu : " + ligne);
+                        planView.afficherErreur("Symbole de direction inconnu : " + ligne);
                         continue;
                     }
                     try {
                         distance = Double.parseDouble(parties[4].trim());
                     } catch (ExceptionPersonnalisable e) {
-                        planView.afficherErreurPlan("Ligne ignorée (distance invalide) : " + ligne); //lance une exception si elle n'est pas valide
+                        planView.afficherErreur("Ligne ignorée (distance invalide) : " + ligne); //lance une exception si elle n'est pas valide
                         continue;
                     }
                 } else {
-                    planView.afficherErreurPlan("Ligne ignorée (erreur de format) : " + ligne);
+                    planView.afficherErreur("Ligne ignorée (erreur de format) : " + ligne);
                     continue;
                 }
 
@@ -179,6 +179,6 @@ public class Plan {
                 }
             }
         }
-        planView.afficherMessagePlan("Le plan a été chargé avec succés. L'orientation est : " + typeGraphe);
+        planView.afficherMessage("Le plan a été chargé avec succés. L'orientation est : " + typeGraphe);
     }
 }

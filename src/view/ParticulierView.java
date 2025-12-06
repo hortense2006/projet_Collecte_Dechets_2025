@@ -12,7 +12,7 @@ public class ParticulierView
     private Scanner sc;
 
     // ATTRIBUTS
-    String saisie;
+    public String saisie;
 
     // CONSTRUCTEUR
     public ParticulierView(Scanner sc){this.sc=sc;}

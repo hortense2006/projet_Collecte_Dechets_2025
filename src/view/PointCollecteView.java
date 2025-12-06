@@ -1,8 +1,5 @@
 package view;
 
-import model.map.PointCollecte;
-import model.map.Station;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;

@@ -40,12 +40,12 @@ public class TourneePointCollecte {
             }
         }
         if (here == null) { // si le dépot n'est pas trouvé
-            planV.afficherErreurPlan("Erreur : Aucun dépôt trouvé !");
+            planV.afficherErreur("Erreur : Aucun dépôt trouvé !");
             return;
         }
 
-        planV.afficherMessagePlan("Début de la tournée");
-        planV.afficherMessagePlan("Camion : " + camion.getIdCamion() + " | Capacité : " + camion.getCapaciteMax());
+        planV.afficherMessage("Début de la tournée");
+        planV.afficherMessage("Camion : " + camion.getIdCamion() + " | Capacité : " + camion.getCapaciteMax());
 
         Itineraire chemin = new Itineraire(null, null, new ArrayList<>());
 
@@ -87,11 +87,11 @@ public class TourneePointCollecte {
 
                 System.out.println("Collecte partielle à " + pc.getNom() + ". Camion rempli.");
                 System.out.println("    (Pris : " + aPrendre + " | Reste dans poubelle : " + pc.getNiveauRemplissage() + ")");
-                planV.afficherMessagePlan("Camion plein ! Retour au dépôt et fin de la tournée."); // fin de la tournée
+                planV.afficherMessage("Camion plein ! Retour au dépôt et fin de la tournée."); // fin de la tournée
                 break; // On sort de la boucle while
             }
             if (camion.getCapaciteActuelle() >= camion.getCapaciteMax()) { // si le camion est tout plein on s'arrète
-                planV.afficherMessagePlan("Camion plein ! Retour au dépôt.");
+                planV.afficherMessage("Camion plein ! Retour au dépôt.");
                 break;
             }
         }
@@ -102,7 +102,7 @@ public class TourneePointCollecte {
                 listeSeg.add(segmentRetour);
                 distanceTotale += resRetour.distances.get(depot);
             } else {
-                planV.afficherErreurPlan("Erreur : Impossible de rentrer au dépôt ");
+                planV.afficherErreur("Erreur : Impossible de rentrer au dépôt ");
             }
         }
 

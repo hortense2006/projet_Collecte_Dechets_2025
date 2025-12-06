@@ -9,7 +9,7 @@ import model.map.Station;
 
 public class TourneePointCollecteView {
 
-    TourneePointCollecte tpc;
+    public TourneePointCollecte tpc;
 
     public TourneePointCollecteView(TourneePointCollecte tpc) {
         this.tpc = tpc;
@@ -29,7 +29,6 @@ public class TourneePointCollecteView {
         System.out.println("Distance parcouru lors de la tournée : " + tpc.distanceTotale + " mètres");
     }
 
-
     // affiche le bilan des points de collecte
     public void affichageBilanTournee (Plan plan, CamionModel camion) {
         System.out.println("\n      Bilan de la tournée :       "); // affichage de l'état des point de collectes
@@ -47,6 +46,5 @@ public class TourneePointCollecteView {
             }
         }
     }
-
 
 }

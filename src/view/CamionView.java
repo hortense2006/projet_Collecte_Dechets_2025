@@ -79,6 +79,7 @@ public class CamionView {
             }
         }
     }
+
     // METHODE n°6 : Simplifier l'affichage des noms de lignes (évite la multiplication de M-M1-M2 à la suite)
     private String simplifierNomLigne(String nomLigne)
     {

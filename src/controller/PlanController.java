@@ -4,7 +4,6 @@ import model.map.Plan;
 import view.PlanView;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 public class PlanController {
     private Plan plan;
@@ -28,33 +27,33 @@ public class PlanController {
 
                     try {
                         p.chargerPlan(nomFichier, Plan.modeOrientation.HO1_NON_ORIENTE);
-                        planView.afficherMessagePlan("\n");
+                        planView.afficherMessage("\n");
                         return p;
                     } catch (IOException e) { // lance l'erreur necessaire
-                        planView.afficherErreurPlan("ERREUR : Impossible de lire le fichier du réseau.");
-                        planView.afficherErreurPlan("Détail de l'erreur: " + e.getMessage());
+                        planView.afficherErreur("ERREUR : Impossible de lire le fichier du réseau.");
+                        planView.afficherErreur("Détail de l'erreur: " + e.getMessage());
                     }
                     break;
                 case 2:
                     nomFichier = "Ranville_HO2.txt";
                     try {
                         p.chargerPlan(nomFichier, Plan.modeOrientation.HO2_ORIENTE);
-                        planView.afficherMessagePlan("\n");
+                        planView.afficherMessage("\n");
                         return p;
                     } catch (IOException e) {
-                        planView.afficherErreurPlan("ERREUR : Impossible de lire le fichier du réseau.");
-                        planView.afficherErreurPlan("Détail de l'erreur: " + e.getMessage());
+                        planView.afficherErreur("ERREUR : Impossible de lire le fichier du réseau.");
+                        planView.afficherErreur("Détail de l'erreur: " + e.getMessage());
                     }
                     break;
                 case 3:
                     nomFichier = "Ranville_HO3.txt";
                     try {
                         plan.chargerPlan(nomFichier, Plan.modeOrientation.HO3_MIXTE);
-                        planView.afficherMessagePlan("\n");
+                        planView.afficherMessage("\n");
                         return p;
                     } catch (IOException e) {
-                        planView.afficherErreurPlan("ERREUR : Impossible de lire le fichier du réseau.");
-                        planView.afficherErreurPlan("Détail de l'erreur: " + e.getMessage());
+                        planView.afficherErreur("ERREUR : Impossible de lire le fichier du réseau.");
+                        planView.afficherErreur("Détail de l'erreur: " + e.getMessage());
                     }
                     break;
             }
@@ -74,33 +73,33 @@ public class PlanController {
 
                     try {
                         p.chargerPlan(nomFichier, Plan.modeOrientation.HO1_NON_ORIENTE);
-                        planView.afficherMessagePlan("\n");
+                        planView.afficherMessage("\n");
                         return p;
                     } catch (IOException e) { // lance l'erreur necessaire
-                        planView.afficherErreurPlan("ERREUR : Impossible de lire le fichier du réseau.");
-                        planView.afficherErreurPlan("Détail de l'erreur: " + e.getMessage());
+                        planView.afficherErreur("ERREUR : Impossible de lire le fichier du réseau.");
+                        planView.afficherErreur("Détail de l'erreur: " + e.getMessage());
                     }
                     break;
                 case 2:
                     nomFichier = "Bordeaux_HO2.txt";
                     try {
                         p.chargerPlan(nomFichier, Plan.modeOrientation.HO2_ORIENTE);
-                        planView.afficherMessagePlan("\n");
+                        planView.afficherMessage("\n");
                         return p;
                     } catch (IOException e) {
-                        planView.afficherErreurPlan("ERREUR : Impossible de lire le fichier du réseau.");
-                        planView.afficherErreurPlan("Détail de l'erreur: " + e.getMessage());
+                        planView.afficherErreur("ERREUR : Impossible de lire le fichier du réseau.");
+                        planView.afficherErreur("Détail de l'erreur: " + e.getMessage());
                     }
                     break;
                 case 3:
                     nomFichier = "Bordeaux_HO3.txt";
                     try {
                         plan.chargerPlan(nomFichier, Plan.modeOrientation.HO3_MIXTE);
-                        planView.afficherMessagePlan("\n");
+                        planView.afficherMessage("\n");
                         return p;
                     } catch (IOException e) {
-                        planView.afficherErreurPlan("ERREUR : Impossible de lire le fichier du réseau.");
-                        planView.afficherErreurPlan("Détail de l'erreur: " + e.getMessage());
+                        planView.afficherErreur("ERREUR : Impossible de lire le fichier du réseau.");
+                        planView.afficherErreur("Détail de l'erreur: " + e.getMessage());
                     }
                     break;
             }

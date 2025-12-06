@@ -32,15 +32,15 @@ public class TourneeAuPiedHabitation {
             }
         }
         if (here == null) {
-            planV.afficherErreurPlan("Erreur critique : Pas de dépôt trouvé.");
+            planV.afficherErreur("Erreur critique : Pas de dépôt trouvé.");
             return null;
         }
         List<Station> aVisiter = secteur.getStationsDuSecteur(plan);
         if (aVisiter.isEmpty()) {
-            planV.afficherErreurPlan("Le secteur est vide.");
+            planV.afficherErreur("Le secteur est vide.");
             return null;
         }
-        planV.afficherMessagePlan("\nDépart tournée pour " + secteur.getNom());
+        planV.afficherMessage("\nDépart tournée pour " + secteur.getNom());
         TourneePointCollecte resultat = new TourneePointCollecte(plan);
         while (!aVisiter.isEmpty()) { // veirifie que le camion ne se retrouvera pas bloqué
             ResultatDijkstra res = dijkstra.dijkstra(here);
@@ -83,13 +83,13 @@ public class TourneeAuPiedHabitation {
         if (!here.equals(depot)) { // retour final au depot
             ResultatDijkstra resRetour = dijkstra.dijkstra(here);
             if (ajouterSegmentAuResultat(here, depot, resRetour, resultat)) {
-                planV.afficherMessagePlan("Secteur terminé. Retour au dépôt.");
+                planV.afficherMessage("Secteur terminé. Retour au dépôt.");
             } else {
-                planV.afficherErreurPlan("Erreur critique : Blocage inattendu."); // on est resté bloqué
+                planV.afficherErreur("Erreur critique : Blocage inattendu."); // on est resté bloqué
             }
         }
         secteur.setEtat(true);
-        planV.afficherMessagePlan("\nBilan : Secteur marqué comme BLOQUÉ.");
+        planV.afficherMessage("\nBilan : Secteur marqué comme BLOQUÉ.");
         return resultat;
     }
 

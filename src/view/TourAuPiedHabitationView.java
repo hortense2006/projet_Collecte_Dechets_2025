@@ -13,12 +13,12 @@ public class TourAuPiedHabitationView {
         this.sc = new Scanner(System.in);
     }
 
-    public void afficherMessage(String msg) {
-        System.out.println(msg);
+    public void afficherMessage(String message) {
+        System.out.println(message);
     }
 
-    public void afficherErreur(String msg) {
-        System.err.println(msg);
+    public void afficherErreur(String message) {
+        System.err.println(message);
     }
 
     public void afficherListeSecteurs(List<Secteurs> listeSecteurs) {

@@ -17,7 +17,7 @@ public class PlanView {
         this.sc = new Scanner(System.in);
     }
 
-    // METHODE n°1 : Affiche le plan de la ville chargée
+    // affiche le plan de la ville chargée
     public void afficherReseau(Plan plan) {
         System.out.println("Affichage du plan de la ville");
         if (plan.getStations().isEmpty()) {
@@ -38,7 +38,7 @@ public class PlanView {
         }
     }
 
-    // METHODE n°2 : Affichage du menu du graphe
+    // affichage du menu du graphe
     public int afficherMenu () {
         int choix;
         Scanner sc = new Scanner(System.in);
@@ -54,29 +54,26 @@ public class PlanView {
         return choix;
     }
 
-    // METHODE n°3 : Afficher une message
-    public void afficherMessagePlan (String message) {
+    // afficher une message
+    public void afficherMessage(String message) {
         System.out.println(message);
     }
 
-    // METHODE n°4 : Afficher un message d'erreur
-    public void afficherErreurPlan (String message) {
+    // afficher un message d'erreur
+    public void afficherErreur(String message) {
         System.err.println(message);
     }
 
-    public Plan ChoixVille (Plan p, int choixDeVille)
-    {
+    public Plan choixVille(Plan p, int choixDeVille) {
 
         PlanController pc = new PlanController(p, this);
 
         switch (choixDeVille) {
-            case 1:
-            {
+            case 1: {
                 p = pc.choixFichierRanville(p);
                 return p;
             }
-            case 2:
-            {
+            case 2: {
                 p = pc.choixFichierBordeaux(p);
                 return p;
             }
