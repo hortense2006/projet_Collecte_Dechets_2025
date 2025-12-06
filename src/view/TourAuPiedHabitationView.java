@@ -31,7 +31,6 @@ public class TourAuPiedHabitationView {
             if (s.getEtat()) {
                 etatInfo = " Bloqué";
             } else if (s.aUnVoisinBloque(tousLesSecteurs)) {
-                // C'est ici qu'on utilise la 2ème liste pour vérifier les voisins
                 etatInfo = " Interdit : le voisin à été fait ";
             } else {
                 etatInfo = " Disponible";

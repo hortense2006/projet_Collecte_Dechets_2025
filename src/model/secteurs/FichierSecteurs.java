@@ -10,16 +10,20 @@ public class FichierSecteurs implements ChargerFichiers {
     // ATTRIBUTS
     public String nomFichier;
     private HashMap<String, Secteurs> secteurs;
+
     // CONSTRUCTEUR n°1
     public FichierSecteurs(String nomFichier)
     {
         this.nomFichier = nomFichier;
         this.secteurs = new HashMap<>();
     }
+
     // GETTER n°1
     public HashMap<String, Secteurs> getSecteurs() {return secteurs;}
+
     // GETTER n°2
     public String getNomFichier(){return nomFichier;}
+
     //METHODE n°1
     @Override
     public void chargerDepuisBuffer(BufferedReader br) throws IOException
@@ -60,6 +64,7 @@ public class FichierSecteurs implements ChargerFichiers {
         System.out.println("Profils chargés avec succès depuis " + nomFichier);
 
     }
+
     // METHODE n°2
     @Override
     public void chargerDepuisFichier() throws IOException
@@ -95,6 +100,7 @@ public class FichierSecteurs implements ChargerFichiers {
         }
         System.out.println("Secteurs chargés avec succès depuis " + nomFichier);
     }
+
     // METHODE n°3 : Sauvegarde dans le fichier texte
     public void sauvegarderSecteurs()
     {
