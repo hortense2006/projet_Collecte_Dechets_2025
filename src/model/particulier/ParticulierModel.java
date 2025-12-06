@@ -8,14 +8,11 @@ public class ParticulierModel
 {
     // ATTRIBUTS
     private Map<String, Profil> compte;
-    Plan plan = new Plan();
     String nomFichier;
     private int nomVille;
     private final FichiersProfil f;
     private Queue<DemandeCollecte> demandesRanville;
     private Queue<DemandeCollecte> demandesBordeaux;
-
-
 
     // CONSTRUCTEUR
     public ParticulierModel(String nomFichier,int nomVille)
@@ -36,7 +33,6 @@ public class ParticulierModel
         else if(nomVille.equals("Bordeaux")) return demandesBordeaux;
         return null;
     }
-
 
     // METHODE n°1 : Demander une collecte d'encombrants
     public DemandeCollecte faireDemandeCollecte(String nomVille,String idUtilisateur,TypeEncombrant encombrant,int quantite,LocalDate date,String rue,Double numero)

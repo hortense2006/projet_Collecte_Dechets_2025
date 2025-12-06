@@ -23,7 +23,7 @@ public class Profil
         this.nomVille = nomVille;
     }
 
-    // -------- GETTERS --------
+    // GETTERS
     public String getPrenom() { return prenom; }
     public String getNom() { return nom; }
     public double getNumero() { return numero; }

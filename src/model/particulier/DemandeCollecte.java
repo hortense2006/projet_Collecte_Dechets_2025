@@ -14,8 +14,7 @@ public class DemandeCollecte
     private String rue;
     private double numero;
     private String nomVille;
-    private Arc arcMaison;
-    private double position;
+
 
 
     // CONSTRUCTEUR n°1
