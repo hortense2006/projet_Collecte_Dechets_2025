@@ -26,6 +26,7 @@ public class FichierDemandes implements ChargerFichiers
     {
         return fileDemandes;
     }
+    
     // METHODE n°1 : Remplissage de la HashMap compte pour la première fois
     @Override
     public void chargerDepuisFichier()
@@ -124,6 +125,7 @@ public class FichierDemandes implements ChargerFichiers
             System.err.println("Erreur lors de l'écriture dans le fichier : " + e.getMessage());
         }
     }
+
     // METHODE n°4 : Vider le fichier texte des demandes
     public void viderDemande(String nomFichier)
     {

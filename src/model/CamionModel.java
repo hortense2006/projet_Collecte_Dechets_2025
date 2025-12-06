@@ -14,8 +14,7 @@ public class CamionModel {
     private double capaciteMax; // en kg
     private double capaciteActuelle; // en kg
     private String etat; // Statut du camion
-    private static final String FICHIER_RANVILLE = "Camion_Ranville.txt";
-    private static final String FICHIER_BORDEAUX = "Camion_Bordeaux.txt";
+    public String nomFichier;
 
     public CamionModel(String idCamion, String etat,double capaciteMax, double capaciteActuelle ) {
         this.idCamion = idCamion;
@@ -24,7 +23,6 @@ public class CamionModel {
         this.etat = etat;
     }
 
-
     public String getIdCamion() {return idCamion;}
     public double getCapaciteActuelle() {return capaciteActuelle;}
     public double getCapaciteMax() {return capaciteMax;}
@@ -32,14 +30,6 @@ public class CamionModel {
 
     public void setEtat(String etat) {
         this.etat = etat;
-    }
-    public void setCapaciteActuelle(double capaciteActuelle)
-    {
-        this.capaciteActuelle = capaciteActuelle;
-    }
-    public void setIdCamion(String idCamion)
-    {
-        this.idCamion = idCamion;
     }
 
     @Override
@@ -69,43 +59,11 @@ public class CamionModel {
     }
 
     // permet de lire le fichier de camion et de créer les camions
-    public static List<CamionModel> chargerCamionsRanville() {
+    public static List<CamionModel> chargerCamions(String nomFichier) {
         List<CamionModel> liste = new ArrayList<>();
-        File file = new File(FICHIER_RANVILLE);
+        File file = new File(nomFichier);
         if (!file.exists()) {
-            System.err.println("ERREUR : Le fichier " + FICHIER_RANVILLE + " est introuvable !");
-            return liste;
-        }
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String ligne;
-            while ((ligne = br.readLine()) != null) {
-                ligne = ligne.trim();
-                String[] parts = ligne.split(";");
-                if (parts.length == 4) {
-                    try {
-                        String id = parts[0].trim();
-                        String etat = parts[1].trim();
-                        double max = Double.parseDouble(parts[2].trim());
-                        double actuel = Double.parseDouble(parts[3].trim());
-                        liste.add(new CamionModel(id, etat, max, actuel)); // création d'un camion
-                    } catch (NumberFormatException e) {
-                        System.err.println("Erreur de format numérique sur la ligne : " + ligne);
-                    }
-                } else {
-                    System.err.println("Ligne ignorée (Format incorrect, attendu 4 colonnes) : " + ligne); // si ce n'est pas conforme on rejette
-                }
-            }
-        } catch (IOException e) {
-            System.err.println("Erreur lecture camions : " + e.getMessage());
-        }
-        return liste;
-    }
-
-    public static List<CamionModel> chargerCamionsBordeaux() {
-        List<CamionModel> liste = new ArrayList<>();
-        File file = new File(FICHIER_BORDEAUX);
-        if (!file.exists()) {
-            System.err.println("ERREUR : Le fichier " + FICHIER_BORDEAUX + " est introuvable !");
+            System.err.println("ERREUR : Le fichier " + nomFichier + " est introuvable !");
             return liste;
         }
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
@@ -134,36 +92,15 @@ public class CamionModel {
     }
 
     //réécrit le fichier si on décide de choisir un camion et donc changer l'état
-    public static void changerEtatCamionRanville(String idCamion, String nouvelEtat) {
-        List<CamionModel> tousLesCamions = chargerCamionsRanville();
+    public static void changerEtatCamion(String idCamion, String nouvelEtat, String nomFichier) {
+        List<CamionModel> tousLesCamions = chargerCamions(nomFichier);
         for (CamionModel c : tousLesCamions) { // modification de la liste
             if (c.getIdCamion().equals(idCamion)) {
                 c.setEtat(nouvelEtat);
                 break;
             }
         }
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(FICHIER_RANVILLE))) { // réécriture du fichier
-            for (CamionModel c : tousLesCamions) {
-                bw.write(c.getIdCamion() + ";" +
-                        c.getEtat() + ";" +
-                        (int)c.getCapaciteMax() + ";" +
-                        (int)c.getCapaciteActuelle());
-                bw.newLine();
-            }
-        } catch (IOException e) {
-            System.err.println("Erreur sauvegarde camions : " + e.getMessage());
-        }
-    }
-
-    public static void changerEtatCamionBordeaux(String idCamion, String nouvelEtat) {
-        List<CamionModel> tousLesCamions = chargerCamionsBordeaux();
-        for (CamionModel c : tousLesCamions) { // modification de la liste
-            if (c.getIdCamion().equals(idCamion)) {
-                c.setEtat(nouvelEtat);
-                break;
-            }
-        }
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(FICHIER_BORDEAUX))) { // réécriture du fichier
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(nomFichier))) { // réécriture du fichier
             for (CamionModel c : tousLesCamions) {
                 bw.write(c.getIdCamion() + ";" +
                         c.getEtat() + ";" +
@@ -177,35 +114,10 @@ public class CamionModel {
     }
 
     // Mise à jour de la capacité du camion
-    public static void mettreAJourCamionRanville(CamionModel camionModifie) {
-        List<CamionModel> tous = chargerCamionsRanville();
+    public static void mettreAJourCamion(CamionModel camionModifie, String nomFichier) {
+        List<CamionModel> tous = chargerCamions(nomFichier);
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(FICHIER_RANVILLE))) {
-            for (CamionModel c : tous) {
-                // Si c'est le camion qu'on vient de modifier, on prend ses nouvelles valeurs
-                if (c.getIdCamion().equals(camionModifie.getIdCamion())) {
-                    bw.write(camionModifie.getIdCamion() + ";" +
-                            camionModifie.getEtat() + ";" +
-                            (int)camionModifie.getCapaciteMax() + ";" +
-                            (int)camionModifie.getCapaciteActuelle());
-                } else {
-                    // Sinon on réécrit l'ancien
-                    bw.write(c.getIdCamion() + ";" +
-                            c.getEtat() + ";" +
-                            (int)c.getCapaciteMax() + ";" +
-                            (int)c.getCapaciteActuelle());
-                }
-                bw.newLine();
-            }
-        } catch (IOException e) {
-            System.err.println("Erreur sauvegarde : " + e.getMessage());
-        }
-    }
-
-    public static void mettreAJourCamionBordeaux(CamionModel camionModifie) {
-        List<CamionModel> tous = chargerCamionsBordeaux();
-
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(FICHIER_BORDEAUX))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(nomFichier))) {
             for (CamionModel c : tous) {
                 // Si c'est le camion qu'on vient de modifier, on prend ses nouvelles valeurs
                 if (c.getIdCamion().equals(camionModifie.getIdCamion())) {
@@ -228,26 +140,10 @@ public class CamionModel {
     }
 
     // vide instantanement tout les camions et les remets à disponible
-    public static void reinitialiserTousCamionsRanville() {
-        List<CamionModel> tous = chargerCamionsRanville(); // On récupère tout le monde
+    public static void reinitialiserTousCamions(String nomFichier) {
+        List<CamionModel> tous = chargerCamions(nomFichier); // On récupère tout le monde
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(FICHIER_RANVILLE))) {
-            for (CamionModel c : tous) {
-                bw.write(c.getIdCamion() + ";" +// force les valeurs : "disponible" et 0 chargement
-                        "disponible" + ";" + // force l'état
-                        (int)c.getCapaciteMax() + ";" +
-                        0); // force à le vider (0)
-                bw.newLine();
-            }
-        } catch (IOException e) {
-            System.err.println("Erreur réinitialisation flotte : " + e.getMessage());
-        }
-    }
-
-    public static void reinitialiserTousCamionsBordeaux() {
-        List<CamionModel> tous = chargerCamionsRanville(); // On récupère tout le monde
-
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(FICHIER_BORDEAUX))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(nomFichier))) {
             for (CamionModel c : tous) {
                 bw.write(c.getIdCamion() + ";" +// force les valeurs : "disponible" et 0 chargement
                         "disponible" + ";" + // force l'état

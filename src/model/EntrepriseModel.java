@@ -4,11 +4,11 @@ import model.map.*;
 import model.particulier.*;
 import java.util.*;
 
-public class EntrepriseModel
-{
+public class EntrepriseModel {
     // ATTRIBUTS
     private Plan p;
     private ParticulierModel pm;
+
     // CONSTRUCTEUR
     public EntrepriseModel(Plan p,ParticulierModel pm)
     {
@@ -46,7 +46,6 @@ public class EntrepriseModel
         return Itineraire.reconstituerChemin(depart, destination, stationArriveeTrouvee, predecesseurs);//pour afficher grace à la méthode dans afficher itinéraire
     }
 
-
     // METHODE n°2 : Vérification des stations
     public Station verifierStations(String nomDepart, String nomArrivee) throws ExceptionPersonnalisable
     {
@@ -66,6 +65,7 @@ public class EntrepriseModel
         }
         return depart;
     }
+
     //METHODE n°3 : Retirer une demande après exécution
     public void defilerDemande(DemandeCollecte demande) throws ExceptionPersonnalisable
     {

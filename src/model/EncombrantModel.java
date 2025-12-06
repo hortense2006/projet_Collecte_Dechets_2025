@@ -2,9 +2,7 @@ package model;
 
 import model.particulier.TypeEncombrant;
 
-public class EncombrantModel
-{
-
+public class EncombrantModel {
     // ATTRIBUTS
     public static final int MAX_MEUBLE = 3;
     public static final int MAX_ELECTROMENAGER = 2;

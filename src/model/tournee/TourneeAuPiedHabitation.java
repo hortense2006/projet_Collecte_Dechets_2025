@@ -93,7 +93,7 @@ public class TourneeAuPiedHabitation {
         return resultat;
     }
 
-    private boolean ajouterSegmentAuResultat(Station depart, Station arrivee, ResultatDijkstra res, TourneePointCollecte resultatGlobal) { // permet de reconstruire le chemin
+    private boolean ajouterSegmentAuResultat(Station depart, Station arrivee, ResultatDijkstra res, TourneePointCollecte tpc) { // permet de reconstruire le chemin
         double dist = res.distances.getOrDefault(arrivee, Double.MAX_VALUE);// récupère les distance
         if (dist >= Double.MAX_VALUE) return false;
         LinkedList<Arc> cheminArcs = new LinkedList<>(); // on reconstruit manuellement le chemin
@@ -108,8 +108,8 @@ public class TourneeAuPiedHabitation {
         }
         if (!cheminArcs.isEmpty() || depart.equals(arrivee)) { // ajoute le résultat si le chemin est valide
             Itineraire segment = new Itineraire(depart, arrivee, new ArrayList<>(cheminArcs));
-            resultatGlobal.listeSeg.add(segment);
-            resultatGlobal.distanceTotale += dist;
+            tpc.listeSeg.add(segment);
+            tpc.distanceTotale += dist;
             return true;
         }
         return false;

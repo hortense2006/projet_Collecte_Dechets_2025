@@ -9,11 +9,11 @@ import java.util.*;
 
 public class TourneePointCollecte {
 
-    Plan plan;
-    PlanView planV = new PlanView();
-    Dijkstra dijkstra ;
-    Depot depot = null;
-    TourneePointCollecteView tpcV ;
+    public Plan plan;
+    public PlanView planV = new PlanView();
+    public Dijkstra dijkstra ;
+    public Depot depot = null;
+    public TourneePointCollecteView tpcV ;
     public List<Itineraire> listeSeg; // La suite des rues empruntées
     public double distanceTotale;
 
@@ -109,4 +109,5 @@ public class TourneePointCollecte {
         tpcV.affichageBilanTournee(plan,camion);
 
     }
+
 }

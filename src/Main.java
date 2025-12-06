@@ -32,6 +32,11 @@ public class Main
         final String NOM_FICHIER_SECTEURS_RANVILLE = "Graphe_Secteurs_Ranville.txt";
         final String NOM_FICHIER_SECTEURS_BORDEAUX = "Graphe_Quartiers_Bordeaux.txt";
 
+        final String FICHIER_CAMION_RANVILLE = "Camion_Ranville.txt";
+        final String FICHIER_CAMION_BORDEAUX = "Camion_Bordeaux.txt";
+        final String FICHIER_PDC_RANVILLE = "Etat_point_collecte_Ranville.txt";
+        final String FICHIER_PDC_BORDEAUX = "Etat_point_collecte_Bordeaux.txt";
+
         // IMPORT DES CLASSES :
         //pour le plan
         Plan plan = new Plan();
@@ -60,10 +65,10 @@ public class Main
         (particulier->entreprise ou juste entreprise directement)*/
         // mais ça ne fait que charger les point de collecte ???
         if (choixDeVille == 1) {
-            model.map.PointCollecte.chargerEtatRanville(planDeVille);
+            model.map.PointCollecte.chargerEtat(planDeVille, FICHIER_PDC_RANVILLE);
         }
         else if (choixDeVille == 2) {
-            model.map.PointCollecte.chargerEtatBordeaux(planDeVille);
+            model.map.PointCollecte.chargerEtat(planDeVille, FICHIER_PDC_BORDEAUX);
         }
 
         // Pour les maisons
@@ -212,9 +217,9 @@ public class Main
                             case 3 : //aller jeter au point de collecte
                             {
                                 if (choixDeVille == 1) {
-                                    pcController.depotDechetAuPointCollecteRanville();
+                                    pcController.depotDechetAuPointCollecte(FICHIER_PDC_RANVILLE);
                                 } else if (choixDeVille == 2) {
-                                    pcController.depotDechetAuPointCollecteBordeaux();
+                                    pcController.depotDechetAuPointCollecte(FICHIER_PDC_BORDEAUX);
                                 }
                                 break;
                             }
@@ -252,11 +257,11 @@ public class Main
                             case 2: // faire la tournée des points de collecte
                             {
                                 if (choixDeVille == 1){
-                                    model.map.PointCollecte.chargerEtatRanville(planDeVille);
-                                    model.CamionModel monCamion = camionC.selectionnerCamionRanville(); // Le camion passe à "occupé"
+                                    model.map.PointCollecte.chargerEtat(planDeVille, FICHIER_PDC_RANVILLE);
+                                    model.CamionModel monCamion = camionC.selectionnerCamion(FICHIER_CAMION_RANVILLE); // Le camion passe à "occupé"
                                     tourneePC.tourneePlusProcheVoisinAvecCapacite(monCamion);
                                     tpcView.afficherResultats();
-                                    pcController.mettreAJourFichierPointsRanville();
+                                    pcController.mettreAJourFichierPoints(FICHIER_PDC_RANVILLE);
                                     if (monCamion.getCapaciteActuelle() < monCamion.getCapaciteMax()) { // s'il reste de la place dans mon camion à la fin de la tournée
                                         monCamion.setEtat("disponible");
                                         System.out.println("Info : Le camion n'est pas plein, il est marqué 'disponible'.");
@@ -264,20 +269,20 @@ public class Main
                                         monCamion.setEtat("occupé");
                                         System.out.println("Info : Le camion est plein, il reste marqué 'occupé' (nécessite vidage).");
                                     }
-                                    camionC.sauvegarderEtatCamionRanville(monCamion);
+                                    camionC.sauvegarderEtatCamion(monCamion, FICHIER_CAMION_RANVILLE);
                                     System.out.println("Bilan de la tournée"+
                                             "\nEtat des camions"+
                                             "ID : " + monCamion.getIdCamion() +
                                             "Charge finale : " + (int)monCamion.getCapaciteActuelle() + " / " + (int)monCamion.getCapaciteMax());
-                                    PointCollecteView.afficherEtatPointCollecteRanville();
+                                    PointCollecteView.afficherEtatPointCollecte(FICHIER_PDC_RANVILLE);
 
                                     System.out.println("\nTournée terminée. Les fichiers ont été mis à jour.");
                                 } else if (choixDeVille == 2){
-                                    model.map.PointCollecte.chargerEtatBordeaux(planDeVille);
-                                    model.CamionModel monCamion = camionC.selectionnerCamionBordeaux(); // Le camion passe à "occupé"
+                                    model.map.PointCollecte.chargerEtat(planDeVille, FICHIER_PDC_BORDEAUX);
+                                    model.CamionModel monCamion = camionC.selectionnerCamion(FICHIER_CAMION_BORDEAUX); // Le camion passe à "occupé"
                                     tourneePC.tourneePlusProcheVoisinAvecCapacite(monCamion);
                                     tpcView.afficherResultats();
-                                    pcController.mettreAJourFichierPointsBordeaux();
+                                    pcController.mettreAJourFichierPoints(FICHIER_PDC_BORDEAUX);
                                     if (monCamion.getCapaciteActuelle() < monCamion.getCapaciteMax()) { // s'il reste de la place dans mon camion à la fin de la tournée
                                         monCamion.setEtat("disponible");
                                         System.out.println("Info : Le camion n'est pas plein, il est marqué 'disponible'.");
@@ -285,12 +290,12 @@ public class Main
                                         monCamion.setEtat("occupé");
                                         System.out.println("Info : Le camion est plein, il reste marqué 'occupé' (nécessite vidage).");
                                     }
-                                    camionC.sauvegarderEtatCamionBordeaux(monCamion);
+                                    camionC.sauvegarderEtatCamion(monCamion, FICHIER_CAMION_BORDEAUX);
                                     System.out.println("Bilan de la tournée"+
                                             "\nEtat des camions"+
                                             "ID : " + monCamion.getIdCamion() +
                                             "Charge finale : " + (int)monCamion.getCapaciteActuelle() + " / " + (int)monCamion.getCapaciteMax());
-                                    PointCollecteView.afficherEtatPointCollecteBordeaux();
+                                    PointCollecteView.afficherEtatPointCollecte(FICHIER_PDC_BORDEAUX);
 
                                     System.out.println("\nTournée terminée. Les fichiers ont été mis à jour.");
                                 }
@@ -300,16 +305,16 @@ public class Main
                             {
                                 if (choixDeVille == 1)
                                 {
-                                    PointCollecteView.afficherEtatPointCollecteRanville();
+                                    PointCollecteView.afficherEtatPointCollecte(FICHIER_PDC_RANVILLE);
                                 } else if (choixDeVille == 2){
-                                    PointCollecteView.afficherEtatPointCollecteBordeaux();
+                                    PointCollecteView.afficherEtatPointCollecte(FICHIER_PDC_BORDEAUX);
                                 }
                                 break;
                             }
                             case 4 : // tournée au pied des habitation par secteur
                             {
                                 if (choixDeVille == 1) {
-                                    CamionModel monCamion = camionC.selectionnerCamionRanville();
+                                    CamionModel monCamion = camionC.selectionnerCamion(FICHIER_CAMION_RANVILLE);
                                     if (monCamion != null) {
                                         TourneeAuPiedHabitationController tsc = new TourneeAuPiedHabitationController(planDeVille, camionC, secteursM);
                                         tsc.lancerProcessusComplet(monCamion);
@@ -320,10 +325,10 @@ public class Main
                                             monCamion.setEtat("occupé");
                                             System.out.println("Info Main : Camion plein -> Occupé.");
                                         }
-                                        camionC.sauvegarderEtatCamionRanville(monCamion);
+                                        camionC.sauvegarderEtatCamion(monCamion, FICHIER_CAMION_RANVILLE);
                                     }
                                 } else if (choixDeVille == 2) {
-                                    CamionModel monCamion = camionC.selectionnerCamionBordeaux();
+                                    CamionModel monCamion = camionC.selectionnerCamion(FICHIER_CAMION_BORDEAUX);
                                     if (monCamion != null) {
                                         TourneeAuPiedHabitationController tsc = new TourneeAuPiedHabitationController(planDeVille, camionC, secteursM);
                                         tsc.lancerProcessusComplet(monCamion);
@@ -334,7 +339,7 @@ public class Main
                                             monCamion.setEtat("occupé");
                                             System.out.println("Info Main : Camion plein -> Occupé.");
                                         }
-                                        camionC.sauvegarderEtatCamionBordeaux(monCamion);
+                                        camionC.sauvegarderEtatCamion(monCamion, FICHIER_CAMION_BORDEAUX);
                                     }
                                 }
                                 break;
@@ -349,18 +354,18 @@ public class Main
                                     case 1 :
                                     {
                                         if (choixDeVille == 1){
-                                            camionC.viderTousCamionsRanville();
+                                            camionC.viderTousCamions();
                                         } else if (choixDeVille == 2){
-                                            camionC.viderTousCamionsBordeaux();
+                                            camionC.viderTousCamions();
                                         }
                                         break;
                                     }
                                     case 2 :
                                     {
                                         if (choixDeVille == 1){
-                                            camionC.viderUnCamionRanville();
+                                            camionC.viderUnCamion(FICHIER_CAMION_RANVILLE);
                                         } else  if (choixDeVille == 2){
-                                            camionC.viderUnCamionBordeaux();
+                                            camionC.viderUnCamion(FICHIER_CAMION_BORDEAUX);
                                         }
                                         break;
                                     }

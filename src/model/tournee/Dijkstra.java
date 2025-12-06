@@ -3,6 +3,7 @@ package model.tournee;
 import model.map.Arc;
 import model.map.Plan;
 import model.map.Station;
+import model.tournee.ResultatDijkstra;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +17,7 @@ public class Dijkstra {
         this.plan = plan;
     }
 
-    public model.tournee.ResultatDijkstra dijkstra (Station depart) {
+    public ResultatDijkstra dijkstra (Station depart) {
 
         Map<Station, Double> distances = new HashMap<>();
         Map<Station, Arc> predecesseurs = new HashMap<>();
