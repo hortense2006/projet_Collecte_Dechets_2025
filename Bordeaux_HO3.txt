@@ -6039,8 +6039,8 @@ Rue Calvimont;R4333;>;R3744;95
 Rue des Echoppes;R4334;>;R4091;6
 Cours de la Marne;R4335;-;R4338;122
 Rue de Cénac;R4336;>;R4237;16
-Rue Promis;R4337;>;P8;91
-Rue Promis;P8;>;R3772;92
+Rue Promis;R4337;-;P8;91
+Rue Promis;P8;-;R3772;92
 Rue de Bourillon;R4337;-;R4414;38
 Avenue des 40 Journaux;R4339;>;R4340;62
 Avenue Marcel Dassault;R4340;>;R4230;70

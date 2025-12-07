@@ -54,10 +54,17 @@ public class TourneePointCollecte {
             Station meilleurCandidat = null;
             double meilleurDistance = Double.MAX_VALUE;
             for (Station candidat : aVoir) { //trouver le point le plus proche
-                double dist = resultat.distances.getOrDefault(candidat, Double.MAX_VALUE);
-                if (dist < meilleurDistance) {
-                    meilleurDistance = dist;
-                    meilleurCandidat = candidat;
+                double distAller = resultat.distances.getOrDefault(candidat, Double.MAX_VALUE);
+                if (distAller < Double.MAX_VALUE && distAller < meilleurDistance) {
+                    ResultatDijkstra testRetour = dijkstra.dijkstra(candidat);
+                    double distRetourDepot = testRetour.distances.getOrDefault(depot, Double.MAX_VALUE);
+
+                    if (distRetourDepot < Double.MAX_VALUE) {
+                        meilleurDistance = distAller;
+                        meilleurCandidat = candidat;
+                    } else {
+                        System.out.println("Point " + ((PointCollecte)candidat).getNom() + " ignoré car cul-de-sac.");
+                    }
                 }
             }
             if (meilleurCandidat == null) break; // Plus de chemin possible

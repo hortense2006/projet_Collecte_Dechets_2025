@@ -94,7 +94,7 @@ public class CamionController {
     }
 
     // permet de vider tout les camions à la fois
-    public void viderTousCamions() {
+    public void viderTousCamions(String nomFichier) {
         List<CamionModel> camions = CamionModel.chargerCamions(nomFichier);
         CamionModel.reinitialiserTousCamions(nomFichier); // appel de la fonction créée ci-dessus
         camionV.afficherMessage("Succès : Tous les camions ont été vidés et sont disponibles.");

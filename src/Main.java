@@ -280,6 +280,8 @@ public class Main
                                 } else if (choixDeVille == 2){
                                     model.map.PointCollecte.chargerEtat(planDeVille, FICHIER_PDC_BORDEAUX);
                                     model.CamionModel monCamion = camionC.selectionnerCamion(FICHIER_CAMION_BORDEAUX); // Le camion passe à "occupé"
+                                    tourneePC = new TourneePointCollecte(planDeVille);
+                                    tpcView = new TourneePointCollecteView(tourneePC);
                                     tourneePC.tourneePlusProcheVoisinAvecCapacite(monCamion);
                                     tpcView.afficherResultats();
                                     pcController.mettreAJourFichierPoints(FICHIER_PDC_BORDEAUX);
@@ -354,9 +356,9 @@ public class Main
                                     case 1 :
                                     {
                                         if (choixDeVille == 1){
-                                            camionC.viderTousCamions();
+                                            camionC.viderTousCamions(FICHIER_CAMION_RANVILLE);
                                         } else if (choixDeVille == 2){
-                                            camionC.viderTousCamions();
+                                            camionC.viderTousCamions(FICHIER_CAMION_BORDEAUX);
                                         }
                                         break;
                                     }
